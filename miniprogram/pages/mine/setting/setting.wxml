@@ -1,0 +1,8 @@
+<!--miniprogram/pages/mine/setting/setting.wxml-->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">设置</view>
+</cu-custom>
+<view>
+  
+</view>

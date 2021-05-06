@@ -1,0 +1,85 @@
+/* miniprogram/pages/mine/address/address.wxss */
+.consignee {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: black;
+}
+
+.phone {
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.iconBox {
+  padding: 5rpx;
+  width: 54rpx;
+  height: 54rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #11998e;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #38ef7d, #11998e);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: #fff;
+  border-radius: 50%;
+}
+
+
+.addressItem {
+  width: 100%;
+  position: relative;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.addressBox {
+  margin: 10rpx 10rpx 0;
+  display: flex;
+  align-items: center;
+}
+
+.address {
+  font-size: 28rpx;
+
+}
+
+.addressDetail {
+  font-size: 25rpx;
+}
+
+.infoBox {
+  margin-left: 20rpx;
+}
+
+.iconEdit {
+  position: absolute;
+  top: 20rpx;
+  right: 30rpx;
+  font-size: 35rpx;
+
+}
+
+.controlBtn {
+  margin-top: 20rpx;
+}
+
+.controlBtnBox {
+  padding: 20rpx;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.radioBox{
+  display: flex;
+  align-items: center;
+}
+.radio{
+  margin-right: 10rpx;
+}

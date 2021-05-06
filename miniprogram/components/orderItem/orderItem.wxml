@@ -1,0 +1,23 @@
+<!--components/order/order.wxml-->
+<view class="orderItem">
+  <view class="headBox">
+    <image class="shopAvatar" src="../../images/avatar.png"></image>
+    <text class="shopName textOverflow">小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店</text>
+    <text class="orderState">已完成</text>
+  </view>
+  <view class="pubBotLine segmentationLine"></view>
+  <view class="productBox">
+    <image class="productPhoto" src="../../images/avatar.png"></image>
+    <view class="productDescBox">
+      <view class="productTitle textOverflow">
+        标题标题标题标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标题标题</view>
+      <view class="orderDate">下单时间：2021-12-12 12:14</view>
+      <view class="moneyBox">下单金额：<text class="money">￥18.00</text></view>
+    </view>
+   
+  </view>
+  <view class="btnGroup">
+      <view class="look">查看订单</view>
+      <view class="cancel">取消订单</view>
+    </view>
+</view>

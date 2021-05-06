@@ -1,0 +1,79 @@
+{
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "pages": [
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room",
+    "pages/test/test",
+    "pages/mine/mine",
+    "pages/search/search",
+    "pages/order/order",
+    "pages/shopManagement/shopManagement",
+    "pages/mine/setting/setting",
+    "pages/mine/address/address",
+    "pages/mine/aboutUs/aboutUs"
+  ],
+  "entryPagePath": "pages/index/index",
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.4",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#39b54a",
+    "navigationBarTitleText": "农职邦",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#07c160",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabBar/home.png",
+        "navigationBarTitleText": "首页",
+        "selectedIconPath": "images/tabBar/home-main.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "images/tabBar/order.png",
+        "navigationBarTitleText": "订单",
+        "selectedIconPath": "images/tabBar/order-main.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "navigationBarTitleText": "我的",
+        "iconPath": "images/tabBar/mine.png",
+        "selectedIconPath": "images/tabBar/mine-main.png"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "navigationBarTitleText": "开发者",
+        "text": "开发者",
+        "iconPath": "images/tabBar/code.png",
+        "selectedIconPath": "images/tabBar/code-main.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

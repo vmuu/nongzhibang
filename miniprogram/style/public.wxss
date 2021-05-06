@@ -1,0 +1,92 @@
+.textOverflow {
+  /* 多余内容省略号处理-单行 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*半像素底部细线*/
+.pubBotLine {
+	position: relative;
+}
+.pubBotLine:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #EAEAEA;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  -webkit-transform-origin: 0 bottom;
+}
+
+/*半像素顶部细线*/
+.pubTopLine {
+	position: relative;
+}
+.pubTopLine:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #EAEAEA;
+  width: 100%;
+  height: 1px;
+  -webkit-transform: scaleY(0.5);
+  -webkit-transform-origin: 0 top;
+}
+
+
+/*半像素右侧细线*/
+.pubRightLine {
+	position: relative;
+}
+.pubRightLine:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: auto;
+  right: 0;
+  background: #EAEAEA;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+  -webkit-transform-origin: right top;
+}
+
+/*半像素左侧细线*/
+.pubLeftLine {
+	position: relative;
+}
+.pubLeftLine:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #EAEAEA;
+  width: 1px;
+  height: 100%;
+  -webkit-transform: scaleX(0.5);
+  -webkit-transform-origin: left top;
+}
+
+/*半像素四周边框线*/
+.pubLine {
+	position: relative;
+}
+.pubLine:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200%;
+  height: 200%;
+  border: 1px solid #EAEAEA;
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin: right top;
+  box-sizing: border-box;
+}
+/* 阴影 */
+.boxShade{
+  box-shadow: 0 2px 2px rgba(10, 16, 20, 0.24), 0 0 2px rgba(10, 16, 20, 0.12);
+}

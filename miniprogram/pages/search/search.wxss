@@ -1,0 +1,92 @@
+/* miniprogram/pages/search/search.wxs.s */
+/* cu-custom{
+background-color:#07c160;
+color: #fff;
+} */
+.yuyinWrap {
+  position: relative;
+  margin-top:350rpx;
+}
+
+ 
+
+ 
+.yuyinBtnBg {
+  background: #07C160;
+}
+ 
+.yuyinBtn::after {
+  border: none;
+}
+ 
+.startYuyinImage {
+  position: fixed;
+  top: 600rpx;
+  left: 50%;
+  width: 190rpx;
+  height: 240rpx;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 20rpx;
+  color: #fff;
+  text-align: center;
+  margin-left: -95rpx;
+}
+
+ 
+.startYuyinImage cover-image {
+  margin: 30rpx auto;
+  width: 100rpx;
+  height: 100rpx;
+}
+ 
+.startYuyinImage cover-view {
+  margin-top: 25rpx;
+}
+.action{
+  margin-left: 30rpx auto;
+  
+}
+.action .buttonsousuo{
+  width: 120rpx;
+}
+.Scancode text{
+   margin-top: -25rpx; 
+}
+
+.Scancode{
+  font-size: 35rpx;
+  background-color:#07c160;
+  position: fixed;
+  bottom: 0;
+  margin: auto;
+  left: 0;
+  right: 0;
+  color: #fff;
+
+}
+
+.logo1{
+  margin: auto;
+  height:35rpx;
+  width:35rpx ;
+  position: fixed;
+  bottom: 25rpx;
+}
+.bottonlan{
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 80rpx;
+  width: 120rpx;
+
+}
+.bottonlanright{
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 80rpx;
+  width: 300rpx;
+  /* border:1px saddlebrown solid ;  */
+}

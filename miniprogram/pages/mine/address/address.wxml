@@ -1,0 +1,77 @@
+<!--miniprogram/pages/mine/address/address.wxml-->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">收货地址</view>
+</cu-custom>
+
+<view class="addressBox">
+  <view class="addressItem">
+    <view class="addressBox">
+      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+      <view class="infoBox">
+        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
+        <view class="address">云南省昆明市五华区</view>
+        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+      </view>
+      <text class="cuIcon-edit iconEdit"></text>
+    </view>
+    <view class="pubTopLine controlBtnBox">
+      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
+      <view bindtap="tapDelete">删除</view>
+    </view>
+  </view>
+</view>
+
+<view class="addressBox">
+  <view class="addressItem">
+    <view class="addressBox">
+      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+      <view class="infoBox">
+        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
+        <view class="address">云南省昆明市五华区</view>
+        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+      </view>
+      <text class="cuIcon-edit iconEdit"></text>
+    </view>
+    <view class="pubTopLine controlBtnBox">
+      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
+      <view>删除</view>
+    </view>
+  </view>
+</view>
+
+<view class="addressBox">
+  <view class="addressItem">
+    <view class="addressBox">
+      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+      <view class="infoBox">
+        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
+        <view class="address">云南省昆明市五华区</view>
+        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+      </view>
+      <text class="cuIcon-edit iconEdit"></text>
+    </view>
+    <view class="pubTopLine controlBtnBox">
+      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
+      <view>删除</view>
+    </view>
+  </view>
+</view>
+
+<view class="addressBox">
+  <view class="addressItem">
+    <view class="addressBox">
+      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+      <view class="infoBox">
+        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
+        <view class="address">云南省昆明市五华区</view>
+        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+      </view>
+      <text class="cuIcon-edit iconEdit"></text>
+    </view>
+    <view class="pubTopLine controlBtnBox">
+      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
+      <view>删除</view>
+    </view>
+  </view>
+</view>

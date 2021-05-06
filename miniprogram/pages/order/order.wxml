@@ -1,0 +1,78 @@
+<!--order.wxml-->
+<cu-custom bgColor="bg-main" isBack="{{false}}">
+
+  <view slot="content">
+    订单管理
+  </view>
+</cu-custom>
+<view class="content ">
+  <scroll-view id="scrollView" scroll-x class="bg-white nav shadow-warp">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{4}}" wx:key bindtap="tabSelect"
+        data-id="{{index}}">
+        {{orderState[index]}}
+      </view>
+    </view>
+  </scroll-view>
+  <swiper class="swiper" bindchange="swiperChange" style="height:{{orderItemHeight}}px" current="{{TabCur}}">
+    <swiper-item class="">
+      <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
+        <view class="orderBox">
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
+        <view class="orderBox">
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
+        <view class="orderBox">
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
+        <view class="orderBox">
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+          <orderItem></orderItem>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+
+
+</view>
