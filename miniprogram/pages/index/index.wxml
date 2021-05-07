@@ -19,7 +19,8 @@
     <view class="content" style="top:{{StatusBar}}px">
       <view class="search-form round searchBox" style="height:{{capsuleHeight-2}}px">
         <text class="cuIcon-search"></text>
-        <input type="text" style="{{capsuleHeight-2}}px" placeholder="请输入搜索关键词" confirm-type="search" bindtap="doInput"></input>
+        <input type="text" style="{{capsuleHeight-2}}px" placeholder="请输入搜索关键词" confirm-type="search"
+          bindtap="doInput"></input>
       </view>
       <!-- <input class="screen-swiper" type="text" value="{{value}}" placeholder="搜索关键词" /> -->
       <!-- <van-search value="{{value}}" shape="round" bindtap="doInput" background="#f5f5f5" placeholder="搜索关键词" /> -->
@@ -146,16 +147,21 @@
       <text class="main_f_test">推荐店铺</text>
       <text class="bg-green"></text>
     </view>
-
-    <swiper class="recommend_merchants_wrap" autoplay="true" circular="true" duration="300">
+    <!-- autoplay="true" -->
+    <swiper class="recommend_merchants_wrap" circular="true" duration="300">
       <swiper-item>
         <view class="recommend_merchants">
-          <view class="recommend_merchants_top" style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680);">
+          <view class="recommend_merchants_top"
+            style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680);">
+          </view>
+          <view class="recommend_merchants_top_wwarp">
             <image class="recommend_merchants_top_left"
               src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680"></image>
             <view class="recommend_merchants_top_right">
-              <view class="recommend_merchants_top_right_t">三顾冒菜</view>
-              <view class="recommend_merchants_top_right_f">店家很懒，没有设置描述</view>
+              <view class="recommend_merchants_top_right_wwarp">
+                <view class="recommend_merchants_top_right_t">三顾冒菜</view>
+                <view class="recommend_merchants_top_right_f">店家很懒，没有设置描述</view>
+              </view>
             </view>
           </view>
 
@@ -195,17 +201,27 @@
         </view>
       </swiper-item>
       <!-- 商家分界 -->
-      <swiper-item bindtap="tapShop">
+      <swiper-item>
         <view class="recommend_merchants">
-          <view class="recommend_merchants_top" style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953);">
+          <view class="recommend_merchants_top"
+            style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953);">
+          </view>
+          <view class="recommend_merchants_top_wwarp" bindtap="tapShop">
             <image class="recommend_merchants_top_left"
               src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953"></image>
             <view class="recommend_merchants_top_right">
-              <view class="recommend_merchants_top_right_t">重庆鸡公煲</view>
-              <view class="recommend_merchants_top_right_f">鸡公煲</view>
+              <view class="recommend_merchants_top_right_wwarp">
+                <view class="recommend_merchants_top_right_t">三顾冒菜</view>
+                <view class="recommend_merchants_top_right_f">店家很懒，没有设置描述</view>
+              </view>
             </view>
           </view>
-
+          <!-- <image class="recommend_merchants_top_left"
+            src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953"></image>
+          <view class="recommend_merchants_top_right">
+            <view class="recommend_merchants_top_right_t">重庆鸡公煲</view>
+            <view class="recommend_merchants_top_right_f">鸡公煲</view>
+          </view> -->
           <swiper class="recommend_merchants_foot_wrap" autoplay="true">
             <!-- 菜品第一页 -->
             <swiper-item>
@@ -382,7 +398,7 @@
           <text class="merchants_text_marking">配送：¥2</text>
         </view>
         <view>
-          <text class="cuIcon-location">星岛国际13栋3单元32号</text>
+          <text class="cuIcon-location textOverflow">星岛国际13栋3单元32号</text>
         </view>
       </view>
       <view class="all_merchants_right">
@@ -406,7 +422,7 @@
           <text class="merchants_text_marking">配送：¥2</text>
         </view>
         <view>
-          <text class="cuIcon-location">星岛国际</text>
+          <text class="cuIcon-location textOverflow">星岛国际</text>
         </view>
       </view>
       <view class="all_merchants_right">
@@ -430,7 +446,7 @@
           <text class="merchants_text_marking">配送：¥2</text>
         </view>
         <view>
-          <text class="cuIcon-location">学府大道665号三星镇</text>
+          <text class="cuIcon-location textOverflow">学府大道665号三星镇</text>
         </view>
       </view>
       <view class="all_merchants_right">
@@ -455,7 +471,7 @@
           <text class="merchants_text_marking">配送：¥2</text>
         </view>
         <view>
-          <text class="cuIcon-location">学府大道665号三星镇</text>
+          <text class="cuIcon-location textOverflow">学府大道665号三星镇</text>
         </view>
       </view>
       <view class="all_merchants_right">

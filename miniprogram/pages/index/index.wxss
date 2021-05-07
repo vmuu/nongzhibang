@@ -219,12 +219,15 @@ page {
 }
 
 .recommend_merchants_wrap{
-  height: 480rpx;
+  height: 490rpx;
+  margin-top: -15rpx;
 }
 .recommend_merchants{
   border-radius: 25rpx;
   margin-top: 15rpx;
   width: 100%;
+  height: 460rpx;
+  overflow: hidden;
   background-color: white;
   box-shadow: 2rpx 2rpx 4rpx 2rpx #DDDDDD;
 }
@@ -235,17 +238,34 @@ page {
   /* background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680); */
   background-position: 10% 100%;
   /* background-repeat: no-repeat; */
-  display: flex;
+  /* display: flex; */
 }
+.recommend_merchants_top_wwarp{
+  display: flex;
+  position: relative;
+  top: -107rpx;
+}
+
 .recommend_merchants_top_left{
   width: 100rpx;
   height: 100rpx;
-  margin: 50rpx 30rpx; 
+  /* margin: 50rpx 30rpx;  */
+  position: relative;
+  top: 50rpx;
+  left: 50rpx;
   box-shadow: 10rpx 10rpx 10rpx white;
 }
 .recommend_merchants_top_right{
-  margin-top: 60rpx;
+  /* margin-top: 60rpx; */
+  position: relative;
+  top: 60rpx;
+  left: 70rpx;
 }
+/* .recommend_merchants_top_right_wwarp{
+  position: relative;
+  top: 60rpx;
+  left: 70rpx;
+} */
 .recommend_merchants_top_right_t{
   font-size: 32rpx;
   color: #fff;
@@ -260,9 +280,16 @@ page {
   text-align: center;
   justify-content: center;
   padding-bottom: 20rpx;
+  /* position: relative;
+  top: 71rpx; */
+}
+.recommend_merchants_foot_wrap{
+  height: 340rpx;
+  position: relative;
+  top: -24rpx;
 }
 .recommend_merchants_foot_1 image{
-  margin-top: 70rpx;
+  /* margin-top: 70rpx; */
   width: 180rpx;
   height: 180rpx;
   border-radius: 20rpx;
@@ -274,19 +301,7 @@ page {
 .recommend_merchants_foot_1 text{
   color: red;
 }
-.recommend_merchants_foot_wrap{
-  height: 340rpx;
-}
 
-/* 下拉菜单 */
-.van-ellipsis{
-  /* font-size: 0.75rem; */
-}
-
-/* 标签页 */
-.scroll_nav {
-  /* margin-top: 320rpx; */
-}
 
 .tabs_scroll {
   border-radius: 20rpx;
@@ -327,7 +342,7 @@ page {
 
 /* 全部商家 */
 .scroll_nav{
-  padding: 20rpx 20rpx 0rpx 20rpx;
+  padding: 10rpx 20rpx 0rpx 20rpx;
 }
 .all_merchants{
   padding: 20rpx;
@@ -396,6 +411,9 @@ page {
   background-color: #e78f8b;
   padding: 5rpx 9rpx;
   border-radius: 20rpx 0rpx;
+}
+.cuIcon-location{
+  font-size: 30rpx;
 }
 /* 营业中 */
 .merchants_statu_yyz{
