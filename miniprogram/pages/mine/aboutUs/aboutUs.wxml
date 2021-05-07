@@ -1,5 +1,6 @@
 <!--miniprogram/pages/mine/aboutUs/aboutUs.wxml-->
 <cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
   <view slot="content">
     <view>关于我们</view>
   </view>
