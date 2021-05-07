@@ -366,6 +366,7 @@ page {
   height: 200rpx;
   align-items: center;
   display: grid;
+  overflow: hidden;
 }
 .merchants_title{
   font-weight: bold;
@@ -413,7 +414,8 @@ page {
   border-radius: 20rpx 0rpx;
 }
 .cuIcon-location{
-  font-size: 30rpx;
+  /* font-size: 30rpx; */
+  width: 100rpx;
 }
 /* 营业中 */
 .merchants_statu_yyz{
