@@ -148,8 +148,8 @@
       <text class="bg-green"></text>
     </view>
     <!-- autoplay="true" -->
-    <swiper class="recommend_merchants_wrap" circular="true" duration="300">
-      <swiper-item>
+    <swiper class="recommend_merchants_wrap" circular="true" duration="300" bindtap="tapShoptwo">
+      <swiper-item >
         <view class="recommend_merchants">
           <view class="recommend_merchants_top"
             style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680);">

@@ -119,5 +119,11 @@ Page({
     wx.navigateTo({
       url: '../shopManagement/shopManagement?id='+id,
     })
+  },
+  tapShoptwo(e){
+    let id ="b00064a76093e9e81545073e4872ca6a"
+    wx.navigateTo({
+      url: '../shopManagement/shopManagement?id='+id,
+    })
   }
 });

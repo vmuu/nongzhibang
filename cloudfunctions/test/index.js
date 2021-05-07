@@ -21,8 +21,8 @@ exports.main = async (event, context) => {
       localField: event.localField2,
       foreignField: event.foreignField2,
       as: event.as2
-    })*/.
-    match(event.match)
+    }).
+    match(event.match)*/
     .end()
   } catch (e) {
     console.error(e)

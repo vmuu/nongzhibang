@@ -55,13 +55,15 @@ class DBBase {
    * 联表查询 2表联查
    */
 
-  looKupTwo = function (tableName,collection,from,localField,foreignField,as) {
+  looKupTwo = function (tableName,shopId,collection,from,localField,foreignField,as) {
 
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
         name: tableName,
         data: {
+          //店铺
+          id:shopId,
           //要查的表
           collection: collection,
           //要链接的表
