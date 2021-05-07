@@ -69,6 +69,12 @@
         {
           "name": "pages/mine/address/address",
           "pathName": "pages/mine/address/address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/aboutUs/aboutUs",
+          "pathName": "pages/mine/aboutUs/aboutUs",
           "scene": null
         }
       ]

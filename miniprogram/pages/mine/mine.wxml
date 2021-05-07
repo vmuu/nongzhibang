@@ -53,10 +53,10 @@
 	<view class="listMenu shadow">
 		<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 			<view class="cu-item arrow">
-				<view class="content" bindtap="CopyLink" data-link="https://github.com/weilanwl/ColorUI">
+				<navigator class="content" url="/pages/mine/shop/shop" hover-class="none">
 					<text class="cuIcon-shopfill text-orange"></text>
 					<text class="text-grey">店铺管理</text>
-				</view>
+				</navigator>
 			</view>
 			<view class="cu-item arrow">
 				<navigator class="content" url="/pages/about/log/log" hover-class="none">

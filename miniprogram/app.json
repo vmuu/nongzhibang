@@ -23,7 +23,8 @@
     "pages/shopManagement/shopManagement",
     "pages/mine/setting/setting",
     "pages/mine/address/address",
-    "pages/mine/aboutUs/aboutUs"
+    "pages/mine/aboutUs/aboutUs",
+    "pages/mine/shop/shop"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {

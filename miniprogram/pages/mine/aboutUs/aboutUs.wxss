@@ -1,1 +1,37 @@
 /* miniprogram/pages/mine/aboutUs/aboutUs.wxss */
+.avatar{
+  border-radius: 50%;
+  width: 400rpx;
+  height: 400rpx;
+  margin: auto;
+}
+.content{
+  text-align: center;
+  font-size: 28rpx;
+  text-indent:56rpx;
+  margin: 25rpx;
+}
+.text{
+  text-align: left;
+}
+.title{
+  font-size: 40rpx;
+  font-weight: 600;
+  margin: 40rpx;
+  color: #07c160;
+  -webkit-text-shadow:0 0 5rpx #666666;
+  -moz-text-shadow:0 0 5rpx #666666;
+      -o-text-shadow:0 0 5rpx #666666;
+           text-shadow:0 0 5rpx #666666;
+}
+.nameLine{
+  padding-bottom: 5rpx;
+  border-bottom:2rpx #666666 solid;
+  color: black;
+  
+}
+.member{
+  font-size: 30rpx;
+  font-weight: bold;
+  margin: 40rpx;
+}

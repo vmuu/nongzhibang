@@ -1,2 +1,13 @@
 <!--miniprogram/pages/mine/aboutUs/aboutUs.wxml-->
-<view>关于我们</view>
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="content">
+    <view>关于我们</view>
+  </view>
+</cu-custom>
+<view class="content">
+  <image class="avatar boxShade" src="../../../images/avatar.png"></image>
+  <view class="title">农职邦</view>
+  <view class="member">研发成员：<text class="nameLine">樊兴东 方晨晓 杨明金 杜顺昌</text></view>
+  <view class="text">
+    关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们关于我们</view>
+</view>

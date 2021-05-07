@@ -1,0 +1,5 @@
+<!--miniprogram/pages/mine/shop/shop.wxml-->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">店铺管理</view>
+</cu-custom>
