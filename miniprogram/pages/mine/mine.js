@@ -71,8 +71,6 @@ Page({
         canIUseGetUserProfile: true,
       })
     }
-    //获取openid
-    this.onGetOpenid()
   },
   /**
    * 获取用户信息
@@ -101,43 +99,7 @@ Page({
       })
     }
   },
-  /**
-   * 获取openid
-   */
-  onGetOpenid: function () {
-    wx.showLoading({
-      title: '登录中...',
-    })
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        utils.cl('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        //异步方式缓存openid
-        try {
-          wx.setStorageSync('openid', res.result.openid)
-        } catch (e) {
-          utils.ce('缓存失败')
-        }
-        wx.hideLoading({
-          success: (res) => {
-            wx.showToast({
-              title: '登录成功',
-              icon: 'none'
-            })
-          },
-        })
-      },
-      fail: err => {
-        utils.ce('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
+  
   tapSetting() {
     wx.navigateTo({
       url: '/pages/mine/setting/setting',

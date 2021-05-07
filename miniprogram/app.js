@@ -23,6 +23,8 @@ App({
         traceUser: true,
       })
     };
+
+    
     //获取七牛云授权
     http.get('/api/File/Token').then((res) => {
       this.globalData.qiniuToken = res.data.token
@@ -45,15 +47,51 @@ App({
     try {
       var value = wx.getStorageSync('openid')
       if (value) {
-        utils.cl('[缓存]获取openid成功：',value)
-      }else{
+        utils.cl('[缓存]获取openid成功：', value)
+      } else {
         utils.ce('[缓存]获取openid为空，跳转到登录页面')
-        wx.switchTab({
-          url: './pages/mine/mine',
-        })
+       //登录
+       this.onGetOpenid()
       }
     } catch (e) {
-      utils.ce('[缓存]获取openid失败',e)
+      utils.ce('[缓存]获取openid失败', e)
     }
+  },
+  /**
+   * 获取openid
+   */
+  onGetOpenid: function () {
+    wx.showLoading({
+      title: '登录中...',
+    })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        utils.cl('[云函数] [login] user openid: ', res.result.openid)
+        this.globalData.openid = res.result.openid
+        //异步方式缓存openid
+        try {
+          wx.setStorageSync('openid', res.result.openid)
+        } catch (e) {
+          utils.ce('缓存失败')
+        }
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '登录成功',
+              icon: 'none'
+            })
+          },
+        })
+      },
+      fail: err => {
+        utils.ce('[云函数] [login] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
+      }
+    })
   },
 })
