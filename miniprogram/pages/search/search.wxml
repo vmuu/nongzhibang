@@ -3,8 +3,6 @@
     <view slot="backText">返回</view>
     <view slot="content">搜索</view>
   </cu-custom>
-
-
   <!-- 搜索框 -->
   <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
     <view class="search-form round">
@@ -17,177 +15,152 @@
   </view>
   <!-- 热搜榜 -->
   <view style="margin-top:90rpx">
-    <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="cu-bar bg-white solid-bottom  ">
       <view class="action">
-        <text class="cuIcon-title text-orange "></text> 大家都在搜
+        <text class="cuIcon-title text-orange  "></text> 大家都在搜
       </view>
     </view>
-    <view class="cu-list menu-avatar">
-      <view class="cu-item">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
-        <view class="content">
-          <view class="text-grey">小锅米线</view>
-          <view class="text-gray text-sm flex">
-            美味健康，好吃不腻,欢迎再来
-          </view>
+    <!-- 产品列表——一品俊香肥牛 -->
+    <view class="all_merchants" style="margin-top:-20rpx">
+      <view class="all_merchants_left">
+        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1931561620214316438"></image>
+      </view>
+      <view class="all_merchants_con">
+        <text class="merchants_title">一品俊香肥牛</text>
+        <view class="merchants_marking_warp">
+          <view class="merchants_marking">人气推荐</view>
+          <!-- <view class="merchants_marking">清油简餐</view> -->
         </view>
-        <view class="action">
-          <view class="cu-tag round bg-green sm">优质小吃</view>
-          <!-- <van-tag round type="success">优质小吃</van-tag> -->
-          <!-- <view class="cu-tag badge">99+</view> -->
-          <!-- <view class="cu-tag round bg-grey sm">5</view> -->
+        <view class="merchants_text_marking_warp">
+          <text class="merchants_text_marking">起送价：¥15</text>
+          <text class="merchants_text_marking">配送：¥2</text>
+        </view>
+        <view>
+          <text class="cuIcon-location">星岛国际13栋3单元32号</text>
         </view>
       </view>
-      <view class="cu-item">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Taric.png);">
-
-        </view>
-        <view class="content">
-          <view class="text-grey">
-            <text class="text-cut">瓦洛兰之盾-塔里克</text>
-            <!-- <view class="cu-tag round bg-orange sm">热搜推荐</view> -->
-
-          </view>
-          <view class="text-gray text-sm flex">
-            <text
-              class="text-cut">塔里克是保护者星灵，用超乎寻常的力量守护着符文之地的生命、仁爱以及万物之美。塔里克由于渎职而被放逐，离开了祖国德玛西亚，前去攀登巨神峰寻找救赎，但他找到的却是来自星界的更高层的召唤。现在的塔里克与古代巨神族的神力相融合，以瓦洛兰之盾的身份，永不疲倦地警惕着阴险狡诈的虚空腐化之力。</text>
-          </view>
-        </view>
-        <view class="action">
-          <!-- <view class="cu-tag badge">评论99+</view> 
-         <view class="text-grey text-xs">22:20</view> 
-        <view class="cuIcon-notice_forbid_fill text-gray"></view>  -->
-          <view class="cu-tag round bg-orange sm">热搜推荐</view>
-        </view>
+      <view class="all_merchants_right">
+        <view class="merchants_Price">￥20.99</view>
+        <view class="old_Price">￥23.99</view>
+         <view class="merchants_type">立即抢购</view> 
       </view>
-      <view class="cu-item ">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);"></view>
-        <view class="content">
-          <view class="text-grey">
-            <text class="text-cut">莫甘娜</text>
-          </view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut">凯尔，你被自己的光芒变的盲目！</text>
-          </view>
-        </view>
-        <view class="action">
-          <!-- <view class="text-grey text-xs">22:20</view> -->
-          <view class="cu-tag round bg-red sm">评论99+</view>
-        </view>
-      </view>
-      <view class="cu-item grayscale">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81007.jpg);"></view>
-        <view class="content">
-          <view>
-            <text class="text-cut">伊泽瑞尔</text>
-            <!-- <view class="cu-tag round bg-orange sm">断开连接...</view> -->
-          </view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut"> 等我回来一个打十个</text>
-          </view>
-        </view>
-        <view class="action">
-          <!-- <view class="text-grey text-xs">22:20</view> -->
-          <!-- <view class="cu-tag round bg-red sm"></view> -->
-        </view>
-      </view>
-      <view class="cu-item cur">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81020.jpg);">
-          <view class="cu-tag badge">人气</view>
-        </view>
-        <view class="content">
-          <view>
-            <text class="text-cut">瓦罗兰大陆-睡衣守护者-新手保护营</text>
-            <!-- <view class="cu-tag round bg-orange sm">6人</view> -->
-          </view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut"> 伊泽瑞尔：<text class="cuIcon-locationfill text-orange margin-right-xs"></text>
-              立马送...</text>
-          </view>
-        </view>
-        <view class="action">
-          <!-- <view class="text-grey text-xs">22:20</view> -->
-          <!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
-        </view>
-      </view>
-      <view class="cu-item cur">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81020.jpg);">
-          <view class="cu-tag badge">人气</view>
-        </view>
-        <view class="content">
-          <view>
-            <text class="text-cut">瓦罗兰大陆-睡衣守护者-新手保护营</text>
-            <!-- <view class="cu-tag round bg-orange sm">6人</view> -->
-          </view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut"> 伊泽瑞尔：<text class="cuIcon-locationfill text-orange margin-right-xs"></text>
-              立马送...</text>
-          </view>
-        </view>
-        <view class="action">
-          <!-- <view class="text-grey text-xs">22:20</view> -->
-          <!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
-        </view>
-      </view>
-
-      <view class="cu-item cur">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81020.jpg);">
-          <view class="cu-tag badge">人气</view>
-        </view>
-        <view class="content">
-          <view>
-            <text class="text-cut">瓦罗兰大陆-睡衣守护者-新手保护营</text>
-            <!-- <view class="cu-tag round bg-orange sm">6人</view> -->
-          </view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut"> 伊泽瑞尔：<text class="cuIcon-locationfill text-orange margin-right-xs"></text>
-              立马送...</text>
-          </view>
-        </view>
-        <view class="action">
-          <!-- <view class="text-grey text-xs">22:20</view> -->
-          <!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
-        </view>
-      </view>
-      <view class="cu-item cur">
-        <view class="cu-avatar round lg"
-          style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81020.jpg);">
-          <view class="cu-tag badge">人气</view>
-        </view>
-        <view class="content">
-          <view>
-            <text class="text-cut">瓦罗兰大陆-睡衣守护者-新手保护营</text>
-            <!-- <view class="cu-tag round bg-orange sm">6人</view> -->
-          </view>
-          <view class="text-gray text-sm flex">
-            <text class="text-cut"> 伊泽瑞尔：<text class="cuIcon-locationfill text-orange margin-right-xs"></text>
-              立马送...</text>
-          </view>
-        </view>
-
-      </view>
-
     </view>
+    <!-- 产品列表一鲜香酸菜鱼 -->
+    <view class="all_merchants">
+      <view class="all_merchants_left">
+        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
+      </view>
+      <view class="all_merchants_con">
+        <text class="merchants_title">鲜香酸菜鱼</text>
+        <view class="merchants_marking_warp">
+          <view class="merchants_marking">店铺上新</view>
+          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+        </view>
+        <view class="merchants_text_marking_warp">
+          <text class="merchants_text_marking">起送价：¥0</text>
+          <text class="merchants_text_marking">配送：¥2</text>
+        </view>
+        <view>
+          <text class="cuIcon-location">星岛国际</text>
+        </view>
+      </view>
+      <view class="all_merchants_right">
+        <view class="merchants_Price">￥20.99</view>
+        <view class="old_Price">￥23.99</view>
+         <view class="merchants_type">立即抢购</view> 
+      </view> 
+    </view>
+    <!-- 产品列表——糖醋排骨 -->
+    <view class="all_merchants">
+      <view class="all_merchants_left">
+        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1744481620207888924"></image>
+      </view>
+      <view class="all_merchants_con">
+        <text class="merchants_title">糖醋排骨</text>
+        <view class="merchants_marking_warp">
+          <view class="merchants_marking">店铺上新</view>
+          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+        </view>
+        <view class="merchants_text_marking_warp">
+          <text class="merchants_text_marking">起送价：¥10</text>
+          <text class="merchants_text_marking">配送：¥2</text>
+        </view>
+        <view>
+          <text class="cuIcon-location">学府大道665号三星镇</text>
+        </view>
+      </view>
+      <view class="all_merchants_right">
+        <view class="merchants_Price">￥20.99</view>
+        <view class="old_Price">￥23.99</view>
+         <view class="merchants_type">立即抢购</view> 
+      </view>
+    </view>
+
+        <!-- 产品列表——鲜香酸辣鱼 -->
+    <view class="all_merchants">
+      <view class="all_merchants_left">
+        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
+      </view>
+      <view class="all_merchants_con">
+        <text class="merchants_title">鲜香酸菜鱼</text>
+        <view class="merchants_marking_warp">
+          <view class="merchants_marking">店铺上新</view>
+          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+        </view>
+        <view class="merchants_text_marking_warp">
+          <text class="merchants_text_marking">起送价：¥0</text>
+          <text class="merchants_text_marking">配送：¥2</text>
+        </view>
+        <view>
+          <text class="cuIcon-location">星岛国际</text>
+        </view>
+      </view>
+      <view class="all_merchants_right">
+        <view class="merchants_Price">￥20.99</view>
+        <view class="old_Price">￥23.99</view>
+         <view class="merchants_type">立即抢购</view> 
+      </view> 
+    </view>
+    <!-- 产品列表——炸排骨 -->
+    <view class="all_merchants">
+      <view class="all_merchants_left">
+        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2317111620227831542"></image>
+      </view>
+      <view class="all_merchants_con">
+        <text class="merchants_title">炸排骨</text>
+        <view class="merchants_marking_warp">
+          <view class="merchants_marking">店铺上新</view>
+          <!-- <view class="merchants_marking">优质商家</view> -->
+        </view>
+        <view class="merchants_text_marking_warp">
+          <text class="merchants_text_marking">月售：¥20</text>
+          <text class="merchants_text_marking">起送价：¥15</text>
+          <text class="merchants_text_marking">配送：¥2</text>
+        </view>
+        <view>
+          <text class="cuIcon-location">学府大道665号三星镇</text>
+        </view>
+      </view>
+      <view class="all_merchants_right">
+        <view class="merchants_Price">￥20.99</view>
+        <view class="old_Price">￥23.99</view>
+         <view class="merchants_type">立即抢购</view> 
+      </view>
+    </view>
+
+ 
   </view>
 </scroll-view>
-<!-- 底部栏 -->
 
 
+<!-- 底部语音识别 -->
 <view>
   <button class="bottonlan"></button>
   <button class="bottonlanright"></button> 
-  <button class="Scancode yuyinBtn {{recordState == true ? 'yuyinBtnBg':''}}" bindtouchstart="touchStart"
-    bindtouchend="touchEnd">
-    <!-- <cover-image class="logo1" src="../../images/语音.png"></cover-image>  -->
-    <text wx:if="{{recordState == false}}">按住搜索美食</text>
-    <text wx:else>松开结束</text>
+  <button class="Scancode yuyinBtn {{recordState == true ? 'yuyinBtnBg':''}}" bindtouchstart="touchStart" bindtouchend="touchEnd">
+     <cover-image class="logo1" src="../../images/语音.png"></cover-image>   
+    <text wx:if="{{recordState == false}}">按住　　搜索</text>
+    <text wx:else>松开　　结束</text>
   </button>
   <view class="yuyinWrap">
     <!-- 开始语音 弹出语音图标表示正在录音 -->

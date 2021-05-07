@@ -1,16 +1,8 @@
-/* miniprogram/pages/search/search.wxs.s */
-/* cu-custom{
-background-color:#07c160;
-color: #fff;
-} */
+
 .yuyinWrap {
   position: relative;
   margin-top:350rpx;
 }
-
- 
-
- 
 .yuyinBtnBg {
   background: #07C160;
 }
@@ -44,7 +36,6 @@ color: #fff;
 }
 .action{
   margin-left: 30rpx auto;
-  
 }
 .action .buttonsousuo{
   width: 120rpx;
@@ -62,16 +53,20 @@ color: #fff;
   left: 0;
   right: 0;
   color: #fff;
+  border-radius: 50rpx;
 
 }
-
+/* 底部语音图标 */
 .logo1{
-  margin: auto;
-  height:35rpx;
-  width:35rpx ;
   position: fixed;
-  bottom: 25rpx;
+  margin: auto;
+  height:55rpx;
+  left: 0;
+  right: 0;
+  width:25px ;
+  bottom: 15rpx;
 }
+/* 左侧空白按钮 */
 .bottonlan{
   background: #fff;
   position: fixed;
@@ -81,6 +76,7 @@ color: #fff;
   width: 120rpx;
 
 }
+/* 右侧空白按钮 */
 .bottonlanright{
   background: #fff;
   position: fixed;
@@ -89,4 +85,97 @@ color: #fff;
   height: 80rpx;
   width: 300rpx;
   /* border:1px saddlebrown solid ;  */
+}
+
+
+/* 全部商家 */
+.scroll_nav{
+  /* padding: 20rpx 20rpx 0rpx 20rpx; */
+}
+.all_merchants{
+  padding: 20rpx;
+  background-color: white;
+  display: flex;
+
+}
+.scroll_nav>view:nth-child(2){
+  margin-top: -10rpx;
+  /* background-color: violet; */
+}
+.all_merchants_left,.all_merchants_left>image{
+  width: 190rpx;
+  height: 195rpx;
+  border-radius: 10rpx;
+}
+.all_merchants_con{
+  /* padding-left: 20rpx; */
+  margin-left: 20rpx;
+  width: 370rpx;
+  height: 200rpx;
+  align-items: center;
+  display: grid;
+}
+.merchants_title{
+  font-weight: bold;
+  font-size: 33rpx;
+}
+.merchants_marking_warp{
+  display: flex;
+  font-size: 27rpx;
+  text-align: center;
+}
+.merchants_marking_warp view:nth-child(2){
+  margin-left: 10rpx;
+}
+.merchants_marking{
+  background-color: red;
+  color: #fff;
+  padding: 2rpx 4rpx;
+  width: 120rpx;
+  border-radius: 10rpx;
+}
+.merchants_text_marking_warp text:nth-child(2){
+  margin-left: 20rpx;
+}
+.merchants_text_marking{
+  color: #737776;
+  font-size: 27rpx;
+}
+.all_merchants_right{
+  width: 150rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+  /* background-color: tomato; */
+  text-align: center;
+}
+.old_Price{
+
+  text-decoration:line-through
+}
+.merchants_Price{
+   margin-top:70rpx ;
+  font-size: 30rpx;                                       
+  color:#E42822;
+  font-weight: bold;
+}
+.merchants_type{
+  margin-top: 10rpx;
+  color: white;
+  font-size: 25rpx;
+  background-color: #F37B1D;
+  padding: 5rpx 9rpx;
+  border-radius: 20rpx;
+}
+/* 营业中 */
+/* .merchants_statu_yyz{
+  color: #45b64a;
+} */
+/* 可预订 */
+/* .merchants_statu_kyd{
+  color: #7445df;
+} */
+/* 炒饭盖饭 */
+.merchants_marking_cfgf{
+  background-color: #ccbcf5;
+  color: #4a4752;
 }
