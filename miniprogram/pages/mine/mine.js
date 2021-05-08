@@ -14,6 +14,7 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false
     gridCol: 3,
+    isShop:false,
     gridBorder: false,
     iconList: [{
       id: 0,

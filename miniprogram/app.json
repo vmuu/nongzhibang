@@ -24,7 +24,8 @@
     "pages/mine/setting/setting",
     "pages/mine/address/address",
     "pages/mine/aboutUs/aboutUs",
-    "pages/mine/shop/shop"
+    "pages/mine/shop/shop",
+    "pages/mine/identification/identification"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {

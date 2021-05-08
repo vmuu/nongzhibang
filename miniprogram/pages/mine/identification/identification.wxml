@@ -1,0 +1,24 @@
+<!--miniprogram/pages/mine/identification/identification.wxml-->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">实名认证</view>
+</cu-custom>
+<form>
+  <view class="cu-form-group">
+    <view class="title">真实姓名</view>
+    <input placeholder="请填写您的真实姓名"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">身份证号</view>
+    <input placeholder="请填写您的身份证号"></input>
+  </view>
+  <view class="cu-form-group">
+    <view>请上传您的身份证正反面</view>
+    <view></view>
+  </view>
+</form>
+
+<view class="margin-tb-sm text-center nextBtnBox">
+  <button bindtap="tapCancel" class="cu-btn round line-yellow shadow btnCancel">取消</button>
+  <button class="cu-btn round bg-green shadow">下一步</button>
+</view>

@@ -75,6 +75,12 @@
         {
           "name": "pages/mine/aboutUs/aboutUs",
           "pathName": "pages/mine/aboutUs/aboutUs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/identification/identification",
+          "pathName": "pages/mine/identification/identification",
           "scene": null
         }
       ]

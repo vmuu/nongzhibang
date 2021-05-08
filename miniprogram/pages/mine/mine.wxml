@@ -53,9 +53,10 @@
 	<view class="listMenu shadow">
 		<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 			<view class="cu-item arrow">
-				<navigator class="content" url="/pages/mine/shop/shop" hover-class="none">
+				<navigator class="content" url="{{isShop?'/pages/mine/shop/shop':'/pages/mine/identification/identification'}}" hover-class="none">
 					<text class="cuIcon-shopfill text-orange"></text>
-					<text class="text-grey">店铺管理</text>
+					<text class="text-grey" wx:if="{{isShop}}">店铺管理</text>
+					<text class="text-grey" wx:if="{{!isShop}}">入驻商家</text>
 				</navigator>
 			</view>
 			<view class="cu-item arrow">

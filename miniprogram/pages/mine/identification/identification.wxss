@@ -1,0 +1,16 @@
+/* miniprogram/pages/mine/identification/identification.wxss */
+.nextBtnBox{
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  /* background-color: white; */
+  height: 150rpx;
+  line-height: 150rpx;
+}
+.nextBtnBox button{
+  height: 80rpx;
+}
+.btnCancel{
+  width: 250rpx !important;
+  margin-right: 20rpx !important;
+}
