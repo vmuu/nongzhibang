@@ -1,5 +1,5 @@
 /* miniprogram/pages/mine/identification/identification.wxss */
-.nextBtnBox{
+.nextBtnBox {
   position: fixed;
   width: 100%;
   bottom: 0rpx;
@@ -7,10 +7,50 @@
   height: 150rpx;
   line-height: 150rpx;
 }
-.nextBtnBox button{
+
+.nextBtnBox button {
   height: 80rpx;
 }
-.btnCancel{
+
+.btnCancel {
   width: 250rpx !important;
   margin-right: 20rpx !important;
 }
+
+.uploadImageBox {
+  display: flex !important;
+  align-items: unset !important;
+  text-align: left !important;
+  justify-content: left !important;
+  flex-direction: column !important;
+  padding-bottom: 30rpx !important;
+  padding-top: 25rpx !important;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageAttribute {
+  width: 100%;
+  height: 100%;
+}
+
+.iamgeBox {
+  width: 330rpx;
+  height: 200rpx;
+  border: 1rpx green dashed;
+  border-radius: 20rpx;
+  margin: 20rpx 0;
+  line-height: 200rpx;
+  overflow: hidden;
+}
+
+.textAlign-center {
+  text-align: center;
+}
+.iconCamerAdd{
+  font-size: 80rpx;
+}
+.idTitle {}

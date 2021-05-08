@@ -12,9 +12,24 @@
     <view class="title">身份证号</view>
     <input placeholder="请填写您的身份证号"></input>
   </view>
-  <view class="cu-form-group">
-    <view>请上传您的身份证正反面</view>
-    <view></view>
+  <view class="cu-form-group uploadImageBox">
+    <view class="title idTitle">请上传您的身份证正反面</view>
+    <view class="display-flex">
+      <view class="textAlign-center">
+        <view class="iamgeBox" bindtap="tapFront">
+          <text wx:if="{{entity.idPhotoFront==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+          <image class="imageAttribute" mode='aspectFill' src="{{entity.idPhotoFront}}"></image>
+        </view>
+        <view>正面</view>
+      </view>
+      <view class="textAlign-center">
+        <view class="iamgeBox " bindtap="tapBack">
+          <text wx:if="{{entity.idPhotoBack==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+          <image class="imageAttribute" mode='aspectFill' src="{{entity.idPhotoBack}}"></image>
+        </view>
+        <view>反面</view>
+      </view>
+    </view>
   </view>
 </form>
 
