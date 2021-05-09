@@ -34,6 +34,6 @@
 </form>
 
 <view class="margin-tb-sm text-center nextBtnBox">
-  <button bindtap="tapCancel" class="cu-btn round line-yellow shadow btnCancel">取消</button>
-  <button class="cu-btn round bg-green shadow">下一步</button>
+  <button bindtap="tapCancel" class="cu-btn round line-yellow shadow">取消</button>
+  <button class="cu-btn round bg-green shadow" bindtap="tapNext">下一步</button>
 </view>

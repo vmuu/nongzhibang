@@ -6,15 +6,11 @@
   /* background-color: white; */
   height: 150rpx;
   line-height: 150rpx;
+  display: flex;
+  align-content: space-between;
 }
-
 .nextBtnBox button {
   height: 80rpx;
-}
-
-.btnCancel {
-  width: 250rpx !important;
-  margin-right: 20rpx !important;
 }
 
 .uploadImageBox {
@@ -51,6 +47,6 @@
   text-align: center;
 }
 .iconCamerAdd{
-  font-size: 80rpx;
+  font-size: 60rpx;
 }
 .idTitle {}

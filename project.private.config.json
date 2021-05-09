@@ -43,12 +43,6 @@
           "scene": null
         },
         {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/search/search",
           "pathName": "pages/search/search",
           "query": "",
@@ -81,6 +75,13 @@
         {
           "name": "pages/mine/identification/identification",
           "pathName": "pages/mine/identification/identification",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/shop/shop",
+          "pathName": "pages/mine/shop/shop",
+          "query": "",
           "scene": null
         }
       ]

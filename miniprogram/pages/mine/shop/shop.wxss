@@ -1,1 +1,15 @@
 /* miniprogram/pages/mine/shop/shop.wxss */
+.nextBtnBox {
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  /* background-color: white; */
+  height: 150rpx;
+  line-height: 150rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.nextBtnBox button {
+  height: 80rpx;
+}

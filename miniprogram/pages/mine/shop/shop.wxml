@@ -3,3 +3,19 @@
   <view slot="backText">返回</view>
   <view slot="content">店铺管理</view>
 </cu-custom>
+
+<form>
+  <view class="cu-form-group">
+    <view class="title">店铺名称</view>
+    <input placeholder="请填写您的店铺名称"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">店铺描述</view>
+    <input placeholder="请填写您的店铺描述"></input>
+  </view>
+</form>
+
+<view class="margin-tb-sm text-center nextBtnBox">
+  <button bindtap="tapPrevious" class="cu-btn round line-yellow shadow">上一步</button>
+  <button class="cu-btn round bg-green shadow" bindtap="tapNext">下一步</button>
+</view>

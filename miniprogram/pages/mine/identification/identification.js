@@ -104,5 +104,10 @@ Page({
         })
       }
     });
+  },
+  tapNext(){
+    wx.navigateTo({
+      url: '../shop/shop',
+    })
   }
 })
