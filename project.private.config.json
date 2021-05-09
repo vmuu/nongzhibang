@@ -79,9 +79,20 @@
           "scene": null
         },
         {
+<<<<<<< Updated upstream
           "name": "pages/mine/shop/shop",
           "pathName": "pages/mine/shop/shop",
           "query": "",
+=======
+          "name": "pages/chat/chat",
+          "pathName": "pages/chat/chat",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/im/room/room",
+          "pathName": "pages/im/room/room",
+>>>>>>> Stashed changes
           "scene": null
         }
       ]

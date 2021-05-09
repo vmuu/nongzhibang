@@ -62,7 +62,7 @@ Page({
       }
       let text=res.result
      that.setData({
-       content:that.content
+       content:res.result
      })
     }
   },

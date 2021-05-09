@@ -8,5 +8,5 @@
     userInfo="{{userInfo}}"
     onGetUserInfo="{{onGetUserInfo}}"
     getOpenID="{{getOpenID}}"
-  ></chatroom>
+    ></chatroom>
 </view>
