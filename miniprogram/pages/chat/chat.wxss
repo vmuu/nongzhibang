@@ -1,0 +1,7 @@
+page{
+  padding-bottom: 100rpx;
+}
+.cu-bar .cu-btn{
+  width: 120rpx;
+  border-radius: 25prx;
+}
