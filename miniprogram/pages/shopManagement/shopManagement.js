@@ -13,12 +13,44 @@ Page({
     MainCur: 0,
     heighttop:(app.globalData.StatusBar)+40,
     VerticalNavTop: 0,
+    imgList: [],
+    index_x: null,
+    checkbox: [{
+      value: 0,
+      name: '10元',
+      checked: false,
+      hot: false,
+    }, {
+      value: 1,
+      name: '20元',
+      checked: true,
+      hot: false,
+    }, {
+      value: 2,
+      name: '30元',
+      checked: true,
+      hot: true,
+    }, {
+      value: 3,
+      name: '60元',
+      checked: false,
+      hot: true,
+    }, {
+      value: 4,
+      name: '80元',
+      checked: false,
+      hot: false,
+    }, {
+      value: 5,
+      name: '100元',
+      checked: false,
+      hot: false,
+    }],
     list: [],
     load: true,
-    commodityType:[
-    ],
-    shop:[
-    ]
+    commodityType:[],
+    shop:[],
+    product:[]
   },
   
   onLoad(shop) {
@@ -108,5 +140,112 @@ Page({
         return false
       }
     }
+  },
+  // ListTouch触摸开始
+  ListTouchStart(e) {
+    this.setData({
+      ListTouchStart: e.touches[0].pageX
+    })
+  },
+
+  // ListTouch计算方向
+  ListTouchMove(e) {
+    this.setData({
+      ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
+    })
+  },
+
+  // ListTouch计算滚动
+  ListTouchEnd(e) {
+    if (this.data.ListTouchDirection =='left'){
+      this.setData({
+        modalName: e.currentTarget.dataset.target
+      })
+    } else {
+      this.setData({
+        modalName: null
+      })
+    }
+    this.setData({
+      ListTouchDirection: null
+    })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+    //要修改的商品
+    dbbase.query("product",e.currentTarget.dataset.product_id).then((res)=>{
+      this.setData({
+        product:res.data[0],
+        index_x:0,
+        imgList:[
+          res.data[0].Image,
+        ]
+      })
+    })
+  },
+  //关闭弹窗
+  hideModal(e) {
+    this.setData({
+      modalName: null,
+      product:[]
+    })
+  },
+  ChooseCheckbox(e) {
+    let items = this.data.checkbox;
+    let values = e.currentTarget.dataset.value;
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value == values) {
+        items[i].checked = !items[i].checked;
+        break
+      }
+    }
+    this.setData({
+      checkbox: items
+    })
+  },
+  ChooseImage() {
+    wx.chooseImage({
+      count: 4, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths
+          })
+        }
+      }
+    });
+  },
+  //图片全屏显示
+  ViewImage(e) {
+    //console.log(this.data.imgList,e.currentTarget.dataset.url)
+    wx.previewImage({
+      current: e.currentTarget.dataset.url,
+      urls: this.data.imgList
+    });
+  },
+  //删除图片
+  DelImg(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除这张相片吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imgList: this.data.imgList
+          })
+        }
+      }
+    })
   }
 })

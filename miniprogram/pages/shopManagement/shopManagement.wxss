@@ -35,9 +35,15 @@
 .VerticalMain{
   background-color: #f1f1f1;
 }
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
 .fcx-head{
   z-index:1000;
   position: absolute;
   width: 90%;
   padding: 3%;
+}
+.fcx-test{
+  clear: both;
 }

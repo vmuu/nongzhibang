@@ -85,7 +85,7 @@ class DBBase {
           }
         },
         success: res => {
-          console.log(res.result.list)
+          //console.log(res.result.list)
           return success(res)
           //绑定到本地数据
           // this.setData({
