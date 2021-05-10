@@ -72,7 +72,7 @@
             <input placeholder="{{product.price}}"></input>
           </view>
           <view class="cu-form-group margin-top">
-            <view class="title">普通选择</view>
+            <view class="title">分类</view>
             <picker bindchange="PickerChange" value="{{indexPicker}}" range="{{picker}}">
               <view class="picker">
                 {{picker[indexPicker]}}
