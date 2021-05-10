@@ -1,8 +1,16 @@
 //app.js
-import http from 'config/http.js'
+import http from './config/http'
 import utils from './config/utils'
+import dbbase from './config/dbbase'
 
 App({
+  /**
+   * 全局js
+   */
+  utils:utils,
+  dbbase:dbbase,
+  http:http,
+
   /**
    * 程序全局变量
    */

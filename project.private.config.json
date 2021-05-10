@@ -1,5 +1,4 @@
 {
-  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -19,80 +18,8 @@
           "query": ""
         },
         {
-          "name": "pages/order/order",
-          "pathName": "pages/order/order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/mine",
-          "pathName": "pages/mine/mine",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/search/search",
-          "pathName": "pages/search/search",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/setting/setting",
-          "pathName": "pages/mine/setting/setting",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/address/address",
-          "pathName": "pages/mine/address/address",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/aboutUs/aboutUs",
-          "pathName": "pages/mine/aboutUs/aboutUs",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/identification/identification",
-          "pathName": "pages/mine/identification/identification",
-          "query": "",
-          "scene": null
-        },
-        {
-<<<<<<< Updated upstream
           "name": "pages/mine/shop/shop",
           "pathName": "pages/mine/shop/shop",
-          "query": "",
-=======
-          "name": "pages/chat/chat",
-          "pathName": "pages/chat/chat",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/im/room/room",
-          "pathName": "pages/im/room/room",
->>>>>>> Stashed changes
           "scene": null
         }
       ]

@@ -9,13 +9,54 @@
     <view class="title">店铺名称</view>
     <input placeholder="请填写您的店铺名称"></input>
   </view>
-  <view class="cu-form-group">
-    <view class="title">店铺描述</view>
-    <input placeholder="请填写您的店铺描述"></input>
+  <view class="cu-form-group align-start">
+		<view class="title">店铺描述</view>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="多行文本输入框"></textarea>
   </view>
+  <view class="cu-bar bg-white" style="margin-top:3rpx">
+		<view class="action">
+			店铺头像
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+  </view>
+  	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view>
+  <view class="cu-form-group">
+		<view class="title">店铺地区</view>
+		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view class="picker">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+			</view>
+		</picker>
+	</view>
+  <view class="cu-form-group align-start">
+		<view class="title">详细地址</view>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="多行文本输入框"></textarea>
+  </view>
+  <view class="cu-form-group">
+		<view class="title">营业时间</view>
+		<picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
+			<view class="picker">
+				{{time}}
+			</view>
+		</picker>
+	</view>
 </form>
 
 <view class="margin-tb-sm text-center nextBtnBox">
   <button bindtap="tapPrevious" class="cu-btn round line-yellow shadow">上一步</button>
-  <button class="cu-btn round bg-green shadow" bindtap="tapNext">下一步</button>
+  <button class="cu-btn round bg-green shadow" bindtap="tapNext">进入店铺</button>
 </view>
