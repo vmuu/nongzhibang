@@ -71,6 +71,14 @@
             <view class="title">价格</view>
             <input placeholder="{{product.price}}"></input>
           </view>
+          <view class="cu-form-group margin-top">
+            <view class="title">普通选择</view>
+            <picker bindchange="PickerChange" value="{{indexPicker}}" range="{{picker}}">
+              <view class="picker">
+                {{picker[indexPicker]}}
+              </view>
+            </picker>
+          </view>
           <view class="cu-bar bg-white margin-top">
             <view class="action">
               图片

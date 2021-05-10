@@ -50,6 +50,28 @@ class DBBase {
     })
 
   }
+  /**
+   * 查询一个，通过id
+   */
+  queryselect = function (table) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table) {
+        db.collection(table).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table）不可空')
+      }
+    })
+
+  }
 
 /**
    * 联表查询 2表联查
@@ -80,9 +102,9 @@ class DBBase {
           foreignField2:'activity',
           as2:'act',*/
 
-          match: {
+          /*match: {
             _id: app.globalData.openid
-          }
+          }*/
         },
         success: res => {
           //console.log(res.result.list)

@@ -13,6 +13,7 @@ Page({
     MainCur: 0,
     heighttop:(app.globalData.StatusBar)+40,
     VerticalNavTop: 0,
+    //商品对象图片索引
     imgList: [],
     index_x: null,
     checkbox: [{
@@ -48,9 +49,16 @@ Page({
     }],
     list: [],
     load: true,
+    //商品分类
     commodityType:[],
+    //商店
     shop:[],
-    product:[]
+    //商品对象
+    product:[],
+    //下拉列表索引
+    indexPicker: null,
+    //下拉列表数据
+    picker: [],
   },
   
   onLoad(shop) {
@@ -73,7 +81,14 @@ Page({
         shop:res.data[0]
       })
     })
-
+    //菜品下拉列表
+    dbbase.queryselect("productType").then((res)=>{
+      for (let i = 0; i < res.data.length; i++) {
+        this.setData({
+          picker: this.data.picker.concat(res.data[i].Name)
+        });
+      }
+    })
     //联表查询
     // wx.cloud.callFunction({
     //   name:'test',
@@ -183,6 +198,16 @@ Page({
           res.data[0].Image,
         ]
       })
+      //绑定下拉列表数据
+      dbbase.query("productType",res.data[0].commodityTypeId).then((res)=>{
+        for (let i = 0; i < this.data.picker.length; i++) {
+          if(this.data.picker[i]===res.data[0].Name){
+            this.setData({
+              indexPicker:i
+            });
+          }
+        }
+      })
     })
   },
   //关闭弹窗
@@ -247,5 +272,13 @@ Page({
         }
       }
     })
+  },
+  //下拉列表
+  PickerChange(e) {
+    //console.log(e);
+    this.setData({
+      indexPicker: e.detail.value
+    })
+
   }
 })
