@@ -99,7 +99,7 @@ page {
 
 .notice_right {
   display: flex;
-  width: 800rpx;
+  width: 150rpx;
   /* line-height: 55rpx; */
   align-items: center;
   justify-content: center;
