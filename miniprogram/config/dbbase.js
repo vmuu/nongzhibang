@@ -51,7 +51,31 @@ class DBBase {
 
   }
   /**
-   * 查询一个，通过id
+   * 查询一个，通过Name
+   */
+  queryName = function (table, Name) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table && Name) {
+        db.collection(table).where({
+          Name: Name
+        }).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table，Name）不可空')
+      }
+    })
+
+  }
+  /**
+   * 查询单表
    */
   queryselect = function (table) {
     const db = wx.cloud.database()
@@ -148,11 +172,11 @@ class DBBase {
   /**
    * 修改
    */
-  update = function (table, id, data) {
+  update = function (table, _id, data) {
     const db = wx.cloud.database()
 
     return new Promise((success) => {
-      if (table && id && data) {
+      if (table && _id && data) {
         db.collection(table).doc(_id).update({
           data: data,
           success: res => {

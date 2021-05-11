@@ -77,7 +77,6 @@ Page({
    * 上传七牛云
    */
   tapQiniu() {
-
     let that = this
     //从全局获取七牛云授权token
     let token = app.globalData.qiniuToken

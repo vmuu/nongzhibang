@@ -1,6 +1,7 @@
 import dbbase from '../../config/dbbase.js';
 // const { default: dbbase } = require("../../config/dbbase");
-import db from '../../config/dbbase.js';
+import db from '../../config/dbbase.js'
+import utils from '../../config/utils.js';
 
 const app = getApp();
 Page({
@@ -58,12 +59,6 @@ Page({
     indexPicker: null,
     //下拉列表数据
     picker: [],
-    //验证提示是否显示
-    isSubmit:false,
-    //验证提示内容
-    warn:null,
-    //要修改的商品的类别
-    commodityTypePorductId:null,
   },
   
   onLoad(shop) {
@@ -190,25 +185,19 @@ Page({
       ListTouchDirection: null
     })
   },
-  //修改弹窗
   showModal(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
     //要修改的商品
     dbbase.query("product",e.currentTarget.dataset.product_id).then((res)=>{
-      console.log(res.data[0].Image)
       this.setData({
         product:res.data[0],
         index_x:0,
+        imgList:[
+          res.data[0].Image,
+        ]
       })
-      if(res.data[0].Image!==""){
-        this.setData({
-          imgList:[
-            res.data[0].Image
-          ]
-        })
-      }
       //绑定下拉列表数据
       dbbase.query("productType",res.data[0].commodityTypeId).then((res)=>{
         for (let i = 0; i < this.data.picker.length; i++) {
@@ -241,7 +230,6 @@ Page({
       checkbox: items
     })
   },
-  //上传图片到本地
   ChooseImage() {
     wx.chooseImage({
       count: 4, //默认9
@@ -292,76 +280,5 @@ Page({
       indexPicker: e.detail.value
     })
 
-  },
-  //修改提交
-  formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    let { _id, Name, Desc, Image, commodityTypeId, price } = e.detail.value;
-    if(_id!=undefined&&Name!=undefined&&Desc!=undefined&&Image!=undefined&&commodityTypeId!=undefined&&price!=undefined){
-      this.setData({
-        warn: null,
-        isSubmit: false
-      })
-      wx.showModal({
-        title: '提示',
-        content: '确定要修改吗？',
-        cancelText: '取消',
-        confirmText: '确定',
-        success: res => {
-          if (res.confirm) {
-            let that = this
-            //从全局获取七牛云授权token
-            let token = app.globalData.qiniuToken
-            var filePath = this.data.imgList[0];
-                app.utils.upload(filePath, token).then((res) => {
-                  wx.hideLoading({
-                    /*success: (res) => {},*/
-                    success: function (res) {
-                      wx.showLoading({
-                        title: '图片上传中...',
-                      })
-                    }
-                  })
-                  wx.showToast({
-                    title: '上传成功',
-                    icon:'none'
-                  })
-                  //返回的图片路径
-                  that.setData({
-                    imgList: [
-                      res.imageURL,
-                    ]
-                  })
-                  dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
-                    this.setData({
-                      commodityTypePorductId:res.data[0]._id
-                    })
-                    console.log(this.data.commodityTypePorductId)
-                    console.log(Image)
-                    //更新数据
-                    dbbase.update("product",_id,{
-                      Desc:Desc,
-                      Name:Name,
-                      Image:Image,
-                      commodityTypeId:this.data.commodityTypePorductId,
-                      price:price
-                    }).then((res)=>{
-                      wx.showLoading({
-                        title: '数据上传中...',
-                      })
-                      console.log(res)
-                    })
-                  })
-                })
-          }
-        }
-      })
-    }
-    else{
-      this.setData({
-        warn: "请完善信息",
-        isSubmit: true
-      })
-    }
-  },
+  }
 })

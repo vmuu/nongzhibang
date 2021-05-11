@@ -58,23 +58,22 @@
         </view>
       </view>
       <view class="padding-xl">
-        <form bindsubmit="formSubmit">
-          <input style="display: none;" name="_id" value="{{product._id}}"></input>
-          <view class="cu-form-group">
+        <form>
+          <view class="cu-form-group margin-top">
             <view class="title">名称</view>
-            <input name="Name" value="{{product.Name}}" placeholder="{{product.Name}}"></input>
+            <input placeholder="{{product.Name}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">简介</view>
-            <input name="Desc" value="{{product.Desc}}" placeholder="{{product.Desc}}"></input>
+            <input placeholder="{{product.Desc}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="price" value="{{product.price}}" placeholder="{{product.price}}"></input>
+            <input placeholder="{{product.price}}"></input>
           </view>
-          <view class="cu-form-group">
+          <view class="cu-form-group margin-top">
             <view class="title">分类</view>
-            <picker name="commodityTypeId" bindchange="PickerChange" value="{{indexPicker}}" range="{{picker}}">
+            <picker bindchange="PickerChange" value="{{indexPicker}}" range="{{picker}}">
               <view class="picker">
                 {{picker[indexPicker]}}
               </view>
@@ -87,9 +86,8 @@
           </view>
           <view class="cu-form-group">
               <view class="grid col-4 grid-square flex-sub">
-                <view value="{{imgList[index_x]}}" class="bg-img" wx:for="{{imgList}}" wx:key="{{index_x}}" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
-                  <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>http://cdn.xiaoxingbobo.top/nongzhibang/202149/222781620570428217  bindtap="ProductUpdata"-->
-                  <input style="display: none;" name="Image" value="{{imgList[index_x]}}"></input>
+                <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index_x}}" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
+                  <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>-->
                   <view class="cu-avatar round lg" style="background-image:url({{imgList[index_x]}});"></view>
                   <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index_x}}">
                     <text class="cuIcon-close"></text>
@@ -100,17 +98,33 @@
                 </view>
               </view>
             </view>
-            <view wx:if="{{isSubmit}}">
-              {{warn ? warn : "是否公开信息："+isPub+"，手机号："+phone+"，密码："+pwd+"，性别："+sex}}
-            </view>
-          <view class="cu-bar bg-white">
-            <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
-            <button class="action margin-0 flex-sub  solid-left" formType="submit">确定</button>
-          </view>
       </form>
       </view>
+          <view class="cu-bar bg-white">
+            <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
+            <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">确定</view>
+          </view>
         </view>
       </view>
+        <!--1-->
+        <!--<view class="cu-item" wx:for="{{item.commodity}}">
+          <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
+          <view class="content">
+            <view class="text-grey">{{item.Name}}</view>
+            <view class="text-gray text-sm flex">
+              <text class="text-cut">
+										<text class="cuIcon-infofill text-red  margin-right-xs"></text> {{item.Desc}}
+              </text>
+            </view>
+          </view>
+          <view class="action">
+            <view class="text-grey text-xs">￥{{item.price}}</view>
+            <view class="cu-tag round bg-grey sm">{{item.MonthlySales}}</view>
+          </view>
+          <view class="fcx-test">
+            cnm
+          </view>
+        </view>-->
       </view>
 
     </view>
