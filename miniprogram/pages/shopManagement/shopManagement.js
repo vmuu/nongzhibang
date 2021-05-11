@@ -343,7 +343,7 @@ Page({
                     dbbase.productupdate(_id,{
                       Desc:Desc,
                       Name:Name,
-                      Image:Image,
+                      Image:this.data.imgList[0],
                       commodityTypeId:this.data.commodityTypePorductId,
                       price:price,
                       success: function (res) {
