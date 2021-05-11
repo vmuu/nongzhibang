@@ -167,7 +167,31 @@ class DBBase {
 
   }
 
+/**
+   * 云函数修改，product表
+   */
 
+  productupdate = function (id,data) {
+    console.log("id",id)
+    return new Promise((success, error) => {
+      wx.cloud.callFunction({
+        //要访问的云函数
+        name: "ProductUpdata",
+        data: {
+          id:id,
+          Desc:data.Desc,
+          Name:data.Name,
+          Image:data.Image,
+          commodityTypeId:data.commodityTypeId,
+          price:data.price,
+        },
+        success: res => {
+          return success(res)
+        }
+      })
+    })
+
+  }
 
   /**
    * 修改

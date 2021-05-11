@@ -337,19 +337,30 @@ Page({
                       commodityTypePorductId:res.data[0]._id
                     })
                     console.log(this.data.commodityTypePorductId)
+                    console.log(_id)
                     console.log(Image)
                     //更新数据
-                    dbbase.update("product",_id,{
+                    dbbase.productupdate(_id,{
                       Desc:Desc,
                       Name:Name,
                       Image:Image,
                       commodityTypeId:this.data.commodityTypePorductId,
-                      price:price
+                      price:price,
+                      success: function (res) {
+                        wx.showLoading({
+                          title: '数据上传中...',
+                        })
+                      }
                     }).then((res)=>{
-                      wx.showLoading({
-                        title: '数据上传中...',
+                      wx.showToast({
+                        title: '上传成功',
+                        icon:'none'
                       })
                       console.log(res)
+                      this.setData({
+                        modalName: null,
+                        product:[]
+                      })
                     })
                   })
                 })
