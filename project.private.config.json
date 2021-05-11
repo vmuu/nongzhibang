@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -20,6 +21,12 @@
         {
           "name": "pages/mine/shop/shop",
           "pathName": "pages/mine/shop/shop",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/shopManagement/shopManagement",
+          "pathName": "pages/shopManagement/shopManagement",
           "scene": null
         }
       ]

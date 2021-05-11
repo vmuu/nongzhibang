@@ -47,3 +47,9 @@
 .fcx-test{
   clear: both;
 }
+.move-cur{
+  transform:100ms linear 0ms !important;
+}
+.cu-item{
+  transition:100ms linear 0ms !important;
+}
