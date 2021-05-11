@@ -1,5 +1,5 @@
 // miniprogram/pages/mine/shop/shop.js
-const app=getApp()
+const app = getApp()
 Page({
 
   /**
@@ -8,7 +8,7 @@ Page({
   data: {
     region: ['云南省', '昆明市', '五华区'],
     modalName: null,
-    textareaBValue:null,
+    textareaBValue: null,
     imgList: [],
     time: '12:01',
   },
@@ -17,7 +17,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      app.utils.cl('输出')
+    app.utils.cl('输出')
+
   },
 
   /**
@@ -68,7 +69,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  tapPrevious(){
+  tapPrevious() {
     wx.navigateBack({
       delta: 1,
     })
@@ -118,9 +119,50 @@ Page({
       }
     })
   },
-  tapShopManage(){
+  tapShopManage() {
     wx.navigateTo({
       url: '../../shopManagement/shopManagement.wxml',
     })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  tapAddShowModel(e) {
+    this.setData({
+      addModel: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  hideAddShowModal() {
+    this.setData({
+      addModel: null
+    })
+  },
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
+  },
+  tapDelete() {
+    wx.showModal({
+      title: '给你一次后悔的机会',
+      content: '人家这么可爱，确定要删除吗？',
+      cancelColor: 'green',
+      confirmColor: 'red',
+      success: function () {
+       app.utils.hint('删掉了，拜拜~')
+      }
+    })
+  },
+  conformAdd(){
+    app.utils.hint('添加成功！')
+    this.hideAddShowModal()
   }
 })

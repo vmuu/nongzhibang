@@ -67,5 +67,14 @@ class Utils {
       },qiniuConfig)
     })
   }
+  /**
+   * 弹出提示，无图标
+   */
+  hint=(object)=>{
+    wx.showToast({
+      title: object,
+      icon:'none'
+    })
+  }
 }
 export default new Utils
