@@ -13,3 +13,20 @@
 .nextBtnBox button {
   height: 80rpx;
 }
+.timeBox{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.timeBox picker{
+  flex: unset;
+  padding-right: unset;
+}
+.startTimeBox{
+  width: 200rpx;
+  text-align: center;
+}
+.endTimeBox{
+  width: 200rpx;
+  text-align: center;
+}

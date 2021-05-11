@@ -118,4 +118,9 @@ Page({
       }
     })
   },
+  tapShopManage(){
+    wx.navigateTo({
+      url: '../../shopManagement/shopManagement.wxml',
+    })
+  }
 })
