@@ -1,6 +1,3 @@
 {
-  "usingComponents": {},
-  "window": {
-    "enablePullDownRefresh":true
-  }
+  "usingComponents": {}
 }

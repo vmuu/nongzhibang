@@ -312,7 +312,7 @@ Page({
             let that = this
             //从全局获取七牛云授权token
             let token = app.globalData.qiniuToken
-            var filePath = this.data.imgList[0];
+            var filePath = Image;//this.data.imgList[0]
                 app.utils.upload(filePath, token).then((res) => {
                   wx.hideLoading({
                     /*success: (res) => {},*/

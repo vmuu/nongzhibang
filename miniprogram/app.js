@@ -10,7 +10,6 @@ App({
   utils:utils,
   dbbase:dbbase,
   http:http,
-
   /**
    * 程序全局变量
    */

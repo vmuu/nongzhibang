@@ -78,7 +78,7 @@
     <image class="bgShadow" src="{{swiperList[cardCur].url}}"></image>
     <swiper class="card-swiper" indicator-dots="{{false}}" circular="true" autoplay="true" interval="5000"
       duration="500" bindchange="cardSwiper">
-      <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+      <swiper-item wx:for="{{swiperList}}" wx:key="index" class="{{cardCur==index?'cur':''}}">
         <view class="swiper-item boxShade">
           <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
           <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover"

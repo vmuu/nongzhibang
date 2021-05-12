@@ -52,26 +52,22 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/tabBar/home.png",
-        "navigationBarTitleText": "首页",
         "selectedIconPath": "images/tabBar/home-main.png"
       },
       {
         "pagePath": "pages/order/order",
         "text": "订单",
         "iconPath": "images/tabBar/order.png",
-        "navigationBarTitleText": "订单",
         "selectedIconPath": "images/tabBar/order-main.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "navigationBarTitleText": "我的",
         "iconPath": "images/tabBar/mine.png",
         "selectedIconPath": "images/tabBar/mine-main.png"
       },
       {
         "pagePath": "pages/test/test",
-        "navigationBarTitleText": "开发者",
         "text": "开发者",
         "iconPath": "images/tabBar/code.png",
         "selectedIconPath": "images/tabBar/code-main.png"
