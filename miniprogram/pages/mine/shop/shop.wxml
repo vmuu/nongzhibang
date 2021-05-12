@@ -18,19 +18,19 @@
 			<view class="action">
 				店铺头像
 			</view>
-			<view class="action">
+			<!-- <view class="action">
 				{{imgList.length}}/4
-			</view>
+			</view> -->
 		</view>
 		<view class="cu-form-group">
 			<view class="grid col-4 grid-square flex-sub">
-				<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<view class="bg-img" wx:for="{{imgList}}" wx:key="index" wx:for-index="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
 					<image src='{{imgList[index]}}' mode='aspectFill'></image>
 					<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
 						<text class="cuIcon-close"></text>
 					</view>
 				</view>
-				<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
 					<text class="cuIcon-cameraadd"></text>
 				</view>
 			</view>
@@ -50,15 +50,15 @@
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
 			<view class="timeBox">
-				<picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
+				<picker mode="time" value="{{startTime}}" start="6:00" end="23:59" bindchange="startTimeChange">
 					<view class="startTimeBox">
-						{{time}}
+						{{startTime}}
 					</view>
 				</picker>
 				<view>至</view>
-				<picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
+				<picker mode="time" value="{{endTime}}" start="6:00" end="23:59" bindchange="endTimeChange">
 					<view class="endTimeBox">
-						{{time}}
+						{{endTime}}
 					</view>
 				</picker>
 			</view>
@@ -84,7 +84,7 @@
 
 	<view class="text-center nextBtnBox">
 		<button bindtap="tapPrevious" class="cu-btn round line-yellow shadow">上一步</button>
-		<button class="cu-btn round bg-green shadow" bindtap="tapShopManage">进入店铺</button>
+		<button class="cu-btn round bg-green shadow" bindtap="tapShopManage">{{save?'进入店铺':'保存'}}</button>
 	</view>
 
 </scroll-view>
@@ -122,7 +122,20 @@
 
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-		<view class="cu-item" wx:for="{{20}}" wx:key="index">
+
+		<view class="cu-item">
+			<view class="content typeListBox">
+				<view>美食</view>
+				<view class="btnGroup">
+					<text class="cu-tag line-green round">编辑</text>
+					<text class="cu-tag line-red round" bindtap="tapDelete">删除</text>
+				</view>
+				<!-- <text class="cuIcon-github text-grey"></text> -->
+				<!-- <text class="text-grey">{{index +1}}</text> -->
+			</view>
+		</view>
+
+		<view class="cu-item">
 			<view class="content typeListBox">
 				<view>美食</view>
 				<view class="btnGroup">

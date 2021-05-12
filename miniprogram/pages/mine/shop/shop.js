@@ -10,14 +10,18 @@ Page({
     modalName: null,
     textareaBValue: null,
     imgList: [],
-    time: '12:01',
+    startTime: '08:00',
+    endTime:'22:00',
+    save:false,
+    id:'cbddf0af60924b600676347b2e4cb19c',
+    entity:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.utils.cl('输出')
+
 
   },
 
@@ -81,7 +85,7 @@ Page({
   },
   ChooseImage() {
     wx.chooseImage({
-      count: 4, //默认9
+      count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
@@ -105,10 +109,12 @@ Page({
   },
   DelImg(e) {
     wx.showModal({
-      title: '召唤师',
-      content: '确定要删除这段回忆吗？',
-      cancelText: '再看看',
-      confirmText: '再见',
+      title: '给你一次后悔的机会',
+      content: '人家这么可爱，确定要删除吗？',
+      cancelText: '不要',
+      confirmColor:'green',
+      confirmColor:'red',
+      confirmText: '拜拜~',
       success: res => {
         if (res.confirm) {
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
@@ -120,9 +126,17 @@ Page({
     })
   },
   tapShopManage() {
-    wx.navigateTo({
-      url: '../../shopManagement/shopManagement.wxml',
-    })
+    
+    if(this.data.save){
+      wx.navigateTo({
+        url: '../../shopManagement/shopManagement?id='+this.data.id,
+      })
+    }else{
+      this.setData({
+        save:true
+      })
+    }
+   
   },
   showModal(e) {
     this.setData({
@@ -164,5 +178,17 @@ Page({
   conformAdd(){
     app.utils.hint('添加成功！')
     this.hideAddShowModal()
+  },
+  startTimeChange(e){
+    app.utils.cl(e)
+    this.setData({
+      startTime:e.detail.value
+    })
+  },
+  endTimeChange(e){
+    app.utils.cl(e)
+    this.setData({
+      endTime:e.detail.value
+    })
   }
 })
