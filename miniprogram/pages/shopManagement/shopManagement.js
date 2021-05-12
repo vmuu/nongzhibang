@@ -1,6 +1,7 @@
 import dbbase from '../../config/dbbase.js';
 // const { default: dbbase } = require("../../config/dbbase");
 import db from '../../config/dbbase.js';
+import utils from '../../config/utils.js';
 
 const app = getApp();
 Page({
@@ -374,5 +375,38 @@ Page({
         isSubmit: true
       })
     }
+  },
+  //删除商品
+  delectproduct(e){
+    utils.cl(e.currentTarget.dataset.product_id)
+    wx.showModal({
+      title: '注意',
+      content: '确定要删除这个菜品吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          db.delete("product",e.currentTarget.dataset.product_id).then((res)=>{
+            utils.cl(res)
+          })
+        }
+      }
+    })
+  },
+  //添加商品
+  addproduct(e) {
+    dbbase.add("product",{
+      Desc:"本店销售量第一名",
+      FavorableRating:100,
+      Id:10,
+      MonthlySales:155,
+      Name:"（撒粉）叫只脆皮童子鸡",
+      commodityTypeId:"28ee4e3e608fb83a15169efb73c9082c",
+      image:"http://cdn.xiaoxingbobo.top/nongzhibang/2021412/156481620755808803",
+      price:10
+    }).then((res) =>{
+      utils.cl(res)
+    }
+    )
   },
 })

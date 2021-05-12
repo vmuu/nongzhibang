@@ -11,11 +11,11 @@
       <view style="weight:60%;height:80%;">
         <view style="font-weight: bold;font-size: 35rpx;color: black;">{{shop.shopName}}</view>
         <view style="font-size:20rpx">{{shop.shopAnnouncement}}</view>
-        <button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green">添加商品</button>
+        <button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green" bindtap='addproduct'>添加商品</button>
       </view>
     </view>
 </view>
-<view class="VerticalBox" style="padding-top:10rpx">
+<view class="VerticalBox" style="padding-top:1rpx">
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
     <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
@@ -45,7 +45,7 @@
       </view>
       <view class="move">
         <view class="bg-grey" bindtap="showModal" data-product_id="{{item._id}}" data-target="Modal">编辑</view>
-        <view class="bg-red">删除</view>
+        <view class="bg-red" bindtap="delectproduct" data-product_id="{{item._id}}" wx:key="index" >删除</view>
       </view>
     </view>
     <!--弹窗-->
