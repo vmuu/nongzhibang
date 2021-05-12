@@ -72,9 +72,9 @@ class Utils {
   /**
    * 弹出提示，无图标
    */
-  hint=(...object)=>{
+  hint=(object)=>{
     wx.showToast({
-      title: [...object],
+      title: object,
       icon:'none'
     })
   }

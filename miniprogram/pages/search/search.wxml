@@ -15,9 +15,9 @@
   </view>
   <!-- 热搜榜 -->
   <view style="margin-top:90rpx">
-    <view class="cu-bar bg-white solid-bottom  ">
+    <view class="cu-bar bg-white solid-bottom">
       <view class="action">
-        <text class="cuIcon-title text-orange  "></text> 大家都在搜
+        <text class="cuIcon-title text-orange"></text> 大家都在搜
       </view>
     </view>
     <!-- 产品列表——一品俊香肥牛 -->
