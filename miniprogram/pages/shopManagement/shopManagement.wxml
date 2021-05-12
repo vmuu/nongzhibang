@@ -6,16 +6,16 @@
     <view class='content' style='top:{{StatusBar}}px;'>我的店铺</view>
   </view>
 </view>
-
 <view class="padding screen-swiper round-dot" style="z-index:1000;background-image:url('{{shop.shopBackground}}');background-repeat:no-repeat;background-size:100% 50%;">
     <view class="radius shadow bg-white fcx-head" style="top:{{heighttop}}px">
-      <view style="weight:60%;height:100%;">
+      <view style="weight:60%;height:80%;">
         <view style="font-weight: bold;font-size: 35rpx;color: black;">{{shop.shopName}}</view>
         <view style="font-size:20rpx">{{shop.shopAnnouncement}}</view>
+        <button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green">添加商品</button>
       </view>
     </view>
 </view>
-<view class="VerticalBox">
+<view class="VerticalBox" style="padding-top:10rpx">
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
     <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
@@ -32,7 +32,7 @@
       </view>
       <!--内容-->
       <view class="cu-list menu-avatar">
-        <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}"bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{item.Id}}">
+        <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:key="index" wx:for="{{item.commodity}}"bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{item.Id}}">
       <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
       <view class="content">
         <view class="text-grey">{{item.Name}}</view>
@@ -87,7 +87,7 @@
           </view>
           <view class="cu-form-group">
               <view class="grid col-4 grid-square flex-sub">
-                <view value="{{imgList[index_x]}}" class="bg-img" wx:for="{{imgList}}" wx:key="{{index_x}}" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
+                <view value="{{imgList[index_x]}}" class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
                   <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>http://cdn.xiaoxingbobo.top/nongzhibang/202149/222781620570428217  bindtap="ProductUpdata"-->
                   <input style="display: none;" name="Image" value="{{imgList[index_x]}}"></input>
                   <view class="cu-avatar round lg" style="background-image:url({{imgList[index_x]}});"></view>
