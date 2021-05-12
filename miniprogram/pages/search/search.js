@@ -15,6 +15,7 @@ Page({
     content:'',//内容
     cache:'',//缓存语音文字
     CustomBar: app.globalData.CustomBar,
+    
   },
   /**
    * 生命周期函数--监听页面加载
@@ -84,4 +85,7 @@ Page({
     // 语音结束识别
     manager.stop();
   },
+
+
+  
 })
