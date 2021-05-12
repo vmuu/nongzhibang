@@ -8,7 +8,7 @@
 <view class="content ">
   <scroll-view id="scrollView" scroll-x class="bg-white nav shadow-warp">
     <view class="flex text-center">
-      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{4}}" wx:key bindtap="tabSelect"
+      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{4}}" wx:key="index" bindtap="tabSelect"
         data-id="{{index}}">
         {{orderState[index]}}
       </view>

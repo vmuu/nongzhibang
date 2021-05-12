@@ -1,4 +1,3 @@
-import utils from "../../config/utils"
 const app = getApp();
 Page({
   data: {
@@ -83,7 +82,7 @@ Page({
   },
   //校区选择
   selectSchool(e){
-    utils.cl(e);
+    app.utils.cl(e);
       this.setData({
         index: e.detail.value
       })
@@ -108,7 +107,7 @@ Page({
   },
   // 按钮的点击事件
   enterDeliciousFood(e){
-    utils.cl(e.currentTarget.dataset.id)
+    app.utils.cl(e.currentTarget.dataset.id)
 
     wx.showToast({
       title: '当前按钮ID：'+e.currentTarget.dataset.id,

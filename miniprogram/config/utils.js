@@ -37,9 +37,11 @@ class Utils {
    * @param {token} token 
    */
   upload = (filePath,token) => {
-    if (filePath == null||token==null) {
+    if (filePath == null) {
       this.ce('文件路径都没得，你让我传毛？你有毛吗？你周边一根毛都没有，老表！');
       return
+    }else if(token==null){
+      this.ce('token为空！')
     }
     //获取当前时间，转换成文件名
     let date = new Date();
@@ -70,9 +72,9 @@ class Utils {
   /**
    * 弹出提示，无图标
    */
-  hint=(object)=>{
+  hint=(...object)=>{
     wx.showToast({
-      title: object,
+      title: [...object],
       icon:'none'
     })
   }
