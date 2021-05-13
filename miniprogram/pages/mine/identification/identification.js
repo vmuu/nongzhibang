@@ -10,7 +10,8 @@ Page({
       trueName: null,
       id: null,
       idPhotoFront: null,
-      idPhotoBack: null
+      idPhotoBack: null,
+      businessLicense:null
 
     }
   },

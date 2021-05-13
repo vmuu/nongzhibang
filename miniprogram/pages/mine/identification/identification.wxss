@@ -3,10 +3,11 @@
   position: fixed;
   width: 100%;
   bottom: 0rpx;
-  /* background-color: white; */
-  height: 150rpx;
-  line-height: 150rpx;
+  background-color: white;
+  height: 100rpx;
+  line-height: 100rpx;
   display: flex;
+  align-items: center;
   align-content: space-between;
 }
 .nextBtnBox button {
@@ -50,3 +51,9 @@
   font-size: 60rpx;
 }
 .idTitle {}
+.businessLicens{
+  border-radius: 0rpx;
+  width: 500rpx;
+  height: 300rpx;
+  line-height: 300rpx;
+}

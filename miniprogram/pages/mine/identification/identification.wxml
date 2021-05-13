@@ -1,39 +1,48 @@
 <!--miniprogram/pages/mine/identification/identification.wxml-->
 <cu-custom bgColor="bg-main" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">实名认证</view>
+	<view slot="backText">返回</view>
+	<view slot="content">实名认证</view>
 </cu-custom>
 <form>
-  <view class="cu-form-group">
-    <view class="title">真实姓名</view>
-    <input placeholder="请填写您的真实姓名"></input>
-  </view>
-  <view class="cu-form-group">
-    <view class="title">身份证号</view>
-    <input placeholder="请填写您的身份证号"></input>
-  </view>
-  <view class="cu-form-group uploadImageBox">
-    <view class="title idTitle">请上传您的身份证正反面</view>
-    <view class="display-flex">
-      <view class="textAlign-center">
-        <view class="iamgeBox" bindtap="tapFront">
-          <text wx:if="{{entity.idPhotoFront==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
-          <image class="imageAttribute" mode='aspectFill' src="{{entity.idPhotoFront}}"></image>
-        </view>
-        <view>正面</view>
-      </view>
-      <view class="textAlign-center">
-        <view class="iamgeBox " bindtap="tapBack">
-          <text wx:if="{{entity.idPhotoBack==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
-          <image class="imageAttribute" mode='aspectFill' src="{{entity.idPhotoBack}}"></image>
-        </view>
-        <view>反面</view>
-      </view>
-    </view>
-  </view>
+	<view class="cu-form-group">
+		<view class="title">真实姓名</view>
+		<input placeholder="请填写您的真实姓名"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">身份证号</view>
+		<input placeholder="请填写您的身份证号"></input>
+	</view>
+	<view class="cu-form-group uploadImageBox">
+		<view class="title idTitle">请上传您的身份证正反面</view>
+		<view class="display-flex">
+			<view class="textAlign-center">
+				<view class="iamgeBox" bindtap="tapFront">
+					<text wx:if="{{entity.idPhotoFront==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+					<image class="imageAttribute" mode='aspectFill' src="{{entity.idPhotoFront}}"></image>
+				</view>
+				<view>正面</view>
+			</view>
+			<view class="textAlign-center">
+				<view class="iamgeBox " bindtap="tapBack">
+					<text wx:if="{{entity.idPhotoBack==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+					<image class="imageAttribute" mode='aspectFill' src="{{entity.idPhotoBack}}"></image>
+				</view>
+				<view>反面</view>
+			</view>
+		</view>
+	</view>
+	<view class="cu-form-group uploadImageBox">
+		<view class="title idTitle">请上传营业执照照片</view>
+    <view class="textAlign-center">
+				<view class="iamgeBox businessLicens" bindtap="tapBack">
+					<text wx:if="{{entity.idPhotoBack==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+					<image class="imageAttribute" mode='aspectFill' src="{{entity.businessLicense}}"></image>
+				</view>
+			</view>
+	</view>
 </form>
 
 <view class="text-center nextBtnBox">
-  <button bindtap="tapCancel" class="cu-btn round line-yellow shadow">取消</button>
-  <button class="cu-btn round bg-green shadow" bindtap="tapNext">下一步</button>
+	<button bindtap="tapCancel" class="cu-btn round line-yellow shadow">取消</button>
+	<button class="cu-btn round bg-green shadow" bindtap="tapNext">下一步</button>
 </view>
