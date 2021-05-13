@@ -34,8 +34,8 @@
 	<view class="cu-form-group uploadImageBox">
 		<view class="title idTitle">请上传营业执照照片</view>
     <view class="textAlign-center">
-				<view class="iamgeBox businessLicens" bindtap="tapBack">
-					<text wx:if="{{entity.idPhotoBack==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+				<view class="iamgeBox businessLicens" bindtap="tapBusinessLicense">
+					<text wx:if="{{entity.businessLicense==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
 					<image class="imageAttribute" mode='aspectFill' src="{{entity.businessLicense}}"></image>
 				</view>
 			</view>

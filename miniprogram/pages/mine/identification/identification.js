@@ -1,5 +1,6 @@
 // miniprogram/pages/mine/identification/identification.js
 import utils from '../../../config/utils'
+const app = getApp()
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
       id: null,
       idPhotoFront: null,
       idPhotoBack: null,
-      businessLicense:null
+      businessLicense: null
 
     }
   },
@@ -82,10 +83,8 @@ Page({
       sourceType: ['album'], //从相册选择
       success: (res) => {
         that.setData({
-          entity: {
-            idPhotoBack:that.data.entity.idPhotoBack,
-            idPhotoFront: res.tempFilePaths[0],
-          }
+
+            ['entity.idPhotoFront']: res.tempFilePaths[0],
         })
       }
     });
@@ -98,17 +97,27 @@ Page({
       sourceType: ['album'], //从相册选择
       success: (res) => {
         that.setData({
-          entity: {
-            idPhotoBack: res.tempFilePaths[0],
-            idPhotoFront:that.data.entity.idPhotoFront,
-          }
+
+           ['entity.idPhotoBack']: res.tempFilePaths[0],
         })
       }
     });
   },
-  tapNext(){
+  tapNext() {
     wx.navigateTo({
       url: '../shop/shop',
+    })
+  },
+  tapBusinessLicense() {
+    let that = this
+    wx.chooseImage({
+      count: 1,
+      success: function (res) {
+        app.utils.cl(res)
+        that.setData({
+          ['entity.businessLicense']:res.tempFilePaths[0]
+        })
+      }
     })
   }
 })
