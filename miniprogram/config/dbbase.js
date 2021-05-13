@@ -1,4 +1,5 @@
 import config from "./config";
+import utils from "./utils";
 const app=getApp()
 
 class DBBase {
@@ -219,10 +220,10 @@ class DBBase {
   /**
    * 删除
    */
-  delete = function (table, id) {
-
+  delete = function (table, _id) {
+    utils.cl(_id)
     return new Promise((success) => {
-      if (table && id) {
+      if (table && _id) {
         const db = wx.cloud.database()
         db.collection(table).doc(_id).remove({
           success: res => {},
