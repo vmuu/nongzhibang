@@ -50,14 +50,9 @@
 .Scancode {
   font-size: 35rpx;
   background-color: #07c160;
-  position: fixed;
-  bottom: 0;
   margin: auto;
-  left: 0;
-  right: 0;
   color: #fff;
   border-radius: 50rpx;
-
 }
 
 /* 底部语音图标 */
@@ -203,7 +198,8 @@
 }
 
 /* 顶部搜索框样式 */
-
+.cu-bar{
+}
 .cu-bar .contents {
   /* border: 1px solid black; */
   pointer-events: auto;
@@ -230,4 +226,57 @@
   margin: 0 10rpx 0 0 !important;
   border-radius: 90rpx !important;
   /* border: 1px solid firebrick; */
+}
+.cu-bar .content{
+  width: 450rpx !important;
+  margin-left: 80rpx;
+}
+/* 顶部搜索框样式 */
+
+.cu-bar .content {
+  pointer-events: auto;
+  text-align: left;
+}
+.content{
+  height: 60rpx !important;
+  display: flex;
+  align-items: center;
+}
+.content input{
+  width: 100% !important;
+}
+.searchBox{
+  margin:0 10rpx 0 0 !important;
+  border-radius: 1000rpx !important;
+}
+.bottomBtnBox{
+  width: 100%;
+  position: fixed !important;
+  bottom: 0;
+  background-color: white;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  transform:ease-in 1000ms;
+}
+.iconVoice{
+  /* font-size: 40rpx !important; */
+}
+.searchBtnBox{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  height: 80rpx;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  height: 100%;
+}
+.voiceBtn{
+  height: 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1000rpx;
+  
 }

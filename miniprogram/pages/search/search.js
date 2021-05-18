@@ -10,11 +10,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //胶囊按钮高度
+    capsuleHeight:0,
     //语音
     recordState: false, //录音状态
     content:'',//内容
     cache:'',//缓存语音文字
+    StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
+    keyboardHeight:-100
+    
     
   },
   /**
@@ -23,6 +29,9 @@ Page({
   onLoad: function (options) {
     //识别语音
     this.initRecord();
+    this.setData({
+      capsuleHeight:wx.getMenuButtonBoundingClientRect().height  // 胶囊高度
+    })
   },
   // 手动输入内容
   conInput: function (e) {
@@ -35,7 +44,7 @@ Page({
     const that = this;
     // 有新的识别内容返回，则会调用此事件
     manager.onRecognize = function (res) {
-      console.log(res)
+      app.utils.cl(res)
     }
     // 正常开始录音识别时会调用此事件
     manager.onStart = function (res) {
@@ -85,6 +94,22 @@ Page({
     // 语音结束识别
     manager.stop();
   },
+  BackPage(){
+   wx.navigateBack({
+     delta: 1,
+   }) 
+  },
+  focusInput(e){
+    app.utils.cl(e)
+    this.setData({
+      keyboardHeight:e.detail.height
+    })
+  },
+  blurInput(){
+    this.setData({
+      keyboardHeight:-200
+    })
+  }
 
 
   

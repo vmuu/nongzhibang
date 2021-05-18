@@ -1,200 +1,174 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}"> -->
- <!-- 头部 -->
 <view class="cu-custom" style="height:{{CustomBar}}px">
-  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} bg-main"
-    style="height:{{CustomBar}}px;">
-    <view class="contents" >
-      <view class="search-form round searchBox">
-        <text class="cuIcon-search"></text>
-        <!-- <input type="text"  placeholder="请输入搜索关键词" confirm-type="search"></input> -->
-        <input type="text" focus="{{true}}" placeholder="输入搜索的关键词" value="{{content}}" confirm-type="search"></input>
-      </view>
-      <!-- <view class="action">
-      <button class="cu-btn bg-white buttonsousuo shadow-blur round">搜索</button>
-    </view> -->
-     <!-- <input class="screen-swiper" type="text" value="{{value}}" placeholder="搜索关键词" />
-       <van-search value="{{value}}" shape="round" bindtap="doInput" background="#f5f5f5" placeholder="搜索关键词" />  -->
-    </view>
-  
-  </view>
+	<view class="cu-bar fixed bg-main" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+		<view class="action" bindtap="BackPage" wx:if="{{true}}">
+			<text class="cuIcon-back"></text>
+		</view>
+		<view class="action border-custom" wx:if="{{false}}" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+			<text class="cuIcon-back" bindtap="BackPage"></text>
+			<text class="cuIcon-homefill" bindtap="toHome"></text>
+		</view>
+		<view class="content" style="top:{{StatusBar}}px">
+			<view class="search-form round searchBox" style="height:{{capsuleHeight-2}}px">
+				<text class="cuIcon-search"></text>
+				<input type="text" style="{{capsuleHeight-2}}px" focus="true" placeholder="请输入搜索关键词" confirm-type="search" bindfocus="focusInput" bindblur="blurInput" />
+			</view>
+		</view>
+		<slot name="right"></slot>
+	</view>
 </view>
-  <!-- 搜索框 -->
-  <!-- <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" focus="{{true}}" placeholder="输入搜索的关键词" value="{{content}}" confirm-type="search"></input>
-    </view>
-    <view class="action">
-      <button class="cu-btn bg-main buttonsousuo shadow-blur round">搜索</button>
-    </view>
-  </view> -->
-  <!-- 热搜榜 -->
-  <view style="margin-top:0rpx">
-    <view class="cu-bar bg-white solid-bottom" >
-      <view class="action">
-        <text class="cuIcon-title text-orange"></text> 大家都在搜
-      </view>
-    </view>
-    <!-- 产品列表——一品俊香肥牛 -->
-    <view class="all_merchants" style="margin-top:-20rpx">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1931561620214316438"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">一品俊香肥牛</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">人气推荐</view>
-          <!-- <view class="merchants_marking">清油简餐</view> -->
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥15</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location">星岛国际13栋3单元32号</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_Price">￥20.99</view>
-        <view class="old_Price">￥23.99</view>
-         <view class="merchants_type">立即抢购</view> 
-      </view>
-    </view>
-    <!-- 产品列表一鲜香酸菜鱼 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">鲜香酸菜鱼</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥0</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location">星岛国际</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_Price">￥20.99</view>
-        <view class="old_Price">￥23.99</view>
-         <view class="merchants_type">立即抢购</view> 
-      </view> 
-    </view>
-    <!-- 产品列表——糖醋排骨 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1744481620207888924"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">糖醋排骨</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥10</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location">学府大道665号三星镇</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_Price">￥20.99</view>
-        <view class="old_Price">￥23.99</view>
-         <view class="merchants_type">立即抢购</view> 
-      </view>
-    </view>
+<!-- 热搜榜 -->
+<view style="margin-top:0rpx">
+	<view class="cu-bar bg-white solid-bottom">
+		<view class="action">
+			<text class="cuIcon-title text-orange"></text> 大家都在搜
+		</view>
+	</view>
+	<!-- 产品列表——一品俊香肥牛 -->
+	<view class="all_merchants" style="margin-top:-20rpx">
+		<view class="all_merchants_left">
+			<image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1931561620214316438"></image>
+		</view>
+		<view class="all_merchants_con">
+			<text class="merchants_title">一品俊香肥牛</text>
+			<view class="merchants_marking_warp">
+				<view class="merchants_marking">人气推荐</view>
+				<!-- <view class="merchants_marking">清油简餐</view> -->
+			</view>
+			<view class="merchants_text_marking_warp">
+				<text class="merchants_text_marking">起送价：¥15</text>
+				<text class="merchants_text_marking">配送：¥2</text>
+			</view>
+			<view>
+				<text class="cuIcon-location">星岛国际13栋3单元32号</text>
+			</view>
+		</view>
+		<view class="all_merchants_right">
+			<view class="merchants_Price">￥20.99</view>
+			<view class="old_Price">￥23.99</view>
+			<view class="merchants_type">立即抢购</view>
+		</view>
+	</view>
+	<!-- 产品列表一鲜香酸菜鱼 -->
+	<view class="all_merchants">
+		<view class="all_merchants_left">
+			<image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
+		</view>
+		<view class="all_merchants_con">
+			<text class="merchants_title">鲜香酸菜鱼</text>
+			<view class="merchants_marking_warp">
+				<view class="merchants_marking">店铺上新</view>
+				<!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+			</view>
+			<view class="merchants_text_marking_warp">
+				<text class="merchants_text_marking">起送价：¥0</text>
+				<text class="merchants_text_marking">配送：¥2</text>
+			</view>
+			<view>
+				<text class="cuIcon-location">星岛国际</text>
+			</view>
+		</view>
+		<view class="all_merchants_right">
+			<view class="merchants_Price">￥20.99</view>
+			<view class="old_Price">￥23.99</view>
+			<view class="merchants_type">立即抢购</view>
+		</view>
+	</view>
+	<!-- 产品列表——糖醋排骨 -->
+	<view class="all_merchants">
+		<view class="all_merchants_left">
+			<image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1744481620207888924"></image>
+		</view>
+		<view class="all_merchants_con">
+			<text class="merchants_title">糖醋排骨</text>
+			<view class="merchants_marking_warp">
+				<view class="merchants_marking">店铺上新</view>
+				<!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+			</view>
+			<view class="merchants_text_marking_warp">
+				<text class="merchants_text_marking">起送价：¥10</text>
+				<text class="merchants_text_marking">配送：¥2</text>
+			</view>
+			<view>
+				<text class="cuIcon-location">学府大道665号三星镇</text>
+			</view>
+		</view>
+		<view class="all_merchants_right">
+			<view class="merchants_Price">￥20.99</view>
+			<view class="old_Price">￥23.99</view>
+			<view class="merchants_type">立即抢购</view>
+		</view>
+	</view>
 
-        <!-- 产品列表——鲜香酸辣鱼 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">鲜香酸菜鱼</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥0</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location">星岛国际</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_Price">￥20.99</view>
-        <view class="old_Price">￥23.99</view>
-         <view class="merchants_type">立即抢购</view> 
-      </view> 
-    </view>
-    <!-- 产品列表——炸排骨 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2317111620227831542"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">炸排骨</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <!-- <view class="merchants_marking">优质商家</view> -->
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">月售：¥20</text>
-          <text class="merchants_text_marking">起送价：¥15</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location">学府大道665号三星镇</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_Price">￥20.99</view>
-        <view class="old_Price">￥23.99</view>
-         <view class="merchants_type">立即抢购</view> 
-      </view>
-    </view>
+	<!-- 产品列表——鲜香酸辣鱼 -->
+	<view class="all_merchants">
+		<view class="all_merchants_left">
+			<image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
+		</view>
+		<view class="all_merchants_con">
+			<text class="merchants_title">鲜香酸菜鱼</text>
+			<view class="merchants_marking_warp">
+				<view class="merchants_marking">店铺上新</view>
+				<!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+			</view>
+			<view class="merchants_text_marking_warp">
+				<text class="merchants_text_marking">起送价：¥0</text>
+				<text class="merchants_text_marking">配送：¥2</text>
+			</view>
+			<view>
+				<text class="cuIcon-location">星岛国际</text>
+			</view>
+		</view>
+		<view class="all_merchants_right">
+			<view class="merchants_Price">￥20.99</view>
+			<view class="old_Price">￥23.99</view>
+			<view class="merchants_type">立即抢购</view>
+		</view>
+	</view>
+	<!-- 产品列表——炸排骨 -->
+	<view class="all_merchants">
+		<view class="all_merchants_left">
+			<image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2317111620227831542"></image>
+		</view>
+		<view class="all_merchants_con">
+			<text class="merchants_title">炸排骨</text>
+			<view class="merchants_marking_warp">
+				<view class="merchants_marking">店铺上新</view>
+				<!-- <view class="merchants_marking">优质商家</view> -->
+			</view>
+			<view class="merchants_text_marking_warp">
+				<text class="merchants_text_marking">月售：¥20</text>
+				<text class="merchants_text_marking">起送价：¥15</text>
+				<text class="merchants_text_marking">配送：¥2</text>
+			</view>
+			<view>
+				<text class="cuIcon-location">学府大道665号三星镇</text>
+			</view>
+		</view>
+		<view class="all_merchants_right">
+			<view class="merchants_Price">￥20.99</view>
+			<view class="old_Price">￥23.99</view>
+			<view class="merchants_type">立即抢购</view>
+		</view>
+	</view>
 
- 
-  </view>
+
+</view>
 <!-- </scroll-view> -->
 
 
 <!-- 底部语音识别 -->
-<view>
-  <button class="bottonlan"></button>
-  <button class="bottonlanright"></button> 
-  <button class="Scancode yuyinBtn {{recordState == true ? 'yuyinBtnBg':''}}" bindtouchstart="touchStart" bindtouchend="touchEnd">
-     <cover-image class="logo1" src="../../images/语音.png"></cover-image>   
-    <text wx:if="{{recordState == false}}">按住　　搜索</text>
-    <text wx:else>松开　　结束</text>
-  </button>
-  <view class="yuyinWrap">
-    <!-- 开始语音 弹出语音图标表示正在录音 -->
-    <cover-view class="startYuyinImage" wx:if="{{recordState == true}}">
-      <cover-image src="../../images/语音.png"></cover-image>
-      <cover-view>开始语音搜索</cover-view>
-    </cover-view>
-  </view>
+<view class="bottomBtnBox" style="bottom:{{keyboardHeight}}px;">
+	<view class="searchBtnBox">
+		<button class="voiceBtn shadow bg-green" bindtouchstart="touchStart" bindtouchend="touchEnd">
+			<text wx:if="{{recordState == false}}">按住<text class="cuIcon-voice iconVoice"></text>搜索</text>
+			<text wx:else>松开<text class="cuIcon-voice iconVoice"></text>结束</text>
+		</button>
+	</view>
+</view>
+<view class="yuyinWrap" wx:if="{{recordState == true}}">
+	<!-- 开始语音 弹出语音图标表示正在录音 -->
+	<view class="startYuyinImage">
+		<image src="../../images/语音.png"></image>
+		<view>开始语音搜索</view>
+	</view>
 </view>
