@@ -1,10 +1,38 @@
-<scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}">
-  <cu-custom bgColor="bg-main" isBack="{{true}}">
-    <view slot="backText">返回</view>
-    <view slot="content">搜索</view>
-  </cu-custom>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <scroll-view scroll-y="{{modalName==null}}" class="page {{modalName!=null?'show':''}}"> -->
+ <!-- 头部 -->
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} bg-main"
+    style="height:{{CustomBar}}px;">
+    <view class="contents" >
+      <view class="search-form round searchBox">
+        <text class="cuIcon-search"></text>
+        <!-- <input type="text"  placeholder="请输入搜索关键词" confirm-type="search"></input> -->
+        <input type="text" focus="{{true}}" placeholder="输入搜索的关键词" value="{{content}}" confirm-type="search"></input>
+      </view>
+      <!-- <view class="action">
+      <button class="cu-btn bg-white buttonsousuo shadow-blur round">搜索</button>
+    </view> -->
+     <!-- <input class="screen-swiper" type="text" value="{{value}}" placeholder="搜索关键词" />
+       <van-search value="{{value}}" shape="round" bindtap="doInput" background="#f5f5f5" placeholder="搜索关键词" />  -->
+    </view>
+  
+  </view>
+</view>
   <!-- 搜索框 -->
-  <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+  <!-- <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
     <view class="search-form round">
       <text class="cuIcon-search"></text>
       <input type="text" focus="{{true}}" placeholder="输入搜索的关键词" value="{{content}}" confirm-type="search"></input>
@@ -12,10 +40,10 @@
     <view class="action">
       <button class="cu-btn bg-main buttonsousuo shadow-blur round">搜索</button>
     </view>
-  </view>
+  </view> -->
   <!-- 热搜榜 -->
-  <view style="margin-top:90rpx">
-    <view class="cu-bar bg-white solid-bottom">
+  <view style="margin-top:0rpx">
+    <view class="cu-bar bg-white solid-bottom" >
       <view class="action">
         <text class="cuIcon-title text-orange"></text> 大家都在搜
       </view>
@@ -150,7 +178,7 @@
 
  
   </view>
-</scroll-view>
+<!-- </scroll-view> -->
 
 
 <!-- 底部语音识别 -->
