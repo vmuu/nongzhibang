@@ -299,5 +299,24 @@ class DBBase {
     })
 
   }
+
+  /**
+   * 查询单表product,销量排序
+   */
+  queryproduct = function () {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      db.collection("product").orderBy('MonthlySales','desc').get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+
+  }
 }
 export default new DBBase
