@@ -1,3 +1,7 @@
+
+import db from '../../config/dbbase.js';
+import utils from '../../config/utils.js';
+
 const app = getApp();
 Page({
   data: {
@@ -35,7 +39,9 @@ Page({
     Custom: app.globalData.Custom,
     // 选择校区
     picker: ['茭菱校区', '小哨校区'],
-    index:null
+    index:null,
+    //推荐店铺列表
+    shop:[]
   },
 
   // input输入事件
@@ -46,6 +52,14 @@ Page({
       })
  },
   onLoad: function () {
+    //推荐店铺
+    db.indexProductOrShop().then((res)=>{
+      console.log(res.result.list);
+      this.setData({
+        shop:res.result.list
+      })
+    })
+
     this.setData({
       capsuleHeight:wx.getMenuButtonBoundingClientRect().height  // 胶囊高度
     })
@@ -114,15 +128,8 @@ Page({
     })
   },
   tapShop(e){
-    let id ="cbddf0af60924b600676347b2e4cb19c"
     wx.navigateTo({
-      url: '../shopManagement/shopManagement?id='+id,
-    })
-  },
-  tapShoptwo(e){
-    let id ="b00064a76093e9e81545073e4872ca6a"
-    wx.navigateTo({
-      url: '../shopManagement/shopManagement?id='+id,
+      url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
     })
   }
 });

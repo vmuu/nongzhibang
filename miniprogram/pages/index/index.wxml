@@ -148,130 +148,48 @@
       <text class="bg-green"></text>
     </view>
     <!-- autoplay="true" -->
-    <swiper class="recommend_merchants_wrap" circular="true" duration="300" bindtap="tapShoptwo">
-      <swiper-item >
-        <view class="recommend_merchants">
+    <swiper class="recommend_merchants_wrap" circular="true" duration="300">
+      <!-- 商家分界 -->
+      <swiper-item wx:for="{{shop}}" wx:key="index">
+        <view class="recommend_merchants" bindtap="tapShop" data-id="{{item._id}}">
           <view class="recommend_merchants_top"
-            style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680);">
+            style="background-image: url('{{item.shopBackground}}');">
           </view>
           <view class="recommend_merchants_top_wwarp">
             <image class="recommend_merchants_top_left"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1326361620192396680"></image>
+              src="{{item.shopImage}}"></image>
             <view class="recommend_merchants_top_right">
               <view class="recommend_merchants_top_right_wwarp">
-                <view class="recommend_merchants_top_right_t">三顾冒菜</view>
-                <view class="recommend_merchants_top_right_f">店家很懒，没有设置描述</view>
+                <view class="recommend_merchants_top_right_t">{{item.shopName}}</view>
+                <!--{{item.shopAnnouncement}}-->
+                <view class="recommend_merchants_top_right_f">
+                  {{item.shopAnnouncement}}
+                </view>
               </view>
             </view>
           </view>
-
-          <swiper class="recommend_merchants_foot_wrap" autoplay="true">
+          <swiper class="recommend_merchants_foot_wrap" circular="true" autoplay="true">
             <!-- 菜品第一页 -->
             <swiper-item>
               <view class="recommend_merchants_foot">
-                <view class="recommend_merchants_foot_1">
+                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:if="{{index<3}}">
                   <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1411151620195075642"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">单人版（含一份饭）</view>
+                    <image src="{{item.Image}}"></image>
+                    <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
                   </view>
-                  <text>¥16.88</text>
-                </view>
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1732171620207137896"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">双人餐（含一份饭）</view>
-                  </view>
-                  <text>¥16.88</text>
-                </view>
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/173211620207121625"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">多人版（含一份饭）</view>
-                  </view>
-                  <text>¥16.88</text>
-                </view>
-              </view>
-            </swiper-item>
-            <!-- 菜品第二页 -->
-            <!-- <swiper-item>
-             
-            </swiper-item> -->
-          </swiper>
-
-        </view>
-      </swiper-item>
-      <!-- 商家分界 -->
-      <swiper-item>
-        <view class="recommend_merchants">
-          <view class="recommend_merchants_top"
-            style="background-image: url(http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953);">
-          </view>
-          <view class="recommend_merchants_top_wwarp" bindtap="tapShop">
-            <image class="recommend_merchants_top_left"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953"></image>
-            <view class="recommend_merchants_top_right">
-              <view class="recommend_merchants_top_right_wwarp">
-                <view class="recommend_merchants_top_right_t">三顾冒菜</view>
-                <view class="recommend_merchants_top_right_f">店家很懒，没有设置描述</view>
-              </view>
-            </view>
-          </view>
-          <!-- <image class="recommend_merchants_top_left"
-            src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1739481620207588953"></image>
-          <view class="recommend_merchants_top_right">
-            <view class="recommend_merchants_top_right_t">重庆鸡公煲</view>
-            <view class="recommend_merchants_top_right_f">鸡公煲</view>
-          </view> -->
-          <swiper class="recommend_merchants_foot_wrap" autoplay="true">
-            <!-- 菜品第一页 -->
-            <swiper-item>
-              <view class="recommend_merchants_foot">
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/173821620207482370"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">鸡公煲</view>
-                  </view>
-                  <text>¥18</text>
-                </view>
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1411151620195075642"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">牛肉煲</view>
-                  </view>
-                  <text>¥22</text>
-                </view>
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1738541620207534098"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">猪蹄煲</view>
-                  </view>
-                  <text>¥22</text>
+                  <text>￥{{item.price}}</text>
                 </view>
               </view>
             </swiper-item>
             <!-- 菜品第二页 -->
             <swiper-item>
               <view class="recommend_merchants_foot">
-                <view class="recommend_merchants_foot_1">
+                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:if="{{index>2&&index<6}}">
                   <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/174251620207725504"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">鸡尖煲</view>
+                    <image src="{{item.Image}}"></image>
+                    <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
                   </view>
-                  <text>¥16.88</text>
-                </view>
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1744481620207888924"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">排骨煲</view>
-                  </view>
-                  <text>¥18</text>
-                </view>
-                <view class="recommend_merchants_foot_1">
-                  <view class="recommend_merchants_foot_v">
-                    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1411151620195075642"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">测试测试多文字测试测试测试多文字测试</view>
-                  </view>
-                  <text>¥16.88</text>
+                  <text>￥{{item.price}}</text>
                 </view>
               </view>
             </swiper-item>

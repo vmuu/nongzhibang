@@ -1,5 +1,4 @@
-import dbbase from '../../config/dbbase.js';
-// const { default: dbbase } = require("../../config/dbbase");
+
 import db from '../../config/dbbase.js';
 import utils from '../../config/utils.js';
 
@@ -76,7 +75,7 @@ Page({
       mask: true
     })
     //调用封装的多表（2表）联查函数
-    db.looKupTwo("test",shop.id,"productType","product","_id","commodityTypeId","commodity").then((res)=>{
+    db.looKupTwo("looKupProductOrProductType",shop.id,"productType","product","_id","commodityTypeId","commodity").then((res)=>{
       /*console.log(res.result.list);*/
       this.setData({
         commodityType:res.result.list
@@ -85,13 +84,13 @@ Page({
     
     
     //要跳转的商家
-    dbbase.query("shop",shop.id).then((res)=>{
+    db.query("shop",shop.id).then((res)=>{
       this.setData({
         shop:res.data[0]
       })
     })
     //菜品下拉列表
-    dbbase.queryproductTypeselect("productType",shop.id).then((res)=>{
+    db.queryproductTypeselect("productType",shop.id).then((res)=>{
       for (let i = 0; i < res.data.length; i++) {
         this.setData({
           picker: this.data.picker.concat(res.data[i].Name)
@@ -177,7 +176,7 @@ Page({
       modalName: e.currentTarget.dataset.target
     })
     //要修改的商品
-    dbbase.query("product",e.currentTarget.dataset.product_id).then((res)=>{
+    db.query("product",e.currentTarget.dataset.product_id).then((res)=>{
       this.setData({
         product:res.data[0],
         index_x:0,
@@ -190,7 +189,7 @@ Page({
         })
       }
       //绑定下拉列表数据
-      dbbase.query("productType",res.data[0].commodityTypeId).then((res)=>{
+      db.query("productType",res.data[0].commodityTypeId).then((res)=>{
         for (let i = 0; i < this.data.picker.length; i++) {
           if(this.data.picker[i]===res.data[0].Name){
             this.setData({
@@ -313,12 +312,12 @@ Page({
                     ]
                   })
                   //绑定菜品类别id
-                  dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
+                  db.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
                     this.setData({
                       commodityTypePorductId:res.data[0]._id
                     })
                     //更新数据
-                    dbbase.productupdate(_id,{
+                    db.productupdate(_id,{
                       Desc:Desc,
                       Name:Name,
                       Image:this.data.imgList[0],
@@ -353,12 +352,12 @@ Page({
                 })
             }
             else{
-              dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
+              db.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
                 this.setData({
                   commodityTypePorductId:res.data[0]._id
                 })
                 //更新数据
-                dbbase.productupdate(_id,{
+                db.productupdate(_id,{
                   Desc:Desc,
                   Name:Name,
                   commodityTypeId:this.data.commodityTypePorductId,
@@ -489,12 +488,12 @@ Page({
                     ]
                   })
                   //绑定菜品类别id
-                  dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
+                  db.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
                     this.setData({
                       commodityTypePorductId:res.data[0]._id
                     })
-                    //更新数据
-                    dbbase.add("product",{
+                    //添加数据
+                    db.add("product",{
                       Desc:Desc,
                       FavorableRating:0,
                       MonthlySales:0,
@@ -502,6 +501,7 @@ Page({
                       Image:this.data.imgList[0],
                       commodityTypeId:this.data.commodityTypePorductId,
                       price:price,
+                      shopId:this.data.shop._id,
                       success: function (res) {
                         wx.showLoading({
                           title: '数据上传中...',

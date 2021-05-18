@@ -272,6 +272,12 @@ page {
   font-weight: 400;
 }
 .recommend_merchants_top_right_f{
+  height: 40rpx;
+  width: 500rpx;
+  max-width: 490rpx;
+	white-space: nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
   margin-top: 10rpx;
   color: #666666;
 }

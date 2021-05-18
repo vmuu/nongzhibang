@@ -246,7 +246,7 @@ class DBBase {
    */
 
   productDelete = function (id) {
-    //console.log("id",id)
+    console.log("id",id)
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
@@ -280,6 +280,23 @@ class DBBase {
       }
     })
 
+
+  }
+  /**
+   * 首页推荐商店与商品
+   */
+
+  indexProductOrShop = function () {
+
+    return new Promise((success) => {
+      wx.cloud.callFunction({
+        //要访问的云函数
+        name: "looKupProductOrShop",
+        success: res => {
+          return success(res)
+        }
+      })
+    })
 
   }
 }
