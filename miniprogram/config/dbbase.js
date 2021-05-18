@@ -98,6 +98,31 @@ class DBBase {
 
   }
 
+  /**
+   * 查询productType单表通过shopid筛选
+   */
+  queryproductTypeselect = function (table,shopId) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table) {
+        db.collection(table).where({
+          shopId: shopId
+        }).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table）不可空')
+      }
+    })
+
+  }
+
 /**
    * 联表查询 2表联查
    */
@@ -173,7 +198,6 @@ class DBBase {
    */
 
   productupdate = function (id,data) {
-    console.log("id",id)
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
@@ -214,6 +238,26 @@ class DBBase {
       } else {
         console.error('（table，id，data）不可空')
       }
+    })
+
+  }
+  /**
+   * 云函数删除，product表
+   */
+
+  productDelete = function (id) {
+    //console.log("id",id)
+    return new Promise((success, error) => {
+      wx.cloud.callFunction({
+        //要访问的云函数
+        name: "DeletePoduct",
+        data: {
+          id:id
+        },
+        success: res => {
+          return success(res)
+        }
+      })
     })
 
   }

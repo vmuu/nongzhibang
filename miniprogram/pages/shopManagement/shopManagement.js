@@ -66,8 +66,11 @@ Page({
     //要修改的商品的类别
     commodityTypePorductId:null,
   },
-  
+  //页面加载
   onLoad(shop) {
+    this.setData({
+      picker:[]
+    })
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -88,41 +91,18 @@ Page({
       })
     })
     //菜品下拉列表
-    dbbase.queryselect("productType").then((res)=>{
+    dbbase.queryproductTypeselect("productType",shop.id).then((res)=>{
       for (let i = 0; i < res.data.length; i++) {
         this.setData({
           picker: this.data.picker.concat(res.data[i].Name)
         });
       }
     })
-    //联表查询
-    // wx.cloud.callFunction({
-    //   name:'test',
-    //   data:{
-    //     collection:'commodityType',
-
-    //     from:'commodity',
-    //     localField:'Id',
-    //     foreignField:'commodityTypeId',
-    //     as:'commodity',
-        
-    //     /*from2:'act',
-    //     localField2:'department._id',
-    //     foreignField2:'activity',
-    //     as2:'act',*/
-
-    //     match:{_id:app.globalData.openid}
-    //   },
-    //   success:res=>{
-    //   console.log(res.result.list)
-    //   //绑定到本地数据
-    //   this.setData({commodityType:res.result.list})
-    //   }
-    // })
   },
   onReady() {
     wx.hideLoading()
   },
+  //侧边menu点击事件
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -198,7 +178,6 @@ Page({
     })
     //要修改的商品
     dbbase.query("product",e.currentTarget.dataset.product_id).then((res)=>{
-      console.log(res.data[0].Image)
       this.setData({
         product:res.data[0],
         index_x:0,
@@ -288,7 +267,6 @@ Page({
   },
   //下拉列表
   PickerChange(e) {
-    //console.log(e);
     this.setData({
       indexPicker: e.detail.value
     })
@@ -296,7 +274,7 @@ Page({
   },
   //修改提交
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    //console.log('form发生了submit事件，携带数据为：', e.detail.value);
     let { _id, Name, Desc, Image, commodityTypeId, price } = e.detail.value;
     if(_id!=undefined&&Name!=undefined&&Desc!=undefined&&Image!=undefined&&commodityTypeId!=undefined&&price!=undefined){
       this.setData({
@@ -306,6 +284,183 @@ Page({
       wx.showModal({
         title: '提示',
         content: '确定要修改吗？',
+        cancelText: '取消',
+        confirmText: '确定',
+        success: res => {
+          if (res.confirm) {
+            if(Image!==this.data.product.Image){
+              let that = this
+            //从全局获取七牛云授权token
+            let token = app.globalData.qiniuToken
+            var filePath = Image;//this.data.imgList[0]
+                app.utils.upload(filePath, token).then((res) => {
+                  wx.hideLoading({
+                    /*success: (res) => {},*/
+                    success: function (res) {
+                      wx.showLoading({
+                        title: '图片上传中...',
+                      })
+                    }
+                  })
+                  wx.showToast({
+                    title: '上传成功',
+                    icon:'none'
+                  })
+                  //返回的图片路径
+                  that.setData({
+                    imgList: [
+                      res.imageURL,
+                    ]
+                  })
+                  //绑定菜品类别id
+                  dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
+                    this.setData({
+                      commodityTypePorductId:res.data[0]._id
+                    })
+                    //更新数据
+                    dbbase.productupdate(_id,{
+                      Desc:Desc,
+                      Name:Name,
+                      Image:this.data.imgList[0],
+                      commodityTypeId:this.data.commodityTypePorductId,
+                      price:price,
+                      success: function (res) {
+                        wx.showLoading({
+                          title: '数据上传中...',
+                        })
+                      }
+                    }).then((res)=>{
+                      wx.showToast({
+                        title: '上传成功',
+                        icon:'none'
+                      })
+                      //隐藏修改表单和初始化商品product对象
+                      this.setData({
+                        modalName: null,
+                        product:[]
+                      })
+                      //刷新界面
+                      this.onLoad({
+                        id:this.data.shop._id
+                      })
+                      //弹出提示
+                      wx.showToast({
+                        title: '修改成功',
+                        icon:'none'
+                      })
+                    })
+                  })
+                })
+            }
+            else{
+              dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
+                this.setData({
+                  commodityTypePorductId:res.data[0]._id
+                })
+                //更新数据
+                dbbase.productupdate(_id,{
+                  Desc:Desc,
+                  Name:Name,
+                  commodityTypeId:this.data.commodityTypePorductId,
+                  price:price,
+                  success: function (res) {
+                    wx.showLoading({
+                      title: '数据上传中...',
+                    })
+                  }
+                }).then((res)=>{
+                  wx.showToast({
+                    title: '上传成功',
+                    icon:'none'
+                  })
+                  //隐藏修改表单和初始化商品product对象
+                  this.setData({
+                    modalName: null,
+                    product:[]
+                  })
+                  //刷新界面
+                  this.onLoad({
+                    id:this.data.shop._id
+                  })
+                  //弹出提示
+                  wx.showToast({
+                    title: '修改成功',
+                    icon:'none'
+                  })
+                })
+              })
+            }
+          }
+        }
+      })
+    }
+    else{
+      this.setData({
+        warn: "请完善信息",
+        isSubmit: true
+      })
+    }
+  },
+  //删除商品
+  delectproduct(e){
+    utils.cl(e.currentTarget.dataset.product_id)
+    wx.showModal({
+      title: '注意',
+      content: '确定要删除这个菜品吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          db.productDelete(e.currentTarget.dataset.product_id).then((res)=>{
+            utils.cl(res)
+            this.onLoad({
+              id:this.data.shop._id
+            })
+            wx.showToast({
+              title: '删除成功',
+              icon:'none'
+            })
+          })
+        }
+      }
+    })
+
+  },
+  
+  //添加弹窗
+  showaddModal(e) {
+    this.setData({
+      modaladdName: e.currentTarget.dataset.target,
+      imgList:[],
+      indexPicker:0,
+      index_x:0
+    })
+  },
+  //关闭添加弹窗
+  hideaddModal(e) {
+    this.setData({
+      modaladdName: null
+    })
+  },
+  //添加下拉列表
+  PickeraddChange(e) {
+    this.setData({
+      indexPicker: e.detail.value
+    })
+
+  },
+  //添加提交
+  formaddSubmit: function (e) {
+    //console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    let {Name, Desc, Image, commodityTypeId, price } = e.detail.value;
+    if(Name!=undefined&&Desc!=undefined&&Image!=undefined&&commodityTypeId!=undefined&&price!=undefined){
+      this.setData({
+        warn: null,
+        isSubmit: false
+      })
+      wx.showModal({
+        title: '提示',
+        content: '确定要添加吗？',
         cancelText: '取消',
         confirmText: '确定',
         success: res => {
@@ -333,16 +488,16 @@ Page({
                       res.imageURL,
                     ]
                   })
+                  //绑定菜品类别id
                   dbbase.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
                     this.setData({
                       commodityTypePorductId:res.data[0]._id
                     })
-                    console.log(this.data.commodityTypePorductId)
-                    console.log(_id)
-                    console.log(Image)
                     //更新数据
-                    dbbase.productupdate(_id,{
+                    dbbase.add("product",{
                       Desc:Desc,
+                      FavorableRating:0,
+                      MonthlySales:0,
                       Name:Name,
                       Image:this.data.imgList[0],
                       commodityTypeId:this.data.commodityTypePorductId,
@@ -357,10 +512,19 @@ Page({
                         title: '上传成功',
                         icon:'none'
                       })
-                      console.log(res)
+                      //隐藏添加表单和初始化商品product对象
                       this.setData({
-                        modalName: null,
+                        modaladdName: null,
                         product:[]
+                      })
+                      //刷新界面
+                      this.onLoad({
+                        id:this.data.shop._id
+                      })
+                      //弹出提示
+                      wx.showToast({
+                        title: '添加成功',
+                        icon:'none'
                       })
                     })
                   })
@@ -375,38 +539,5 @@ Page({
         isSubmit: true
       })
     }
-  },
-  //删除商品
-  delectproduct(e){
-    utils.cl(e.currentTarget.dataset.product_id)
-    wx.showModal({
-      title: '注意',
-      content: '确定要删除这个菜品吗？',
-      cancelText: '取消',
-      confirmText: '确定',
-      success: res => {
-        if (res.confirm) {
-          db.delete("product",e.currentTarget.dataset.product_id).then((res)=>{
-            utils.cl(res)
-          })
-        }
-      }
-    })
-  },
-  //添加商品
-  addproduct(e) {
-    dbbase.add("product",{
-      Desc:"本店销售量第一名",
-      FavorableRating:100,
-      Id:10,
-      MonthlySales:155,
-      Name:"（撒粉）叫只脆皮童子鸡",
-      commodityTypeId:"28ee4e3e608fb83a15169efb73c9082c",
-      image:"http://cdn.xiaoxingbobo.top/nongzhibang/2021412/156481620755808803",
-      price:10
-    }).then((res) =>{
-      utils.cl(res)
-    }
-    )
   },
 })
