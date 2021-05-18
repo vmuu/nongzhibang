@@ -211,82 +211,28 @@
       <!-- 第一页 -->
       <swiper-item>
         <view class="special_offer_foot">
-          <view class="special_offer_content">
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:if="{{index<4}}" data-id="{{item._id}}" bindtap="hotproduct">
             <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/19901620212940509"> </image>
+              src="{{item.Image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
-              薯条+可乐+鸡排
+              {{item.Name}}
             </view>
-            <text class="special_offer_foot_textt">¥23</text>
-            <text class="special_offer_foot_textf">¥28</text>
-          </view>
-          <view class="special_offer_content">
-            <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              酸菜鱼米线
-            </view>
-            <text class="special_offer_foot_textt">¥9</text>
-            <text class="special_offer_foot_textf">¥16</text>
-          </view>
-          <view class="special_offer_content">
-            <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1931561620214316438"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              单人肥肠牛套餐+米饭
-            </view>
-            <text class="special_offer_foot_textt">¥20</text>
-            <text class="special_offer_foot_textf">¥26</text>
-          </view>
-          <view class="special_offer_content">
-            <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1933241620214404988"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              单人餐（喊一份饭+）
-            </view>
-            <text class="special_offer_foot_textt">¥16.88</text>
-            <text class="special_offer_foot_textf">¥20</text>
+            <text class="special_offer_foot_textt">{{item.price}}</text>
+            <text class="special_offer_foot_textf">{{item.price}}</text>
           </view>
         </view>
       </swiper-item>
       <!-- 第二页 -->
       <swiper-item>
         <view class="special_offer_foot">
-          <view class="special_offer_content">
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:if="{{index>4&&index<9}}" data-id="{{item._id}}" bindtap="hotproduct">
             <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/19901620212940509"> </image>
+              src="{{item.Image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
-              薯条+可乐+鸡排
+              {{item.Name}}
             </view>
-            <text class="special_offer_foot_textt">¥23</text>
-            <text class="special_offer_foot_textf">¥28</text>
-          </view>
-          <view class="special_offer_content">
-            <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              酸菜鱼米线
-            </view>
-            <text class="special_offer_foot_textt">¥9</text>
-            <text class="special_offer_foot_textf">¥16</text>
-          </view>
-          <view class="special_offer_content">
-            <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1931561620214316438"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              单人肥肠牛套餐+米饭
-            </view>
-            <text class="special_offer_foot_textt">¥20</text>
-            <text class="special_offer_foot_textf">¥26</text>
-          </view>
-          <view class="special_offer_content">
-            <image class="special_offer_foot_img"
-              src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1933241620214404988"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              单人餐（喊一份饭+）
-            </view>
-            <text class="special_offer_foot_textt">¥16.88</text>
-            <text class="special_offer_foot_textf">¥20</text>
+            <text class="special_offer_foot_textt">{{item.price}}</text>
+            <text class="special_offer_foot_textf">{{item.price}}</text>
           </view>
         </view>
       </swiper-item>

@@ -41,7 +41,9 @@ Page({
     picker: ['茭菱校区', '小哨校区'],
     index:null,
     //推荐店铺列表
-    shop:[]
+    shop:[],
+    //热门商品列表
+    hotproduct:[]
   },
 
   // input输入事件
@@ -59,7 +61,13 @@ Page({
         shop:res.result.list
       })
     })
-
+    //热门商品
+    db.queryproduct().then((res)=>{
+      console.log(res.data);
+      this.setData({
+        hotproduct:res.data
+      })
+    })
     this.setData({
       capsuleHeight:wx.getMenuButtonBoundingClientRect().height  // 胶囊高度
     })
@@ -131,5 +139,12 @@ Page({
     wx.navigateTo({
       url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
     })
-  }
+  },
+  //热门菜品连接
+  hotproduct(e){
+    console.log(e.currentTarget.dataset.id)
+    /*wx.navigateTo({
+      url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
+    })*/
+  },
 });
