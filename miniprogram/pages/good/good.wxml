@@ -1,24 +1,11 @@
-<!-- 导航栏 -->
 <cu-custom bgColor="bg-main" isBack="{{false}}">
   <!-- <text class='cuIcon-back'>返回</text>  -->
   <view slot="content">
-    产品详情
+    订单详情
   </view>
 </cu-custom>
 
-
-<!-- 轮播图 -->
-<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true"
-  autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{swiperList}}" wx:key>
-    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-
-  </swiper-item>
-</swiper>
-
-
-
-<!--店铺信息-->
+<!-- 店铺栏 -->
 <view class="all_merchants">
   <view class="all_merchants_con">
     <text class="merchants_title">店铺：小锅米线店</text>
@@ -30,7 +17,8 @@
 </view>
 
 
-<!-- 产品信息 -->
+
+<!-- 产品信息栏 -->
 <view class="all_merchants">
   <view class="all_merchants_left">
     <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
@@ -54,9 +42,8 @@
 </view>
 
 
-<!--产品信息-->
+<!-- 产品详情 -->
 <view class="all_merchants">
- 
   <view class="all_merchants_con">
     <text class="merchants_title">产品详情</text>
     <view class="merchants_marking_warp">
@@ -70,8 +57,33 @@
 </view>
 
 
-<!-- 底部按钮 -->
-<view class="cu-bar bg-white tabbar botton-box  ">
+<!-- 收获地址 -->
+<view class="addressBox">
+  <view class="addressItem">
+    <view class="addressBox">
+      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+      <view class="infoBox">
+        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
+        <view class="address">云南省昆明市五华区</view>
+        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+      </view>
+      <text class="cuIcon-edit iconEdit"></text>
+    </view>
+    <view class="pubTopLine controlBtnBox">
+      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
+      <view bindtap="tapDelete">删除</view>
+    </view>
+  </view>
+</view>
 
-  <button class="bg-red submit radius">立即订购</button>
+<!-- 支付方式单选框 -->
+<radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio" wx:for="{{items}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+</radio-group>
+
+<!-- 交易订单 -->
+<view class="cu-bar bg-white tabbar botton-box  ">
+  <button class="bg-red submit radius">订单确定</button>
 </view>
