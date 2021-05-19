@@ -29,6 +29,23 @@
           "pathName": "pages/shopManagement/shopManagement",
           "query": "id=cbddf0af60924b600676347b2e4cb19c",
           "scene": null
+        },
+        {
+          "name": "pages/details/details",
+          "pathName": "pages/details/details",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/shopManagement/shopManagement",
+          "pathName": "pages/shopManagement/shopManagement",
+          "scene": null
         }
       ]
     }

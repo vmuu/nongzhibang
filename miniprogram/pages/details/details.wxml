@@ -1,92 +1,76 @@
 <cu-custom bgColor="bg-main" isBack="{{false}}">
-  <text class='cuIcon-back'>返回</text> 
-<view slot="content">
-  产品详情 
-</view>
+  <!-- <text class='cuIcon-back'>返回</text>  -->
+  <view slot="content">
+    产品详情
+  </view>
 </cu-custom>
-<!-- <view class="cu-bar bg-white">
-  <view class="action">
-    <text class="cuIcon-title text-pink"></text> 全屏限高轮播
-  </view>
-  <view class="action">
-    <switch class="sm" bindchange="DotStyle"></switch>
-  </view>
-</view> -->
-<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+
+<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true"
+  autoplay="true" interval="5000" duration="500">
   <swiper-item wx:for="{{swiperList}}" wx:key>
     <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-    <!-- <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video> -->
+
   </swiper-item>
 </swiper>
-
+<!-- 商家列表——曹氏鸭脖 -->
 <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">鲜香酸菜鱼</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥0</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location">星岛国际</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_Price">￥20.99</view>
-        <view class="old_Price">￥23.99</view>
-         <view class="merchants_type">立即抢购</view> 
-      </view> 
+  <view class="all_merchants_con">
+    <text class="merchants_title">店铺：小锅米线店</text>
+    <text class="product-type">分类：麻辣小吃</text>
+    <view>
+      <text class="cuIcon-location textOverflow">云南农业职业技术学院美食街2楼</text>
     </view>
 
+  </view>
 
-    <!-- 商家列表——曹氏鸭脖 -->
+</view>
+
 <view class="all_merchants">
-      <!-- <view class="all_merchants_left">
+  <view class="all_merchants_left">
+    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
+  </view>
+  <view class="all_merchants_con">
+    <text class="merchants_title">鲜香酸菜鱼</text>
+    <view class="merchants_marking_warp">
+      <view class="merchants_marking">店铺上新</view>
+      <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+    </view>
+    <view class="merchants_text_marking_warp">
+      <text class="merchants_text_marking">起送价：¥0</text>
+      <text class="merchants_text_marking">配送：¥2</text>
+    </view>
+
+  </view>
+  <view class="all_merchants_right">
+    <view class="merchants_Price">￥20.99</view>
+    <view class="old_Price">￥23.99</view>
+    <view class="merchants_type">立即抢购</view>
+  </view>
+</view>
+
+
+<!-- 商家列表——曹氏鸭脖 -->
+<view class="all_merchants">
+  <!-- <view class="all_merchants_left">
         <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/23971620227347394"></image>
       </view> -->
-      <view class="all_merchants_con">
-        <text class="merchants_title">产品详情</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">原料：鸭脖 </view>
-          <view class="merchants_marking">口味：麻辣/微辣</view>
-        </view>
-        <view>
-          <text class="cuIcon-location textOverflow">云南农业职业技术学院美食街2楼</text>
-        </view>
-        <!-- <view>
-          <text class="cuIcon-location textOverflow">云南农业职业技术学院美食街2楼</text>
-        </view> -->
-      </view>
-      <!-- <view class="all_merchants_right">
-        <view class="merchants_statu">暂停中</view>
-        <view class="merchants_type">校园专送</view>
-      </view> -->
+  <view class="all_merchants_con">
+    <text class="merchants_title">产品详情</text>
+    <view class="merchants_marking_warp">
+      <view class="merchants_marking">原料：鸭脖 </view>
+      <view class="merchants_marking">口味：麻辣/微辣</view>
+    </view>
+    <view>
+      <text class="cuIcon-location textOverflow">云南农业职业技术学院美食街2楼</text>
     </view>
 
-
-    <!-- <view class="box"> -->
-      <view class="cu-bar bg-white tabbar botton-box  ">
-    <!-- <button class="action" open-type="contact">
-      <view class="cuIcon-service text-green">
-        <view class="cu-tag badge"></view>
-      </view>
-      客服
-    </button> -->
-    <!-- <view class="action text-orange">
-      <view class="cuIcon-favorfill"></view> 已收藏
-    </view> -->
-    <!-- <view class="action">
-      <view class="cuIcon-cart">
-        <view class="cu-tag badge">99</view>
-      </view>
-      购物车
-    </view> -->
-    <button class="bg-red submit radius">立即订购</button>
   </view>
-  <!-- </view> -->
+
+</view>
+
+
+
+<view class="cu-bar bg-white tabbar botton-box  ">
+
+  <button class="bg-red submit radius">立即订购</button>
+</view>

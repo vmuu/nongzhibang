@@ -27,7 +27,8 @@
     "pages/mine/shop/shop",
     "pages/mine/identification/identification",
     "pages/chat/chat",
-    "pages/product/product"
+    "pages/product/product",
+    "pages/details/details"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {
