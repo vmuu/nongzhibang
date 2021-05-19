@@ -76,7 +76,8 @@ Page({
     })
     //调用封装的多表（2表）联查函数
     db.looKupTwo("looKupProductOrProductType",shop.id,"productType","product","_id","commodityTypeId","commodity").then((res)=>{
-      /*console.log(res.result.list);*/
+      app.utils.cl(res);
+      app.utils.cl(shop.id);
       this.setData({
         commodityType:res.result.list
       })
@@ -394,10 +395,11 @@ Page({
       })
     }
     else{
-      this.setData({
+    app.utils.hint('请完善信息');
+      /*this.setData({
         warn: "请完善信息",
         isSubmit: true
-      })
+      })*/
     }
   },
   //删除商品
@@ -534,10 +536,11 @@ Page({
       })
     }
     else{
-      this.setData({
+      app.utils.hint('请完善信息');
+      /*this.setData({
         warn: "请完善信息",
         isSubmit: true
-      })
+      })*/
     }
   },
 })

@@ -1,53 +1,60 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=cbddf0af60924b600676347b2e4cb19c",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "name": "pages/details/details",
-          "pathName": "pages/details/details",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide",
+                    "query": ""
+                },
+                {
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=cbddf0af60924b600676347b2e4cb19c",
+                    "scene": null
+                },
+                {
+                    "name": "pages/details/details",
+                    "pathName": "pages/details/details",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/product/product",
+                    "pathName": "pages/product/product",
+                    "query": "id=cbddf0af60924b600676347b2e4cb19c",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

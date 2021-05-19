@@ -217,8 +217,8 @@
             <view class="special_offer_foot_title textOverflow">
               {{item.Name}}
             </view>
-            <text class="special_offer_foot_textt">{{item.price}}</text>
-            <text class="special_offer_foot_textf">{{item.price}}</text>
+            <text class="special_offer_foot_textt">￥{{item.price}}</text>
+            <text class="special_offer_foot_textf">￥{{item.price}}</text>
           </view>
         </view>
       </swiper-item>
@@ -231,8 +231,8 @@
             <view class="special_offer_foot_title textOverflow">
               {{item.Name}}
             </view>
-            <text class="special_offer_foot_textt">{{item.price}}</text>
-            <text class="special_offer_foot_textf">{{item.price}}</text>
+            <text class="special_offer_foot_textt">￥{{item.price}}</text>
+            <text class="special_offer_foot_textf">￥{{item.price}}</text>
           </view>
         </view>
       </swiper-item>

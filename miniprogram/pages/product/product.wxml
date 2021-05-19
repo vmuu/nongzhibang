@@ -32,7 +32,7 @@
       </view>
       <!--内容-->
       <view class="cu-list menu-avatar">
-        <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}"bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{item.Id}}">
+        <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}" data-target="move-box-{{item.Id}}" data-id="{{item._id}}" bindtap="productdesc">
       <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
       <view class="content">
         <view class="text-grey">{{item.Name}}</view>
@@ -43,88 +43,7 @@
         <view class="text-grey text-xs">￥{{item.price}}</view>
         <view class="cu-tag round bg-grey sm">{{item.MonthlySales}}</view>
       </view>
-      <view class="move">
-        <view class="bg-grey" bindtap="showModal" data-product_id="{{item._id}}" data-target="Modal">编辑</view>
-        <view class="bg-red">删除</view>
-      </view>
     </view>
-    <!--弹窗-->
-    <view class="cu-modal {{modalName=='Modal'?'show':''}}">
-    <view class="cu-dialog">
-      <view class="cu-bar bg-white justify-end">
-        <view class="content">{{product.Name}}</view>
-        <view class="action" bindtap="hideModal">
-          <text class="cuIcon-close text-red"></text>
-        </view>
-      </view>
-      <view class="padding-xl">
-        <form>
-          <view class="cu-form-group margin-top">
-            <view class="title">名称</view>
-            <input placeholder="{{product.Name}}"></input>
-          </view>
-          <view class="cu-form-group">
-            <view class="title">简介</view>
-            <input placeholder="{{product.Desc}}"></input>
-          </view>
-          <view class="cu-form-group">
-            <view class="title">价格</view>
-            <input placeholder="{{product.price}}"></input>
-          </view>
-          <view class="cu-form-group margin-top">
-            <view class="title">分类</view>
-            <picker bindchange="PickerChange" value="{{indexPicker}}" range="{{picker}}">
-              <view class="picker">
-                {{picker[indexPicker]}}
-              </view>
-            </picker>
-          </view>
-          <view class="cu-bar bg-white margin-top">
-            <view class="action">
-              图片
-            </view>
-          </view>
-          <view class="cu-form-group">
-              <view class="grid col-4 grid-square flex-sub">
-                <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index_x}}" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
-                  <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>-->
-                  <view class="cu-avatar round lg" style="background-image:url({{imgList[index_x]}});"></view>
-                  <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index_x}}">
-                    <text class="cuIcon-close"></text>
-                  </view>
-                </view>
-                <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
-                  <text class="cuIcon-cameraadd"></text>
-                </view>
-              </view>
-            </view>
-      </form>
-      </view>
-          <view class="cu-bar bg-white">
-            <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>
-            <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">确定</view>
-          </view>
-        </view>
-      </view>
-        <!--1-->
-        <!--<view class="cu-item" wx:for="{{item.commodity}}">
-          <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
-          <view class="content">
-            <view class="text-grey">{{item.Name}}</view>
-            <view class="text-gray text-sm flex">
-              <text class="text-cut">
-										<text class="cuIcon-infofill text-red  margin-right-xs"></text> {{item.Desc}}
-              </text>
-            </view>
-          </view>
-          <view class="action">
-            <view class="text-grey text-xs">￥{{item.price}}</view>
-            <view class="cu-tag round bg-grey sm">{{item.MonthlySales}}</view>
-          </view>
-          <view class="fcx-test">
-            cnm
-          </view>
-        </view>-->
       </view>
 
     </view>
