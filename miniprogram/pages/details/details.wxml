@@ -71,5 +71,5 @@
 
 <!-- 底部按钮 -->
 <view class="cu-bar bg-white tabbar botton-box  ">
-  <button class="bg-red submit radius">立即订购</button>
+  <button class="bg-red submit radius" bindtap="goodNavigateTo" data-id="{{product._id}}">立即订购</button>
 </view>

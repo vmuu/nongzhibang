@@ -18,9 +18,6 @@ Page({
       title: '加载中...',
       mask: true
     })
-    this.setData({
-      picker:[]
-    })
     //要跳转的商品
     db.query("product",product.id).then((res)=>{
       app.utils.cl(res);
@@ -55,4 +52,10 @@ Page({
       cardCur: e.detail.current
     })
   },
+  goodNavigateTo(e){
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '../good/good?id='+e.currentTarget.dataset.id,
+    })
+  }
 })
