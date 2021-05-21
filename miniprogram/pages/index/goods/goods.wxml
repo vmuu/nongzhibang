@@ -1,0 +1,71 @@
+<!-- 顶部 -->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">全部商品</view>
+</cu-custom>
+
+<view class="all_goods">
+    <view class="goods_con_warp">
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>

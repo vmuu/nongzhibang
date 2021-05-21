@@ -1,0 +1,93 @@
+/* miniprogram/pages/index/merchants.wxss */
+/* 全部商家 */
+.scroll_nav{
+  padding: 20rpx;
+  margin-top: 15rpx;
+}
+.all_merchants{
+  border-radius: 25rpx;
+  padding: 20rpx;
+  background-color: white;
+  display: flex;
+  margin-top: 20rpx;
+}
+.scroll_nav>view:nth-child(2){
+  margin-top: -10rpx;
+  /* background-color: violet; */
+}
+.all_merchants_left,.all_merchants_left>image{
+  width: 190rpx;
+  height: 195rpx;
+  border-radius: 10rpx;
+}
+.all_merchants_con{
+  /* padding-left: 20rpx; */
+  margin-left: 20rpx;
+  width: 370rpx;
+  height: 200rpx;
+  align-items: center;
+  display: grid;
+  overflow: hidden;
+}
+.merchants_title{
+  font-weight: bold;
+  font-size: 33rpx;
+}
+.merchants_marking_warp{
+  display: flex;
+  font-size: 27rpx;
+  text-align: center;
+}
+.merchants_marking_warp view:nth-child(2){
+  margin-left: 10rpx;
+}
+.merchants_marking{
+  background-color: #bde2c2;
+  color: #00c25d;
+  padding: 2rpx 4rpx;
+  width: 120rpx;
+  border-radius: 10rpx;
+}
+.merchants_text_marking_warp text:nth-child(2){
+  margin-left: 20rpx;
+}
+.merchants_text_marking{
+  color: #737776;
+  font-size: 27rpx;
+}
+.all_merchants_right{
+  width: 150rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+  /* background-color: tomato; */
+  text-align: center;
+}
+.merchants_statu{
+  color: #dc8952;
+  font-weight: bold;
+}
+.merchants_type{
+  margin-top: 30rpx;
+  color: white;
+  font-size: 25rpx;
+  background-color: #e78f8b;
+  padding: 5rpx 9rpx;
+  border-radius: 20rpx 0rpx;
+}
+.cuIcon-location{
+  /* font-size: 30rpx; */
+  width: 100rpx;
+}
+/* 营业中 */
+.merchants_statu_yyz{
+  color: #45b64a;
+}
+/* 可预订 */
+.merchants_statu_kyd{
+  color: #7445df;
+}
+/* 炒饭盖饭 */
+.merchants_marking_cfgf{
+  background-color: #ccbcf5;
+  color: #7445df;
+}

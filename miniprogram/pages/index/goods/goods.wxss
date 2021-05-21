@@ -1,0 +1,49 @@
+/* 全部商品 */
+.all_goods{
+  padding: 20rpx 20rpx 0rpx 20rpx;
+}
+.goods_con_warp{
+  display: flex;
+  flex-wrap: wrap;
+}
+.goods_con{
+  text-align: center;
+  margin-bottom: 20rpx;
+  background-color: white;
+  border-radius: 20rpx;
+}
+.goods_con_img{
+  padding: 20rpx 20rpx 0rpx 20rpx;
+}
+.goods_con image{
+  width: 342rpx;
+  height: 200rpx;
+  border-radius: 10rpx 10rpx 5rpx 5rpx;
+}
+.goods_con:nth-child(2n){
+  margin-left: 25rpx;
+}
+
+.goods_con_text{
+  display: flex;
+  padding: 0rpx 10rpx;
+}
+.goods_con_text .goods_con_text_l{
+  text-align: left;
+  width: 199rpx;
+  height: 50rpx;
+}
+.goods_con_text .goods_con_text_r{
+  text-align: right;
+  font-size: 35rpx;
+}
+.orginnal_price{
+  color: red;
+  text-align: left;
+}
+.price{
+  margin-left: 10rpx;
+  color: #d8d8d8;
+  text-decoration: line-through;
+  text-align: right;
+}

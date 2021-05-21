@@ -22,8 +22,6 @@
         <input type="text" style="{{capsuleHeight-2}}px" placeholder="请输入搜索关键词" confirm-type="search"
           bindtap="doInput"></input>
       </view>
-      <!-- <input class="screen-swiper" type="text" value="{{value}}" placeholder="搜索关键词" /> -->
-      <!-- <van-search value="{{value}}" shape="round" bindtap="doInput" background="#f5f5f5" placeholder="搜索关键词" /> -->
     </view>
     <slot name="right"></slot>
   </view>
@@ -94,22 +92,22 @@
       <view class="icon-wrapper">
         <view class="big-icon" bindtap="enterDeliciousFood" data-id="0">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/113551620183835011"></image>
-          <text>小炒便当</text>
+          <text>校园零食</text>
         </view>
         <view class="big-icon" bindtap="enterDeliciousFood" data-id="1">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/113211620183801244"></image>
-          <text>炒面水饺</text>
+          <text>新鲜水果</text>
         </view>
         <view class="big-icon" bindtap="enterDeliciousFood" data-id="2">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/11461620183846609"></image>
-          <text>汉堡小吃</text>
+          <text>美食小吃</text>
         </view>
         <view class="big-icon" bindtap="enterDeliciousFood" data-id="3">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/116171620183977264"></image>
-          <text>商超便利</text>
+          <text>奶茶果汁</text>
         </view>
       </view>
-      <view class="icon-wrapper">
+      <!-- <view class="icon-wrapper">
         <view class="big-icon" bindtap="enterDeliciousFood" data-id="4">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/116371620183997371"></image>
           <text>面包饼菜</text>
@@ -126,12 +124,53 @@
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1111101620184270717"></image>
           <text>奶茶果汁</text>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
 
   <!-- 定位元素 -->
   <view class="test_warp">
+
+  </view>
+
+  <!-- 热门菜品 -->
+  <view class="special_offer">
+    <view class="merchants_card_text">
+      <text class="main_f_test">热门菜品</text>
+      <text class="bg-green"></text>
+      <text class="more" bindtap="more_goods">更多></text>
+    </view>
+
+    <swiper autoplay="true" class="recommend_shops_swiper">
+     <!-- 第一页 -->
+     <swiper-item>
+        <view class="special_offer_foot">
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index<4}}" data-id="{{item._id}}" bindtap="hotproduct">
+            <image class="special_offer_foot_img"
+              src="{{item.Image}}"> </image>
+            <view class="special_offer_foot_title textOverflow">
+              {{item.Name}}
+            </view>
+            <text class="special_offer_foot_textt">￥{{item.price}}</text>
+            <text class="special_offer_foot_textf">￥{{item.price}}</text>
+          </view>
+        </view>
+      </swiper-item>
+      <!-- 第二页 -->
+      <swiper-item>
+        <view class="special_offer_foot">
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index>4&&index<9}}" data-id="{{item._id}}" bindtap="hotproduct">
+            <image class="special_offer_foot_img"
+              src="{{item.Image}}"> </image>
+            <view class="special_offer_foot_title textOverflow">
+              {{item.Name}}
+            </view>
+            <text class="special_offer_foot_textt">￥{{item.price}}</text>
+            <text class="special_offer_foot_textf">￥{{item.price}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
 
   </view>
 
@@ -146,18 +185,17 @@
     <view class="merchants_card_text">
       <text class="main_f_test">推荐店铺</text>
       <text class="bg-green"></text>
+      <text class="more" bindtap="more_merchants" wx:key="index" data-id="数据">更多></text>
     </view>
     <!-- autoplay="true" -->
     <swiper class="recommend_merchants_wrap" circular="true" duration="300">
       <!-- 商家分界 -->
       <swiper-item wx:for="{{shop}}" wx:key="index">
         <view class="recommend_merchants" bindtap="tapShop" data-id="{{item._id}}">
-          <view class="recommend_merchants_top"
-            style="background-image: url('{{item.shopBackground}}');">
+          <view class="recommend_merchants_top" style="background-image: url('{{item.shopBackground}}');">
           </view>
           <view class="recommend_merchants_top_wwarp">
-            <image class="recommend_merchants_top_left"
-              src="{{item.shopImage}}"></image>
+            <image class="recommend_merchants_top_left" src="{{item.shopImage}}"></image>
             <view class="recommend_merchants_top_right">
               <view class="recommend_merchants_top_right_wwarp">
                 <view class="recommend_merchants_top_right_t">{{item.shopName}}</view>
@@ -172,7 +210,7 @@
             <!-- 菜品第一页 -->
             <swiper-item>
               <view class="recommend_merchants_foot">
-                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:if="{{index<3}}">
+                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index" wx:if="{{index<3}}">
                   <view class="recommend_merchants_foot_v">
                     <image src="{{item.Image}}"></image>
                     <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
@@ -184,7 +222,7 @@
             <!-- 菜品第二页 -->
             <swiper-item>
               <view class="recommend_merchants_foot">
-                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:if="{{index>2&&index<6}}">
+                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index" wx:if="{{index>2&&index<6}}">
                   <view class="recommend_merchants_foot_v">
                     <image src="{{item.Image}}"></image>
                     <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
@@ -200,155 +238,85 @@
     </swiper>
   </view>
 
-  <!-- 热门菜品 -->
-  <view class="special_offer">
-    <view class="merchants_card_text">
-      <text class="main_f_test">热门菜品</text>
-      <text class="bg-green"></text>
-    </view>
 
-    <swiper autoplay="true" class="recommend_shops_swiper">
-      <!-- 第一页 -->
-      <swiper-item>
-        <view class="special_offer_foot">
-          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:if="{{index<4}}" data-id="{{item._id}}" bindtap="hotproduct">
-            <image class="special_offer_foot_img"
-              src="{{item.Image}}"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              {{item.Name}}
-            </view>
-            <text class="special_offer_foot_textt">￥{{item.price}}</text>
-            <text class="special_offer_foot_textf">￥{{item.price}}</text>
+  <!-- 全部商品 -->
+  <view class="all_goods">
+    <view class="all_goods_title">
+      <view>
+        <text class="main_f_test">全部商品</text>
+        <text class="bg-green"></text>
+      </view>
+    </view>
+    <view class="goods_con_warp">
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
           </view>
         </view>
-      </swiper-item>
-      <!-- 第二页 -->
-      <swiper-item>
-        <view class="special_offer_foot">
-          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:if="{{index>4&&index<9}}" data-id="{{item._id}}" bindtap="hotproduct">
-            <image class="special_offer_foot_img"
-              src="{{item.Image}}"> </image>
-            <view class="special_offer_foot_title textOverflow">
-              {{item.Name}}
-            </view>
-            <text class="special_offer_foot_textt">￥{{item.price}}</text>
-            <text class="special_offer_foot_textf">￥{{item.price}}</text>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
           </view>
         </view>
-      </swiper-item>
-    </swiper>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
+      <view class="goods_con">
+        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
+        <view class="goods_con_text">
+          <view class="goods_con_text_l">
+            <text>绝味鸭脖</text>
+          </view>
+          <view class="goods_con_text_r">
+            <text class="orginnal_price">¥22</text>
+            <text class="price">¥44</text>
+          </view>
+        </view>
+      </view>
 
+    </view>
   </view>
 
-  <!-- 滑动导航 -->
-  <view class="scroll_nav">
-    <view>
-      <text class="main_f_test">全部商家</text>
-      <text class="bg-green"></text>
-    </view>
-    <!-- 商家列表——曹氏鸭脖 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/23971620227347394"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">曹氏鸭脖</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <view class="merchants_marking">清油简餐</view>
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥15</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location textOverflow">星岛国际13栋3单元32号</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_statu">暂停中</view>
-        <view class="merchants_type">校园专送</view>
-      </view>
-    </view>
-    <!-- 商家列表一哇塞 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/214491620222249924"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">蛙噻</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view>
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥0</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location textOverflow">星岛国际</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_statu">暂停中</view>
-        <view class="merchants_type">校园专送</view>
-      </view>
-    </view>
-    <!-- 商家列表——点随便 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2311171620227477800"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">点随便</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view>
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">起送价：¥10</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location textOverflow">学府大道665号三星镇</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_statu merchants_statu_yyz">营业中</view>
-        <view class="merchants_type">校园专送</view>
-      </view>
-    </view>
-    <!-- 商家列表——点随便 -->
-    <view class="all_merchants">
-      <view class="all_merchants_left">
-        <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2317111620227831542"></image>
-      </view>
-      <view class="all_merchants_con">
-        <text class="merchants_title">傅记排骨-炸排骨</text>
-        <view class="merchants_marking_warp">
-          <view class="merchants_marking">店铺上新</view>
-          <view class="merchants_marking">优质商家</view>
-        </view>
-        <view class="merchants_text_marking_warp">
-          <text class="merchants_text_marking">月售：¥20</text>
-          <text class="merchants_text_marking">起送价：¥15</text>
-          <text class="merchants_text_marking">配送：¥2</text>
-        </view>
-        <view>
-          <text class="cuIcon-location textOverflow">学府大道665号三星镇</text>
-        </view>
-      </view>
-      <view class="all_merchants_right">
-        <view class="merchants_statu merchants_statu_kyd">可预订</view>
-        <view class="merchants_type">校园专送</view>
-      </view>
-    </view>
-
-  </view>
 
   <!-- 商家内容 -->
   <view class="container">
 
   </view>
+
 
 </view>

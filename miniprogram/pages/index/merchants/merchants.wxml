@@ -1,0 +1,111 @@
+<!-- 顶部 -->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">全部店铺</view>
+</cu-custom>
+
+<!-- 全部商家 -->
+<view class="scroll_nav">
+  <view>
+    <!-- <text class="main_f_test">全部商家</text> -->
+    <text class="bg-green"></text>
+  </view>
+  <!-- 商家列表——曹氏鸭脖 -->
+  <view class="all_merchants">
+    <view class="all_merchants_left">
+      <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/23971620227347394"></image>
+    </view>
+    <view class="all_merchants_con">
+      <text class="merchants_title">曹氏鸭脖</text>
+      <view class="merchants_marking_warp">
+        <view class="merchants_marking">店铺上新</view>
+        <view class="merchants_marking">清油简餐</view>
+      </view>
+      <view class="merchants_text_marking_warp">
+        <text class="merchants_text_marking">起送价：¥15</text>
+        <text class="merchants_text_marking">配送：¥2</text>
+      </view>
+      <view>
+        <text class="cuIcon-location textOverflow">星岛国际13栋3单元32号</text>
+      </view>
+    </view>
+    <view class="all_merchants_right">
+      <view class="merchants_statu">暂停中</view>
+      <view class="merchants_type">校园专送</view>
+    </view>
+  </view>
+  <!-- 商家列表一哇塞 -->
+  <view class="all_merchants">
+    <view class="all_merchants_left">
+      <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/214491620222249924"></image>
+    </view>
+    <view class="all_merchants_con">
+      <text class="merchants_title">蛙噻</text>
+      <view class="merchants_marking_warp">
+        <view class="merchants_marking">店铺上新</view>
+        <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view>
+      </view>
+      <view class="merchants_text_marking_warp">
+        <text class="merchants_text_marking">起送价：¥0</text>
+        <text class="merchants_text_marking">配送：¥2</text>
+      </view>
+      <view>
+        <text class="cuIcon-location textOverflow">星岛国际</text>
+      </view>
+    </view>
+    <view class="all_merchants_right">
+      <view class="merchants_statu">暂停中</view>
+      <view class="merchants_type">校园专送</view>
+    </view>
+  </view>
+  <!-- 商家列表——点随便 -->
+  <view class="all_merchants">
+    <view class="all_merchants_left">
+      <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2311171620227477800"></image>
+    </view>
+    <view class="all_merchants_con">
+      <text class="merchants_title">点随便</text>
+      <view class="merchants_marking_warp">
+        <view class="merchants_marking">店铺上新</view>
+        <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view>
+      </view>
+      <view class="merchants_text_marking_warp">
+        <text class="merchants_text_marking">起送价：¥10</text>
+        <text class="merchants_text_marking">配送：¥2</text>
+      </view>
+      <view>
+        <text class="cuIcon-location textOverflow">学府大道665号三星镇</text>
+      </view>
+    </view>
+    <view class="all_merchants_right">
+      <view class="merchants_statu merchants_statu_yyz">营业中</view>
+      <view class="merchants_type">校园专送</view>
+    </view>
+  </view>
+  <!-- 商家列表——点随便 -->
+  <view class="all_merchants">
+    <view class="all_merchants_left">
+      <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/2317111620227831542"></image>
+    </view>
+    <view class="all_merchants_con">
+      <text class="merchants_title">傅记排骨-炸排骨</text>
+      <view class="merchants_marking_warp">
+        <view class="merchants_marking">店铺上新</view>
+        <view class="merchants_marking">优质商家</view>
+      </view>
+      <view class="merchants_text_marking_warp">
+        <text class="merchants_text_marking">月售：¥20</text>
+        <text class="merchants_text_marking">起送价：¥15</text>
+        <text class="merchants_text_marking">配送：¥2</text>
+      </view>
+      <view>
+        <text class="cuIcon-location textOverflow">学府大道665号三星镇</text>
+      </view>
+    </view>
+    <view class="all_merchants_right">
+      <view class="merchants_statu merchants_statu_kyd">可预订</view>
+      <view class="merchants_type">校园专送</view>
+    </view>
+  </view>
+
+</view>

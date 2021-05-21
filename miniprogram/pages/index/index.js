@@ -48,7 +48,7 @@ Page({
 
   // input输入事件
   doInput(e){
-    console.log("input sth");
+    
     wx.navigateTo({
       url: '../search/search',
       })
@@ -130,7 +130,9 @@ Page({
   // 按钮的点击事件
   enterDeliciousFood(e){
     app.utils.cl(e.currentTarget.dataset.id)
-
+    wx.navigateTo({
+      url: 'goods/goods'
+    })
     wx.showToast({
       title: '当前按钮ID：'+e.currentTarget.dataset.id,
     })
@@ -138,6 +140,17 @@ Page({
   tapShop(e){
     wx.navigateTo({
       url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
+    })
+  },
+  // 更多商品
+  more_merchants(e){
+    wx.navigateTo({
+      url: 'merchants/merchants'
+    })
+  },
+  more_goods(e){
+    wx.navigateTo({
+      url: 'goods/goods'
     })
   },
   //热门菜品连接
@@ -148,3 +161,5 @@ Page({
     })
   },
 });
+
+// 全部商家
