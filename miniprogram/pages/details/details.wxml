@@ -26,7 +26,7 @@
     <text class="merchants_title">店铺：{{shop.shopName}}</text>
     <text class="product-type">分类：{{productType.Name}}</text>
     <view>
-      <text class="cuIcon-location textOverflow">{{shop.location}}</text>
+      地址：<text class="cuIcon-location ">{{shop.location}}</text>
     </view>
   </view>
 </view>
@@ -45,31 +45,26 @@
     </view>
     <view class="merchants_text_marking_warp">
       <text class="merchants_text_marking">起送价：¥{{product.price}}</text>
-      <text class="merchants_text_marking">配送：¥2</text>
+      <!-- <text class="merchants_text_marking">配送：¥2</text> -->
     </view>
   </view>
   <view class="all_merchants_right">
     <view class="merchants_Price">￥{{product.price}}</view>
     <view class="old_Price">￥{{product.price}}</view>
-    <view class="merchants_type">立即抢购</view>
+    <!-- <view class="merchants_type">立即抢购</view> -->
   </view>
 </view>
-
-
 <!--产品信息-->
 <view class="all_merchants">
- 
   <view class="all_merchants_con">
-    <text class="merchants_title">产品详情</text>
+    <text class="merchants_title">产品详情：</text>
     <view class="merchants_marking_warp">
-      <view class="merchants_marking">原料：{{product.Desc}} </view>
-      <view class="merchants_marking">口味：麻辣/微辣</view>
+      <view class="merchants_marking">产品原料：{{product.Desc}} </view>
+      <view class="merchants_marking">产品口味：麻辣/微辣</view>
     </view>
   </view>
 </view>
-
-
 <!-- 底部按钮 -->
 <view class="cu-bar bg-white tabbar botton-box  ">
-  <button class="bg-red submit radius" bindtap="goodNavigateTo" data-id="{{product._id}}">立即订购</button>
+  <button class="bg-green submit radius" bindtap="goodNavigateTo" data-id="{{product._id}}">立即订购</button>
 </view>

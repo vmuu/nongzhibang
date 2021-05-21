@@ -5,11 +5,13 @@
   background-color: white;
   display: flex;
   margin-top: 20rpx;
-  border-radius: 50rpx;
+  border-radius: 20rpx;
 }
 
 .all_merchants_left,
 .all_merchants_left>image {
+  margin-top: 3rpx;
+  margin-left: 5rpx;
   width: 190rpx;
   height: 195rpx;
   border-radius: 20rpx;
@@ -18,7 +20,7 @@
 .all_merchants_con {
   /* padding-left: 20rpx; */
   margin-left: 20rpx;
-  width: 370rpx;
+  width: 100%;
   height: 200rpx;
   align-items: center;
   display: grid;
@@ -35,7 +37,11 @@
   width: 100%;
    display: flex; 
    position: fixed; 
-  bottom: 0; 
+   bottom: 0; 
 
+}
+.botton-box button{
+  height:100%;
+  border-radius: 1000rpx;
 }
 

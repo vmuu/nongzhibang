@@ -5,20 +5,27 @@
   background-color: white;
   display: flex;
   margin-top: 20rpx;
-  border-radius: 50rpx;
+  border-radius: 20rpx;
 }
 
 .all_merchants_left,
 .all_merchants_left>image {
+  margin-top: 3rpx;
+  margin-left: 5rpx;
   width: 190rpx;
   height: 195rpx;
   border-radius: 20rpx;
 }
-
+.all_merchants_right{
+  margin-top: 50rpx;
+}
+.all_merchants_right .merchants_Price {
+  color: red;
+}
 .all_merchants_con {
   /* padding-left: 20rpx; */
   margin-left: 20rpx;
-  width: 370rpx;
+  width: 100%;
   height: 200rpx;
   align-items: center;
   display: grid;
@@ -27,10 +34,6 @@
 .merchants_text_marking{
   color: red;
 }
-
-
-
-
 /* 底部样式 */
 .botton-box {
   width: 100%;
@@ -38,7 +41,6 @@
    position: fixed; 
   bottom: 0; 
 }
-
 /* 收获栏地址样式 */
 .consignee {
   font-size: 30rpx;
@@ -116,4 +118,8 @@
 }
 .radio{
   margin-right: 10rpx;
+}
+.botton-box button{
+  height:100%;
+  border-radius: 1000rpx;
 }
