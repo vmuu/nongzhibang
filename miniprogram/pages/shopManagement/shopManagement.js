@@ -82,8 +82,6 @@ Page({
         commodityType:res.result.list
       })
     })
-    
-    
     //要跳转的商家
     db.query("shop",shop.id).then((res)=>{
       this.setData({

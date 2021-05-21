@@ -143,8 +143,8 @@ Page({
   //热门菜品连接
   hotproduct(e){
     console.log(e.currentTarget.dataset.id)
-    /*wx.navigateTo({
-      url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
-    })*/
+    wx.navigateTo({
+      url: '../details/details?id='+e.currentTarget.dataset.id,
+    })
   },
 });

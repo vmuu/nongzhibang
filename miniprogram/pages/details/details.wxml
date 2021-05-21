@@ -1,30 +1,32 @@
 <!-- 导航栏 -->
-<cu-custom bgColor="bg-main" isBack="{{false}}">
-  <!-- <text class='cuIcon-back'>返回</text>  -->
-  <view slot="content">
-    产品详情
-  </view>
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">产品详情</view>
 </cu-custom>
 
 
 <!-- 轮播图 -->
-<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true"
-  autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{swiperList}}" wx:key>
-    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
 
-  </swiper-item>
-</swiper>
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('{{product.Image}}');height: 414rpx;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      {{product.Name}}
+    </view>
+    <view class="padding-xs">
+      {{product.Desc}}
+    </view>
+  </view>
+</view>
 
 
 
 <!--店铺信息-->
 <view class="all_merchants">
   <view class="all_merchants_con">
-    <text class="merchants_title">店铺：小锅米线店</text>
-    <text class="product-type">分类：麻辣小吃</text>
+    <text class="merchants_title">店铺：{{shop.shopName}}</text>
+    <text class="product-type">分类：{{productType.Name}}</text>
     <view>
-      <text class="cuIcon-location textOverflow">云南农业职业技术学院美食街2楼</text>
+      <text class="cuIcon-location textOverflow">{{shop.location}}</text>
     </view>
   </view>
 </view>
@@ -33,22 +35,22 @@
 <!-- 产品信息 -->
 <view class="all_merchants">
   <view class="all_merchants_left">
-    <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1930221620214222581"></image>
+    <image src="{{product.Image}}"></image>
   </view>
   <view class="all_merchants_con">
-    <text class="merchants_title">鲜香酸菜鱼</text>
+    <text class="merchants_title">{{product.Name}}</text>
     <view class="merchants_marking_warp">
-      <view class="merchants_marking">店铺上新</view>
+      <view class="merchants_marking">{{product.Desc}}</view>
       <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
     </view>
     <view class="merchants_text_marking_warp">
-      <text class="merchants_text_marking">起送价：¥0</text>
+      <text class="merchants_text_marking">起送价：¥{{product.price}}</text>
       <text class="merchants_text_marking">配送：¥2</text>
     </view>
   </view>
   <view class="all_merchants_right">
-    <view class="merchants_Price">￥20.99</view>
-    <view class="old_Price">￥23.99</view>
+    <view class="merchants_Price">￥{{product.price}}</view>
+    <view class="old_Price">￥{{product.price}}</view>
     <view class="merchants_type">立即抢购</view>
   </view>
 </view>
@@ -60,11 +62,8 @@
   <view class="all_merchants_con">
     <text class="merchants_title">产品详情</text>
     <view class="merchants_marking_warp">
-      <view class="merchants_marking">原料：鸭脖 </view>
+      <view class="merchants_marking">原料：{{product.Desc}} </view>
       <view class="merchants_marking">口味：麻辣/微辣</view>
-    </view>
-    <view>
-      <text class="cuIcon-location textOverflow">云南农业职业技术学院美食街2楼</text>
     </view>
   </view>
 </view>
@@ -72,6 +71,5 @@
 
 <!-- 底部按钮 -->
 <view class="cu-bar bg-white tabbar botton-box  ">
-
   <button class="bg-red submit radius">立即订购</button>
 </view>
