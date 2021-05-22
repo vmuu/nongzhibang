@@ -133,8 +133,8 @@ page {
 }
 
 .main-icon {
-  position: absolute;
-  top: -20rpx;
+  /* position: absolute;
+  top: -20rpx; */
   width: 95%;
   margin: 20rpx 20rpx 15rpx 20rpx;
   border-radius: 20rpx;
@@ -189,17 +189,15 @@ page {
 /* 推荐店铺 */
 .more{
   position: relative;
-  right: -473rpx;
+  right: -425rpx;
   top: -33rpx;
   padding: 10px;
 }
 .merchants_card{
   width: 100%;
-  /* height: 450rpx; */
-  /* background-color: #ed1c93; */
-  /* padding: 20rpx; */
   padding: 20rpx 20rpx 0rpx 20rpx;
 }
+
 .recommend_shops_swiper{
   height: 260rpx;
 }
@@ -290,10 +288,8 @@ page {
 .recommend_merchants_foot{
   display: flex;
   text-align: center;
-  /* justify-content: center; */
   padding-bottom: 20rpx;
-  /* position: relative;
-  top: 71rpx; */
+  margin-left: 14rpx;
 }
 .recommend_merchants_foot_wrap{
   height: 340rpx;
@@ -346,7 +342,6 @@ page {
   text-align: left;
 }
 .special_offer_foot_textf{
-  margin-left: 15rpx;
   color: #d8d8d8;
   text-decoration:line-through;
   text-align: right;

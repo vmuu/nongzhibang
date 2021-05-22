@@ -26,28 +26,6 @@
     <slot name="right"></slot>
   </view>
 </view>
-<!-- 校区选择 -->
-
-<!-- <cu-custom bgColor="bg-main" isBack="{{true}}">
-  <view slot="backText">茭菱校区</view>
-  
-  <view slot="content">
-    <van-search value="{{value}}" shape="round" bindtap="doInput" background="#f5f5f5" placeholder="搜索关键词" />
-  </view>
-</cu-custom> -->
-
-<!-- 搜索框 -->
-<!-- <view class="search">
-  <view class="search-form round">
-    <van-search value="{{value}}" shape="round" background="#07c160" placeholder="请输入搜索关键词" />
-  </view>
-</view> -->
-
-<!-- 公告 -->
-<!-- <view class="notivebar">
-  <van-notice-bar color="#07c160" background="#eef6f9" left-icon="volume-o" scrollable="{{true}}" speed="{{20}}"
-    text="技术是开发它的人的共同灵魂。测试成为测试成为测试成为测试成为测试成为测试成为测试成为测试成为" />
-</view> -->
 
 <!-- 内容部分 -->
 <view class="warp">
@@ -72,7 +50,6 @@
 
   <!-- 轮播图 -->
   <view class="scroll_banner">
-    <!-- <view>当前下标：{{cardCur}}</view> -->
     <image class="bgShadow" src="{{swiperList[cardCur].url}}"></image>
     <swiper class="card-swiper" indicator-dots="{{false}}" circular="true" autoplay="true" interval="5000"
       duration="500" bindchange="cardSwiper">
@@ -107,47 +84,29 @@
           <text>奶茶果汁</text>
         </view>
       </view>
-      <!-- <view class="icon-wrapper">
-        <view class="big-icon" bindtap="enterDeliciousFood" data-id="4">
-          <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/116371620183997371"></image>
-          <text>面包饼菜</text>
-        </view>
-        <view class="big-icon" bindtap="enterDeliciousFood" data-id="5">
-          <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1110481620184248826"></image>
-          <text>包子粥店</text>
-        </view>
-        <view class="big-icon" bindtap="enterDeliciousFood" data-id="6">
-          <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1110591620184259485"></image>
-          <text>香锅烫捞</text>
-        </view>
-        <view class="big-icon" bindtap="enterDeliciousFood" data-id="7">
-          <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/1111101620184270717"></image>
-          <text>奶茶果汁</text>
-        </view>
-      </view> -->
     </view>
   </view>
 
   <!-- 定位元素 -->
-  <view class="test_warp">
+  <!-- <view class="test_warp">
 
-  </view>
+  </view> -->
 
   <!-- 热门菜品 -->
   <view class="special_offer">
     <view class="merchants_card_text">
       <text class="main_f_test">热门菜品</text>
       <text class="bg-green"></text>
-      <text class="more" bindtap="more_goods">更多></text>
+      <text class="more" bindtap="more_goods">更多推荐></text>
     </view>
 
     <swiper autoplay="true" class="recommend_shops_swiper">
-     <!-- 第一页 -->
-     <swiper-item>
+      <!-- 第一页 -->
+      <swiper-item>
         <view class="special_offer_foot">
-          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index<4}}" data-id="{{item._id}}" bindtap="hotproduct">
-            <image class="special_offer_foot_img"
-              src="{{item.Image}}"> </image>
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index<4}}"
+            data-id="{{item._id}}" bindtap="hotproduct">
+            <image class="special_offer_foot_img" src="{{item.Image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
               {{item.Name}}
             </view>
@@ -159,9 +118,9 @@
       <!-- 第二页 -->
       <swiper-item>
         <view class="special_offer_foot">
-          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index>4&&index<9}}" data-id="{{item._id}}" bindtap="hotproduct">
-            <image class="special_offer_foot_img"
-              src="{{item.Image}}"> </image>
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index>4&&index<9}}"
+            data-id="{{item._id}}" bindtap="hotproduct">
+            <image class="special_offer_foot_img" src="{{item.Image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
               {{item.Name}}
             </view>
@@ -185,7 +144,7 @@
     <view class="merchants_card_text">
       <text class="main_f_test">推荐店铺</text>
       <text class="bg-green"></text>
-      <text class="more" bindtap="more_merchants" wx:key="index" data-id="数据">更多></text>
+      <text class="more" bindtap="more_merchants" wx:key="index" data-id="数据">全部商家></text>
     </view>
     <!-- autoplay="true" -->
     <swiper class="recommend_merchants_wrap" circular="true" duration="300">
@@ -222,7 +181,8 @@
             <!-- 菜品第二页 -->
             <swiper-item>
               <view class="recommend_merchants_foot">
-                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index" wx:if="{{index>2&&index<6}}">
+                <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index"
+                  wx:if="{{index>2&&index<6}}">
                   <view class="recommend_merchants_foot_v">
                     <image src="{{item.Image}}"></image>
                     <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
@@ -312,11 +272,9 @@
     </view>
   </view>
 
-
   <!-- 商家内容 -->
   <view class="container">
 
   </view>
-
 
 </view>
