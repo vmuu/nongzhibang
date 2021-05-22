@@ -1,93 +1,93 @@
 {
-  "miniprogramRoot": "miniprogram/",
-  "cloudfunctionRoot": "cloudfunctions/",
-  "setting": {
-    "urlCheck": true,
-    "es6": true,
-    "enhance": true,
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "minified": true,
-    "newFeature": true,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": false,
-    "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "bundle": false,
-    "useIsolateContext": true,
-    "useCompilerModule": false,
-    "userConfirmedUseCompilerModuleSwitch": false,
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
-    "enableEngineNative": false,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true
-  },
-  "appid": "wx3a8c64be8ef1cac3",
-  "projectname": "nongzhibang",
-  "libVersion": "2.14.1",
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
+    "miniprogramRoot": "miniprogram/",
+    "cloudfunctionRoot": "cloudfunctions/",
+    "setting": {
+        "urlCheck": true,
+        "es6": true,
+        "enhance": true,
+        "postcss": true,
+        "preloadBackgroundData": false,
+        "minified": true,
+        "newFeature": true,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": false,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
         },
-        {
-          "id": -1,
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
+        "bundle": false,
+        "useIsolateContext": true,
+        "useCompilerModule": false,
+        "userConfirmedUseCompilerModuleSwitch": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
+        "enableEngineNative": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true
+    },
+    "appid": "wx3a8c64be8ef1cac3",
+    "projectname": "nongzhibang",
+    "libVersion": "2.14.1",
+    "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+    "simulatorType": "wechat",
+    "simulatorPluginLibVersion": {},
+    "condition": {
+        "search": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/mine/identification/identification",
-          "pathName": "pages/mine/identification/identification",
-          "query": "",
-          "scene": null
+        "conversation": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/search/search",
-          "pathName": "pages/search/search",
-          "scene": null
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/identification/identification",
+                    "pathName": "pages/mine/identification/identification",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/search/search",
+                    "pathName": "pages/search/search",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

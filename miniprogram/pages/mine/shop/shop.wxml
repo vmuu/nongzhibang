@@ -45,7 +45,7 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">详细地址</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="多行文本输入框"></textarea>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="{{address}}"></textarea>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
