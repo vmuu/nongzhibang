@@ -1,4 +1,6 @@
 // miniprogram/pages/mine/shop/shop.js
+var QQMapWX = require('../../../plugins/qqmap-wx-jssdk.min');
+var qqmapsdk;
 const app = getApp()
 Page({
 
@@ -14,15 +16,64 @@ Page({
     endTime:'22:00',
     save:false,
     id:'cbddf0af60924b600676347b2e4cb19c',
-    entity:{}
+    entity:{},
+    latitude: "",
+    longitude: "",
+    address:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-
+    var that = this
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'YBCBZ-TD4KF-PVYJ3-J7EXP-ZGOA6-TWBVH'
+    });//获取当前的地理位置、速度
+    wx.getLocation({
+      type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
+      isHighAccuracy: true,
+      success: function (res) {
+        app.utils.cl(res);
+        
+        //赋值经纬度
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function(res) {
+            console.log("解析地址成功");
+            console.log(res);
+            // 省
+            let province = res.result.ad_info.province;
+            // 市
+            let city = res.result.ad_info.city;
+            // 区
+            let district = res.result.ad_info.district;
+            console.log(province);
+            console.log(city);
+            console.log(district);
+            that.setData({
+              region: [province, city, district],
+              address: res.result.address
+            })
+          },
+          fail: function(res) {
+            wx.showToast({
+              title: '定位失败',
+              duration: 2000,
+              icon: "none"
+            })
+            console.log(res);
+          },
+          complete: function(res) {
+            console.log(res);
+          }
+        })
+      }
+    })
   },
 
   /**
@@ -36,7 +87,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
