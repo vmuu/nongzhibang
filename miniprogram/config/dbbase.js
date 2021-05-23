@@ -318,9 +318,26 @@ class DBBase {
     })
 
   }
-
   /**
-   * 查询单表shop,总销量排序
+   * 查询单表product,分页查询,总销量排序
+   */
+  productlist = function (skip,limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      
+      db.collection("product").orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  }
+  /**
+   * 查询单表shop,分页查询,总销量排序
    */
   queryShop = function (skip,limit) {
     const db = wx.cloud.database()
