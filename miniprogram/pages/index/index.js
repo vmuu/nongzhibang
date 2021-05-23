@@ -40,6 +40,8 @@ Page({
     // 选择校区
     picker: ['茭菱校区', '小哨校区'],
     index:null,
+    //按钮的文字和图片
+    shopType:[],
     //推荐店铺列表
     shop:[],
     //热门商品列表
@@ -56,6 +58,7 @@ Page({
     limit:8,
     //触底时是否继续请求数据库
     theOnReachBottom:true
+    
   },
 
   // input输入事件
@@ -66,6 +69,15 @@ Page({
       })
  },
   onLoad: function () {
+    //首页按钮和图片
+    app.dbbase.queryselect('shopType').then(res=>{
+      app.utils.cl(res);
+      this.setData({
+        shopType:res.data
+      })
+      app.utils.cl(this.data.shopType);
+      
+    }),
     //推荐店铺
     db.indexProductOrShop().then((res)=>{
       app.utils.cl(res.result.list);
@@ -147,10 +159,7 @@ Page({
   enterDeliciousFood(e){
     app.utils.cl(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: 'goods/goods'
-    })
-    wx.showToast({
-      title: '当前按钮ID：'+e.currentTarget.dataset.id,
+      url: 'goodstype/goodstype?id='+e.currentTarget.dataset.id+'&name='
     })
   },
   //跳转到商家界面

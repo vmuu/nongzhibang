@@ -67,11 +67,11 @@
   <view class="main_icon_warp">
     <view class="main-icon">
       <view class="icon-wrapper">
-        <view class="big-icon" bindtap="enterDeliciousFood" data-id="0">
-          <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/113551620183835011"></image>
-          <text>校园零食</text>
+        <view class="big-icon" wx:for="{{shopType}}" wx:key="index" bindtap="enterDeliciousFood" data-id="{{item._id}}" data-name="{{item.name}}">
+          <image src="{{item.img}}"></image>
+          <text>{{item.name}}</text>
         </view>
-        <view class="big-icon" bindtap="enterDeliciousFood" data-id="1">
+        <!-- <view class="big-icon" bindtap="enterDeliciousFood" data-id="1">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/113211620183801244"></image>
           <text>新鲜水果</text>
         </view>
@@ -82,7 +82,7 @@
         <view class="big-icon" bindtap="enterDeliciousFood" data-id="3">
           <image src="http://cdn.xiaoxingbobo.top/nongzhibang/202145/116171620183977264"></image>
           <text>奶茶果汁</text>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>
@@ -209,7 +209,7 @@
     </view>
     <view class="goods_con_warp">
 
-      <view class="goods_con" wx:for="{{hotProductlist}}" data-id="{{item._id}}" bindtap="hotproduct">
+      <view class="goods_con" wx:for="{{hotProductlist}}" wx:key="index" data-id="{{item._id}}" bindtap="hotproduct">
         <image src="{{item.Image}}"></image>
         <view class="goods_con_text textOverflow">
           <view class="goods_con_text_l textOverflow">
