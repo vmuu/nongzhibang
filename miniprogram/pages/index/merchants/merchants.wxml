@@ -11,7 +11,7 @@
     <text class="bg-green"></text>
   </view>
   <!-- 商家列表——曹氏鸭脖 -->
-  <view class="all_merchants" wx:for="{{Shop}}" bindtap="hotproduct">
+  <view class="all_merchants" wx:for="{{Shop}}" wx:key="index" bindtap="hotproduct">
     <view class="all_merchants_left">
       <image src="{{item.shopImage}}"></image>
     </view>

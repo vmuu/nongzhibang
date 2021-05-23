@@ -12,17 +12,19 @@ Page({
     Shop:[],
     loadMoreText:"加载中.....",
     showLoadMore:false,
-    max:0
+    max:0,
+    limit:10,
+    theOnReachBottom:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    db.queryShop(this.data.max,8).then((res)=>{
+    db.queryShop(this.data.max,this.data.limit).then((res)=>{
       this.setData({
         Shop:res.data,
-        max:8
+        max:this.data.limit
       })
     })
   },
@@ -66,9 +68,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-		setTimeout(() => {
-			this.setListData();
-		}, 300);
+    if(this.data.theOnReachBottom){
+      setTimeout(() => {
+        this.setListData();
+      }, 300);
+    }
+    else{
+      this.setData({
+        loadMoreText:"没有更多店铺了!",
+        showLoadMore:true,
+      })
+    }
   },
 
   /**
@@ -78,14 +88,21 @@ Page({
 
   },
   setListData() {
-    app.utils.cl(this.data.max);
-    
-    db.queryShop(this.data.max,8).then((res)=>{
-      this.setData({
-        Shop:this.data.Shop.concat(res.data)
-      })
-      app.utils.cl(this.data.Shop);
-      
+    db.queryShop(this.data.max,this.data.limit).then((res)=>{
+      if(res.data.length==0){
+        this.setData({
+          loadMoreText:"没有更多店铺了!",
+          showLoadMore:true,
+          theOnReachBottom:false
+        })
+        app.utils.hint('没有更多店铺了!');
+      }
+      else{
+        this.setData({
+          Shop:this.data.Shop.concat(res.data),
+          max:this.data.max+this.data.limit
+        })
+      }
     })
   }
 })
