@@ -7,9 +7,10 @@ App({
   /**
    * 全局js
    */
-  utils:utils,
-  dbbase:dbbase,
-  http:http,
+  utils: utils,
+  dbbase: dbbase,
+  http: http,
+  change:utils.change,
   /**
    * 程序全局变量
    */
@@ -31,7 +32,7 @@ App({
       })
     };
 
-    
+
     //获取七牛云授权
     http.get('/api/File/Token').then((res) => {
       this.globalData.qiniuToken = res.data.token
@@ -57,8 +58,8 @@ App({
         utils.cl('[缓存]获取openid成功：', value)
       } else {
         utils.ce('[缓存]获取openid为空，跳转到登录页面')
-       //登录
-       this.onGetOpenid()
+        //登录
+        this.onGetOpenid()
       }
     } catch (e) {
       utils.ce('[缓存]获取openid失败', e)

@@ -8,11 +8,12 @@
 	<form>
 		<view class="cu-form-group">
 			<view class="title">店铺名称</view>
-			<input placeholder="请填写您的店铺名称"></input>
+			<input placeholder="请填写您的店铺名称" value="{{entity.shopName}}" data-prop="entity.shopName" bindinput="change"></input>
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">店铺描述</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="多行文本输入框"></textarea>
+			<textarea maxlength="-1" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe"
+			bindinput="change" disabled="{{modalName!=null}}"  placeholder="多行文本输入框"></textarea>
 		</view>
 		<view class="cu-bar bg-white" style="margin-top:3rpx">
 			<view class="action">
@@ -45,7 +46,8 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">详细地址</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="{{address}}"></textarea>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.location}}" 
+			data-prop="entity.location" bindinput="change" placeholder="{{address}}"></textarea>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
