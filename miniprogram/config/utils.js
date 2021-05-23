@@ -72,10 +72,16 @@ class Utils {
   /**
    * 弹出提示，无图标
    */
-  hint=(object)=>{
+  hint=(object="成功")=>{
     wx.showToast({
       title: object,
       icon:'none'
+    })
+  }
+  show(object="成功"){
+    wx.showToast({
+      title: object,
+      icon:"success"
     })
   }
 }

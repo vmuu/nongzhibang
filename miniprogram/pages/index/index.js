@@ -56,14 +56,14 @@ Page({
   onLoad: function () {
     //推荐店铺
     db.indexProductOrShop().then((res)=>{
-      console.log(res.result.list);
+      app.utils.cl(res.result.list);
       this.setData({
         shop:res.result.list
       })
     })
     //热门商品
     db.queryproduct().then((res)=>{
-      console.log(res.data);
+       app.utils.cl(res.data);
       this.setData({
         hotproduct:res.data
       })
