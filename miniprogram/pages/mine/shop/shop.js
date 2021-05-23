@@ -31,10 +31,8 @@ Page({
     latitude: "",
     longitude: "",
     address: "",
-    productTypeList:[],
-    addProductType:{
-      name:null
-    }
+    productTypeList: [],
+    addProductType: {}
   },
   change(e) {
     app.change(e, this)
@@ -191,7 +189,7 @@ Page({
   },
   tapShopManage() {
 
-app.utils.cl(this.data.entity);
+    app.utils.cl(this.data.entity);
 
 
     return
@@ -214,6 +212,7 @@ app.utils.cl(this.data.entity);
   },
   tapAddShowModel(e) {
     this.setData({
+      addProductType: null,
       addModel: e.currentTarget.dataset.target
     })
   },
@@ -234,28 +233,41 @@ app.utils.cl(this.data.entity);
     })
   },
   tapDelete(value) {
-    let that=this
+    let that = this
     app.utils.cl(value);
     app.utils.cl(value.currentTarget.dataset.index);
-    let index=value.currentTarget.dataset.index
-    
+    let index = value.currentTarget.dataset.index
+    let temp = that.data.productTypeList;
+    temp = JSON.parse(JSON.stringify(temp))
+
     wx.showModal({
       title: '给你一次后悔的机会',
       content: '人家这么可爱，确定要删除吗？',
       cancelColor: 'green',
       confirmColor: 'red',
-      success: function () {
-        that.setData({
-          productTypeList:that.data.productTypeList.splice(index,1)
-        })
-        app.utils.hint('删掉了，拜拜~')
+      success: function (e) {
+        if (e.confirm) {
+          temp.splice(index, 1)
+          that.setData({
+            productTypeList: temp
+          })
+          app.utils.hint('删掉了，拜拜~')
+        }
+
       }
     })
   },
   conformAdd() {
-    let that=this
+    let that = this
+    var tempProductType = this.data.addProductType;
+    //转换为json格式，必须的，不然会报错
+    tempProductType = JSON.parse(JSON.stringify(tempProductType))
+    app.utils.cl(tempProductType);
+    var list = this.data.productTypeList;
+    list = JSON.parse(JSON.stringify(list))
+    var temp = [...list, tempProductType];
     this.setData({
-      productTypeList:that.data.productTypeList.concat(that.data.addProductType)
+      productTypeList: temp
     })
     app.utils.hint('添加成功！')
     this.hideAddShowModal()

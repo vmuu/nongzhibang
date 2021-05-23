@@ -4,10 +4,10 @@
   <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} bg-main"
     style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
     <view class="action" bindtap="selectSchool" wx:if="{{true}}">
-      <picker bindchange="selectSchool" value="{{index}}" range="{{picker}}">
+      <picker bindchange="selectSchool" value="{{selectSchoolIndex}}" range="{{picker}}">
         <view class="backText">
           <text class="cuIcon-unfold"></text>
-          {{index?picker[index]:'茭菱校区'}}
+          {{selectSchoolIndex?picker[selectSchoolIndex]:'茭菱校区'}}
         </view>
       </picker>
     </view>

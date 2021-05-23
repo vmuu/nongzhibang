@@ -39,6 +39,7 @@ Page({
     Custom: app.globalData.Custom,
     // 选择校区
     picker: ['茭菱校区', '小哨校区'],
+    selectSchoolIndex:0,
     index:null,
     //按钮的文字和图片
     shopType:[],
@@ -134,7 +135,7 @@ Page({
   selectSchool(e){
     app.utils.cl(e);
       this.setData({
-        index: e.detail.value
+        selectSchoolIndex: e.detail.value
       })
   },
   indexSelect(e) {

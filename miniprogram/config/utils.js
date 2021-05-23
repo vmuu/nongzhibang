@@ -32,7 +32,7 @@ class Utils {
     }
   }
   /**
-   * 七牛云登录
+   * 七牛云上传文件
    * @param {filePath} filePath 
    * @param {token} token 
    */
@@ -84,6 +84,7 @@ class Utils {
       icon: "success"
     })
   }
+  //输入框输入事件，把数据绑定到data
   change(e,o) {
     return o.setData({
       [e.currentTarget.dataset.prop]: e.detail.value

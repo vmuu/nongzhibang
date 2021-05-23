@@ -73,10 +73,7 @@
 
 		<view class="padding-sm flex flex-wrap">
 			<view class="padding-xs">
-				<view class="cu-tag bg-green light">美食</view>
-				<view class="cu-tag bg-green light">美食</view>
-				<view class="cu-tag bg-green light">美食</view>
-				<view class="cu-tag bg-green light">美食</view>
+				<view class="cu-tag bg-green light"  wx:for="{{productTypeList}}" wx:key="index" >{{item.name}}</view>
 			</view>
 		</view>
 
