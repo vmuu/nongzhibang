@@ -410,7 +410,7 @@ Page({
       confirmText: '确定',
       success: res => {
         if (res.confirm) {
-          db.productDelete(e.currentTarget.dataset.product_id).then((res)=>{
+          db.productDelete(e.currentTarget.dataset.product_id,"product").then((res)=>{
             utils.cl(res)
             this.onLoad({
               id:this.data.shop._id

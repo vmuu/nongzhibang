@@ -8,7 +8,7 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   console.log(event);
   try {
-    return await db.collection("product").doc(event.id).remove({
+    return await db.collection(event.collection).doc(event.id).remove({
         success: res => {},
         fail: err => {
           return success(res)

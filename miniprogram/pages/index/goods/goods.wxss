@@ -47,3 +47,6 @@
   text-decoration: line-through;
   text-align: right;
 }
+.loadmore{
+  text-align: center;
+}

@@ -19,15 +19,21 @@ Page({
     //一次性查几条数据
     limit:10,
     //触底时是否继续请求数据库
-    theOnReachBottom:true
+    theOnReachBottom:true,
+    //页面名称
+    tablename:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+        tablename:options.name,
+        tableid:options.id
+    })
     //第一次数据加载
-    db.productlist(this.data.max,this.data.limit).then((res)=>{
+    db.productwherelist(this.data.tableid,this.data.max,this.data.limit).then((res)=>{
       this.setData({
         Produck:res.data,
         max:this.data.limit
@@ -100,7 +106,7 @@ Page({
    * 请求商家数据
    */
   setListData() {
-    db.productlist(this.data.max,this.data.limit).then((res)=>{
+    db.productwherelist(this.data.tableid,this.data.max,this.data.limit).then((res)=>{
       //当数据库里商家加载完毕之后停止请求数据库
       if(res.data.length==0){
         this.setData({

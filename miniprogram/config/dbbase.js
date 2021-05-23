@@ -245,13 +245,14 @@ class DBBase {
    * 云函数删除，product表
    */
 
-  productDelete = function (id) {
+  productDelete = function (id,collection) {
     console.log("id",id)
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
         name: "DeletePoduct",
         data: {
+          collection: collection,
           id:id
         },
         success: res => {
@@ -285,7 +286,7 @@ class DBBase {
   /**
    * 首页推荐商店与商品
    */
-
+  //连表，排序，分页
   indexProductOrShop = function () {
 
     return new Promise((success) => {
@@ -327,6 +328,26 @@ class DBBase {
     return new Promise((success, error) => {
       
       db.collection("product").orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  }
+  /**
+   * 查询单表product,条件筛选,分页查询,总销量排序
+   */
+  productwherelist = function (shopTypeId,skip,limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      
+      db.collection("product").where({
+        shopTypeId:shopTypeId
+      }).orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
         success: res => {
           return success(res)
         },

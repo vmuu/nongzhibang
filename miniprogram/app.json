@@ -31,7 +31,9 @@
     "pages/details/details",
     "pages/good/good",
     "pages/index/merchants/merchants",
-    "components/empty"
+    "components/empty",
+    "pages/index/goods/goods",
+    "pages/index/goodstype/goodstype"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {
