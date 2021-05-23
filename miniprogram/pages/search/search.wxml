@@ -44,7 +44,7 @@
 		</view>
 		<view class="all_merchants_right">
 			<view class="merchants_Price">￥20.99</view>
-			<view class="old_Price">￥23.99</view>
+			<!-- <view class="old_Price">￥23.99</view> -->
 			<view class="merchants_type">立即抢购</view>
 		</view>
 	</view>
@@ -69,7 +69,7 @@
 		</view>
 		<view class="all_merchants_right">
 			<view class="merchants_Price">￥20.99</view>
-			<view class="old_Price">￥23.99</view>
+			<!-- <view class="old_Price">￥23.99</view> -->
 			<view class="merchants_type">立即抢购</view>
 		</view>
 	</view>
@@ -94,7 +94,7 @@
 		</view>
 		<view class="all_merchants_right">
 			<view class="merchants_Price">￥20.99</view>
-			<view class="old_Price">￥23.99</view>
+			<!-- <view class="old_Price">￥23.99</view> -->
 			<view class="merchants_type">立即抢购</view>
 		</view>
 	</view>
@@ -120,7 +120,7 @@
 		</view>
 		<view class="all_merchants_right">
 			<view class="merchants_Price">￥20.99</view>
-			<view class="old_Price">￥23.99</view>
+			<!-- <view class="old_Price">￥23.99</view> -->
 			<view class="merchants_type">立即抢购</view>
 		</view>
 	</view>
@@ -146,12 +146,10 @@
 		</view>
 		<view class="all_merchants_right">
 			<view class="merchants_Price">￥20.99</view>
-			<view class="old_Price">￥23.99</view>
+			<!-- <view class="old_Price">￥23.99</view> -->
 			<view class="merchants_type">立即抢购</view>
 		</view>
 	</view>
-
-
 </view>
 <!-- </scroll-view> -->
 
