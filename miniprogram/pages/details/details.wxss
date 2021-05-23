@@ -27,18 +27,39 @@
   overflow: hidden;
 }
 .merchants_text_marking{
-  color: red;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #E42822;
+}
+.merchants_title{
+  font-weight: bold;
+  font-size: 30rpx;
+  color: black;
 }
 
+.merchants_marking{
+  
+  font-size: 28rpx;
+  color:#454545;
 
+}
 
+.merchants_markings{
+  margin-top: 10rpx;
+}
+.all_merchants_right .merchants_Price{
+  margin-top: 80rpx;
+  font-size: 30rpx;
+  color: #E42822;
+  font-weight: bold;
+  margin-right: 25rpx;
+}
 /* 底部按钮样式 */
 .botton-box {
   width: 100%;
    display: flex; 
    position: fixed; 
    bottom: 0; 
-
 }
 .botton-box button{
   height:100%;

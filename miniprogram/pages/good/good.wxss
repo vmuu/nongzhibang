@@ -17,10 +17,13 @@
   border-radius: 20rpx;
 }
 .all_merchants_right{
-  margin-top: 50rpx;
+  margin-top: 80rpx;
 }
 .all_merchants_right .merchants_Price {
-  color: red;
+  font-size: 30rpx;
+  color: #E42822;
+  font-weight: bold;
+  margin-right: 25rpx;
 }
 .all_merchants_con {
   /* padding-left: 20rpx; */
@@ -30,6 +33,11 @@
   align-items: center;
   display: grid;
   overflow: hidden;
+}
+.merchants_title{
+  font-weight: bold;
+  font-size: 30rpx;
+  color: black;
 }
 .merchants_text_marking{
   color: red;
@@ -122,4 +130,7 @@
 .botton-box button{
   height:100%;
   border-radius: 1000rpx;
+}
+.merchants_markings{
+  margin-top: 10rpx;
 }

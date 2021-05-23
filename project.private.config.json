@@ -10,6 +10,7 @@
         "gamePlugin": {
             "list": []
         },
+<<<<<<< Updated upstream
         "miniprogram": {
             "list": [
                 {
@@ -64,6 +65,38 @@
                     "scene": null
                 }
             ]
+=======
+        {
+          "id": -1,
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/good/good",
+          "pathName": "pages/good/good",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/details/details",
+          "pathName": "pages/details/details",
+          "query": "id=b00064a7608fb8a013f8934b5d512a7f",
+          "scene": null
+        },
+        {
+          "name": "pages/good/good",
+          "pathName": "pages/good/good",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+>>>>>>> Stashed changes
         }
     }
 }
