@@ -6,66 +6,19 @@
 
 <view class="all_goods">
     <view class="goods_con_warp">
-      <view class="goods_con">
-        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
-        <view class="goods_con_text">
-          <view class="goods_con_text_l">
-            <text>绝味鸭脖</text>
-          </view>
-          <view class="goods_con_text_r">
-            <text class="orginnal_price">¥22</text>
-            <text class="price">¥44</text>
+      <view class="goods_con" wx:for="{{Produck}}" data-id="{{item._id}}" bindtap="hotproduct">
+        <image src="{{item.Image}}"></image>
+        <view class="goods_con_text textOverflow">
+          <view class="goods_con_text_l textOverflow">
+            <text>{{item.Name}}</text>
           </view>
         </view>
-      </view>
-      <view class="goods_con">
-        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
-        <view class="goods_con_text">
-          <view class="goods_con_text_l">
-            <text>绝味鸭脖</text>
-          </view>
-          <view class="goods_con_text_r">
-            <text class="orginnal_price">¥22</text>
-            <text class="price">¥44</text>
-          </view>
-        </view>
-      </view>
-      <view class="goods_con">
-        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
-        <view class="goods_con_text">
-          <view class="goods_con_text_l">
-            <text>绝味鸭脖</text>
-          </view>
-          <view class="goods_con_text_r">
-            <text class="orginnal_price">¥22</text>
-            <text class="price">¥44</text>
-          </view>
-        </view>
-      </view>
-      <view class="goods_con">
-        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
-        <view class="goods_con_text">
-          <view class="goods_con_text_l">
-            <text>绝味鸭脖</text>
-          </view>
-          <view class="goods_con_text_r">
-            <text class="orginnal_price">¥22</text>
-            <text class="price">¥44</text>
-          </view>
-        </view>
-      </view>
-      <view class="goods_con">
-        <image src="https://cdn.xiaoxingbobo.top/nongzhibang/2021419/2214401621433680153"></image>
-        <view class="goods_con_text">
-          <view class="goods_con_text_l">
-            <text>绝味鸭脖</text>
-          </view>
-          <view class="goods_con_text_r">
-            <text class="orginnal_price">¥22</text>
-            <text class="price">¥44</text>
-          </view>
+        <view class="goods_con_text_r">
+          <text class="orginnal_price">¥{{item.price}}</text>
+          <text class="price">¥{{item.price}}</text>
         </view>
       </view>
 
     </view>
   </view>
+  <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
