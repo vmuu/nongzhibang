@@ -6,11 +6,11 @@
 <form>
 	<view class="cu-form-group">
 		<view class="title">真实姓名</view>
-		<input placeholder="请填写您的真实姓名"></input>
+		<input placeholder="请填写您的真实姓名" value="{{entity.trueName}}" data-prop="entity.trueName" bindinput="change"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">身份证号</view>
-		<input placeholder="请填写您的身份证号"></input>
+		<input placeholder="请填写您的身份证号" value="{{entity.id}}" data-prop="entity.id" bindinput="change"></input>
 	</view>
 	<view class="cu-form-group uploadImageBox">
 		<view class="title idTitle">请上传您的身份证正反面</view>

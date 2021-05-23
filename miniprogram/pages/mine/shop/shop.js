@@ -13,13 +13,25 @@ Page({
     textareaBValue: null,
     imgList: [],
     startTime: '08:00',
-    endTime:'22:00',
-    save:false,
-    id:'cbddf0af60924b600676347b2e4cb19c',
-    entity:{},
+    endTime: '22:00',
+    save: false,
+    id: 'cbddf0af60924b600676347b2e4cb19c',
+    entity: {
+      address: null,
+      location: null,
+      salesVolume: null,
+      shopAnnouncement: null,
+      shopBackground: null,
+      shopDescribe: null,
+      shopImage: null,
+      shopName: null,
+    },
     latitude: "",
     longitude: "",
-    address:""
+    address: ""
+  },
+  change(e) {
+    app.change(e, this)
   },
 
   /**
@@ -30,20 +42,20 @@ Page({
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'YBCBZ-TD4KF-PVYJ3-J7EXP-ZGOA6-TWBVH'
-    });//获取当前的地理位置、速度
+    }); //获取当前的地理位置、速度
     wx.getLocation({
       type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
       isHighAccuracy: true,
       success: function (res) {
         app.utils.cl(res);
-        
+
         //赋值经纬度
         qqmapsdk.reverseGeocoder({
           location: {
             latitude: res.latitude,
             longitude: res.longitude
           },
-          success: function(res) {
+          success: function (res) {
             app.utils.cl("解析地址成功");
             // 省
             let province = res.result.ad_info.province;
@@ -56,7 +68,7 @@ Page({
               address: res.result.address
             })
           },
-          fail: function(res) {
+          fail: function (res) {
             wx.showToast({
               title: '定位失败',
               duration: 2000,
@@ -64,7 +76,7 @@ Page({
             })
             console.log(res);
           },
-          complete: function(res) {
+          complete: function (res) {
             console.log(res);
           }
         })
@@ -82,8 +94,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -158,8 +169,8 @@ Page({
       title: '给你一次后悔的机会',
       content: '人家这么可爱，确定要删除吗？',
       cancelText: '不要',
-      confirmColor:'green',
-      confirmColor:'red',
+      confirmColor: 'green',
+      confirmColor: 'red',
       confirmText: '拜拜~',
       success: res => {
         if (res.confirm) {
@@ -172,17 +183,22 @@ Page({
     })
   },
   tapShopManage() {
-    
-    if(this.data.save){
+
+app.utils.cl(this.data.entity);
+
+
+    return
+
+    if (this.data.save) {
       wx.navigateTo({
-        url: '../../shopManagement/shopManagement?id='+this.data.id,
+        url: '../../shopManagement/shopManagement?id=' + this.data.id,
       })
-    }else{
+    } else {
       this.setData({
-        save:true
+        save: true
       })
     }
-   
+
   },
   showModal(e) {
     this.setData({
@@ -217,24 +233,24 @@ Page({
       cancelColor: 'green',
       confirmColor: 'red',
       success: function () {
-       app.utils.hint('删掉了，拜拜~')
+        app.utils.hint('删掉了，拜拜~')
       }
     })
   },
-  conformAdd(){
+  conformAdd() {
     app.utils.hint('添加成功！')
     this.hideAddShowModal()
   },
-  startTimeChange(e){
+  startTimeChange(e) {
     app.utils.cl(e)
     this.setData({
-      startTime:e.detail.value
+      startTime: e.detail.value
     })
   },
-  endTimeChange(e){
+  endTimeChange(e) {
     app.utils.cl(e)
     this.setData({
-      endTime:e.detail.value
+      endTime: e.detail.value
     })
   }
 })

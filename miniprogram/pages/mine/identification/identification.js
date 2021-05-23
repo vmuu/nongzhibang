@@ -2,7 +2,6 @@
 import utils from '../../../config/utils'
 const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,11 +11,13 @@ Page({
       id: null,
       idPhotoFront: null,
       idPhotoBack: null,
-      businessLicense: null
-
+      businessLicense: null,
+      isShop:false
     }
   },
-
+  change(e) {
+    app.change(e, this)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -84,7 +85,7 @@ Page({
       success: (res) => {
         that.setData({
 
-            ['entity.idPhotoFront']: res.tempFilePaths[0],
+          ['entity.idPhotoFront']: res.tempFilePaths[0],
         })
       }
     });
@@ -98,16 +99,27 @@ Page({
       success: (res) => {
         that.setData({
 
-           ['entity.idPhotoBack']: res.tempFilePaths[0],
+          ['entity.idPhotoBack']: res.tempFilePaths[0],
         })
       }
     });
   },
   tapNext() {
     //提交数据
-    wx.navigateTo({
-      url: '../shop/shop',
+    app.utils.cl(this.data.entity)
+    wx.showLoading({
+      title: '提交中...',
     })
+    app.dbbase.add('user',this.data.entity).then(res=>{
+      wx.hideLoading({
+        success: (res) => {
+          wx.navigateTo({
+            url: '../shop/shop',
+          })
+        },
+      })
+    })
+   
   },
   tapBusinessLicense() {
     let that = this
@@ -116,9 +128,10 @@ Page({
       success: function (res) {
         app.utils.cl(res)
         that.setData({
-          ['entity.businessLicense']:res.tempFilePaths[0]
+          ['entity.businessLicense']: res.tempFilePaths[0]
         })
       }
     })
-  }
+  },
+
 })
