@@ -104,6 +104,7 @@ Page({
     });
   },
   tapNext() {
+    //提交数据
     wx.navigateTo({
       url: '../shop/shop',
     })

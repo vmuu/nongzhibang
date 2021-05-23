@@ -44,17 +44,13 @@ Page({
             longitude: res.longitude
           },
           success: function(res) {
-            console.log("解析地址成功");
-            console.log(res);
+            app.utils.cl("解析地址成功");
             // 省
             let province = res.result.ad_info.province;
             // 市
             let city = res.result.ad_info.city;
             // 区
             let district = res.result.ad_info.district;
-            console.log(province);
-            console.log(city);
-            console.log(district);
             that.setData({
               region: [province, city, district],
               address: res.result.address
