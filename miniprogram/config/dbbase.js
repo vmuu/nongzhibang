@@ -172,12 +172,12 @@ class DBBase {
   /**
    * 条件查询+分页查询
    */
-  queryList = function (table, where, skip = 0, count = 10) {
+  queryList = function (table, where, skip = 0, limit = 10) {
     const db = wx.cloud.database()
 
     return new Promise((success, error) => {
       if (table && where) {
-        db.collection(table).where(where).skip(skip), count(count).get({
+        db.collection(table).where(where).skip(skip).limit(limit).get({
           success: res => {
             return success(res)
           },
@@ -317,6 +317,42 @@ class DBBase {
       })
     })
 
+  }
+  /**
+   * 查询单表product,分页查询,总销量排序
+   */
+  productlist = function (skip,limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      
+      db.collection("product").orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  }
+  /**
+   * 查询单表shop,分页查询,总销量排序
+   */
+  queryShop = function (skip,limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      
+      db.collection("shop").orderBy('salesVolume','desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
   }
 }
 export default new DBBase

@@ -9,18 +9,22 @@ page {
   pointer-events: auto;
   text-align: left;
 }
-.content{
+
+.content {
   height: 60rpx !important;
   display: flex;
   align-items: center;
 }
-.content input{
+
+.content input {
   width: 100% !important;
 }
-.searchBox{
-  margin:0 10rpx 0 0 !important;
+
+.searchBox {
+  margin: 0 10rpx 0 0 !important;
   border-radius: 1000rpx !important;
 }
+
 /* 轮播图图 */
 .scroll_banner {
   padding-bottom: 20rpx;
@@ -180,35 +184,38 @@ page {
 }
 
 /* 定位元素 */
-.test_warp{
+.test_warp {
   width: 1rpx;
   height: 1rpx;
   margin-top: 200rpx;
 }
 
 /* 推荐店铺 */
-.more{
+.more {
   position: relative;
   right: -425rpx;
   top: -33rpx;
   padding: 10px;
 }
-.merchants_card{
+
+.merchants_card {
   width: 100%;
   padding: 20rpx 20rpx 0rpx 20rpx;
 }
 
-.recommend_shops_swiper{
+.recommend_shops_swiper {
   height: 260rpx;
 }
-.main_f_test{
+
+.main_f_test {
   font-size: 36rpx;
   font-weight: bold;
   color: var(--green);
   display: list-item;
   /* z-index: 1; */
 }
-.bg-green{
+
+.bg-green {
   position: relative;
   display: inline-block;
   bottom: 0.5rem;
@@ -222,11 +229,12 @@ page {
   color: var(--white);
 }
 
-.recommend_merchants_wrap{
+.recommend_merchants_wrap {
   height: 490rpx;
   margin-top: -15rpx;
 }
-.recommend_merchants{
+
+.recommend_merchants {
   border-radius: 25rpx;
   margin-top: 15rpx;
   width: 100%;
@@ -235,7 +243,8 @@ page {
   background-color: white;
   box-shadow: 2rpx 2rpx 4rpx 2rpx #DDDDDD;
 }
-.recommend_merchants_top{
+
+.recommend_merchants_top {
   border-radius: 20rpx;
   height: 110rpx;
   background-color: #07c160;
@@ -244,13 +253,14 @@ page {
   /* background-repeat: no-repeat; */
   /* display: flex; */
 }
-.recommend_merchants_top_wwarp{
+
+.recommend_merchants_top_wwarp {
   display: flex;
   position: relative;
   top: -107rpx;
 }
 
-.recommend_merchants_top_left{
+.recommend_merchants_top_left {
   width: 100rpx;
   height: 100rpx;
   /* margin: 50rpx 30rpx;  */
@@ -259,54 +269,62 @@ page {
   left: 50rpx;
   box-shadow: 10rpx 10rpx 10rpx white;
 }
-.recommend_merchants_top_right{
+
+.recommend_merchants_top_right {
   /* margin-top: 60rpx; */
   position: relative;
   top: 60rpx;
   left: 70rpx;
 }
+
 /* .recommend_merchants_top_right_wwarp{
   position: relative;
   top: 60rpx;
   left: 70rpx;
 } */
-.recommend_merchants_top_right_t{
+.recommend_merchants_top_right_t {
   font-size: 32rpx;
   color: #fff;
   font-weight: 400;
 }
-.recommend_merchants_top_right_f{
+
+.recommend_merchants_top_right_f {
   height: 40rpx;
   width: 500rpx;
   max-width: 490rpx;
-	white-space: nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: 10rpx;
   color: #666666;
 }
-.recommend_merchants_foot{
+
+.recommend_merchants_foot {
   display: flex;
   text-align: center;
   padding-bottom: 20rpx;
   margin-left: 14rpx;
 }
-.recommend_merchants_foot_wrap{
+
+.recommend_merchants_foot_wrap {
   height: 340rpx;
   position: relative;
   top: -24rpx;
 }
-.recommend_merchants_foot_1 image{
+
+.recommend_merchants_foot_1 image {
   /* margin-top: 70rpx; */
   width: 180rpx;
   height: 180rpx;
   border-radius: 20rpx;
 }
-.recommend_merchants_foot_text{
+
+.recommend_merchants_foot_text {
   font-size: 25rpx;
   width: 230rpx;
 }
-.recommend_merchants_foot_1 text{
+
+.recommend_merchants_foot_1 text {
   color: red;
 }
 
@@ -316,10 +334,11 @@ page {
 }
 
 /* 推荐菜品 */
-.special_offer{
+.special_offer {
   padding: 0rpx 20rpx 0rpx 20rpx;
 }
-.special_offer_foot{
+
+.special_offer_foot {
   background-color: white;
   padding: 20rpx;
   border-radius: 20rpx;
@@ -328,72 +347,103 @@ page {
   justify-content: space-between;
   /* margin-top: 15rpx; */
 }
-.special_offer_foot_img{
+
+.special_offer_foot_img {
   width: 140rpx;
   height: 140rpx;
   border-radius: 20rpx;
 }
-.special_offer_foot_title{
+
+.special_offer_foot_title {
   font-size: 26rpx;
   width: 160rpx;
 }
-.special_offer_foot_textt{
+
+.special_offer_foot_textt {
   color: red;
   text-align: left;
 }
-.special_offer_foot_textf{
+
+.special_offer_foot_textf {
   color: #d8d8d8;
-  text-decoration:line-through;
+  text-decoration: line-through;
   text-align: right;
 }
 
 
 /* 全部商品 */
-.all_goods{
+.all_goods {
   padding: 0rpx 20rpx 0rpx 20rpx;
 }
-.goods_con_warp{
+
+.goods_con_warp {
   display: flex;
   flex-wrap: wrap;
 }
-.goods_con{
+
+.goods_con {
+  height: 250rpx;
   text-align: center;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
   background-color: white;
   border-radius: 20rpx;
 }
-.goods_con_img{
+.goods_con:nth-child(n){
+  margin-top: 20rpx;
+}
+.goods_con:nth-child(1){
+  margin-top: 0rpx;
+}
+.goods_con:nth-child(2){
+  margin-top: 0rpx;
+}
+.goods_con_img {
   padding: 20rpx 20rpx 0rpx 20rpx;
 }
-.goods_con image{
+
+.goods_con image {
   width: 342rpx;
   height: 200rpx;
   border-radius: 10rpx 10rpx 5rpx 5rpx;
 }
-.goods_con:nth-child(2n){
+
+.goods_con:nth-child(2n) {
   margin-left: 25rpx;
 }
-
-.goods_con_text{
+.goods_con:nth-child(n) {
+  padding-top: -25rpx;
+}
+.goods_con_text {
   display: flex;
   padding: 0rpx 10rpx;
+  width: 343rpx;
+  height: 45rpx;
 }
-.goods_con_text .goods_con_text_l{
+
+.goods_con_text .goods_con_text_l {
   text-align: left;
-  width: 199rpx;
-  height: 50rpx;
+  /* width: 199rpx;
+  height: 50rpx; */
 }
-.goods_con_text .goods_con_text_r{
-  text-align: right;
+
+.goods_con_text_r {
+  text-align: center;
   font-size: 35rpx;
+  background: rgb(255 255 255 / 47%);
+  position: relative;
+  top: -90rpx;
 }
-.orginnal_price{
-  color: red;
+
+.orginnal_price {
+  color: orange;
   text-align: left;
+  font-size: 29rpx;
 }
-.price{
+
+.price {
   margin-left: 10rpx;
   color: #d8d8d8;
   text-decoration: line-through;
   text-align: right;
+  font-size: 26rpx;
 }

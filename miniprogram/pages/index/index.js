@@ -43,7 +43,9 @@ Page({
     //推荐店铺列表
     shop:[],
     //热门商品列表
-    hotproduct:[]
+    hotproduct:[],
+    //全部商品列表
+    hotProductlist:[]
   },
 
   // input输入事件
@@ -61,11 +63,11 @@ Page({
         shop:res.result.list
       })
     })
-    //热门商品
-    db.queryproduct().then((res)=>{
-       app.utils.cl(res.data);
+    //热门商品与全部商品首次加载
+    db.productlist(0,9).then((res)=>{
       this.setData({
-        hotproduct:res.data
+        hotproduct:res.data,
+        hotProductlist:res.data
       })
     })
     this.setData({
@@ -88,6 +90,7 @@ Page({
       // 商家标题
       imageURL:"https://img01.yzcdn.cn/vant/ipad.jpeg",
     })
+    
   },
   //轮播图切换放大
   cardSwiper(e) {
@@ -137,6 +140,7 @@ Page({
       title: '当前按钮ID：'+e.currentTarget.dataset.id,
     })
   },
+  //跳转到商家界面
   tapShop(e){
     wx.navigateTo({
       url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,

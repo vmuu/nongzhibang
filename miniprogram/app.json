@@ -29,7 +29,8 @@
     "pages/chat/chat",
     "pages/product/product",
     "pages/details/details",
-    "pages/good/good"
+    "pages/good/good",
+    "pages/index/merchants/merchants"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {
