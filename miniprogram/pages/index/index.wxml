@@ -118,7 +118,7 @@
       <!-- 第二页 -->
       <swiper-item>
         <view class="special_offer_foot">
-          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index>4&&index<9}}"
+          <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index>3&&index<9}}"
             data-id="{{item._id}}" bindtap="hotproduct">
             <image class="special_offer_foot_img" src="{{item.Image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
@@ -182,7 +182,7 @@
             <swiper-item>
               <view class="recommend_merchants_foot">
                 <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index"
-                  wx:if="{{index>2&&index<6}}">
+                  wx:if="{{index>2&&index<7}}">
                   <view class="recommend_merchants_foot_v">
                     <image src="{{item.Image}}"></image>
                     <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
@@ -209,7 +209,7 @@
     </view>
     <view class="goods_con_warp">
 
-      <view class="goods_con" wx:for="{{hotProductlist}}">
+      <view class="goods_con" wx:for="{{hotProductlist}}" data-id="{{item._id}}" bindtap="hotproduct">
         <image src="{{item.Image}}"></image>
         <view class="goods_con_text textOverflow">
           <view class="goods_con_text_l textOverflow">
@@ -224,7 +224,7 @@
 
     </view>
   </view>
-
+  <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
   <!-- 商家内容 -->
   <view class="container">
 

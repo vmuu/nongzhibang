@@ -13,6 +13,11 @@ exports.main = async (event, context) => {
       foreignField: "shopId",
       as: "shop"
     })
+    .sort({
+      salesVolume: -1
+    })
+    .skip(0)
+    .limit(3)
     .end()
   } catch (e) {
     console.error(e)

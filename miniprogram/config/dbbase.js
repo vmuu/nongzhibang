@@ -285,7 +285,7 @@ class DBBase {
   /**
    * 首页推荐商店与商品
    */
-
+  //连表，排序，分页
   indexProductOrShop = function () {
 
     return new Promise((success) => {
