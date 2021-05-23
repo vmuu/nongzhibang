@@ -30,7 +30,8 @@
     "pages/product/product",
     "pages/details/details",
     "pages/good/good",
-    "pages/index/merchants/merchants"
+    "pages/index/merchants/merchants",
+    "components/empty"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {

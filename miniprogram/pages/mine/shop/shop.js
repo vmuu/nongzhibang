@@ -25,10 +25,16 @@ Page({
       shopDescribe: null,
       shopImage: null,
       shopName: null,
+      startTime: '08:00',
+      endTime: '22:00',
     },
     latitude: "",
     longitude: "",
-    address: ""
+    address: "",
+    productTypeList:[],
+    addProductType:{
+      name:null
+    }
   },
   change(e) {
     app.change(e, this)
@@ -63,9 +69,10 @@ Page({
             let city = res.result.ad_info.city;
             // 区
             let district = res.result.ad_info.district;
+
             that.setData({
               region: [province, city, district],
-              address: res.result.address
+              ['entity.location']: res.result.address_reference.landmark_l2.title
             })
           },
           fail: function (res) {
@@ -226,18 +233,30 @@ app.utils.cl(this.data.entity);
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
   },
-  tapDelete() {
+  tapDelete(value) {
+    let that=this
+    app.utils.cl(value);
+    app.utils.cl(value.currentTarget.dataset.index);
+    let index=value.currentTarget.dataset.index
+    
     wx.showModal({
       title: '给你一次后悔的机会',
       content: '人家这么可爱，确定要删除吗？',
       cancelColor: 'green',
       confirmColor: 'red',
       success: function () {
+        that.setData({
+          productTypeList:that.data.productTypeList.splice(index,1)
+        })
         app.utils.hint('删掉了，拜拜~')
       }
     })
   },
   conformAdd() {
+    let that=this
+    this.setData({
+      productTypeList:that.data.productTypeList.concat(that.data.addProductType)
+    })
     app.utils.hint('添加成功！')
     this.hideAddShowModal()
   },
