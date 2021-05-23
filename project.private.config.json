@@ -62,6 +62,12 @@
                     "pathName": "pages/index/merchants/merchants",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/index/goods/goods",
+                    "pathName": "pages/index/goods/goods",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }
