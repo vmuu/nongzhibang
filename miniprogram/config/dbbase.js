@@ -245,13 +245,14 @@ class DBBase {
    * 云函数删除，product表
    */
 
-  productDelete = function (id) {
+  productDelete = function (id,collection) {
     console.log("id",id)
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
         name: "DeletePoduct",
         data: {
+          collection: collection,
           id:id
         },
         success: res => {

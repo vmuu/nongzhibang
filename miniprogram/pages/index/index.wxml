@@ -100,7 +100,7 @@
       <text class="more" bindtap="more_goods">更多推荐></text>
     </view>
 
-    <swiper autoplay="true" class="recommend_shops_swiper">
+    <swiper autoplay="true" class="recommend_shops_swiper" circular="true">
       <!-- 第一页 -->
       <swiper-item>
         <view class="special_offer_foot">
