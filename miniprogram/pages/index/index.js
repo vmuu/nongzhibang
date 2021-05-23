@@ -156,7 +156,7 @@ Page({
   //跳转到商家界面
   tapShop(e){
     wx.navigateTo({
-      url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
+      url: '../product/product?id='+e.currentTarget.dataset.id,
     })
   },
   // 更多商品
