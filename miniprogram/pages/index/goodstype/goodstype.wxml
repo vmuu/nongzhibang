@@ -1,7 +1,7 @@
 <!-- 顶部 -->
 <cu-custom bgColor="bg-main" isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content">全部商品</view>
+  <view slot="content">{{tablename}}</view>
 </cu-custom>
 
 <view class="all_goods">

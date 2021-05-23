@@ -338,6 +338,26 @@ class DBBase {
     })
   }
   /**
+   * 查询单表product,条件筛选,分页查询,总销量排序
+   */
+  productwherelist = function (shopTypeId,skip,limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      
+      db.collection("product").where({
+        shopTypeId:shopTypeId
+      }).orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  }
+  /**
    * 查询单表shop,分页查询,总销量排序
    */
   queryShop = function (skip,limit) {

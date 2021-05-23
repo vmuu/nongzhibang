@@ -159,7 +159,7 @@ Page({
   enterDeliciousFood(e){
     app.utils.cl(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: 'goodstype/goodstype?id='+e.currentTarget.dataset.id+'&name='
+      url: 'goodstype/goodstype?id='+e.currentTarget.dataset.id+'&name='+e.currentTarget.dataset.name
     })
   },
   //跳转到商家界面
