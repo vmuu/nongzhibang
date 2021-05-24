@@ -166,6 +166,7 @@ Page({
   },
   //删除七牛云文件
   delete(){
+    //删除参数就是，图片的访问路径，从https开始
     app.utils.qiniuDelete(this.data.path).then(res=>{
       app.utils.cl(res)
     })

@@ -47,13 +47,17 @@ class Utils {
     //获取当前时间，转换成文件名
     let date = new Date();
     let year = date.getFullYear().toString();
-    let month = date.getMonth().toString();
-    let day = date.getDate().toString();
+    let month = date.getMonth()<10?'0'+date.getMonth():date.getMonth();
+    let day = date.getDate()<10?'0'+date.getDate():date.getDate();
     //获取时间戳
-    var timestamp = (new Date()).valueOf()
-
-    let toDay = year + month + day + '/' + date.getHours() + date.getMinutes() + date.getSeconds() + timestamp;
-    //qiniu配置
+    var timestamp = (new Date()).valueOf();
+    let hours=date.getHours()<10?'0'+date.getHours():date.getHours();
+    let minutes=date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes();
+    let seconds=date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds();
+    //获取今天日期时间
+    let toDay = year + month + day + '/' + hours +minutes  + seconds + timestamp;
+    
+    //获取qiniu配置
     let qiniuConfig = {
       key: config.qiniu.key + toDay,
       region: config.qiniu.qiniuRegion,
