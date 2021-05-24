@@ -47,6 +47,19 @@
       <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
     </view>
   </view>
+  <!-- 删除 -->
+  <view class="uploader">
+    <view class="uploader-text">
+      <view class="">
+        <text> 路径：</text>
+        <input type="text" value="{{path}}" data-prop="path" bindinput="change" placeholder="https://..."></input>
+        <button bindtap="delete">删除</button>
+      </view>
+    </view>
+    <view class="uploader-container" wx:if="{{imgUrl}}">
+      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+  </view>
 
 
 

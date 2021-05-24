@@ -14,6 +14,10 @@ Page({
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false
     imagePath: ''
   },
+  change(e){
+    app.change(e,this);
+  },
+
   onLoad: function () {
     if (!wx.cloud) {
       wx.redirectTo({
@@ -158,6 +162,12 @@ Page({
       fail: e => {
         console.error(e)
       }
+    })
+  },
+  //删除七牛云文件
+  delete(){
+    app.utils.qiniuDelete(this.data.path).then(res=>{
+      app.utils.cl(res)
     })
   },
 

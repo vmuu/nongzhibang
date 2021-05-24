@@ -1,5 +1,6 @@
 import config from '../config/config.js'
 import qiniuUploader from '../plugins/qiniuUploader'
+import http from 'http.js'
 
 class Utils {
   cl = (...object) => {
@@ -70,25 +71,41 @@ class Utils {
     })
   }
   /**
-   * 弹出提示，无图标
+   * 七牛云删除
+   * @param path 删除的文件名路径，https开头
    */
-  hint = (object = "成功") => {
-    wx.showToast({
-      title: object,
-      icon: 'none'
-    })
-  }
-  show(object = "成功") {
-    wx.showToast({
-      title: object,
-      icon: "success"
-    })
-  }
-  //输入框输入事件，把数据绑定到data
-  change(e,o) {
-    return o.setData({
-      [e.currentTarget.dataset.prop]: e.detail.value
-    })
-  }
+  qiniuDelete(path = null) {
+    if (path == null) {
+      this.ce('文件路径都没得，你让我删毛？你有毛吗？你周边一根毛都没有，老表！');
+      return
+    }
+    let payload={key:path}
+    return new Promise(success=>{
+      http.get(`/api/file/delete`, payload).then(res=>{
+        success(res);
+      })
+    });
+}
+/**
+ * 弹出提示，无图标
+ */
+hint = (object = "成功") => {
+  wx.showToast({
+    title: object,
+    icon: 'none'
+  })
+}
+show(object = "成功") {
+  wx.showToast({
+    title: object,
+    icon: "success"
+  })
+}
+//输入框输入事件，把数据绑定到data
+change(e, o) {
+  return o.setData({
+    [e.currentTarget.dataset.prop]: e.detail.value
+  })
+}
 }
 export default new Utils
