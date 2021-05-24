@@ -51,6 +51,30 @@ class DBBase {
     })
 
   }
+    /**
+   * 查询一个，通过openid
+   */
+  queryOpenId = function (table, openId) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table && openId) {
+        db.collection(table).where({
+          _openid: openId
+        }).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table，id）不可空')
+      }
+    })
+
+  }
   /**
    * 查询一个，通过Name
    */

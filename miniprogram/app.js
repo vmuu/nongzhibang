@@ -55,6 +55,7 @@ App({
     try {
       var value = wx.getStorageSync('openid')
       if (value) {
+        this.globalData.openid=value;
         utils.cl('[缓存]获取openid成功：', value)
       } else {
         utils.ce('[缓存]获取openid为空，跳转到登录页面')

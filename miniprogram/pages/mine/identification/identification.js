@@ -8,12 +8,13 @@ Page({
   data: {
     entity: {
       trueName: null,
-      id: null,
+      identity: null,
       idPhotoFront: null,
       idPhotoBack: null,
       businessLicense: null,
-      isShop:false
-    }
+      isShop: -1
+    },
+    shopInfo: null
   },
   change(e) {
     app.change(e, this)
@@ -22,7 +23,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //初始化数据
+    this.initData()
   },
 
   /**
@@ -73,34 +75,57 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //初始化数据
+  initData() {
+    let that = this
+    let openid = app.globalData.openid
+    app.dbbase.queryOpenId('shop', openid).then(res => {
+      app.utils.cl(res)
+      if (res.data.length != 0) {
+        that.setData({
+          entity: res.data[0],
+          ['entity.isShop']:0
+        })
+      }
+    })
+  },
   tapCancel() {
     wx.navigateBack()
   },
   tapFront() {
+    //从全局获取七牛云授权token
+    let token = app.globalData.qiniuToken
     let that = this
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        that.setData({
-
-          ['entity.idPhotoFront']: res.tempFilePaths[0],
+        app.utils.upload(res.tempFilePaths[0], token).then(res => {
+          app.utils.cl(res)
+          that.setData({
+            ['entity.idPhotoFront']: res.fileURL,
+          })
         })
       }
     });
   },
   tapBack() {
+    //从全局获取七牛云授权token
+    let token = app.globalData.qiniuToken
     let that = this
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-        that.setData({
-
-          ['entity.idPhotoBack']: res.tempFilePaths[0],
+        app.utils.upload(res.tempFilePaths[0], token).then(res => {
+          app.utils.cl(res)
+          that.setData({
+            ['entity.idPhotoBack']: res.fileURL
+          })
         })
+
       }
     });
   },
@@ -110,7 +135,11 @@ Page({
     wx.showLoading({
       title: '提交中...',
     })
-    app.dbbase.add('user',this.data.entity).then(res=>{
+    if(this.data.entity.isShop==0){
+      app.utils.hint('执行修改')
+      return
+    }
+    app.dbbase.add('shop', this.data.entity).then(res => {
       wx.hideLoading({
         success: (res) => {
           wx.navigateTo({
@@ -119,17 +148,23 @@ Page({
         },
       })
     })
-   
+
   },
   tapBusinessLicense() {
+    //从全局获取七牛云授权token
+    let token = app.globalData.qiniuToken
     let that = this
     wx.chooseImage({
       count: 1,
       success: function (res) {
         app.utils.cl(res)
-        that.setData({
-          ['entity.businessLicense']: res.tempFilePaths[0]
+        app.utils.upload(res.tempFilePaths[0], token).then(res => {
+          app.utils.cl(res)
+          that.setData({
+            ['entity.businessLicense']: res.fileURL
+          })
         })
+
       }
     })
   },
