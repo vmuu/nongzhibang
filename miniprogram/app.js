@@ -11,6 +11,7 @@ App({
   dbbase: dbbase,
   http: http,
   change:utils.change,
+  isEmpty:utils.isEmpty,
   /**
    * 程序全局变量
    */

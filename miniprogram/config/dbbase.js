@@ -250,6 +250,13 @@ class DBBase {
 
     return new Promise((success) => {
       if (table && _id && data) {
+        //修改无需提交_id和_openid，delete移除
+        if(data._id!=null){
+          delete data._id
+        }
+        if(data._openid!=null){
+          delete data._openid
+        }
         db.collection(table).doc(_id).update({
           data: data,
           success: res => {

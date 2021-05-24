@@ -12,7 +12,7 @@ Page({
       idPhotoFront: null,
       idPhotoBack: null,
       businessLicense: null,
-      isShop: -1
+      isShop: 0
     },
     shopInfo: null
   },
@@ -101,6 +101,10 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
+        if(that.data.entity.isShop!=-1){
+          //删除七牛云保存的图片
+          that.deleteImg(that.data.entity.idPhotoFront)
+        }
         app.utils.upload(res.tempFilePaths[0], token).then(res => {
           app.utils.cl(res)
           that.setData({
@@ -119,6 +123,10 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
+        if(that.data.entity.isShop!=-1){
+          //删除七牛云保存的图片
+          that.deleteImg(that.data.entity.idPhotoBack)
+        }
         app.utils.upload(res.tempFilePaths[0], token).then(res => {
           app.utils.cl(res)
           that.setData({
@@ -129,14 +137,54 @@ Page({
       }
     });
   },
+  empty(){
+    let temp=this.data.entity
+    if(app.isEmpty(temp.trueName)){
+      app.utils.hint('真实姓名不能为空');
+      return false
+    }
+    if(app.isEmpty(temp.identity)){
+      app.utils.hint('身份证号不能为空');
+      return false
+    }
+    if(app.isEmpty(temp.idPhotoFront)){
+      app.utils.hint('请上传身份证正面');
+      return false
+    }
+    if(app.isEmpty(temp.idPhotoBack)){
+      app.utils.hint('请上传身份证背面');
+      return  false
+    }
+    if(app.isEmpty(temp.businessLicense)){
+      app.utils.hint('请上传营业执照');
+      return false
+    }
+    return true
+
+  },
   tapNext() {
+    let that=this
+    if(!this.empty()) return false;
     //提交数据
     app.utils.cl(this.data.entity)
     wx.showLoading({
       title: '提交中...',
     })
-    if(this.data.entity.isShop==0){
-      app.utils.hint('执行修改')
+    if(this.data.entity.isShop!=-1){
+      app.utils.cl(that.data.entity);
+      let id=that.data.entity._id
+      let payload=that.data.entity
+      app.utils.cl(payload);
+      
+      app.dbbase.update('shop',id,payload).then(res=>{
+        wx.hideLoading({
+          success: (res) => {
+            wx.navigateTo({
+              url: '../shop/shop',
+            })
+          },
+        })
+      });
       return
     }
     app.dbbase.add('shop', this.data.entity).then(res => {
@@ -150,6 +198,11 @@ Page({
     })
 
   },
+  deleteImg(value){
+    app.utils.qiniuDelete(value).then(res=>{
+      app.utils.cl(res);
+    })
+  },
   tapBusinessLicense() {
     //从全局获取七牛云授权token
     let token = app.globalData.qiniuToken
@@ -158,7 +211,12 @@ Page({
       count: 1,
       success: function (res) {
         app.utils.cl(res)
+        if(that.data.entity.isShop!=-1){
+          //删除七牛云保存的图片
+          that.deleteImg(that.data.entity.businessLicense)
+      }
         app.utils.upload(res.tempFilePaths[0], token).then(res => {
+          
           app.utils.cl(res)
           that.setData({
             ['entity.businessLicense']: res.fileURL

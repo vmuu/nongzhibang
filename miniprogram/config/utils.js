@@ -47,16 +47,16 @@ class Utils {
     //获取当前时间，转换成文件名
     let date = new Date();
     let year = date.getFullYear().toString();
-    let month = date.getMonth()<10?'0'+date.getMonth():date.getMonth();
-    let day = date.getDate()<10?'0'+date.getDate():date.getDate();
+    let month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
+    let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     //获取时间戳
     var timestamp = (new Date()).valueOf();
-    let hours=date.getHours()<10?'0'+date.getHours():date.getHours();
-    let minutes=date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes();
-    let seconds=date.getSeconds()<10?'0'+date.getSeconds():date.getSeconds();
+    let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
     //获取今天日期时间
-    let toDay = year + month + day + '/' + hours +minutes  + seconds + timestamp;
-    
+    let toDay = year + month + day + '/' + hours + minutes + seconds + timestamp;
+
     //获取qiniu配置
     let qiniuConfig = {
       key: config.qiniu.key + toDay,
@@ -83,33 +83,43 @@ class Utils {
       this.ce('文件路径都没得，你让我删毛？你有毛吗？你周边一根毛都没有，老表！');
       return
     }
-    let payload={key:path}
-    return new Promise(success=>{
-      http.get(`/api/file/delete`, payload).then(res=>{
+    let payload = {
+      key: path
+    }
+    return new Promise(success => {
+      http.get(`/api/file/delete`, payload).then(res => {
         success(res);
       })
     });
-}
-/**
- * 弹出提示，无图标
- */
-hint = (object = "成功") => {
-  wx.showToast({
-    title: object,
-    icon: 'none'
-  })
-}
-show(object = "成功") {
-  wx.showToast({
-    title: object,
-    icon: "success"
-  })
-}
-//输入框输入事件，把数据绑定到data
-change(e, o) {
-  return o.setData({
-    [e.currentTarget.dataset.prop]: e.detail.value
-  })
-}
+  }
+  /**
+   * 弹出提示，无图标
+   */
+  hint = (object = "成功") => {
+    wx.showToast({
+      title: object,
+      icon: 'none'
+    })
+  }
+  show(object = "成功") {
+    wx.showToast({
+      title: object,
+      icon: "success"
+    })
+  }
+  //输入框输入事件，把数据绑定到data
+  change(e, o) {
+    return o.setData({
+      [e.currentTarget.dataset.prop]: e.detail.value
+    })
+  }
+  isEmpty(value) {
+    if (value == null) return true;
+    if (value == '') return true;
+    if (value == ' ') return true;
+    if (value == 'null') return true;
+    if (value == undefined) return true;
+    return false;
+  }
 }
 export default new Utils
