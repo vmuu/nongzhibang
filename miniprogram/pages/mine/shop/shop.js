@@ -2,6 +2,7 @@
 var QQMapWX = require('../../../plugins/qqmap-wx-jssdk.min');
 var qqmapsdk;
 const app = getApp()
+
 Page({
 
   /**

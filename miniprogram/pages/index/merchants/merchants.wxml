@@ -34,5 +34,5 @@
       <view class="merchants_type">校园专送</view>
     </view>
   </view>
-  <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+  <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
 </view>
