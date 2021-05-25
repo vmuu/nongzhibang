@@ -3,8 +3,12 @@ var QQMapWX = require('../../../plugins/qqmap-wx-jssdk.min');
 var qqmapsdk;
 const app = getApp()
 
+
 Page({
-  that:()=>this,
+
+ that(){
+    return this
+  },
 
   /**
    * 页面的初始数据
@@ -71,6 +75,8 @@ Page({
     let that = this
     let id = this.data.entity._id
     return new Promise((success) => {
+      //查询产品类型
+      this.geProductTypeList()
       app.dbbase.query('shop', id).then(res => {
         app.utils.cl(res, '输出')
         if (res.data.length != 0) {
@@ -83,6 +89,18 @@ Page({
       })
     });
 
+  },
+  geProductTypeList(){
+    let that=this
+    let openid=app.globalData.openid
+    app.dbbase.queryOpenId('productType', openid).then(res => {
+      app.utils.cl(res, '输出')
+      if (res.data.length != 0) {
+        that.setData({
+          productTypeList: res.data,
+        })
+      }
+    })
   },
 
   getLocation() {
@@ -320,6 +338,7 @@ Page({
     app.utils.cl(value.currentTarget.dataset.index);
     let index = value.currentTarget.dataset.index
     let temp = that.data.productTypeList;
+    let id=value.currentTarget.dataset.id
     temp = JSON.parse(JSON.stringify(temp))
 
     wx.showModal({
@@ -329,11 +348,16 @@ Page({
       confirmColor: 'red',
       success: function (e) {
         if (e.confirm) {
-          temp.splice(index, 1)
-          that.setData({
-            productTypeList: temp
+          // temp.splice(index, 1)
+          // that.setData({
+          //   productTypeList: temp
+          // })
+          app.dbbase.delete('productType',id).then(res=>{
+            //app.utils.cl(res);
+            app.utils.hint('删掉了，拜拜~')
+            that.geProductTypeList();
           })
-          app.utils.hint('删掉了，拜拜~')
+         
         }
 
       }
@@ -360,7 +384,8 @@ Page({
       shopId: that.data.entity._id
     }
     app.dbbase.add('productType', payload).then(res => {
-      this.hideAddShowModal()
+      that.geProductTypeList()
+      that.hideAddShowModal()
       app.utils.hint('添加成功！')
 
     })

@@ -302,9 +302,11 @@ class DBBase {
       if (table && _id) {
         const db = wx.cloud.database()
         db.collection(table).doc(_id).remove({
-          success: res => {},
-          fail: err => {
+          success: res => {
             return success(res)
+          },
+          fail: err => {
+            
           }
         })
       } else {
