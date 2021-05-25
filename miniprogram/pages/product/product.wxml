@@ -15,6 +15,7 @@
       </view>
     </view>
 </view>
+<empty wx:if="{{commodityType.length==0}}" isFull="{{true}}"></empty>
 <view class="VerticalBox">
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
@@ -32,6 +33,7 @@
       </view>
       <!--内容-->
       <view class="cu-list menu-avatar">
+      <empty wx:if="{{item.commodity.length==0}}" isFull="{{true}}"></empty>
         <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}" wx:key="index" data-target="move-box-{{item.Id}}" data-id="{{item._id}}" bindtap="productdesc">
       <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
       <view class="content">

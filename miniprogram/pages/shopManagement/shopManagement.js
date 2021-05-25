@@ -255,9 +255,12 @@ Page({
       confirmText: '确定',
       success: res => {
         if (res.confirm) {
-          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-          this.setData({
-            imgList: this.data.imgList
+          app.utils.qiniuDelete(this.data.imgList).then(res => {
+            app.utils.cl(res);
+            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList: this.data.imgList
+            })
           })
         }
       }
@@ -410,14 +413,21 @@ Page({
       confirmText: '确定',
       success: res => {
         if (res.confirm) {
-          db.productDelete(e.currentTarget.dataset.product_id,"product").then((res)=>{
-            utils.cl(res)
-            this.onLoad({
-              id:this.data.shop._id
-            })
-            wx.showToast({
-              title: '删除成功',
-              icon:'none'
+          db.query("product",e.currentTarget.dataset.product_id).then((res)=>{
+            if(res.data[0].Image!==""){
+              app.utils.qiniuDelete(res.data[0].Image).then(res => {
+                app.utils.cl(res);
+              })
+            }
+            db.productDelete(e.currentTarget.dataset.product_id,"product").then((res)=>{
+              utils.cl(res)
+              this.onLoad({
+                id:this.data.shop._id
+              })
+              wx.showToast({
+                title: '删除成功',
+                icon:'none'
+              })
             })
           })
         }

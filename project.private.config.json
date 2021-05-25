@@ -60,9 +60,9 @@
                     "scene": null
                 },
                 {
-                    "name": "pages/mine/identification/identification",
-                    "pathName": "pages/mine/identification/identification",
-                    "query": "",
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=cbddf0af60924b600676347b2e4cb19c",
                     "scene": null
                 },
                 {
