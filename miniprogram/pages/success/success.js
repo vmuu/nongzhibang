@@ -5,7 +5,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    basicsList: [{
+      icon: 'usefullfill',
+      name: '已接单'
+    }, {
+      icon: 'radioboxfill',
+      name: '已出货'
+    }, {
+      icon: 'roundclosefill',
+      name: '配送中'
+    }, {
+      icon: 'roundcheckfill',
+      name: '已完成'
+    }, ],
+    basics: 0,
+    numList: [{
+      name: '已接单'
+    }, {
+      name: '已出货'
+    }, {
+      name: '配送中'
+    }, {
+      name: '已完成'
+    }, ],
+    num: 0,
+    scroll: 0
+  },
+  basicsSteps() {
+    this.setData({
+      basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
+    })
+  },
+  numSteps() {
+    this.setData({
+      num: this.data.num == this.data.numList.length - 1 ? 0 : this.data.num + 1
+    })
+  },
+  scrollSteps() {
+    this.setData({
+      scroll: this.data.scroll == 9 ? 0 : this.data.scroll + 1
+    })
   },
 
   /**

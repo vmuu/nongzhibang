@@ -1,7 +1,7 @@
-<cu-custom bgColor="bg-main" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">订单详情</view>
-</cu-custom>
+  <cu-custom bgColor="bg-main" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">订单确定</view>
+  </cu-custom>
 
 <!-- 店铺栏 -->
 <view class="all_merchants">

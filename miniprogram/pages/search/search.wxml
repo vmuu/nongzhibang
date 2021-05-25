@@ -10,7 +10,7 @@
 		<view class="content" style="top:{{StatusBar}}px">
 			<view class="search-form round searchBox" style="height:{{capsuleHeight-2}}px">
 				<text class="cuIcon-search"></text>
-				<input type="text" style="{{capsuleHeight-2}}px" focus="true" placeholder="请输入搜索关键词" confirm-type="search" bindfocus="focusInput" bindblur="blurInput" />
+				<input type="text" style="{{capsuleHeight-2}}px" focus="true" placeholder="请输入搜索关键词" confirm-type="search" bindfocus="focusInput" bindblur="blurInput" value="{{content}}" />
 			</view>
 		</view>
 		<slot name="right"></slot>
@@ -161,12 +161,5 @@
 			<text wx:if="{{recordState == false}}">按住<text class="cuIcon-voice iconVoice"></text>搜索</text>
 			<text wx:else>松开<text class="cuIcon-voice iconVoice"></text>结束</text>
 		</button>
-	</view>
-</view>
-<view class="yuyinWrap" wx:if="{{recordState == true}}">
-	<!-- 开始语音 弹出语音图标表示正在录音 -->
-	<view class="startYuyinImage">
-		<image src="../../images/语音.png"></image>
-		<view>开始语音搜索</view>
 	</view>
 </view>
