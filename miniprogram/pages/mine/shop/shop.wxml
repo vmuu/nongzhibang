@@ -13,7 +13,7 @@
 		<view class="cu-form-group align-start">
 			<view class="title">店铺描述</view>
 			<textarea maxlength="-1" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe"
-			bindinput="change" disabled="{{modalName!=null}}"  placeholder="多行文本输入框"></textarea>
+			bindinput="change" disabled="{{modalName!=null}}"  placeholder="请输入店铺描述"></textarea>
 		</view>
 		<view class="cu-bar bg-white" style="margin-top:3rpx">
 			<view class="action">
@@ -46,8 +46,8 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">详细地址</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.location}}" 
-			data-prop="entity.location" bindinput="change" placeholder="请输入详细地址"></textarea>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}" 
+			data-prop="entity.address" bindinput="change" placeholder="请输入详细地址"></textarea>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
@@ -123,7 +123,9 @@
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 
+		<empty wx:if="{{productTypeList.length==0?true:false}}" isFull="{{true}}" ></empty>
 		<view class="cu-item" wx:for="{{productTypeList}}" wx:key="index" >
+		
 			<view class="content typeListBox">
 				<view>{{item.name}}</view>
 				<view class="btnGroup">

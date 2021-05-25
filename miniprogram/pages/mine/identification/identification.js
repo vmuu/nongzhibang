@@ -180,7 +180,7 @@ Page({
         wx.hideLoading({
           success: (res) => {
             wx.navigateTo({
-              url: '../shop/shop',
+              url: '../shop/shop?id='+id,
             })
           },
         })

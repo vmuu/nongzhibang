@@ -17,8 +17,11 @@ Page({
     save: false,
     id: 'cbddf0af60924b600676347b2e4cb19c',
     entity: {
+      _id: null,
       address: null,
-      location: null,
+      province: null,
+      city: null,
+      county: null,
       salesVolume: null,
       shopAnnouncement: null,
       shopBackground: null,
@@ -42,7 +45,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
+    let that = this
+    //获取位置
+    this.getLocation()
+    //接收参数
+    that.setData({
+      ['entity._id']:options.id
+    })
+    
+
+  },
+  getLocation() {
+    let that=this
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'YBCBZ-TD4KF-PVYJ3-J7EXP-ZGOA6-TWBVH'
@@ -70,7 +84,7 @@ Page({
 
             that.setData({
               region: [province, city, district],
-              ['entity.location']: res.result.address_reference.landmark_l2.title
+              ['entity.address']: res.result.address_reference.landmark_l2.title
             })
           },
           fail: function (res) {
@@ -151,13 +165,16 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
+        app.utils.cl(res.tempFilePaths[0], '店铺头像')
         if (this.data.imgList.length != 0) {
           this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
+            imgList: this.data.imgList.concat(res.tempFilePaths),
+            ['entity.shopImage']: res.tempFilePaths[0]
           })
         } else {
           this.setData({
-            imgList: res.tempFilePaths
+            imgList: res.tempFilePaths,
+            ['entity.shopImage']: res.tempFilePaths[0]
           })
         }
       }
@@ -189,7 +206,41 @@ Page({
   },
   tapShopManage() {
 
-    app.utils.cl(this.data.entity);
+    let that = this
+
+    let temp = this.data.entity
+    let region = this.data.region
+    //把省市区分开赋值
+    temp.province = region[0]
+    temp.city = region[1]
+    temp.county = region[2]
+    //获取修改id
+    let id=that.data.entity._id
+
+    app.utils.cl(temp);
+    //提交数据
+    wx.showLoading({
+      title: '装修中，请等待',
+    })
+    //上传头像
+    //从全局获取七牛云授权token
+    let filePath = temp.shopImage
+    let token = app.globalData.qiniuToken
+    app.utils.upload(filePath, token).then((res) => {
+      //上传完成
+      app.utils.cl(res)
+      //修改数据
+      temp.shopImage=res.fileURL
+      app.dbbase.update('shop', id, temp).then(res => {
+        wx.hideLoading({
+          success: (res) => {
+            wx.navigateTo({
+              url: '../../shopManagement/shopManagement',
+            })
+          },
+        })
+      });
+    })
 
 
     return

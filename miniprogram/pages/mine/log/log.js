@@ -1,4 +1,4 @@
-// miniprogram/components/empty.js
+// miniprogram/pages/mine/log/log.js
 Page({
 
   /**

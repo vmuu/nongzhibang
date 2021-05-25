@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
+    "cu-custom": "/colorui/components/cu-custom",
+    "empty":"/components/empty/empty"
   },
   "pages": [
     "pages/index/index",
@@ -31,9 +32,9 @@
     "pages/details/details",
     "pages/good/good",
     "pages/index/merchants/merchants",
-    "components/empty",
     "pages/index/goods/goods",
-    "pages/index/goodstype/goodstype"
+    "pages/index/goodstype/goodstype",
+    "pages/mine/log/log"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {
