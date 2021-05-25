@@ -1,6 +1,6 @@
 /* 全部商品 */
 .all_goods {
-  padding: 0rpx 20rpx 0rpx 20rpx;
+  padding: 20rpx 20rpx 0rpx 20rpx;
 }
 
 .goods_con_warp {
