@@ -78,19 +78,25 @@ Page({
   },
   //语音  --按住说话
   touchStart: function (e) {
-    this.setData({
-      recordState: true  //录音状态
-    })
+    // this.setData({
+    //   recordState: true  //录音状态
+    // })
     // 语音开始识别
+    wx.showLoading({
+      title: '录音中',
+    })
     manager.start({
       lang: 'zh_CN',// 识别的语言，目前支持zh_CN en_US zh_HK sichuanhua
     })
   },
   //语音  --松开结束
   touchEnd: function (e) {
-    this.setData({
-      recordState: false
-    })
+wx.hideLoading({
+  success: (res) => {},
+})
+    // this.setData({
+    //   recordState: false
+    // })
     // 语音结束识别
     manager.stop();
   },

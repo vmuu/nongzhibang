@@ -122,11 +122,8 @@ Page({
     }
   },
   productdesc(e) {
-    /*wx.navigateTo({
-      url: '../shopManagement/shopManagement?id='+e.currentTarget.dataset.id,
-    })*/
-    app.utils.cl("大牛逼",e);
-    app.utils.hint('大牛逼');
-    
+    wx.navigateTo({
+      url: '../details/details?id='+e.currentTarget.dataset.id,
+    })
   },
 })

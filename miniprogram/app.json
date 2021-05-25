@@ -34,6 +34,7 @@
     "pages/index/merchants/merchants",
     "pages/index/goods/goods",
     "pages/index/goodstype/goodstype",
+    "pages/success/success",
     "pages/mine/log/log"
   ],
   "entryPagePath": "pages/index/index",

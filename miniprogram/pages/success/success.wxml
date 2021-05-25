@@ -1,9 +1,9 @@
-  <cu-custom bgColor="bg-main" isBack="{{true}}">
+<cu-custom bgColor="bg-main" isBack="{{true}}">
     <view slot="backText">返回</view>
-    <view slot="content">订单确定</view>
+    <view slot="content">订单详情</view>
   </cu-custom>
 
-<!-- 店铺栏 -->
+ <!-- 店铺栏 -->
 <view class="all_merchants">
   <view class="all_merchants_con">
     <text class="merchants_title">店铺：{{shop.shopName}}</text>
@@ -29,26 +29,24 @@
     </view>
     <view class="merchants_text_marking_warp">
       <text class="merchants_text_marking">起送价：¥{{product.price}}</text>
-      <!-- <text class="merchants_text_marking">配送：¥2</text> -->
+     
     </view>
   </view>
   <view class="all_merchants_right">
     <view class="merchants_Price">￥{{product.price}}</view>
-    <!-- <view class="old_Price">￥{{product.price}}</view> -->
-    <!-- <view class="merchants_type">立即抢购</view> -->
+    
   </view>
 </view>
 
 
-<!-- 产品详情 -->
-<view class="all_merchants">
-  <view class="all_merchants_con">
-    <view class="merchants_marking_warp">
-    <text class="merchants_title">产品详情</text>
-      <view class="merchants_markings">产品原料：{{product.Desc}} </view>
-      <view class="merchants_markings">产品口味：麻辣/微辣</view>
+<view>
+  <view class="bg-white padding margin-top-xs">
+  <view class="cu-steps">
+    <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key>
+      <text class="cuIcon-{{index>basics?'title':item.icon}}"></text> {{item.name}}
     </view>
   </view>
+</view>
 </view>
 
 
@@ -64,21 +62,6 @@
       </view>
       <text class="cuIcon-edit iconEdit"></text>
     </view>
-    <view class="pubTopLine controlBtnBox">
-      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
-      <view bindtap="tapDelete">删除</view>
-    </view>
+
   </view>
-</view>
-
-<!-- 支付方式单选框 -->
-<radio-group class="radio-group" bindchange="radioChange">
-    <label class="radio" wx:for="{{items}}" wx:key="index">
-        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-    </label>
-</radio-group>
-
-<!-- 交易订单 -->
-<view class="cu-bar bg-white tabbar botton-box  ">
-  <button class="bg-green submit radius">订单确定</button>
 </view>
