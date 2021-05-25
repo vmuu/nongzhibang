@@ -406,5 +406,57 @@ class DBBase {
       })
     })
   }
+     /**
+   * order通过openid与交易中状态
+   */
+  orderOpenIdStateIng = function (table, openId) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table && openId) {
+        db.collection(table).where({
+          _openid: openId,
+          orderState:db.command.gt(-1)
+        }).where({
+          orderState:db.command.lt(3)
+        }).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table，id）不可空')
+      }
+    })
+
+  }
+    /**
+   * order通过openid与状态
+   */
+  orderOpenIdState = function (table, openId, State) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table && openId && State) {
+        db.collection(table).where({
+          _openid: openId,
+          orderState: State
+        }).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table，id）不可空')
+      }
+    })
+
+  }
 }
 export default new DBBase

@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    order: {
+      type: Object,
+      value: {}
+    }
   },
 
   /**
@@ -14,7 +17,7 @@ Component({
 
   },
 
-  
+
   /**
    * 组件的方法列表
    */

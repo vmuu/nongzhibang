@@ -9,7 +9,10 @@ Page({
     TabCur: 0,
     scrollLeft: 0,
     orderState: ['全部', '交易中', '已完成', '已取消'],
-    allOrder:[]
+    allOrder:[],
+    ingOrder:[],
+    accomplishOrder:[],
+    cancelOrder:[]
   },
   onLoad: function () {
     let that = this
@@ -22,14 +25,36 @@ Page({
         orderItemHeight: height
       })
     }).exec();
+    //  .exec() 不加不执行
+
+    //全部订单
     app.dbbase.queryOpenId('order',app.globalData.openid).then((res)=>{
       app.utils.cl(res.data);
       this.setData({
         allOrder:res.data
       })
     })
-    //  .exec() 不加不执行
-
+    //交易中订单
+    app.dbbase.orderOpenIdStateIng('order',app.globalData.openid).then((res)=>{
+      app.utils.cl(res.data);
+      this.setData({
+        ingOrder:res.data
+      })
+    })
+    //已完成订单
+    app.dbbase.orderOpenIdState('order',app.globalData.openid,3).then((res)=>{
+      app.utils.cl(res.data);
+      this.setData({
+        accomplishOrder:res.data
+      })
+    })
+    //已取消订单
+    app.dbbase.orderOpenIdState('order',app.globalData.openid,-1).then((res)=>{
+      app.utils.cl(res.data);
+      this.setData({
+        cancelOrder:res.data
+      })
+    })
   },
   tabSelect(e) {
     this.setData({

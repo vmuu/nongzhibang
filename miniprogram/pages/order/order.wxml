@@ -18,50 +18,36 @@
     <swiper-item class="">
       <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
         <view class="orderBox">
+          <!--全部订单-->
           <empty wx:if="{{allOrder.length==0}}" isFull="{{true}}"></empty>
-          <orderItem wx:for="" wx:key="index"></orderItem>
+          <orderItem wx:for="{{allOrder}}" order="{{item}}" wx:key="index"></orderItem>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
       <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
         <view class="orderBox">
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
+          <!--交易中-->
+          <empty wx:if="{{ingOrder.length==0}}" isFull="{{true}}"></empty>
+          <orderItem wx:for="{{ingOrder}}" order="{{item}}" wx:key="index"></orderItem>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
       <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
         <view class="orderBox">
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
+          <!--已完成-->
+          <empty wx:if="{{accomplishOrder.length==0}}" isFull="{{true}}"></empty>
+          <orderItem wx:for="{{accomplishOrder}}" order="{{item}}" wx:key="index"></orderItem>
         </view>
       </scroll-view>
     </swiper-item>
     <swiper-item>
       <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
         <view class="orderBox">
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
+          <!--已取消-->
+          <empty wx:if="{{cancelOrder.length==0}}" isFull="{{true}}"></empty>
+          <orderItem wx:for="{{cancelOrder}}" order="{{item}}" wx:key="index"></orderItem>
         </view>
       </scroll-view>
     </swiper-item>

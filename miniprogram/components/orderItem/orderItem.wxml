@@ -1,18 +1,24 @@
 <!--components/order/order.wxml-->
 <view class="orderItem">
   <view class="headBox">
-    <image class="shopAvatar" src="../../images/avatar.png"></image>
-    <text class="shopName textOverflow">小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店小黄牛米线店</text>
-    <text class="orderState">已完成</text>
+    <image class="shopAvatar" src="{{order.shopImage}}"></image>
+    <text class="shopName textOverflow">{{order.shopName}}</text>
+    <text class="orderState" wx:if="{{order.orderState==0}}">等待商家接单</text>
+    <text class="orderState" wx:elif="{{order.orderState==1}}">商家已接单</text>
+    <text class="orderState" wx:elif="{{order.orderState==2}}">正在派送</text>
+    <text class="orderState" wx:elif="{{order.orderState==3}}">已完成</text>
+    <text class="orderState" wx:elif="{{order.orderState==-1}}">已取消</text>
+    <text class="orderState" wx:else>你买了个寂寞</text>
   </view>
   <view class="pubBotLine segmentationLine"></view>
   <view class="productBox">
-    <image class="productPhoto" src="../../images/avatar.png"></image>
+    <image class="productPhoto" src="{{order.Img}}"></image>
     <view class="productDescBox">
       <view class="productTitle textOverflow">
-        标题标题标题标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标标题标题标题标题</view>
-      <view class="orderDate">下单时间：2021-12-12 12:14</view>
-      <view class="moneyBox">下单金额：<text class="money">￥18.00</text></view>
+        {{order.productName}}
+      </view>
+      <view class="orderDate">下单时间：{{order.addOrderDate}}</view>
+      <view class="moneyBox">下单金额：<text class="money">￥{{order.howMoney}}</text></view>
     </view>
    
   </view>
