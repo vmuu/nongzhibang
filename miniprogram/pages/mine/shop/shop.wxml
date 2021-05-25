@@ -25,13 +25,13 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="grid col-4 grid-square flex-sub">
-				<view class="bg-img" wx:for="{{imgList}}" wx:key="index" wx:for-index="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
-					<image src='{{imgList[index]}}' mode='aspectFill'></image>
-					<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+				<view class="bg-img" wx:if="{{entity.shopImage}}"   bindtap="ViewImage" data-url="{{entity.shopImage}}">
+					<image src='{{entity.shopImage}}' mode='aspectFill'></image>
+					<view class="cu-tag bg-red" catchtap="DelImg">
 						<text class="cuIcon-close"></text>
 					</view>
 				</view>
-				<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+				<view class="solids" bindtap="ChooseImage" wx:if="{{!entity.shopImage}}">
 					<text class="cuIcon-cameraadd"></text>
 				</view>
 			</view>
@@ -54,13 +54,13 @@
 			<view class="timeBox">
 				<picker mode="time" value="{{entity.startTime}}" start="6:00" end="23:59" bindchange="startTimeChange">
 					<view class="startTimeBox">
-						{{startTime}}
+						{{entity.startTime}}
 					</view>
 				</picker>
 				<view>至</view>
 				<picker mode="time" value="{{entity.endTime}}" start="6:00" end="23:59" bindchange="endTimeChange">
 					<view class="endTimeBox">
-						{{endTime}}
+						{{entity.endTime}}
 					</view>
 				</picker>
 			</view>

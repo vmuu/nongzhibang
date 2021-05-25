@@ -219,6 +219,7 @@ Page({
       app.utils.cl(res);
     })
   },
+
   tapBusinessLicense() {
     //从全局获取七牛云授权token
     let token = app.globalData.qiniuToken
