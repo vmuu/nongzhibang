@@ -8,7 +8,8 @@ Page({
     orderItemHeight: 0,
     TabCur: 0,
     scrollLeft: 0,
-    orderState: ['全部', '交易中', '已完成', '已取消']
+    orderState: ['全部', '交易中', '已完成', '已取消'],
+    allOrder:[]
   },
   onLoad: function () {
     let that = this
@@ -21,6 +22,12 @@ Page({
         orderItemHeight: height
       })
     }).exec();
+    app.dbbase.queryOpenId('order',app.globalData.openid).then((res)=>{
+      app.utils.cl(res.data);
+      this.setData({
+        allOrder:res.data
+      })
+    })
     //  .exec() 不加不执行
 
   },

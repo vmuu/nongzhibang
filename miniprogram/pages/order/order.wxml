@@ -18,14 +18,8 @@
     <swiper-item class="">
       <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
         <view class="orderBox">
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
-          <orderItem></orderItem>
+          <empty wx:if="{{allOrder.length==0}}" isFull="{{true}}"></empty>
+          <orderItem wx:for="" wx:key="index"></orderItem>
         </view>
       </scroll-view>
     </swiper-item>
