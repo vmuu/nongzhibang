@@ -6,7 +6,7 @@ const app = getApp()
 
 Page({
 
- that(){
+  that() {
     return this
   },
 
@@ -50,7 +50,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  async onLoad(options){
+  async onLoad(options) {
     let that = this
 
 
@@ -61,17 +61,17 @@ Page({
       })
       await this.initData()
       app.utils.cl('判断是否已经有地址');
-      if(this.data.entity.province==null){
+      if (this.data.entity.province == null) {
         //获取位置
         app.utils.cl('获取位置');
-      this.getLocation()
+        this.getLocation()
       }
-    } 
+    }
 
   },
   initData() {
     app.utils.cl('初始化');
-    
+
     let that = this
     let id = this.data.entity._id
     return new Promise((success) => {
@@ -82,7 +82,7 @@ Page({
         if (res.data.length != 0) {
           that.setData({
             entity: res.data[0],
-            region:[res.data[0].province,res.data[0].city,res.data[0].county]
+            region: [res.data[0].province, res.data[0].city, res.data[0].county]
           })
           success()
         }
@@ -90,9 +90,9 @@ Page({
     });
 
   },
-  geProductTypeList(){
-    let that=this
-    let openid=app.globalData.openid
+  geProductTypeList() {
+    let that = this
+    let openid = app.globalData.openid
     app.dbbase.queryOpenId('productType', openid).then(res => {
       app.utils.cl(res, '输出')
       if (res.data.length != 0) {
@@ -131,9 +131,9 @@ Page({
             let district = res.result.ad_info.district;
             that.setData({
               region: [province, city, district],
-              ['entity.province']:province,
-              ['entity.city']:city,
-              ['entity.county']:district,
+              ['entity.province']: province,
+              ['entity.city']: city,
+              ['entity.county']: district,
               ['entity.address']: res.result.address_reference.landmark_l2.title
             })
           },
@@ -210,15 +210,15 @@ Page({
     })
   },
   ChooseImage() {
-    let that=this
+    let that = this
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
-            //上传头像
-    //从全局获取七牛云授权token
-    let token = app.globalData.qiniuToken
+        //上传头像
+        //从全局获取七牛云授权token
+        let token = app.globalData.qiniuToken
         app.utils.cl(res.tempFilePaths[0], '店铺头像')
         app.utils.upload(res.tempFilePaths[0], token).then((re) => {
           that.setData({
@@ -226,7 +226,7 @@ Page({
           })
         })
 
-          
+
       }
     });
   },
@@ -237,7 +237,7 @@ Page({
     });
   },
   DelImg(e) {
-    let that=this
+    let that = this
     wx.showModal({
       title: '给你一次后悔的机会',
       content: '人家这么可爱，确定要删除吗？',
@@ -247,9 +247,9 @@ Page({
       confirmText: '拜拜~',
       success: res => {
         if (res.confirm) {
-          app.utils.qiniuDelete(that.data.entity.shopImage).then(res=>{
+          app.utils.qiniuDelete(that.data.entity.shopImage).then(res => {
             app.utils.cl(res);
-            
+
             that.setData({
               ['entity.shopImage']: null
             })
@@ -277,28 +277,26 @@ Page({
       title: '装修中，请等待',
     })
 
-    
-      //修改数据
-      let regions=this.data.region
-      temp.province=regions[0];
-      temp.city=regions[1];
-      temp.county=regions[2];
-      app.utils.cl(temp,'输出修改数据');
-      
-      app.dbbase.update('shop', id, temp).then(res => {
-        wx.hideLoading({
-          success: (res) => {
-            wx.navigateTo({
-              url: '../../shopManagement/shopManagement',
-            })
-          },
-        })
-      });
+    //修改数据
+    let regions = this.data.region
+    temp.province = regions[0];
+    temp.city = regions[1];
+    temp.county = regions[2];
+    app.utils.cl(temp, '输出修改数据');
+
+
     if (this.data.save) {
       wx.navigateTo({
         url: '../../shopManagement/shopManagement?id=' + this.data.entity._id,
       })
     } else {
+      app.dbbase.update('shop', id, temp).then(res => {
+        wx.hideLoading({
+          success: (res) => {
+           app.utils.show('保存成功！')
+          },
+        })
+      });
       this.setData({
         save: true
       })
@@ -338,7 +336,7 @@ Page({
     app.utils.cl(value.currentTarget.dataset.index);
     let index = value.currentTarget.dataset.index
     let temp = that.data.productTypeList;
-    let id=value.currentTarget.dataset.id
+    let id = value.currentTarget.dataset.id
     temp = JSON.parse(JSON.stringify(temp))
 
     wx.showModal({
@@ -352,12 +350,12 @@ Page({
           // that.setData({
           //   productTypeList: temp
           // })
-          app.dbbase.delete('productType',id).then(res=>{
+          app.dbbase.delete('productType', id).then(res => {
             //app.utils.cl(res);
             app.utils.hint('删掉了，拜拜~')
             that.geProductTypeList();
           })
-         
+
         }
 
       }
@@ -389,31 +387,31 @@ Page({
       app.utils.hint('添加成功！')
 
     })
-    
+
   },
   startTimeChange(e) {
     app.utils.cl(e)
     this.setData({
       startTime: e.detail.value,
-      ['entity.startTime']:e.detail.value
+      ['entity.startTime']: e.detail.value
     })
   },
   endTimeChange(e) {
     app.utils.cl(e)
     this.setData({
       endTime: e.detail.value,
-      ['entity.endTime']:e.detail.value
+      ['entity.endTime']: e.detail.value
     })
   },
-  RegionChange(e){
+  RegionChange(e) {
     app.utils.cl(e);
-    let that =this;
+    let that = this;
     that.setData({
-      ['entity.province']:e.detail.value[0],
-      ['entity.city']:e.detail.value[1],
-      ['entity.county']:e.detail.value[2],
-      region:e.detail.value
+      ['entity.province']: e.detail.value[0],
+      ['entity.city']: e.detail.value[1],
+      ['entity.county']: e.detail.value[2],
+      region: e.detail.value
     })
-    
+
   },
 })
