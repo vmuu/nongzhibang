@@ -326,6 +326,7 @@ page {
 
 .recommend_merchants_foot_1 text {
   color: red;
+  font-weight: bold;
 }
 
 
