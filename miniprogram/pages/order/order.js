@@ -9,10 +9,10 @@ Page({
     TabCur: 0,
     scrollLeft: 0,
     orderState: ['全部', '交易中', '已完成', '已取消'],
-    allOrder:[],
-    ingOrder:[],
-    accomplishOrder:[],
-    cancelOrder:[],
+    allOrder: [],
+    ingOrder: [],
+    accomplishOrder: [],
+    cancelOrder: [],
     //是否显示触底提示
     showLoadMore: false,
     //从哪开始查询
@@ -45,37 +45,49 @@ Page({
     //  .exec() 不加不执行
 
     //全部订单
-    app.dbbase.orderOpenId(app.globalData.openid,this.data.max0,this.data.limit0).then((res)=>{
-      app.utils.cl("all",res.data);
+    app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
+      app.utils.cl("all", res.data);
+      for (let i = 0; i < res.data.length; i++) {
+        res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+      }
       this.setData({
-        allOrder:res.data,
+        allOrder: res.data,
         //初始化后从第几个开始加载
         max0: this.data.limit0
       })
     })
     //交易中订单
-    app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max1,this.data.limit1).then((res)=>{
+    app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max1, this.data.limit1).then((res) => {
       app.utils.cl(res.data);
+      for (let i = 0; i < res.data.length; i++) {
+        res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+      }
       this.setData({
-        ingOrder:res.data,
+        ingOrder: res.data,
         //初始化后从第几个开始加载
         max1: this.data.limit1
       })
     })
     //已完成订单
-    app.dbbase.orderOpenIdDownState(app.globalData.openid,this.data.max2,this.data.limit2,3).then((res)=>{
+    app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2, 3).then((res) => {
       app.utils.cl(res.data);
+      for(let i=0;i<res.data.length;i++){
+        res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
+    }
       this.setData({
-        accomplishOrder:res.data,
+        accomplishOrder: res.data,
         //初始化后从第几个开始加载
         max2: this.data.limit2
       })
     })
     //已取消订单
-    app.dbbase.orderOpenIdDownState(app.globalData.openid,this.data.max3,this.data.limit3,-1).then((res)=>{
+    app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3, -1).then((res) => {
       app.utils.cl(res.data);
+      for(let i=0;i<res.data.length;i++){
+        res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
+    }
       this.setData({
-        cancelOrder:res.data,
+        cancelOrder: res.data,
         //初始化后从第几个开始加载
         max3: this.data.limit3
       })
@@ -101,8 +113,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   reachBottom() {
-    switch(this.data.TabCur){
-      case 0:{
+    switch (this.data.TabCur) {
+      case 0: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom0) {
           //当数据库里还有商品时，继续请求数据库
@@ -118,7 +130,7 @@ Page({
         }
         break;
       }
-      case 1:{
+      case 1: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom1) {
           //当数据库里还有商品时，继续请求数据库
@@ -134,7 +146,7 @@ Page({
         }
         break;
       }
-      case 2:{
+      case 2: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom2) {
           //当数据库里还有商品时，继续请求数据库
@@ -150,7 +162,7 @@ Page({
         }
         break;
       }
-      case 3:{
+      case 3: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom3) {
           //当数据库里还有商品时，继续请求数据库
@@ -172,9 +184,9 @@ Page({
    * 请求商品数据
    */
   setListData(e) {
-    switch(this.data.TabCur){
-      case 0:{
-        app.dbbase.orderOpenId(app.globalData.openid,this.data.max0,this.data.limit0).then((res) => {
+    switch (this.data.TabCur) {
+      case 0: {
+        app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
           //当数据库里商品加载完毕之后停止请求数据库
           if (res.data.length == 0) {
             this.setData({
@@ -194,8 +206,8 @@ Page({
         })
         break;
       }
-      case 1:{
-        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max1,this.data.limit1).then((res) => {
+      case 1: {
+        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max1, this.data.limit1).then((res) => {
           //当数据库里商品加载完毕之后停止请求数据库
           if (res.data.length == 0) {
             this.setData({
@@ -215,8 +227,8 @@ Page({
         })
         break;
       }
-      case 2:{
-        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max2,this.data.limit2).then((res) => {
+      case 2: {
+        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max2, this.data.limit2).then((res) => {
           //当数据库里商品加载完毕之后停止请求数据库
           if (res.data.length == 0) {
             this.setData({
@@ -236,8 +248,8 @@ Page({
         })
         break;
       }
-      case 3:{
-        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max3,this.data.limit3).then((res) => {
+      case 3: {
+        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max3, this.data.limit3).then((res) => {
           //当数据库里商品加载完毕之后停止请求数据库
           if (res.data.length == 0) {
             this.setData({
@@ -258,6 +270,6 @@ Page({
         break;
       }
     }
-    
+
   },
 })
