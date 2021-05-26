@@ -94,7 +94,7 @@ Page({
     db.queryproductTypeselect("productType",shop.id).then((res)=>{
       for (let i = 0; i < res.data.length; i++) {
         this.setData({
-          picker: this.data.picker.concat(res.data[i].Name)
+          picker: this.data.picker.concat(res.data[i].name)
         });
       }
     })
@@ -192,7 +192,7 @@ Page({
       //绑定下拉列表数据
       db.query("productType",res.data[0].commodityTypeId).then((res)=>{
         for (let i = 0; i < this.data.picker.length; i++) {
-          if(this.data.picker[i]===res.data[0].Name){
+          if(this.data.picker[i]===res.data[0].name){
             this.setData({
               indexPicker:i
             });
