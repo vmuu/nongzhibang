@@ -42,7 +42,8 @@ Page({
     longitude: "",
     address: "",
     productTypeList: [],
-    addProductType: {}
+    addProductType: {},
+    isUpdate:false
   },
   change(e) {
     app.change(e, this)
@@ -96,11 +97,11 @@ Page({
     let openid = app.globalData.openid
     app.dbbase.queryOpenId('productType', openid).then(res => {
       app.utils.cl(res, '输出')
-      
-        that.setData({
-          productTypeList: res.data,
-        })
-      
+
+      that.setData({
+        productTypeList: res.data,
+      })
+
     })
   },
 
@@ -161,19 +162,19 @@ Page({
   //判断空
   empty() {
     let entity = that.data.entity
-    if (app.utils.isEmpty(entity.shopName)){
+    if (app.utils.isEmpty(entity.shopName)) {
       app.utils.hint('店铺名称不能为空')
       return false
-    }else if(app.utils.isEmpty(entity.shopDescribe)){
+    } else if (app.utils.isEmpty(entity.shopDescribe)) {
       app.utils.hint('店家描述不能为空');
       return false
-    }else if(app.utils.isEmpty(entity.address)){
+    } else if (app.utils.isEmpty(entity.address)) {
       app.utils.hint('详细地址不能为空');
       return false
-    }else if(app.utils.isEmpty(entity.shopImage)){
+    } else if (app.utils.isEmpty(entity.shopImage)) {
       app.utils.hint('请添加店铺头像');
       return false
-    }else if(app.utils.isEmpty(that.data.productTypeList)){
+    } else if (app.utils.isEmpty(that.data.productTypeList)) {
       app.utils.hint('请添加至少一个产品分类');
       return false
     }
@@ -361,7 +362,18 @@ Page({
     //添加分类
     let payload = {
       name: that.data.addProductType.name,
-      shopId: that.data.entity._id
+      shopId: that.data.entity.shopId
+    }
+    let id=that.data.addProductType._id
+    if(that.data.isUpdate){
+      //修改
+      app.dbbase.update('productType',id,payload).then(res => {
+        that.geProductTypeList()
+        that.hideAddShowModal()
+        app.utils.hint('修改成功')
+        that.data.isUpdate=false
+      })
+      return false;
     }
     app.dbbase.add('productType', payload).then(res => {
       that.geProductTypeList()
@@ -396,4 +408,13 @@ Page({
     })
 
   },
+  tapEdite(e) {
+    let item = e.currentTarget.dataset.item
+    app.utils.cl(item);
+    this.setData({
+      addProductType: item,
+      addModel: 'DialogModal2',
+      isUpdate:true
+    })
+  }
 })

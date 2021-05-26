@@ -129,7 +129,7 @@
 			<view class="content typeListBox">
 				<view>{{item.name}}</view>
 				<view class="btnGroup">
-					<text class="cu-tag line-green round">编辑</text>
+					<text class="cu-tag line-green round" bindtap="tapEdite" data-item="{{item}}" >编辑</text>
 					<text class="cu-tag line-red round" bindtap="tapDelete" data-index="{{index}}" data-id="{{item._id}}">删除</text>
 				</view>
 				<!-- <text class="cuIcon-github text-grey"></text> -->
