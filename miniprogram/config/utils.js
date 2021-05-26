@@ -95,10 +95,11 @@ class Utils {
   /**
    * 弹出提示，无图标
    */
-  hint = (object = "成功") => {
+  hint = (object = "成功",duration=1500) => {
     wx.showToast({
       title: object,
-      icon: 'none'
+      icon: 'none',
+      duration:duration
     })
   }
   show(object = "成功") {
