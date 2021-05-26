@@ -2,6 +2,7 @@
 var QQMapWX = require('../../../plugins/qqmap-wx-jssdk.min');
 var qqmapsdk;
 const app = getApp()
+var that;
 
 
 Page({
@@ -51,7 +52,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    let that = this
+    that = this
 
 
     //接收参数
@@ -95,11 +96,11 @@ Page({
     let openid = app.globalData.openid
     app.dbbase.queryOpenId('productType', openid).then(res => {
       app.utils.cl(res, '输出')
-      if (res.data.length != 0) {
+      
         that.setData({
           productTypeList: res.data,
         })
-      }
+      
     })
   },
 
@@ -154,50 +155,29 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  //判断空
+  empty() {
+    let entity = that.data.entity
+    if (app.utils.isEmpty(entity.shopName)){
+      app.utils.hint('店铺名称不能为空')
+      return false
+    }else if(app.utils.isEmpty(entity.shopDescribe)){
+      app.utils.hint('店家描述不能为空');
+      return false
+    }else if(app.utils.isEmpty(entity.address)){
+      app.utils.hint('详细地址不能为空');
+      return false
+    }else if(app.utils.isEmpty(entity.shopImage)){
+      app.utils.hint('请添加店铺头像');
+      return false
+    }else if(app.utils.isEmpty(that.data.productTypeList)){
+      app.utils.hint('请添加至少一个产品分类');
+      return false
+    }
+    return true
   },
   tapPrevious() {
     wx.navigateBack({
@@ -225,8 +205,6 @@ Page({
             ['entity.shopImage']: re.fileURL
           })
         })
-
-
       }
     });
   },
@@ -272,6 +250,10 @@ Page({
     let id = that.data.entity._id
 
     app.utils.cl(temp);
+    //判断空
+    if (!that.empty()) {
+      return false;
+    }
     //提交数据
     wx.showLoading({
       title: '装修中，请等待',
@@ -293,7 +275,7 @@ Page({
       app.dbbase.update('shop', id, temp).then(res => {
         wx.hideLoading({
           success: (res) => {
-           app.utils.show('保存成功')
+            app.utils.show('保存成功')
           },
         })
       });

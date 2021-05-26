@@ -119,7 +119,24 @@ class Utils {
     if (value == ' ') return true;
     if (value == 'null') return true;
     if (value == undefined) return true;
+    if (value.length==0) return true;
     return false;
   }
+  //校验身份证
+  checkIdentity(value){
+    let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		if (!reg.test(value)) return false;
+		return true;
+  }
+  //校验电话号码
+  checkTel(value){
+    let reg = /^[1][3-9][0-9]{9}$/;
+		if ((!reg.test(value))) {
+			return false;
+		} else {
+			return true;
+		}
+  }
+
 }
 export default new Utils

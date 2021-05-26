@@ -149,9 +149,15 @@ Page({
       app.utils.hint('真实姓名不能为空');
       return false
     }
-    if (app.isEmpty(temp.identity)) {
+    if (app.utils.isEmpty(temp.identity)) {
       app.utils.hint('身份证号不能为空');
       return false
+    }else{
+       //校验是否合法
+       if(!app.utils.checkIdentity(temp.identity)){
+        app.utils.hint('身份证不合法') 
+        return false;
+       }
     }
     if (app.isEmpty(temp.idPhotoFront)) {
       app.utils.hint('请上传身份证正面');
@@ -171,6 +177,7 @@ Page({
   tapNext() {
     let that = this
     if (!this.empty()) return false;
+
    // 提交数据
     app.utils.cl(this.data.entity)
     wx.showLoading({
