@@ -21,6 +21,7 @@
           <!--全部订单-->
           <empty wx:if="{{allOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{allOrder}}" order="{{item}}" wx:key="index"></orderItem>
+    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -30,6 +31,7 @@
           <!--交易中-->
           <empty wx:if="{{ingOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{ingOrder}}" order="{{item}}" wx:key="index"></orderItem>
+    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -39,6 +41,7 @@
           <!--已完成-->
           <empty wx:if="{{accomplishOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{accomplishOrder}}" order="{{item}}" wx:key="index"></orderItem>
+    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -48,10 +51,10 @@
           <!--已取消-->
           <empty wx:if="{{cancelOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{cancelOrder}}" order="{{item}}" wx:key="index"></orderItem>
+    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
-    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
   </swiper>
   
 

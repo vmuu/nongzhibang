@@ -18,3 +18,7 @@ page {
 .orderBox{
   padding: 0 20rpx 10rpx;
 }
+
+.loadmore{
+  text-align: center;
+}
