@@ -12,11 +12,11 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">店铺描述</view>
-			<textarea maxlength="-1" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"  placeholder="请输入店铺描述"></textarea>
+			<textarea maxlength="100" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"  placeholder="请输入店铺描述（最多20个字）"></textarea>
 		</view>
 				<view class="cu-form-group align-start">
 			<view class="title">店铺公告</view>
-			<textarea maxlength="-1" value="{{entity.shopAnnouncement}}" data-prop="entity.shopAnnouncement" bindinput="change" placeholder="请输入店铺公告"></textarea>
+			<textarea maxlength="20" value="{{entity.shopAnnouncement}}" data-prop="entity.shopAnnouncement" bindinput="change" placeholder="请输入店铺公告（最多20个字）"></textarea>
 		</view>
 		<view class="cu-bar bg-white" style="margin-top:3rpx">
 			<view class="action">

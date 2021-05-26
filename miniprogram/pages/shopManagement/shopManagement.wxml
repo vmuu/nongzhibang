@@ -29,7 +29,7 @@
           </view>
         </view>
       </view>
-<empty wx:if="{{commodityType.length==0}}" isFull="{{true}}"></empty>
+<empty wx:if="{{commodityType.length==0?true:false}}" isFull="{{false}}"></empty>
 <view class="VerticalBox" style="padding-top:1rpx">
   
   <!--侧边menu-->
@@ -52,7 +52,7 @@
       </view>
       <!--内容-->
       <view class="cu-list menu-avatar">
-      <empty wx:if="{{item.commodity.length==0}}" isFull="{{true}}"></empty>
+      <empty wx:if="{{item.commodity.length==0?true:false}}" isFull="{{false}}"></empty>
         <view class="cu-item {{modalName=='move-box-'+ (item._id+index)?'move-cur':''}}" wx:key="index" wx:for="{{item.commodity}}"bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{(item._id+index)}}">
       <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
       <view class="content">
