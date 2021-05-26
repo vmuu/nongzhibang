@@ -60,7 +60,7 @@
 				</navigator>
 			</view>
 			<view class="cu-item arrow">
-				<navigator class="content" url="/pages/about/log/log" hover-class="none">
+				<navigator class="content" url="/pages/mine/log/log" hover-class="none">
 					<text class="cuIcon-formfill text-green"></text>
 					<text class="text-grey">更新日志</text>
 				</navigator>

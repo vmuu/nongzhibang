@@ -83,3 +83,13 @@
 .radio{
   margin-right: 10rpx;
 }
+.btnAdd{
+  text-align: center;
+  border: dashed 1rpx green;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: green;
+}
+.cu-form-group input {
+  text-align: left;
+}

@@ -4,74 +4,78 @@
   <view slot="content">收货地址</view>
 </cu-custom>
 
+
 <view class="addressBox">
   <view class="addressItem">
+    <view class="btnAdd" bindtap="tapAddAddress">
+      <text class="cuIcon-add"></text>
+      添加新地址
+    </view>
+  </view>
+</view>
+<block wx:for="{{addressList}}" wx:key="index" >
+<view class="addressBox" >
+  <view class="addressItem" >
     <view class="addressBox">
       <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
       <view class="infoBox">
-        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
-        <view class="address">云南省昆明市五华区</view>
-        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+        <text class="consignee">{{item.name}}</text><text class="phone">{{item.tel}}</text>
+        <view class="address">{{item.province}}{{item.city}}{{item.county}}</view>
+        <view class="addressDetail">{{item.address}}</view>
       </view>
       <text class="cuIcon-edit iconEdit"></text>
     </view>
     <view class="pubTopLine controlBtnBox">
-      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
+      <view class="radioBox">
+        <radio class="radio" checked="{{item.default?'checked':''}}" ></radio>设置为默认地址
+      </view>
       <view bindtap="tapDelete">删除</view>
     </view>
   </view>
 </view>
+</block>
 
-<view class="addressBox">
-  <view class="addressItem">
-    <view class="addressBox">
-      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
-      <view class="infoBox">
-        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
-        <view class="address">云南省昆明市五华区</view>
-        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+<!-- 弹出添加框 -->
+<view class="cu-modal {{addModel?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加新地址</view>
+      <view class="action" bindtap="hideAddShowModal">
+        <text class="cuIcon-close text-red"></text>
       </view>
-      <text class="cuIcon-edit iconEdit"></text>
     </view>
-    <view class="pubTopLine controlBtnBox">
-      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
-      <view>删除</view>
-    </view>
-  </view>
-</view>
-
-<view class="addressBox">
-  <view class="addressItem">
-    <view class="addressBox">
-      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
-      <view class="infoBox">
-        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
-        <view class="address">云南省昆明市五华区</view>
-        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+    <view class="padding-xs">
+      <view>
+        <view class="cu-form-group">
+          <view class="title">收货人姓名</view>
+          <input placeholder="请填写收货人姓名" bindinput="change" value="{{address.name}}" data-prop="address.name"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">收货人电话</view>
+          <input placeholder="请填写收货人电话" bindinput="change" value="{{address.tel}}" data-prop="address.tel"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">选择地区</view>
+          <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker textOverflow">
+              {{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+          </picker>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">详细地址</view>
+          <input placeholder="请填写详细地址" bindinput="change" value="{{address.address}}"
+            data-prop="address.address"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">设置默认</view>
+          <switch bindchange="switchChange"></switch>
+        </view>
       </view>
-      <text class="cuIcon-edit iconEdit"></text>
     </view>
-    <view class="pubTopLine controlBtnBox">
-      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
-      <view>删除</view>
-    </view>
-  </view>
-</view>
-
-<view class="addressBox">
-  <view class="addressItem">
-    <view class="addressBox">
-      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
-      <view class="infoBox">
-        <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
-        <view class="address">云南省昆明市五华区</view>
-        <view class="addressDetail">茭菱路云南农业职业技术学院</view>
-      </view>
-      <text class="cuIcon-edit iconEdit"></text>
-    </view>
-    <view class="pubTopLine controlBtnBox">
-      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
-      <view>删除</view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideAddShowModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="conformAdd">确定</view>
     </view>
   </view>
 </view>

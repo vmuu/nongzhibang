@@ -243,7 +243,7 @@ class DBBase {
   }
 
   /**
-   * 修改
+   * 修改 通过_id
    */
   update = function (table, _id, data) {
     const db = wx.cloud.database()

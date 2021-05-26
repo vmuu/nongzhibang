@@ -94,6 +94,12 @@
           "pathName": "pages/index/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/mine/address/address",
+          "pathName": "pages/mine/address/address",
+          "query": "",
+          "scene": null
         }
       ]
     }
