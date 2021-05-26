@@ -114,11 +114,16 @@
 }
 
 .controlBtnBox {
-  padding: 20rpx;
+  /* width: 70%; */
+  padding: 20rpx; 
   margin-top: 20rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.controlBtnBox .order-button{
+width: 70%;
+height: 70rpx;
 }
 .radioBox{
   display: flex;
@@ -133,4 +138,7 @@
 }
 .merchants_markings{
   margin-top: 10rpx;
+}
+.order-button{
+  height: 50%;
 }

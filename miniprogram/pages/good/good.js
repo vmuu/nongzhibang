@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      //app.utils.hint('暂不支持该功能！')
+      app.utils.hint('暂不支持该功能！')
       wx.showLoading({
         title: '加载中...',
         mask: true
@@ -49,6 +49,18 @@ Page({
       wx.hideLoading({
         success: (res) => {},
       })
+  },
+  AddressNavigateTo(e){
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '../mine/address/address'
+    })
+  },
+  OrderNavigateTo(e){
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '../success/success?id='+e.currentTarget.dataset.id,
+    })
   },
 
   /**
