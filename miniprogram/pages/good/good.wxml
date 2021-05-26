@@ -80,6 +80,6 @@
 
 <!-- 交易订单 -->
 <view class="cu-bar bg-white tabbar botton-box  ">
-  <button class="bg-green submit radius" bindtap="OrderNavigateTo">订单确定</button>
+  <button class="bg-green submit radius" bindtap="OrderNavigateTo" data-id="{{product._id}}">订单确定</button>
 
 </view>

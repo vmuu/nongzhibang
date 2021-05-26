@@ -1,6 +1,7 @@
 
 import db from '../../config/dbbase.js';
 import utils from '../../config/utils.js';
+const app = getApp()
 // miniprogram/pages/success/success.js
 Page({
 
@@ -54,7 +55,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.utils.cl(options);
+    
   },
 
   /**
