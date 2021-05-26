@@ -27,7 +27,7 @@ page {
 
 /* 轮播图图 */
 .scroll_banner {
-  padding-bottom: 20rpx;
+  /* padding-bottom: 20rpx; */
 }
 
 .scroll_banner .card-swiper {
@@ -38,10 +38,11 @@ page {
 .scroll_banner .card-swiper swiper-item {
   padding: 0rpx;
   box-sizing: border-box;
+  border-radius: 40rpx;
 }
 
 .scroll_banner {
-  margin-top: -10rpx;
+  /* margin-top: -10rpx; */
 }
 
 .bgShadow {
@@ -56,11 +57,11 @@ page {
 
 /* 滚动公告栏样式 */
 .notice {
-  width: 96%;
+  width: 100%;
   /* background: #fff; */
   padding: 0 20rpx;
   border-radius: 30rpx;
-  margin: 10rpx auto;
+  /* margin: 10rpx auto; */
   border-style: solid;
   /* box-shadow: 0px 2px 4px 2px #DDDDDD; */
   border-width: 0rpx;
@@ -259,7 +260,6 @@ page {
   position: relative;
   top: -107rpx;
 }
-
 .recommend_merchants_top_left {
   width: 100rpx;
   height: 100rpx;
@@ -449,4 +449,9 @@ page {
 }
 .loadmore{
   text-align: center;
+}
+.notice{
+  width: 100%;
+  position: absolute;
+  z-index: 99;
 }

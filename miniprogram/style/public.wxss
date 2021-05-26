@@ -90,3 +90,24 @@
 .boxShade{
   box-shadow: 0 2px 2px rgba(10, 16, 20, 0.24), 0 0 2px rgba(10, 16, 20, 0.12);
 }
+.xxbb-waterfall {
+  column-count: 2;
+  /* 设置显示3列 默认*/
+  column-gap: 10rpx;
+  /*设置或检索对象的列与列之间的间隙为10rpx*/
+  width: 100%;
+}
+
+
+/* 瀑布流子容器 */
+
+
+/* 注意: xxbb-waterfall和xxbbWaterfall-item必须同时存在于父容器和子容器*/
+
+.xxbbWaterfall-item {
+  display: inline-block;
+  /*内部卡片需要设置为inline-block,否则会截断显示*/
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}

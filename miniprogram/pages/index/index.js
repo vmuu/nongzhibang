@@ -1,4 +1,3 @@
-
 import db from '../../config/dbbase.js';
 import utils from '../../config/utils.js';
 
@@ -6,18 +5,18 @@ const app = getApp();
 Page({
   data: {
     //胶囊按钮高度
-    capsuleHeight:0,
+    capsuleHeight: 0,
     // 滚动图的
     cardCur: 0,
-    value:'',
+    value: '',
     swiperList: [{
       id: 0,
       type: 'image',
       url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1125271620185127484'
     }, {
       id: 1,
-        type: 'image',
-        url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
+      type: 'image',
+      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
     }, {
       id: 2,
       type: 'image',
@@ -39,84 +38,109 @@ Page({
     Custom: app.globalData.Custom,
     // 选择校区
     picker: ['茭菱校区', '小哨校区'],
-    selectSchoolIndex:0,
-    index:null,
+    selectSchoolIndex: 0,
+    index: null,
     //按钮的文字和图片
-    shopType:[],
+    shopType: [],
     //推荐店铺列表
-    shop:[],
+    shop: [],
     //热门商品列表
-    hotproduct:[],
+    hotproduct: [],
     //全部商品列表
-    hotProductlist:[],
+    hotProductlist: [],
     //触底时的提示
-    loadMoreText:"加载中.....",
+    loadMoreText: "加载中.....",
     //是否显示触底提示
-    showLoadMore:false,
+    showLoadMore: false,
     //从哪开始查询
-    max:0,
+    max: 0,
     //一次性查几条数据
-    limit:8,
+    limit: 8,
     //触底时是否继续请求数据库
-    theOnReachBottom:true
-    
+    theOnReachBottom: true,
+    noticeHeight:0
+
   },
 
   // input输入事件
-  doInput(e){
-    
+  doInput(e) {
+
     wx.navigateTo({
       url: '../search/search',
-      })
- },
+    })
+  },
   onLoad: function () {
+    //获取公告栏的高度
+    let query = wx.createSelectorQuery();
+    query.select('.notice').boundingClientRect(rect => {
+      let height = rect.height;
+      this.setData({
+        noticeHeight:rect.height
+      })
+    }).exec();
     //首页按钮和图片
-    app.dbbase.queryselect('shopType').then(res=>{
-      app.utils.cl(res);
-      this.setData({
-        shopType:res.data
+    app.dbbase.queryselect('shopType').then(res => {
+        app.utils.cl(res);
+        this.setData({
+          shopType: res.data
+        })
+        app.utils.cl(this.data.shopType);
+
+      }),
+      //推荐店铺
+      db.indexProductOrShop().then((res) => {
+        app.utils.cl(res.result.list);
+        this.setData({
+          shop: res.result.list
+        })
       })
-      app.utils.cl(this.data.shopType);
-      
-    }),
-    //推荐店铺
-    db.indexProductOrShop().then((res)=>{
-      app.utils.cl(res.result.list);
-      this.setData({
-        shop:res.result.list
-      })
-    })
     //热门商品与全部商品首次加载
-    db.productlist(this.data.max,this.data.limit).then((res)=>{
+    db.productlist(this.data.max, this.data.limit).then((res) => {
       this.setData({
-        hotproduct:res.data,
-        hotProductlist:res.data,
-        index:res.data.length,
+        hotproduct: res.data,
+        hotProductlist: res.data,
+        index: res.data.length,
         //初始化后从第几个开始加载
-        max:this.data.limit
+        max: this.data.limit
       })
     })
     this.setData({
-      capsuleHeight:wx.getMenuButtonBoundingClientRect().height  // 胶囊高度
+      capsuleHeight: wx.getMenuButtonBoundingClientRect().height // 胶囊高度
     })
     this.setData({
-      msgList: [
-        { title: '你有一笔奖励待发放' },
-        { title: '1.8元津贴到账，快点去打车吧' },
-        { title: '单单八折赢iPhone，一路迎春“发”' }
+      msgList: [{
+          title: '你有一笔奖励待发放'
+        },
+        {
+          title: '1.8元津贴到账，快点去打车吧'
+        },
+        {
+          title: '单单八折赢iPhone，一路迎春“发”'
+        }
       ],
       // 下拉列表
-      option1: [
-        { text: '综合排序', value: 0 },
-        { text: '营业状态', value: 1 },
-        { text: '单量排序', value: 2 },
-        { text: '优惠活动', value: 3 }
+      option1: [{
+          text: '综合排序',
+          value: 0
+        },
+        {
+          text: '营业状态',
+          value: 1
+        },
+        {
+          text: '单量排序',
+          value: 2
+        },
+        {
+          text: '优惠活动',
+          value: 3
+        }
       ],
       value1: 0,
       // 商家标题
-      imageURL:"https://img01.yzcdn.cn/vant/ipad.jpeg",
+      imageURL: "https://img01.yzcdn.cn/vant/ipad.jpeg",
     })
-    
+
   },
   //轮播图切换放大
   cardSwiper(e) {
@@ -132,11 +156,11 @@ Page({
     })
   },
   //校区选择
-  selectSchool(e){
+  selectSchool(e) {
     app.utils.cl(e);
-      this.setData({
-        selectSchoolIndex: e.detail.value
-      })
+    this.setData({
+      selectSchoolIndex: e.detail.value
+    })
   },
   indexSelect(e) {
     let that = this;
@@ -153,83 +177,85 @@ Page({
       }
     }
   },
-  focuseSearch(){
-    
+  focuseSearch() {
+
   },
   // 按钮的点击事件
-  enterDeliciousFood(e){
+  enterDeliciousFood(e) {
     app.utils.cl(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: 'goodstype/goodstype?id='+e.currentTarget.dataset.id+'&name='+e.currentTarget.dataset.name
+      url: 'goodstype/goodstype?id=' + e.currentTarget.dataset.id + '&name=' + e.currentTarget.dataset.name
     })
   },
   //跳转到商家界面
-  tapShop(e){
+  tapShop(e) {
     wx.navigateTo({
-      url: '../product/product?id='+e.currentTarget.dataset.id,
+      url: '../product/product?id=' + e.currentTarget.dataset.id,
     })
   },
   // 更多商品
-  more_merchants(e){
+  more_merchants(e) {
     wx.navigateTo({
       url: 'merchants/merchants'
     })
   },
-  more_goods(e){
+  more_goods(e) {
     wx.navigateTo({
       url: 'goods/goods'
     })
   },
   //热门菜品连接
-  hotproduct(e){
+  hotproduct(e) {
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../details/details?id='+e.currentTarget.dataset.id,
+      url: '../details/details?id=' + e.currentTarget.dataset.id,
     })
   },
-  
+
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
     //是否继续加载数据？
-    if(this.data.theOnReachBottom){
+    if (this.data.theOnReachBottom) {
       //当数据库里还有商品时，继续请求数据库
       setTimeout(() => {
         this.setListData();
       }, 300);
-    }
-    else{
+    } else {
       //当数据库里没有商品时，停止请求数据库，并弹出提示
       this.setData({
-        loadMoreText:"没有更多商品了!",
-        showLoadMore:true,
+        loadMoreText: "没有更多商品了!",
+        showLoadMore: true,
       })
     }
   },
   /**
-  * 请求商品数据
-  */
- setListData() {
-   db.productlist(this.data.max,this.data.limit).then((res)=>{
-     //当数据库里商品加载完毕之后停止请求数据库
-     if(res.data.length==0){
-       this.setData({
-         loadMoreText:"没有更多商品了!",
-         showLoadMore:true,
-         theOnReachBottom:false
-       })
-       app.utils.hint('没有更多商品了!');
-     }
-     //当数据库里还有商品数据时，继续追加到本地数据
-     else{
-       this.setData({
-         hotProductlist:this.data.hotProductlist.concat(res.data),
-         max:this.data.max+this.data.limit
-       })
-     }
-   })
- },
+   * 请求商品数据
+   */
+  setListData() {
+    db.productlist(this.data.max, this.data.limit).then((res) => {
+      //当数据库里商品加载完毕之后停止请求数据库
+      if (res.data.length == 0) {
+        this.setData({
+          loadMoreText: "没有更多商品了!",
+          showLoadMore: true,
+          theOnReachBottom: false
+        })
+        app.utils.hint('没有更多商品了!');
+      }
+      //当数据库里还有商品数据时，继续追加到本地数据
+      else {
+        this.setData({
+          hotProductlist: this.data.hotProductlist.concat(res.data),
+          max: this.data.max + this.data.limit
+        })
+      }
+    })
+  },
+  tapNotice(){
+    app.utils.cl('查看公告');
+  }
 });
 
 // 全部商家
