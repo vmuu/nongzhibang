@@ -293,7 +293,7 @@ Page({
       app.dbbase.update('shop', id, temp).then(res => {
         wx.hideLoading({
           success: (res) => {
-           app.utils.show('保存成功！')
+           app.utils.show('保存成功')
           },
         })
       });
@@ -384,7 +384,7 @@ Page({
     app.dbbase.add('productType', payload).then(res => {
       that.geProductTypeList()
       that.hideAddShowModal()
-      app.utils.hint('添加成功！')
+      app.utils.hint('添加成功')
 
     })
 

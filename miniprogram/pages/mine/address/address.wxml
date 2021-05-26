@@ -13,26 +13,27 @@
     </view>
   </view>
 </view>
-<block wx:for="{{addressList}}" wx:key="index" >
-<view class="addressBox" >
-  <view class="addressItem" >
-    <view class="addressBox">
-      <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
-      <view class="infoBox">
-        <text class="consignee">{{item.name}}</text><text class="phone">{{item.tel}}</text>
-        <view class="address">{{item.province}}{{item.city}}{{item.county}}</view>
-        <view class="addressDetail">{{item.address}}</view>
+<empty wx:if="{{addressList.length==0?true:false}}" isFull="{{false}}" ></empty>
+<block wx:for="{{addressList}}" wx:key="index">
+  <view class="addressBox">
+    <view class="addressItem">
+      <view class="addressBox">
+        <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+        <view class="infoBox">
+          <text class="consignee">{{item.name}}</text><text class="phone">{{item.tel}}</text>
+          <view class="address">{{item.province}}{{item.city}}{{item.county}}</view>
+          <view class="addressDetail">{{item.address}}</view>
+        </view>
+        <text bindtap="tapEditAddres" data-item="{{item}}" class="cuIcon-edit iconEdit"></text>
       </view>
-      <text class="cuIcon-edit iconEdit"></text>
-    </view>
-    <view class="pubTopLine controlBtnBox">
-      <view class="radioBox">
-        <radio class="radio" checked="{{item.default?'checked':''}}" ></radio>设置为默认地址
+      <view class="pubTopLine controlBtnBox">
+        <view bindtap="tapSetDefault" data-id="{{item._id}}" class="radioBox">
+          <radio class="radio" checked="{{item.default?'checked':''}}"></radio>设置为默认地址
+        </view>
+        <view bindtap="tapDelete" data-id="{{item._id}}">删除</view>
       </view>
-      <view bindtap="tapDelete">删除</view>
     </view>
   </view>
-</view>
 </block>
 
 <!-- 弹出添加框 -->
@@ -68,8 +69,8 @@
             data-prop="address.address"></input>
         </view>
         <view class="cu-form-group">
-          <view class="title">设置默认</view>
-          <switch bindchange="switchChange"></switch>
+          <view class="title">设置为默认地址</view>
+          <switch bindchange="switchChange" checked="{{address.default?'checked':''}}"></switch>
         </view>
       </view>
     </view>

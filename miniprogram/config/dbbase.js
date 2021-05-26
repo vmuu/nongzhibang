@@ -1,12 +1,12 @@
 import config from "./config";
 import utils from "./utils";
-const app=getApp()
+const app = getApp()
 
 class DBBase {
   /**
    * 添加
    */
-  add = function (table,data) {
+  add = function (table, data) {
     const db = wx.cloud.database()
     return new Promise((success, error) => {
       if (data) {
@@ -51,7 +51,7 @@ class DBBase {
     })
 
   }
-    /**
+  /**
    * 查询一个，通过openid
    */
   queryOpenId = function (table, openId) {
@@ -125,7 +125,7 @@ class DBBase {
   /**
    * 查询productType单表通过shopid筛选
    */
-  queryproductTypeselect = function (table,shopId) {
+  queryproductTypeselect = function (table, shopId) {
     const db = wx.cloud.database()
 
     return new Promise((success, error) => {
@@ -147,11 +147,11 @@ class DBBase {
 
   }
 
-/**
+  /**
    * 联表查询 2表联查
    */
 
-  looKupTwo = function (tableName,shopId,collection,from,localField,foreignField,as) {
+  looKupTwo = function (tableName, shopId, collection, from, localField, foreignField, as) {
 
     return new Promise((success, error) => {
       wx.cloud.callFunction({
@@ -159,7 +159,7 @@ class DBBase {
         name: tableName,
         data: {
           //店铺
-          id:shopId,
+          id: shopId,
           //要查的表
           collection: collection,
           //要链接的表
@@ -217,22 +217,22 @@ class DBBase {
 
   }
 
-/**
+  /**
    * 云函数修改，product表
    */
 
-  productupdate = function (id,data) {
+  productupdate = function (id, data) {
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
         name: "ProductUpdata",
         data: {
-          id:id,
-          Desc:data.Desc,
-          Name:data.Name,
-          Image:data.Image,
-          commodityTypeId:data.commodityTypeId,
-          price:data.price,
+          id: id,
+          Desc: data.Desc,
+          Name: data.Name,
+          Image: data.Image,
+          commodityTypeId: data.commodityTypeId,
+          price: data.price,
         },
         success: res => {
           return success(res)
@@ -251,10 +251,10 @@ class DBBase {
     return new Promise((success) => {
       if (table && _id && data) {
         //修改无需提交_id和_openid，delete移除
-        if(data._id!=null){
+        if (data._id != null) {
           delete data._id
         }
-        if(data._openid!=null){
+        if (data._openid != null) {
           delete data._openid
         }
         db.collection(table).doc(_id).update({
@@ -272,19 +272,50 @@ class DBBase {
     })
 
   }
+
+  /**
+   * 万能修改 可以通过所有字段
+   */
+  updateWhere = function (table, where, data) {
+    const db = wx.cloud.database()
+
+    return new Promise((success) => {
+      if (table && where && data) {
+        //修改无需提交_id和_openid，delete移除
+        if (data._id != null) {
+          delete data._id
+        }
+        if (data._openid != null) {
+          delete data._openid
+        }
+        db.collection(table).where(where).update({
+          data: data,
+          success(res){
+            return success(res)
+          },
+          fail(err){
+            console.error(err);
+          }
+        })
+      } else {
+        console.error('（table，where，data）不可空')
+      }
+    })
+
+  }
   /**
    * 云函数删除，product表
    */
 
-  productDelete = function (id,collection) {
-    console.log("id",id)
+  productDelete = function (id, collection) {
+    console.log("id", id)
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
         name: "DeletePoduct",
         data: {
           collection: collection,
-          id:id
+          id: id
         },
         success: res => {
           return success(res)
@@ -306,7 +337,7 @@ class DBBase {
             return success(res)
           },
           fail: err => {
-            
+
           }
         })
       } else {
@@ -341,7 +372,7 @@ class DBBase {
     const db = wx.cloud.database()
 
     return new Promise((success, error) => {
-      db.collection("product").orderBy('MonthlySales','desc').get({
+      db.collection("product").orderBy('MonthlySales', 'desc').get({
         success: res => {
           return success(res)
         },
@@ -355,12 +386,12 @@ class DBBase {
   /**
    * 查询单表product,分页查询,总销量排序
    */
-  productlist = function (skip,limit) {
+  productlist = function (skip, limit) {
     const db = wx.cloud.database()
 
     return new Promise((success, error) => {
-      
-      db.collection("product").orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
+
+      db.collection("product").orderBy('MonthlySales', 'desc').skip(skip).limit(limit).get({
         success: res => {
           return success(res)
         },
@@ -373,14 +404,14 @@ class DBBase {
   /**
    * 查询单表product,条件筛选,分页查询,总销量排序
    */
-  productwherelist = function (shopTypeId,skip,limit) {
+  productwherelist = function (shopTypeId, skip, limit) {
     const db = wx.cloud.database()
 
     return new Promise((success, error) => {
-      
+
       db.collection("product").where({
-        shopTypeId:shopTypeId
-      }).orderBy('MonthlySales','desc').skip(skip).limit(limit).get({
+        shopTypeId: shopTypeId
+      }).orderBy('MonthlySales', 'desc').skip(skip).limit(limit).get({
         success: res => {
           return success(res)
         },
@@ -393,12 +424,12 @@ class DBBase {
   /**
    * 查询单表shop,分页查询,总销量排序
    */
-  queryShop = function (skip,limit) {
+  queryShop = function (skip, limit) {
     const db = wx.cloud.database()
 
     return new Promise((success, error) => {
-      
-      db.collection("shop").orderBy('salesVolume','desc').skip(skip).limit(limit).get({
+
+      db.collection("shop").orderBy('salesVolume', 'desc').skip(skip).limit(limit).get({
         success: res => {
           return success(res)
         },
@@ -408,7 +439,7 @@ class DBBase {
       })
     })
   }
-     /**
+  /**
    * order通过openid与交易中状态
    */
   orderOpenIdStateIng = function (table, openId) {
@@ -418,9 +449,9 @@ class DBBase {
       if (table && openId) {
         db.collection(table).where({
           _openid: openId,
-          orderState:db.command.gt(-1)
+          orderState: db.command.gt(-1)
         }).where({
-          orderState:db.command.lt(3)
+          orderState: db.command.lt(3)
         }).get({
           success: res => {
             return success(res)
@@ -435,7 +466,7 @@ class DBBase {
     })
 
   }
-    /**
+  /**
    * order通过openid与状态
    */
   orderOpenIdState = function (table, openId, State) {
