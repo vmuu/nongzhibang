@@ -270,7 +270,6 @@ class DBBase {
         console.error('（table，id，data）不可空')
       }
     })
-
   }
 
   /**

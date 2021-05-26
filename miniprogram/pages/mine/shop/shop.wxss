@@ -54,3 +54,39 @@
 .cu-form-group{
   text-align: left;
 }
+.uploadImageBox {
+  display: flex !important;
+  align-items: unset !important;
+  text-align: left !important;
+  justify-content: left !important;
+  flex-direction: column !important;
+  padding-bottom: 30rpx !important;
+  padding-top: 25rpx !important;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageAttribute {
+  width: 100%;
+  height: 100%;
+}
+
+.iamgeBox {
+  width:100%;
+  height: 200rpx;
+  border: 1rpx green dashed;
+  margin: 20rpx 0;
+  line-height: 200rpx;
+  overflow: hidden;
+  border-radius: 2rpx;
+}
+
+.textAlign-center {
+  text-align: center;
+}
+.iconCamerAdd{
+  font-size: 60rpx;
+}
