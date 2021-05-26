@@ -40,10 +40,11 @@
 .orginnal_price{
   color: red;
   text-align: left;
+  font-weight: bold;
 }
 .price{
   margin-left: 10rpx;
-  color: #d8d8d8;
+  color: #4F4D4E;
   text-decoration: line-through;
   text-align: right;
 }

@@ -52,7 +52,7 @@ class DBBase {
 
   }
   /**
-   * 查询单表order,分页查询,总销量排序
+   * 查询全部订单，通过openid
    */
   orderOpenId = function (openId, skip, limit) {
     const db = wx.cloud.database()
@@ -70,6 +70,71 @@ class DBBase {
         }
       })
     })
+  }
+  /**
+   * 查询全部订单，通过openid
+   */
+  orderOpenId = function (openId, skip, limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+
+      db.collection("order").where({
+        _openid: openId
+      }).orderBy('addOrderDate', 'desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  }
+  /**
+   * order上拉加载通过openid与其他状态
+   */
+  orderOpenIdDownState = function (openId, skip, limit, State) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      db.collection("order").where({
+        _openid: openId,
+        orderState: State
+      }).orderBy('addOrderDate', 'desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+
+  }
+  
+  /**
+   * order上拉加载通过openid与交易中状态
+   */
+  orderOpenIdDownStateIng = function (openId, skip, limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      db.collection("order").where({
+        _openid: openId,
+        orderState: db.command.gt(-1)
+      }).where({
+        orderState: db.command.lt(3)
+      }).orderBy('addOrderDate', 'desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+
   }
   /**
    * 查询一个，通过openid

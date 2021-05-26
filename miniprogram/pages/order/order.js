@@ -13,10 +13,18 @@ Page({
     ingOrder:[],
     accomplishOrder:[],
     cancelOrder:[],
+    //是否显示触底提示
+    showLoadMore: false,
     //从哪开始查询
-    max: 0,
+    max0: 0,
+    max1: 0,
+    max2: 0,
+    max3: 0,
     //一次性查几条数据
-    limit: 4,
+    limit0: 4,
+    limit1: 4,
+    limit2: 4,
+    limit3: 4,
     //触底时是否继续请求数据库
     theOnReachBottom0: true,
     theOnReachBottom1: true,
@@ -37,33 +45,39 @@ Page({
     //  .exec() 不加不执行
 
     //全部订单
-    app.dbbase.orderOpenId(app.globalData.openid,this.data.max,this.data.limit).then((res)=>{
-      app.utils.cl(res.data);
+    app.dbbase.orderOpenId(app.globalData.openid,this.data.max0,this.data.limit0).then((res)=>{
+      app.utils.cl("all",res.data);
       this.setData({
         allOrder:res.data,
         //初始化后从第几个开始加载
-        max: this.data.limit
+        max0: this.data.limit0
       })
     })
     //交易中订单
-    app.dbbase.orderOpenIdStateIng('order',app.globalData.openid).then((res)=>{
+    app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max1,this.data.limit1).then((res)=>{
       app.utils.cl(res.data);
       this.setData({
-        ingOrder:res.data
+        ingOrder:res.data,
+        //初始化后从第几个开始加载
+        max1: this.data.limit1
       })
     })
     //已完成订单
-    app.dbbase.orderOpenIdState('order',app.globalData.openid,3).then((res)=>{
+    app.dbbase.orderOpenIdDownState(app.globalData.openid,this.data.max2,this.data.limit2,3).then((res)=>{
       app.utils.cl(res.data);
       this.setData({
-        accomplishOrder:res.data
+        accomplishOrder:res.data,
+        //初始化后从第几个开始加载
+        max2: this.data.limit2
       })
     })
     //已取消订单
-    app.dbbase.orderOpenIdState('order',app.globalData.openid,-1).then((res)=>{
+    app.dbbase.orderOpenIdDownState(app.globalData.openid,this.data.max3,this.data.limit3,-1).then((res)=>{
       app.utils.cl(res.data);
       this.setData({
-        cancelOrder:res.data
+        cancelOrder:res.data,
+        //初始化后从第几个开始加载
+        max3: this.data.limit3
       })
     })
   },
@@ -87,55 +101,160 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   reachBottom() {
-    app.utils.cl(this.data.TabCur);
-    
-    //是否继续加载数据？
-    if (this.data.theOnReachBottom) {
-      //当数据库里还有商品时，继续请求数据库
-      setTimeout(() => {
-        this.setListData();
-      }, 300);
-    } else {
-      //当数据库里没有商品时，停止请求数据库，并弹出提示
-      this.setData({
-        loadMoreText: "没有更多商品了!",
-        showLoadMore: true,
-      })
+    switch(this.data.TabCur){
+      case 0:{
+        //是否继续加载数据？
+        if (this.data.theOnReachBottom0) {
+          //当数据库里还有商品时，继续请求数据库
+          setTimeout(() => {
+            this.setListData();
+          }, 300);
+        } else {
+          //当数据库里没有商品时，停止请求数据库，并弹出提示
+          this.setData({
+            loadMoreText: "没有更多全部订单了!",
+            showLoadMore: true,
+          })
+        }
+        break;
+      }
+      case 1:{
+        //是否继续加载数据？
+        if (this.data.theOnReachBottom1) {
+          //当数据库里还有商品时，继续请求数据库
+          setTimeout(() => {
+            this.setListData();
+          }, 300);
+        } else {
+          //当数据库里没有商品时，停止请求数据库，并弹出提示
+          this.setData({
+            loadMoreText: "没有更多交易中订单了!",
+            showLoadMore: true,
+          })
+        }
+        break;
+      }
+      case 2:{
+        //是否继续加载数据？
+        if (this.data.theOnReachBottom2) {
+          //当数据库里还有商品时，继续请求数据库
+          setTimeout(() => {
+            this.setListData();
+          }, 300);
+        } else {
+          //当数据库里没有商品时，停止请求数据库，并弹出提示
+          this.setData({
+            loadMoreText: "没有更多已完成订单了!",
+            showLoadMore: true,
+          })
+        }
+        break;
+      }
+      case 3:{
+        //是否继续加载数据？
+        if (this.data.theOnReachBottom3) {
+          //当数据库里还有商品时，继续请求数据库
+          setTimeout(() => {
+            this.setListData();
+          }, 300);
+        } else {
+          //当数据库里没有商品时，停止请求数据库，并弹出提示
+          this.setData({
+            loadMoreText: "没有更多已取消订单了!",
+            showLoadMore: true,
+          })
+        }
+        break;
+      }
     }
   },
   /**
    * 请求商品数据
    */
   setListData(e) {
-    switch(TabCur){
+    switch(this.data.TabCur){
       case 0:{
-        app.dbbase.productlist(this.data.max, this.data.limit).then((res) => {
+        app.dbbase.orderOpenId(app.globalData.openid,this.data.max0,this.data.limit0).then((res) => {
           //当数据库里商品加载完毕之后停止请求数据库
           if (res.data.length == 0) {
             this.setData({
-              loadMoreText: "没有更多商品了!",
+              loadMoreText: "没有更多全部订单了!",
               showLoadMore: true,
-              theOnReachBottom: false
+              theOnReachBottom0: false
             })
-            app.utils.hint('没有更多商品了!');
+            app.utils.hint('没有更多全部订单了!');
           }
           //当数据库里还有商品数据时，继续追加到本地数据
           else {
             this.setData({
-              hotProductlist: this.data.hotProductlist.concat(res.data),
-              max: this.data.max + this.data.limit
+              allOrder: this.data.allOrder.concat(res.data),
+              max0: this.data.max0 + this.data.limit0
             })
           }
         })
         break;
       }
       case 1:{
+        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max1,this.data.limit1).then((res) => {
+          //当数据库里商品加载完毕之后停止请求数据库
+          if (res.data.length == 0) {
+            this.setData({
+              loadMoreText: "没有更多交易中订单了!",
+              showLoadMore: true,
+              theOnReachBottom1: false
+            })
+            app.utils.hint('没有更多交易中订单了!');
+          }
+          //当数据库里还有商品数据时，继续追加到本地数据
+          else {
+            this.setData({
+              ingOrder: this.data.allOrder.concat(res.data),
+              max1: this.data.max1 + this.data.limit1
+            })
+          }
+        })
         break;
       }
       case 2:{
+        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max2,this.data.limit2).then((res) => {
+          //当数据库里商品加载完毕之后停止请求数据库
+          if (res.data.length == 0) {
+            this.setData({
+              loadMoreText: "没有更多已完成订单了!",
+              showLoadMore: true,
+              theOnReachBottom2: false
+            })
+            app.utils.hint('没有更多已完成订单了!');
+          }
+          //当数据库里还有商品数据时，继续追加到本地数据
+          else {
+            this.setData({
+              accomplishOrder: this.data.allOrder.concat(res.data),
+              max2: this.data.max2 + this.data.limit2
+            })
+          }
+        })
         break;
       }
       case 3:{
+        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid,this.data.max3,this.data.limit3).then((res) => {
+          //当数据库里商品加载完毕之后停止请求数据库
+          if (res.data.length == 0) {
+            this.setData({
+              loadMoreText: "没有更多已取消订单了!",
+              showLoadMore: true,
+              theOnReachBottom3: false
+            })
+            app.utils.hint('没有更多已取消订单了!');
+          }
+          //当数据库里还有商品数据时，继续追加到本地数据
+          else {
+            this.setData({
+              cancelOrder: this.data.allOrder.concat(res.data),
+              max3: this.data.max3 + this.data.limit3
+            })
+          }
+        })
         break;
       }
     }

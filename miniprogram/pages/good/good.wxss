@@ -10,8 +10,8 @@
 
 .all_merchants_left,
 .all_merchants_left>image {
-  margin-top: 3rpx;
-  margin-left: 5rpx;
+  margin-top: 1rpx; 
+  /* margin-left: 5rpx;  */
   width: 190rpx;
   height: 195rpx;
   border-radius: 20rpx;
