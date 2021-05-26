@@ -39,8 +39,8 @@
 </view>
 
 
-<view>
-  <view class="bg-white padding margin-top-xs">
+<view class="type-order">
+  <view class="bg-white padding ">
   <view class="cu-steps">
     <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key>
       <text class="cuIcon-{{index>basics?'title':item.icon}}"></text> {{item.name}}
@@ -63,8 +63,6 @@
     </view>
   </view>
 </view>
-
-
 <!-- 支付方式 -->
 <view class="flex-sub text-center">
   
