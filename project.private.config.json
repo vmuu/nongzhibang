@@ -66,8 +66,8 @@
                     "scene": null
                 },
                 {
-                    "name": "pages/mine/shop/shop",
-                    "pathName": "pages/mine/shop/shop",
+                    "name": "pages/order/order",
+                    "pathName": "pages/order/order",
                     "query": "",
                     "scene": null
                 },

@@ -51,8 +51,8 @@
         </view>
       </scroll-view>
     </swiper-item>
+    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
   </swiper>
-
-
+  
 
 </view>

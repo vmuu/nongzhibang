@@ -52,6 +52,26 @@ class DBBase {
 
   }
   /**
+   * 查询单表order,分页查询,总销量排序
+   */
+  orderOpenId = function (openId, skip, limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+
+      db.collection("order").where({
+        _openid: openId
+      }).orderBy('addOrderDate', 'desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  }
+  /**
    * 查询一个，通过openid
    */
   queryOpenId = function (table, openId) {
