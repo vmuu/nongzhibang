@@ -12,8 +12,11 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">店铺描述</view>
-			<textarea maxlength="-1" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe"
-			bindinput="change" disabled="{{modalName!=null}}"  placeholder="请输入店铺描述"></textarea>
+			<textarea maxlength="-1" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"  placeholder="请输入店铺描述"></textarea>
+		</view>
+				<view class="cu-form-group align-start">
+			<view class="title">店铺公告</view>
+			<textarea maxlength="-1" value="{{entity.shopAnnouncement}}" data-prop="entity.shopAnnouncement" bindinput="change" placeholder="请输入店铺公告"></textarea>
 		</view>
 		<view class="cu-bar bg-white" style="margin-top:3rpx">
 			<view class="action">
@@ -25,7 +28,7 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="grid col-4 grid-square flex-sub">
-				<view class="bg-img" wx:if="{{entity.shopImage}}"   bindtap="ViewImage" data-url="{{entity.shopImage}}">
+				<view class="bg-img" wx:if="{{entity.shopImage}}" bindtap="ViewImage" data-url="{{entity.shopImage}}">
 					<image src='{{entity.shopImage}}' mode='aspectFill'></image>
 					<view class="cu-tag bg-red" catchtap="DelImg">
 						<text class="cuIcon-close"></text>
@@ -35,6 +38,16 @@
 					<text class="cuIcon-cameraadd"></text>
 				</view>
 			</view>
+		</view>
+		<view class="cu-form-group uploadImageBox">
+			<view class="title idTitle">店铺背景</view>
+		
+				<view class="textAlign-center">
+					<view class="iamgeBox" bindtap="tapBackground">
+						<text wx:if="{{entity.shopBackground==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+						<image class="imageAttribute" mode='aspectFill' src="{{entity.shopBackground}}"></image>
+					</view>
+				</view>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">店铺地区</view>
@@ -46,8 +59,7 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">详细地址</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}" 
-			data-prop="entity.address" bindinput="change" placeholder="请输入详细地址"></textarea>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}" data-prop="entity.address" bindinput="change" placeholder="请输入详细地址"></textarea>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
@@ -73,7 +85,7 @@
 
 		<view class="padding-sm flex flex-wrap">
 			<view class="padding-xs">
-				<view class="cu-tag bg-green light"  wx:for="{{productTypeList}}" wx:key="index" >{{item.name}}</view>
+				<view class="cu-tag bg-green light" wx:for="{{productTypeList}}" wx:key="index">{{item.name}}</view>
 			</view>
 		</view>
 
@@ -114,7 +126,7 @@
 
 <view class="DrawerClose {{modalName=='viewModal'?'show':''}}">
 	<view class="iconBtnGroup">
-	<!-- 添加分类 -->
+		<!-- 添加分类 -->
 		<text class="cuIcon-roundadd" bindtap="tapAddShowModel" data-target="DialogModal2"></text>
 		<text class="cuIcon-pullright" bindtap="hideModal"></text>
 	</view>
@@ -123,9 +135,9 @@
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 
-		<empty wx:if="{{productTypeList.length==0?true:false}}" isFull="{{true}}" ></empty>
-		<view class="cu-item" wx:for="{{productTypeList}}" wx:key="index" >
-		
+		<empty wx:if="{{productTypeList.length==0?true:false}}" isFull="{{true}}"></empty>
+		<view class="cu-item" wx:for="{{productTypeList}}" wx:key="index">
+
 			<view class="content typeListBox">
 				<view>{{item.name}}</view>
 				<view class="btnGroup">

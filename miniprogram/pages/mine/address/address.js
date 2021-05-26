@@ -161,19 +161,20 @@ Page({
 
   },
   setAllDefaulFalse() {
-    let where = {
-      _openid: openid
-    }
-    let payload = {
-      default: false
-    }
-    app.utils.cl(where);
+   
+    // app.utils.cl(where);
     //先把所有收货地址修改为不是默认
     return new Promise((success) => {
+      let where = {
+        _openid: openid
+      }
+      let payload = {
+        default: false
+      }
       app.dbbase.updateWhere('shoppingAddress', where, payload).then(res => {
         app.utils.cl('修改所有地址为false');
         app.utils.cl(res);
-        success(res)
+        return success(res)
       })
     })
 

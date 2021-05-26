@@ -59,7 +59,8 @@ Page({
     //接收参数
     if (options.id) {
       that.setData({
-        ['entity._id']: options.id
+        ['entity._id']: options.id,
+        id:options.id
       })
       await this.initData()
       app.utils.cl('判断是否已经有地址');
@@ -80,8 +81,14 @@ Page({
       //查询产品类型
       this.geProductTypeList()
       app.dbbase.query('shop', id).then(res => {
-        app.utils.cl(res, '输出')
+        app.utils.cl(res, '输出店铺查询结果')
         if (res.data.length != 0) {
+          if(!res.data.startTime){
+            res.data[0].startTime="08:00"
+          }
+          if(!res.data.endTime){
+            res.data[0].endTime="22:00"
+          }
           that.setData({
             entity: res.data[0],
             region: [res.data[0].province, res.data[0].city, res.data[0].county]
@@ -249,6 +256,8 @@ Page({
     temp.county = region[2]
     //获取修改id
     let id = that.data.entity._id
+    app.utils.cl(id,'输出id');
+    
 
     app.utils.cl(temp);
     //判断空
@@ -260,19 +269,18 @@ Page({
       title: '装修中，请等待',
     })
 
-    //修改数据
-    let regions = this.data.region
-    temp.province = regions[0];
-    temp.city = regions[1];
-    temp.county = regions[2];
     app.utils.cl(temp, '输出修改数据');
 
 
     if (this.data.save) {
+      app.utils.cl(that.data.entity._id,'id');
+      
       wx.navigateTo({
-        url: '../../shopManagement/shopManagement?id=' + this.data.entity._id,
+        url: '../../shopManagement/shopManagement?id=' + that.data.id,
       })
     } else {
+      app.utils.cl(temp,'保存');
+      
       app.dbbase.update('shop', id, temp).then(res => {
         wx.hideLoading({
           success: (res) => {
@@ -280,6 +288,7 @@ Page({
           },
         })
       });
+      app.utils.cl(that.data.entity,'保存后的')
       this.setData({
         save: true
       })
@@ -347,6 +356,7 @@ Page({
   conformAdd() {
     let that = this
     var tempProductType = this.data.addProductType;
+    tempProductType.shopId=that.data.id
     //转换为json格式，必须的，不然会报错
     // tempProductType = JSON.parse(JSON.stringify(tempProductType))
     // app.utils.cl(tempProductType);
@@ -362,7 +372,7 @@ Page({
     //添加分类
     let payload = {
       name: that.data.addProductType.name,
-      shopId: that.data.entity.shopId
+      shopId: that.data.id//店铺id
     }
     let id=that.data.addProductType._id
     if(that.data.isUpdate){
@@ -379,7 +389,6 @@ Page({
       that.geProductTypeList()
       that.hideAddShowModal()
       app.utils.hint('添加成功')
-
     })
 
   },
@@ -416,5 +425,23 @@ Page({
       addModel: 'DialogModal2',
       isUpdate:true
     })
+  },
+  tapBackground(){
+    wx.chooseImage({
+      count: 1, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        //上传头像
+        //从全局获取七牛云授权token
+        let token = app.globalData.qiniuToken
+        app.utils.cl(res.tempFilePaths[0], '店铺背景')
+        app.utils.upload(res.tempFilePaths[0], token).then((re) => {
+          that.setData({
+            ['entity.shopBackground']: re.fileURL
+          })
+        })
+      }
+    });
   }
 })
