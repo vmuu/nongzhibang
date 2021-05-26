@@ -175,6 +175,12 @@ Page({
     } else if (app.utils.isEmpty(entity.shopDescribe)) {
       app.utils.hint('店家描述不能为空');
       return false
+    }else if (app.utils.isEmpty(that.data.shopAnnouncement)) {
+      app.utils.hint('店铺公告不能为空');
+      return false
+    } else if (app.utils.isEmpty(that.data.shopBackground)) {
+      app.utils.hint('请上传店铺背景');
+      return false
     } else if (app.utils.isEmpty(entity.address)) {
       app.utils.hint('详细地址不能为空');
       return false

@@ -2,6 +2,7 @@
 import http from './config/http'
 import utils from './config/utils'
 import dbbase from './config/dbbase'
+import { unix } from './plugins/moment'
 
 App({
   /**
@@ -10,8 +11,8 @@ App({
   utils: utils,
   dbbase: dbbase,
   http: http,
-  change:utils.change,
-  isEmpty:utils.isEmpty,
+  change: utils.change,
+  isEmpty: utils.isEmpty,
   /**
    * 程序全局变量
    */
@@ -32,7 +33,6 @@ App({
         traceUser: true,
       })
     };
-
 
     //获取七牛云授权
     http.get('/api/File/Token').then((res) => {
@@ -56,7 +56,7 @@ App({
     try {
       var value = wx.getStorageSync('openid')
       if (value) {
-        this.globalData.openid=value;
+        this.globalData.openid = value;
         utils.cl('[缓存]获取openid成功：', value)
       } else {
         utils.ce('[缓存]获取openid为空，跳转到登录页面')
@@ -67,20 +67,25 @@ App({
       utils.ce('[缓存]获取openid失败', e)
     }
   },
+  
   /**
    * 获取openid
    */
-  onGetOpenid: function () {
+  async onGetOpenid() {
+    let that = this
     wx.showLoading({
-      title: '登录中...',
+      title: '信息获取中...',
     })
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
       data: {},
-      success: res => {
+      success:async res => {
+        //注册
+        await this.register(res.result.openid)
         utils.cl('[云函数] [login] user openid: ', res.result.openid)
         this.globalData.openid = res.result.openid
+       
         //异步方式缓存openid
         try {
           wx.setStorageSync('openid', res.result.openid)
@@ -95,11 +100,46 @@ App({
             })
           },
         })
+         
       },
       fail: err => {
         utils.ce('[云函数] [login] 调用失败', err)
         wx.navigateTo({
           url: '../deployFunctions/deployFunctions',
+        })
+      }
+    })
+  },
+  /**
+   * 注册用户
+   */
+  register(value) {
+    let that = this
+    that.utils.cl('注册');
+
+    this.dbbase.queryOpenId('user', value).then(res => {
+      that.utils.cl(res,'查询用户');
+      
+      if (res.data.length!=0) {
+        //已经注册
+      } else {
+        let payload = {
+          isShop: false
+        }
+        wx.showLoading({
+          title: '注册中...',
+        })
+        //注册
+        that.dbbase.add('user', payload).then(res => {
+          that.utils.cl(res)
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '注册成功',
+                icon: 'none'
+              })
+            },
+          })
         })
       }
     })
