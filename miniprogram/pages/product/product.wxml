@@ -51,7 +51,7 @@
       </view>
       <view class="action">
         <view class="text-grey text-xs">￥{{item.price}}</view>
-        <view class="cu-tag round bg-grey sm">{{item.MonthlySales}}</view>
+        <view class="cu-tag round bg-grey sm">月售{{item.MonthlySales}}</view>
       </view>
     </view>
       </view>
