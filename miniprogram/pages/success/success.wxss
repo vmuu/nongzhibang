@@ -1,10 +1,12 @@
 /* miniprogram/pages/success/success.wxss *//* 店铺及产品详情 */
 .all_merchants {
-  width: 100%;
+  width: 96%;
+  margin: 15rpx;
+  margin-top: 10rpx;
+
   padding: 10rpx;
   background-color: white;
   display: flex;
-  margin-top: 20rpx;
   border-radius: 20rpx;
 }
 
@@ -69,7 +71,8 @@
   background-color: #fff;
 }
 .addressBox {
-  margin: 10rpx 10rpx 0;
+  width: 96%;
+  margin: 15rpx;
   display: flex;
   align-items: center;
 }
@@ -125,4 +128,10 @@
 }
 .successtexttype{
   font-size: 35rpx;
+}
+/* 状态 */
+.type-order{
+width: 96%;
+margin: 15rpx;
+
 }

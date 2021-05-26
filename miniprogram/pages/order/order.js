@@ -12,7 +12,16 @@ Page({
     allOrder:[],
     ingOrder:[],
     accomplishOrder:[],
-    cancelOrder:[]
+    cancelOrder:[],
+    //从哪开始查询
+    max: 0,
+    //一次性查几条数据
+    limit: 4,
+    //触底时是否继续请求数据库
+    theOnReachBottom0: true,
+    theOnReachBottom1: true,
+    theOnReachBottom2: true,
+    theOnReachBottom3: true,
   },
   onLoad: function () {
     let that = this
@@ -28,10 +37,12 @@ Page({
     //  .exec() 不加不执行
 
     //全部订单
-    app.dbbase.queryOpenId('order',app.globalData.openid).then((res)=>{
+    app.dbbase.orderOpenId(app.globalData.openid,this.data.max,this.data.limit).then((res)=>{
       app.utils.cl(res.data);
       this.setData({
-        allOrder:res.data
+        allOrder:res.data,
+        //初始化后从第几个开始加载
+        max: this.data.limit
       })
     })
     //交易中订单
@@ -63,16 +74,71 @@ Page({
     })
   },
   swiperChange(e) {
+    this.setData({
+      showLoadMore: false
+    })
     let that = this
-    console.log(e.detail.current);
+    //console.log(e.detail.current);
     that.setData({
       TabCur: e.detail.current
     })
   },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
   reachBottom() {
-    wx.showToast({
-      title: 'title',
-    })
-  }
-
+    app.utils.cl(this.data.TabCur);
+    
+    //是否继续加载数据？
+    if (this.data.theOnReachBottom) {
+      //当数据库里还有商品时，继续请求数据库
+      setTimeout(() => {
+        this.setListData();
+      }, 300);
+    } else {
+      //当数据库里没有商品时，停止请求数据库，并弹出提示
+      this.setData({
+        loadMoreText: "没有更多商品了!",
+        showLoadMore: true,
+      })
+    }
+  },
+  /**
+   * 请求商品数据
+   */
+  setListData(e) {
+    switch(TabCur){
+      case 0:{
+        app.dbbase.productlist(this.data.max, this.data.limit).then((res) => {
+          //当数据库里商品加载完毕之后停止请求数据库
+          if (res.data.length == 0) {
+            this.setData({
+              loadMoreText: "没有更多商品了!",
+              showLoadMore: true,
+              theOnReachBottom: false
+            })
+            app.utils.hint('没有更多商品了!');
+          }
+          //当数据库里还有商品数据时，继续追加到本地数据
+          else {
+            this.setData({
+              hotProductlist: this.data.hotProductlist.concat(res.data),
+              max: this.data.max + this.data.limit
+            })
+          }
+        })
+        break;
+      }
+      case 1:{
+        break;
+      }
+      case 2:{
+        break;
+      }
+      case 3:{
+        break;
+      }
+    }
+    
+  },
 })

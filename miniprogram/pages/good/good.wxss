@@ -1,10 +1,10 @@
 /* 店铺及产品详情 */
 .all_merchants {
-  width: 100%;
-  padding: 10rpx;
+  width: 96%;
+  margin: 15rpx;
+  margin-top: 10rpx;
   background-color: white;
   display: flex;
-  margin-top: 20rpx;
   border-radius: 20rpx;
 }
 
@@ -83,7 +83,9 @@
   background-color: #fff;
 }
 .addressBox {
-  margin: 10rpx 10rpx 0;
+  width: 96%;
+  margin: 15rpx;
+  margin-top: 10rpx;
   display: flex;
   align-items: center;
 }
@@ -122,7 +124,7 @@
   justify-content: space-between;
 }
 .controlBtnBox .order-button{
-width: 70%;
+width: 47%;
 height: 70rpx;
 }
 .radioBox{
@@ -141,4 +143,11 @@ height: 70rpx;
 }
 .order-button{
   height: 50%;
+}
+/* 单选框 */
+.radio-group{
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;  
+  align-items: center; 
 }

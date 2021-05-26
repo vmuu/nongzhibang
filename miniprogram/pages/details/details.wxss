@@ -1,10 +1,12 @@
 /* 店铺及产品详情 */
 .all_merchants {
-  width: 100%;
+  width: 96%;
+  margin: 15rpx;
+  margin-top: 5rpx;
   padding: 10rpx;
   background-color: white;
   display: flex;
-  margin-top: 20rpx;
+
   border-radius: 20rpx;
 }
 
