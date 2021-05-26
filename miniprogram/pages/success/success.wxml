@@ -60,8 +60,17 @@
         <view class="address">云南省昆明市五华区</view>
         <view class="addressDetail">茭菱路云南农业职业技术学院</view>
       </view>
-      <text class="cuIcon-edit iconEdit"></text>
     </view>
-
   </view>
 </view>
+
+
+<!-- 支付方式 -->
+<view class="flex-sub text-center">
+  
+      <view class="solid-bottom text-xxl padding">应付金额：
+        <text class="text-price text-red">80</text>
+      </view>
+      <view class="padding solid-bottom successtexttype">下单时间：2021年5月26日21:59:10</view>
+      <view class="padding  successtexttype">支付方式：线下支付</view>
+    </view>

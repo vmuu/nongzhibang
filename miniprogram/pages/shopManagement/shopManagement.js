@@ -556,7 +556,9 @@ Page({
   showShopAnnouncement(e) {
     app.utils.hint(e.currentTarget.dataset.showshopannouncement,3000);
   },
-  showShopAnnouncement(e) {
-    app.utils.hint(e.currentTarget.dataset.showshopannouncement,3000);
+  showAddress(e) {
+    app.utils.cl(e);
+    
+    app.utils.hint(e.currentTarget.dataset.showaddress,3000);
   },
 })
