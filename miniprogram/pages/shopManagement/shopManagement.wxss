@@ -56,3 +56,52 @@
 .cu-form-group{
   text-align: left;
 }
+.addressBox {
+  margin: 10rpx 10rpx 0;
+  display: flex;
+  align-items: center;
+}
+.addressItem {
+  width: 100%;
+  position: relative;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.btnAdd{
+  text-align: center;
+  border: dashed 1rpx green;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: green;
+}
+.cu-tag {
+	font-size: 24rpx;
+	vertical-align: middle;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 0rpx 16rpx;
+	height: 48rpx;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+	white-space: nowrap;
+}
+.cu-tag.badge {
+	border-radius: 200rpx;
+	position: absolute;
+	top: 60rpx;
+	right: 50rpx;
+	font-size: 20rpx;
+	padding: 0rpx 10rpx;
+	height: 28rpx;
+  color: var(--white);
+}
+.cu-tag.badge:not([class*="bg-"]) {
+	background-color: white;
+}
+.special_offer_foot_title {
+  font-size: 26rpx;
+  width: 450rpx;
+}

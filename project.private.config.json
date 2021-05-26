@@ -1,107 +1,107 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/mine/identification/identification",
-          "pathName": "pages/mine/identification/identification",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/search/search",
-          "pathName": "pages/search/search",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/identification/identification",
-          "pathName": "pages/mine/identification/identification",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/log/log",
-          "pathName": "pages/mine/log/log",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=cbddf0af60924b600676347b2e4cb19c",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/success/success",
-          "pathName": "pages/success/success",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/goods/goods",
-          "pathName": "pages/index/goods/goods",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/good/good",
-          "pathName": "pages/good/good",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/address/address",
-          "pathName": "pages/mine/address/address",
-          "query": "",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/identification/identification",
+                    "pathName": "pages/mine/identification/identification",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/search/search",
+                    "pathName": "pages/search/search",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/identification/identification",
+                    "pathName": "pages/mine/identification/identification",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/log/log",
+                    "pathName": "pages/mine/log/log",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=cbddf0af60924b600676347b2e4cb19c",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/success/success",
+                    "pathName": "pages/success/success",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/goods/goods",
+                    "pathName": "pages/index/goods/goods",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/good/good",
+                    "pathName": "pages/good/good",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/address/address",
+                    "pathName": "pages/mine/address/address",
+                    "query": "",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

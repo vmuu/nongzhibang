@@ -7,7 +7,7 @@
 <view class="all_merchants">
   <view class="all_merchants_con">
     <text class="merchants_title">店铺：{{shop.shopName}}</text>
-    <text class="product-type">分类：{{productType.Name}}</text>
+    <text class="product-type">分类：{{productType.name}}</text>
     <view>
      地址： <text class="cuIcon-location textOverflow">{{shop.location}}</text>
     </view>
@@ -41,7 +41,7 @@
 
 
 <!-- 产品详情 -->
-<view class="all_merchants">
+<!-- <view class="all_merchants">
   <view class="all_merchants_con">
     <view class="merchants_marking_warp">
     <text class="merchants_title">产品详情</text>
@@ -49,7 +49,7 @@
       <view class="merchants_markings">产品口味：麻辣/微辣</view>
     </view>
   </view>
-</view>
+</view> -->
 
 
 <!-- 收获地址 -->
@@ -62,11 +62,11 @@
         <view class="address">云南省昆明市五华区</view>
         <view class="addressDetail">茭菱路云南农业职业技术学院</view>
       </view>
-      <text class="cuIcon-edit iconEdit"></text>
+      <!-- <text class="cuIcon-edit iconEdit"></text> -->
     </view>
     <view class="pubTopLine controlBtnBox">
-      <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view>
-      <view bindtap="tapDelete">删除</view>
+      <!-- <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view> -->
+      <button class="cuIcon-edit bg-green round order-button" bindtap="AddressNavigateTo">修改收货地址</button>
     </view>
   </view>
 </view>
@@ -80,5 +80,6 @@
 
 <!-- 交易订单 -->
 <view class="cu-bar bg-white tabbar botton-box  ">
-  <button class="bg-green submit radius">订单确定</button>
+  <button class="bg-green submit radius" bindtap="OrderNavigateTo">订单确定</button>
+
 </view>

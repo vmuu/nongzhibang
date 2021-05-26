@@ -67,6 +67,8 @@ Page({
   },
   //页面加载
   onLoad(shop) {
+    app.utils.cl(shop);
+    
     this.setData({
       picker:[]
     })
@@ -550,5 +552,11 @@ Page({
         isSubmit: true
       })*/
     }
+  },
+  showShopAnnouncement(e) {
+    app.utils.hint(e.currentTarget.dataset.showshopannouncement,3000);
+  },
+  showShopAnnouncement(e) {
+    app.utils.hint(e.currentTarget.dataset.showshopannouncement,3000);
   },
 })
