@@ -1,6 +1,8 @@
 import config from '../config/config.js'
 import qiniuUploader from '../plugins/qiniuUploader'
 import http from 'http.js'
+import moment from '../plugins/moment'
+
 
 class Utils {
   cl = (...object) => {
@@ -95,11 +97,11 @@ class Utils {
   /**
    * 弹出提示，无图标
    */
-  hint = (object = "成功",duration=1500) => {
+  hint = (object = "成功", duration = 1500) => {
     wx.showToast({
       title: object,
       icon: 'none',
-      duration:duration
+      duration: duration
     })
   }
   show(object = "成功") {
@@ -120,24 +122,30 @@ class Utils {
     if (value == ' ') return true;
     if (value == 'null') return true;
     if (value == undefined) return true;
-    if (value.length==0) return true;
+    if (value.length == 0) return true;
     return false;
   }
   //校验身份证
-  checkIdentity(value){
+  checkIdentity(value) {
     let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-		if (!reg.test(value)) return false;
-		return true;
+    if (!reg.test(value)) return false;
+    return true;
   }
   //校验电话号码
-  checkTel(value){
+  checkTel(value) {
     let reg = /^[1][3-9][0-9]{9}$/;
-		if ((!reg.test(value))) {
-			return false;
-		} else {
-			return true;
-		}
+    if ((!reg.test(value))) {
+      return false;
+    } else {
+      return true;
+    }
   }
-
+  dateformat(date,rule='YYYY-MM-DD HH:mm:ss'){
+    if(date){
+      return moment(date).format(rule);
+    }
+    return moment().format(rule);
+    
+  }
 }
 export default new Utils

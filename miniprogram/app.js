@@ -2,7 +2,6 @@
 import http from './config/http'
 import utils from './config/utils'
 import dbbase from './config/dbbase'
-import { unix } from './plugins/moment'
 
 App({
   /**
@@ -13,6 +12,7 @@ App({
   http: http,
   change: utils.change,
   isEmpty: utils.isEmpty,
+  dateformat:utils.dateformat,
   /**
    * 程序全局变量
    */

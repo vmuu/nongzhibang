@@ -19,6 +19,10 @@ Page({
   },
 
   onLoad: function () {
+    
+    console.log(app.dateformat('Wed May 26 2021 23:53:47 GMT+0800 (China Standard Time)'));
+    
+    
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
