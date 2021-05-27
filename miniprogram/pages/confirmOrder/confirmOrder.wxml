@@ -10,7 +10,7 @@
       <text class="merchants_title">店铺：{{shop.shopName}}</text>
       <text class="product-type">分类：{{productType.name}}</text>
       <view>
-        地址： <text class="cuIcon-location textOverflow">{{shop.location}}</text>
+        地址： <text class="cuIcon-location textOverflow">{{order.shopAddress}}</text>
       </view>
     </view>
   </view>

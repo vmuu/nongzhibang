@@ -42,7 +42,7 @@
   </view>
 </view>
 
-<view class="padding-lr-sm padding-top-xs">
+<view class="padding-lr-sm padding-top-xs  round-xs">
   <view class="cu-bar bg-white solid-bottom">
     <view class="action">
       <text class="cuIcon-title text-orange"></text>订单状态
@@ -80,17 +80,19 @@
   </view>
 </view>
 <!-- 支付方式 -->
-<view class="flex-sub text-center padding-sm">
-
-  <view class="solid-bottom text-l padding">下单金额：
-    <text class="text-price text-red">{{order.howMoney}}</text>
-  </view>
-  <view class="solid-bottom text-l text-left">订单编号：
-    <text>{{order.orderNumber}}</text>
-  </view>
-  <view class="grid col-2 text-sm padding-tb-sm">
-    <view class="text-left">下单时间：{{order.addOrderDate}}</view>
-    <view class="text-right" >支付方式：{{order.payType=='offline'?'线下支付':'微信支付'}}</view>
-
+<view class="padding-lr-sm round-xs">
+  <view class="flex-sub text-center padding-sm bg-white">
+    <view class="solid-bottom text-l padding">下单金额：
+      <text class="text-price text-red">{{order.howMoney}}</text>
+    </view>
+    <view class="solid-bottom text-l text-left padding-tb-sm">订单编号：
+      {{order.orderNumber}}
+    </view>
+    <view class="solid-bottom text-l padding-tb-sm">
+      <view class="text-left">下单时间：{{order.addOrderDate}}</view>
+    </view>
+    <view class=" text-l padding-tb-sm">
+      <view class="text-left">支付方式：{{order.payType=='offline'?'线下支付':'微信支付'}}</view>
+    </view>
   </view>
 </view>

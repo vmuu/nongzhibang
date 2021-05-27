@@ -15,9 +15,10 @@
     <view class="content" style="top:{{StatusBar}}px">
       订单管理
     </view>
-    <slot name="right"></slot>
   </view>
 </view>
+
+
 <view class="content ">
   <scroll-view id="scrollView" scroll-x class="bg-white nav shadow-warp">
     <view class="flex text-center">

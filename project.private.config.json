@@ -136,6 +136,12 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "id=cbddf0af60afac020c2e99a374d41e3d",
           "scene": null
+        },
+        {
+          "name": "pages/order/order",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
         }
       ]
     }

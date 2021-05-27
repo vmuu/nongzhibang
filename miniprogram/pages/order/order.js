@@ -39,7 +39,9 @@ Page({
     let query = wx.createSelectorQuery();
     query.select('.content').boundingClientRect(rect => {
       let scrolView = rect.height;
-      let height = app.globalData.sysInfo.windowHeight - this.data.CustomBar - scrolView
+      app.utils.cl(scrolView,'scrolView');
+      
+      let height = app.globalData.sysInfo.windowHeight - this.data.CustomBar -scrolView-this.data.StatusBar
       that.setData({
         orderItemHeight: height
       })

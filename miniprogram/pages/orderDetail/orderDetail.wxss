@@ -130,5 +130,7 @@
 .type-order{
 width: 96%;
 margin: 15rpx;
-
+}
+.round-xs{
+  border-radius: 6rpx;
 }
