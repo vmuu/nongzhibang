@@ -1,6 +1,7 @@
 import db from '../../config/dbbase.js';
 import utils from '../../config/utils.js';
 const app=getApp();
+var that;
 Page({
   data: {
     swiperList: [{
@@ -8,18 +9,21 @@ Page({
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
     }, 
     ],
-    product:[],
-    productType:[],
-    shop:[]
+    product:{},
+    productType:{},
+    shop:{},
+    id:null
   },
   //页面加载
   onLoad(product) {
+    that=this;
     wx.showLoading({
       title: '加载中...',
       mask: true
     })
+    that.data.id=product.id
     //要跳转的商品
-    db.query("product",product.id).then((res)=>{
+    db.query("product",that.data.id).then((res)=>{
       app.utils.cl(res);
       this.setData({
         product:res.data[0]
@@ -53,9 +57,8 @@ Page({
     })
   },
   goodNavigateTo(e){
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../confirmOrder/confirmOrder?id='+e.currentTarget.dataset.id,
+      url: '../confirmOrder/confirmOrder?id='+that.data.id,
     })
   }
 })

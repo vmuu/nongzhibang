@@ -16,8 +16,9 @@
 
 
 <empty wx:if="{{addressList.length==0?true:false}}" isFull="{{false}}" ></empty>
-<block wx:for="{{addressList}}" wx:key="index">
-  <view class="addressBox">
+
+<block wx:for="{{addressList}}" wx:key="index" >
+  <view class="addressBox" bindtap="tapSelectThis" data-id="{{item._id}}">
     <view class="addressItem">
       <view class="addressBox">
         <view class="iconBox"><text class="cuIcon-locationfill"></text></view>

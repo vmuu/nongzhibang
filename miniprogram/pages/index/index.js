@@ -208,7 +208,7 @@ Page({
   hotproduct(e) {
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../details/details?id=' + e.currentTarget.dataset.id,
+      url: '../productDetails/productDetails?id=' + e.currentTarget.dataset.id,
     })
   },
 

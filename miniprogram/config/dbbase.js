@@ -51,6 +51,29 @@ class DBBase {
     })
 
   }
+    /**
+   * 查询，自定义条件
+   */
+  queryWhere = function (table, where) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table && where) {
+        db.collection(table).where(
+          where).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table,id）不可空')
+      }
+    })
+
+  }
   /**
    * 查询全部订单，通过openid
    */

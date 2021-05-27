@@ -19,13 +19,21 @@ Page({
       default: false
     },
     addressList: [],
-    isUpdate: false
+    isUpdate: false,
+    productId: null
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.state()
+    app.utils.cl(options);
+    if (options.id) {
+      that.setData({
+        productId: options.id
+      })
+    }
+
     that.initData()
   },
   state() {
@@ -161,7 +169,7 @@ Page({
 
   },
   setAllDefaulFalse() {
-   
+
     // app.utils.cl(where);
     //先把所有收货地址修改为不是默认
     return new Promise((success) => {
@@ -178,6 +186,15 @@ Page({
       })
     })
 
+  },
+  tapSelectThis(e) {
+    app.utils.cl(e);
+    let addressId=e.currentTarget.dataset.id
+    if (that.data.productId) {
+      wx.redirectTo({
+        url: '../../confirmOrder/confirmOrder?id='+that.data.productId+'&addressId='+addressId,
+      })
+    }
   }
 
 })

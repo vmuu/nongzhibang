@@ -118,6 +118,12 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "id=undefined",
           "scene": null
+        },
+        {
+          "name": "pages/productDetails/productDetails",
+          "pathName": "pages/productDetails/productDetails",
+          "query": "id=b00064a7608fc04213fb569323b4faab",
+          "scene": null
         }
       ]
     }
