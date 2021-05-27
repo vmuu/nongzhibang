@@ -160,3 +160,16 @@ height: 70rpx;
 .nextBtnBox button {
   height: 80rpx;
 }
+.payTypeBox{
+  position: relative;
+}
+.checkIcon{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  opacity: 0.9;
+  color: green;
+  background-color: #f0f0f0;
+  border-radius:0 0 0 10rpx;
+  padding: 2rpx;
+}

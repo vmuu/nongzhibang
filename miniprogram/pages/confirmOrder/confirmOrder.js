@@ -2,6 +2,7 @@
 import db from '../../config/dbbase.js';
 import utils from '../../config/utils.js';
 const app = getApp()
+var that;
 Page({
 
   /**
@@ -15,13 +16,15 @@ Page({
     ],
     product:[],
     productType:[],
-    shop:[]
+    shop:[],
+    payType:'offline'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that=this;
       app.utils.hint('暂不支持该功能！')
       wx.showLoading({
         title: '加载中...',
@@ -57,57 +60,20 @@ Page({
     })
   },
   OrderNavigateTo(e){
+    if(that.data.payType=='weixin'){
+      app.utils.hint('该功能暂不支持');
+      return
+    }
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '../orderDetail/orderDetail?id='+e.currentTarget.dataset.id,
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  tapSelectPay(e){
+    app.utils.cl(e);
+    let type= e.currentTarget.dataset.type
+    that.setData({
+      payType:type
+    })
   }
 })

@@ -85,14 +85,16 @@
     </label>
 </radio-group> -->
 <view class="grid col-2 bg-white margin-top-xs">
-  <view class="padding-sm">
-    <view class="bg-gray padding-sm radius text-center light">
-      <view class="text-lg">微信支付</view>
+  <view class="padding-sm payTypeBox" bindtap="tapSelectPay" data-type="weixin">
+    <view class="{{payType=='weixin'?'bg-gradual-green':'bg-gray'}} padding-sm radius text-center shadow-green">
+      <view class="text-lg"><text class="cuIcon-weixin"></text> 微信支付</view>
+      <text class="cuIcon-check checkIcon" wx:if="{{payType=='weixin'?true:false}}" ></text>
     </view>
   </view>
-  <view class="padding-sm">
-    <view class="bg-gradual-green padding-sm radius text-center shadow-blur">
-      <view class="text-lg">线下支付</view>
+  <view class="padding-sm payTypeBox" bindtap="tapSelectPay"  data-type="offline">
+    <view class="{{payType=='offline'?'bg-gradual-green':'bg-gray'}} padding-sm radius text-center shadow-green">
+      <view class="text-lg"><text class="cuIcon-footprint"></text>线下支付</view>
+      <text class="cuIcon-check checkIcon" wx:if="{{payType=='offline'?true:false}}" ></text>
     </view>
   </view>
 </view>
