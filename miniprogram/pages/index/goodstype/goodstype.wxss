@@ -56,20 +56,24 @@
 .goods_con_text_r {
   text-align: center;
   font-size: 35rpx;
-  background: rgb(255 255 255 / 47%);
+  background: rgb(255 255 255 / 60%);
   position: relative;
   top: -90rpx;
 }
 
 .orginnal_price {
-  color: orange;
-  text-align: left;
+  
+  
   font-size: 29rpx;
+  color: red;
+  font-weight: bold;
+
 }
 
 .price {
   margin-left: 10rpx;
-  color: #d8d8d8;
+  color: #4F4D4E;
+  font-weight: bold;
   text-decoration: line-through;
   text-align: right;
   font-size: 26rpx;
