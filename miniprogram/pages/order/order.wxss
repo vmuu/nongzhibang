@@ -22,3 +22,11 @@ page {
 .loadmore{
   text-align: center;
 }
+
+.switch-sexx::after {
+	content: "\e697";
+}
+
+.switch-sexx::before {
+	content: "\e736";
+}

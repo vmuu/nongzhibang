@@ -77,23 +77,23 @@ class DBBase {
   /**
    * 查询全部订单，通过openid
    */
-  orderOpenId = function (openId, skip, limit) {
-    const db = wx.cloud.database()
+  // orderOpenId = function (openId, skip, limit) {
+  //   const db = wx.cloud.database()
 
-    return new Promise((success, error) => {
+  //   return new Promise((success, error) => {
 
-      db.collection("order").where({
-        _openid: openId
-      }).orderBy('addOrderDate', 'desc').skip(skip).limit(limit).get({
-        success: res => {
-          return success(res)
-        },
-        fail: err => {
-          console.error('[数据库] [查询记录] 失败：', err)
-        }
-      })
-    })
-  }
+  //     db.collection("order").where({
+  //       _openid: openId
+  //     }).orderBy('addOrderDate', 'desc').skip(skip).limit(limit).get({
+  //       success: res => {
+  //         return success(res)
+  //       },
+  //       fail: err => {
+  //         console.error('[数据库] [查询记录] 失败：', err)
+  //       }
+  //     })
+  //   })
+  // }
   /**
    * 查询全部订单，通过openid
    */
