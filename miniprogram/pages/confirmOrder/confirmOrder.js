@@ -28,7 +28,9 @@ Page({
     payType: 'offline',
     shoppingAddress: {},
     id: null,
-    addressId: null
+    addressId: null,
+    order: {},
+    orderBtnDisable:false
   },
 
   /**
@@ -37,10 +39,12 @@ Page({
   async onLoad(options) {
     this.state()
     that.data.id = options.id
+    app.utils.cl(options.id);
+
     if (options.addressId) {
       that.data.addressId = options.addressId
     }
-    app.utils.cl(that.data.addressId,'店址');
+    app.utils.cl(that.data.addressId, '店址');
 
 
     wx.showLoading({
@@ -59,7 +63,7 @@ Page({
   },
   onShow() {
     let addressWhere;
-    app.utils.cl(that.data.addressId,'店址');
+    app.utils.cl(that.data.addressId, '店址');
     //查询收货默认地址
     if (that.data.addressId) {
       addressWhere = {
@@ -80,7 +84,7 @@ Page({
     })
   },
   initData() {
-    
+
     //查询产品信息
     db.query("product", that.data.id).then((res) => {
       app.utils.cl(res);
@@ -106,14 +110,79 @@ Page({
       url: '../mine/address/address?id=' + that.data.id
     })
   },
-  OrderNavigateTo(e) {
+  async OrderNavigateTo(e) {
     if (that.data.payType == 'weixin') {
       app.utils.hint('该功能暂不支持');
       return
     }
-    wx.navigateTo({
-      url: '../orderDetail/orderDetail?id=' + e.currentTarget.dataset.id,
+    //确认下单
+    let orderInfo=await that.confirmOrder();
+    app.utils.cl(orderInfo,'阿斯蒂芬');
+    
+    wx.showLoading({
+      title: '正在处理中',
+      mask:true
     })
+
+
+    app.dbbase.add('order',orderInfo).then(res=>{
+      app.utils.cl(res);
+      app.utils.cl(res._id,'id');
+      
+      wx.hideLoading({
+        success: (res) => {},
+      })
+      wx.redirectTo({
+        url: '../orderDetail/orderDetail?id=' + res._id,
+      })
+    })    
+  },
+  getOrderNumber(){
+     //获取当前时间，转换成文件名
+     let year="",month="",day="",timestamp="",hours="",minutes="",seconds="";
+     let date = new Date();
+     year = date.getFullYear().toString();
+     month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
+     day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+     //获取时间戳
+     timestamp = (new Date()).valueOf();
+     hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+     minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+     seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+     //生成订单
+     let orderNumber=year+month+day+hours+minutes+seconds+timestamp;
+     return orderNumber;
+  },
+  async confirmOrder() {
+    //生成订单号
+    let orderNo=await this.getOrderNumber();
+    let shoppingAddress=that.data.shoppingAddress;
+    //店铺地址
+    let shopAddress=shoppingAddress.province+shoppingAddress.city+shoppingAddress.county+shoppingAddress.address;
+    //
+    app.utils.cl(that.data.product);
+    app.utils.cl(that.data.shop);
+    
+     let order = {
+      img: that.data.product.image,
+      shopName: that.data.shop.shopName,
+      shopId:that.data.shop._id,
+      orderState: 0,
+      productName: that.data.product.name,
+      addOrderDate: new Date(),
+      orderNumber:orderNo,
+      payType:"offline",
+      howMoney: that.data.product.currentPrice,
+      shopAddress:shopAddress,//店铺地址
+      shoppingAddressId:shoppingAddress._id,//收货地址id
+      // orderUserId: null,
+      // orderUserName: null,
+      shopImage:that.data.shop.shopImage,
+      productId: that.data.product._id
+    }
+    app.utils.cl(that.data.order);
+    return order;
+    
   },
   tapSelectPay(e) {
     app.utils.cl(e);

@@ -69,5 +69,5 @@
 </view> -->
 
 <view class="nextBtnBox">
-	<button class="cu-btn round bg-green shadow" bindtap="goodNavigateTo">立即订购</button>
+  <button class="cu-btn round bg-green shadow text-lg" bindtap="goodNavigateTo" data-id="{{product._id}}">立即订购</button>
 </view>

@@ -1,7 +1,6 @@
-
-import db from '../../config/dbbase.js';
-import utils from '../../config/utils.js';
 const app = getApp()
+var that;
+var openid;
 // miniprogram/pages/success/success.js
 Page({
 
@@ -33,7 +32,10 @@ Page({
       name: '已完成'
     }, ],
     num: 0,
-    scroll: 0
+    scroll: 0,
+    id: null,
+    order: null,
+    shoppingAddress:{}
   },
   basicsSteps() {
     this.setData({
@@ -55,56 +57,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.state()
+    that.data.id = options.id
+    that.initData()
     app.utils.cl(options);
-    
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  state() {
+    that = this,
+      openid = app.globalData.openid
   },
+  initData() {
+    app.dbbase.query('order', that.data.id).then(res => {
+      app.utils.cl(res);
+      let data=res.data[0];
+      data.addOrderDate=app.dateformat(data.addOrderDate)
+      that.setData({
+        order: data
+      })
+      app.utils.cl(that.data.order, '订单');
+      let addressId = that.data.order.shoppingAddressId
+      app.utils.cl(addressId);
+      
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+      app.dbbase.query('shoppingAddress', addressId).then(res => {
+        app.utils.cl(res, '收货地址');
+        that.setData({
+          shoppingAddress:res.data[0]
+        })
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+      })
+    })
 
   }
 })
