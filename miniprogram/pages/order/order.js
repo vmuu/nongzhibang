@@ -57,9 +57,9 @@ Page({
   onLoad: function () {
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
       this.setData({
-        shop_id:res.data[0]._openid
+        shop_id:res.data[0]._id
       })
-      app.utils.cl(this.data.shop_id);
+      app.utils.cl("shop_id",this.data.shop_id);
     })
     let that = this
     //设置订单盒子的高度
@@ -267,119 +267,346 @@ Page({
    * 请求商品数据
    */
   setListData(e) {
-    switch (this.data.TabCur) {
-      case 0: {
-        app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
-          //当数据库里商品加载完毕之后停止请求数据库
-          if (res.data.length == 0) {
-            this.setData({
-              loadMoreText: "没有更多全部订单了!",
-              showLoadMore: true,
-              theOnReachBottom0: false
-            })
-            app.utils.hint('没有更多全部订单了!');
-          }
-          //当数据库里还有商品数据时，继续追加到本地数据
-          else {
-            for (let i = 0; i < res.data.length; i++) {
-              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+    if(this.data.status){
+      switch (this.data.TabCur) {
+        case 0: {
+          app.utils.cl(this.data.max0);
+          app.utils.cl(this.data.limit0);
+          app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.max0, this.data.limit0).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              app.utils.cl(this.data.allOrder.length);
+              this.setData({
+                loadMoreText: "没有更多全部订单了!",
+                showLoadMore: true,
+                theOnReachBottom0: false
+              })
+              app.utils.hint('没有更多全部订单了!');
             }
-            this.setData({
-              allOrder: this.data.allOrder.concat(res.data),
-              max0: this.data.max0 + this.data.limit0
-            })
-          }
-        })
-        break;
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                allOrder: this.data.allOrder.concat(res.data),
+                max0: this.data.max0 + this.data.limit0
+              })
+            }
+          })
+          break;
+        }
+        case 1: {
+          app.dbbase.orderMerchantOpenIdDownStateIng(this.data.shop_id, this.data.max1, this.data.limit1).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              app.utils.cl(this.data.ingOrder.length);
+              this.setData({
+                loadMoreText: "没有更多交易中订单了!",
+                showLoadMore: true,
+                theOnReachBottom1: false
+              })
+              app.utils.hint('没有更多交易中订单了!');
+            }
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                ingOrder: this.data.ingOrder.concat(res.data),
+                max1: this.data.max1 + this.data.limit1
+              })
+            }
+          })
+          break;
+        }
+        case 2: {
+          app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max2, this.data.limit2,3).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              app.utils.cl(this.data.accomplishOrder.length);
+              this.setData({
+                loadMoreText: "没有更多已完成订单了!",
+                showLoadMore: true,
+                theOnReachBottom2: false
+              })
+              app.utils.hint('没有更多已完成订单了!');
+            }
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                accomplishOrder: this.data.accomplishOrder.concat(res.data),
+                max2: this.data.max2 + this.data.limit2
+              })
+            }
+          })
+          break;
+        }
+        case 3: {
+          app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max3, this.data.limit3,-1).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              app.utils.cl(this.data.cancelOrder.length);
+              this.setData({
+                loadMoreText: "没有更多已取消订单了!",
+                showLoadMore: true,
+                theOnReachBottom3: false
+              })
+              app.utils.hint('没有更多已取消订单了!');
+            }
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                cancelOrder: this.data.cancelOrder.concat(res.data),
+                max3: this.data.max3 + this.data.limit3
+              })
+            }
+          })
+          break;
+        }
       }
-      case 1: {
-        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max1, this.data.limit1).then((res) => {
-          //当数据库里商品加载完毕之后停止请求数据库
-          if (res.data.length == 0) {
-            this.setData({
-              loadMoreText: "没有更多交易中订单了!",
-              showLoadMore: true,
-              theOnReachBottom1: false
-            })
-            app.utils.hint('没有更多交易中订单了!');
-          }
-          //当数据库里还有商品数据时，继续追加到本地数据
-          else {
-            for (let i = 0; i < res.data.length; i++) {
-              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+    }
+    else{
+      switch (this.data.TabCur) {
+        case 0: {
+          app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              this.setData({
+                loadMoreText: "没有更多全部订单了!",
+                showLoadMore: true,
+                theOnReachBottom0: false
+              })
+              app.utils.hint('没有更多全部订单了!');
             }
-            this.setData({
-              ingOrder: this.data.allOrder.concat(res.data),
-              max1: this.data.max1 + this.data.limit1
-            })
-          }
-        })
-        break;
-      }
-      case 2: {
-        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max2, this.data.limit2).then((res) => {
-          //当数据库里商品加载完毕之后停止请求数据库
-          if (res.data.length == 0) {
-            this.setData({
-              loadMoreText: "没有更多已完成订单了!",
-              showLoadMore: true,
-              theOnReachBottom2: false
-            })
-            app.utils.hint('没有更多已完成订单了!');
-          }
-          //当数据库里还有商品数据时，继续追加到本地数据
-          else {
-            for (let i = 0; i < res.data.length; i++) {
-              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                allOrder: this.data.allOrder.concat(res.data),
+                max0: this.data.max0 + this.data.limit0
+              })
             }
-            this.setData({
-              accomplishOrder: this.data.allOrder.concat(res.data),
-              max2: this.data.max2 + this.data.limit2
-            })
-          }
-        })
-        break;
-      }
-      case 3: {
-        app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max3, this.data.limit3).then((res) => {
-          //当数据库里商品加载完毕之后停止请求数据库
-          if (res.data.length == 0) {
-            this.setData({
-              loadMoreText: "没有更多已取消订单了!",
-              showLoadMore: true,
-              theOnReachBottom3: false
-            })
-            app.utils.hint('没有更多已取消订单了!');
-          }
-          //当数据库里还有商品数据时，继续追加到本地数据
-          else {
-            for (let i = 0; i < res.data.length; i++) {
-              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+          })
+          break;
+        }
+        case 1: {
+          app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max1, this.data.limit1).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              this.setData({
+                loadMoreText: "没有更多交易中订单了!",
+                showLoadMore: true,
+                theOnReachBottom1: false
+              })
+              app.utils.hint('没有更多交易中订单了!');
             }
-            this.setData({
-              cancelOrder: this.data.allOrder.concat(res.data),
-              max3: this.data.max3 + this.data.limit3
-            })
-          }
-        })
-        break;
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                ingOrder: this.data.ingOrder.concat(res.data),
+                max1: this.data.max1 + this.data.limit1
+              })
+            }
+          })
+          break;
+        }
+        case 2: {
+          app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2,3).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              this.setData({
+                loadMoreText: "没有更多已完成订单了!",
+                showLoadMore: true,
+                theOnReachBottom2: false
+              })
+              app.utils.hint('没有更多已完成订单了!');
+            }
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                accomplishOrder: this.data.accomplishOrder.concat(res.data),
+                max2: this.data.max2 + this.data.limit2
+              })
+            }
+          })
+          break;
+        }
+        case 3: {
+          app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3,-1).then((res) => {
+            //当数据库里商品加载完毕之后停止请求数据库
+            if (res.data.length == 0) {
+              this.setData({
+                loadMoreText: "没有更多已取消订单了!",
+                showLoadMore: true,
+                theOnReachBottom3: false
+              })
+              app.utils.hint('没有更多已取消订单了!');
+            }
+            //当数据库里还有商品数据时，继续追加到本地数据
+            else {
+              for (let i = 0; i < res.data.length; i++) {
+                res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+              }
+              this.setData({
+                cancelOrder: this.data.cancelOrder.concat(res.data),
+                max3: this.data.max3 + this.data.limit3
+              })
+            }
+          })
+          break;
+        }
       }
     }
 
   },
   
   SetShadow(e) {
+    this.setData({
+      allOrder: [],
+      ingOrder: [],
+      accomplishOrder: [],
+      cancelOrder: [],
+      //是否显示触底提示
+      showLoadMore: false,
+      //从哪开始查询
+      max0: 0,
+      max1: 0,
+      max2: 0,
+      max3: 0,
+      //一次性查几条数据
+      limit0: 4,
+      limit1: 4,
+      limit2: 4,
+      limit3: 4,
+      //触底时是否继续请求数据库
+      theOnReachBottom0: true,
+      theOnReachBottom1: true,
+      theOnReachBottom2: true,
+      theOnReachBottom3: true,
+    })
     if(e.detail.value){
-
       this.setData({
         //商家deliver_fill
-        status:true
+        status:true,
+      })
+      //全部订单
+      app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.max0, this.data.limit0).then((res) => {
+        app.utils.cl("all", res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
+        this.setData({
+          allOrder: res.data,
+          //初始化后从第几个开始加载
+          max0: this.data.limit0
+        })
+      })
+      //交易中订单
+      app.dbbase.orderMerchantOpenIdDownStateIng(this.data.shop_id, this.data.max1, this.data.limit1).then((res) => {
+        app.utils.cl(res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
+        this.setData({
+          ingOrder: res.data,
+          //初始化后从第几个开始加载
+          max1: this.data.limit1
+        })
+      })
+      //已完成订单
+      app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max2, this.data.limit2, 3).then((res) => {
+        app.utils.cl(res.data);
+        for(let i=0;i<res.data.length;i++){
+          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
+      }
+        this.setData({
+          accomplishOrder: res.data,
+          //初始化后从第几个开始加载
+          max2: this.data.limit2
+        })
+      })
+      //已取消订单
+      app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max3, this.data.limit3, -1).then((res) => {
+        app.utils.cl(res.data);
+        for(let i=0;i<res.data.length;i++){
+          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
+      }
+        this.setData({
+          cancelOrder: res.data,
+          //初始化后从第几个开始加载
+          max3: this.data.limit3
+        })
       })
     }
     else{
       this.setData({
         //个人people
         status:false
+      })
+      
+      //全部订单
+      app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
+        app.utils.cl("all", res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
+        this.setData({
+          allOrder: res.data,
+          //初始化后从第几个开始加载
+          max0: this.data.limit0
+        })
+      })
+      //交易中订单
+      app.dbbase.orderOpenIdDownStateIng(app.globalData.openid, this.data.max1, this.data.limit1).then((res) => {
+        app.utils.cl(res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
+        this.setData({
+          ingOrder: res.data,
+          //初始化后从第几个开始加载
+          max1: this.data.limit1
+        })
+      })
+      //已完成订单
+      app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2, 3).then((res) => {
+        app.utils.cl(res.data);
+        for(let i=0;i<res.data.length;i++){
+          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
+      }
+        this.setData({
+          accomplishOrder: res.data,
+          //初始化后从第几个开始加载
+          max2: this.data.limit2
+        })
+      })
+      //已取消订单
+      app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3, -1).then((res) => {
+        app.utils.cl(res.data);
+        for(let i=0;i<res.data.length;i++){
+          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
+      }
+        this.setData({
+          cancelOrder: res.data,
+          //初始化后从第几个开始加载
+          max3: this.data.limit3
+        })
       })
     }
   },
