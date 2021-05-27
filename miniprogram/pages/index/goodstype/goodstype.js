@@ -130,7 +130,7 @@ Page({
    */
   tapProduct(e){
     wx.navigateTo({
-      url: '../../details/details?id='+e.currentTarget.dataset.id,
+      url: '../../productDetails/productDetails?id='+e.currentTarget.dataset.id,
     })
   }
 })

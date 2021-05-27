@@ -449,7 +449,10 @@ Page({
   //关闭添加弹窗
   hideaddModal(e) {
     this.setData({
-      modaladdName: null
+      modaladdName: null,
+      product:[],
+      form_info:"",
+      imgList:[]
     })
   },
   //添加下拉列表
@@ -500,6 +503,9 @@ Page({
                   })
                   //绑定菜品类别id
                   db.queryName("productType",this.data.picker[commodityTypeId]).then((res)=>{
+                    app.utils.cl(commodityTypeId);
+                    app.utils.cl(this.data.picker);
+                    app.utils.cl(res);
                     this.setData({
                       commodityTypePorductId:res.data[0]._id
                     })
@@ -526,7 +532,9 @@ Page({
                       //隐藏添加表单和初始化商品product对象
                       this.setData({
                         modaladdName: null,
-                        product:[]
+                        product:[],
+                        form_info:"",
+                        imgList:[]
                       })
                       //刷新界面
                       this.onLoad({

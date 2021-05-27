@@ -27,8 +27,8 @@
 <view class="VerticalBox">
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
-      {{item.name}}
+    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
+      <text>{{item.name}}</text>
     </view>
   </scroll-view>
   <!--内容list-->
