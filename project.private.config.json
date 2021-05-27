@@ -124,6 +124,18 @@
           "pathName": "pages/productDetails/productDetails",
           "query": "id=b00064a7608fc04213fb569323b4faab",
           "scene": null
+        },
+        {
+          "name": "pages/confirmOrder/confirmOrder",
+          "pathName": "pages/confirmOrder/confirmOrder",
+          "query": "id=b00064a7608fc04213fb569323b4faab",
+          "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=cbddf0af60afac020c2e99a374d41e3d",
+          "scene": null
         }
       ]
     }
