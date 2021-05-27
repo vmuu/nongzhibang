@@ -29,7 +29,7 @@
     "pages/mine/identification/identification",
     "pages/chat/chat",
     "pages/product/product",
-    "pages/details/details",
+    "pages/productDetails/productDetails",
     "pages/confirmOrder/confirmOrder",
     "pages/index/merchants/merchants",
     "pages/index/goods/goods",
