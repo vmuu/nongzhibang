@@ -1,19 +1,14 @@
-/* miniprogram/pages/success/success.wxss *//* 店铺及产品详情 */
+/* 店铺及产品详情 */
 .all_merchants {
-  width: 96%;
-  margin: 15rpx;
-  margin-top: 10rpx;
-
-  padding: 10rpx;
   background-color: white;
   display: flex;
-  border-radius: 20rpx;
+  border-radius: 6rpx;
 }
 
 .all_merchants_left,
 .all_merchants_left>image {
-  margin-top: 3rpx;
-  margin-left: 5rpx;
+  margin-top: 1rpx; 
+  /* margin-left: 5rpx;  */
   width: 190rpx;
   height: 195rpx;
   border-radius: 20rpx;
@@ -36,7 +31,21 @@
   display: grid;
   overflow: hidden;
 }
-
+.merchants_title{
+  font-weight: bold;
+  font-size: 30rpx;
+  color: black;
+}
+.merchants_text_marking{
+  color: red;
+}
+/* 底部样式 */
+.botton-box {
+  width: 100%;
+   display: flex; 
+   position: fixed; 
+  bottom: 0; 
+}
 /* 收获栏地址样式 */
 .consignee {
   font-size: 30rpx;
@@ -66,13 +75,11 @@
 .addressItem {
   width: 100%;
   position: relative;
-  border-radius: 15rpx;
+  border-radius: 6rpx;
   padding: 20rpx;
   background-color: #fff;
 }
 .addressBox {
-  width: 96%;
-  margin: 15rpx;
   display: flex;
   align-items: center;
 }
@@ -103,11 +110,16 @@
 }
 
 .controlBtnBox {
-  padding: 20rpx;
+  /* width: 70%; */
+  padding: 20rpx; 
   margin-top: 20rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.controlBtnBox .order-button{
+width: 47%;
+height: 70rpx;
 }
 .radioBox{
   display: flex;
@@ -123,15 +135,28 @@
 .merchants_markings{
   margin-top: 10rpx;
 }
-.successtext{
-  font-size: 55rpx;
+.order-button{
+  height: 50%;
 }
-.successtexttype{
-  font-size: 35rpx;
+/* 单选框 */
+.radio-group{
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;  
+  align-items: center; 
 }
-/* 状态 */
-.type-order{
-width: 96%;
-margin: 15rpx;
-
+.nextBtnBox {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  background-color: white;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+}
+.nextBtnBox button {
+  height: 80rpx;
 }

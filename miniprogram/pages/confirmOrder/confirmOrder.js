@@ -59,7 +59,7 @@ Page({
   OrderNavigateTo(e){
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../success/success?id='+e.currentTarget.dataset.id,
+      url: '../orderDetail/orderDetail?id='+e.currentTarget.dataset.id,
     })
   },
 

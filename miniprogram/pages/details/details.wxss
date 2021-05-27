@@ -68,3 +68,18 @@
   border-radius: 1000rpx;
 }
 
+.nextBtnBox {
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  bottom: 0rpx;
+  background-color: white;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+}
+.nextBtnBox button {
+  height: 80rpx;
+}

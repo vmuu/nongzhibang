@@ -1,0 +1,110 @@
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">订单确认</view>
+</cu-custom>
+
+<!-- 店铺栏 -->
+<view class="padding-lr-sm padding-top-xs">
+  <view class="all_merchants">
+    <view class="all_merchants_con">
+      <text class="merchants_title">店铺：{{shop.shopName}}</text>
+      <text class="product-type">分类：{{productType.name}}</text>
+      <view>
+        地址： <text class="cuIcon-location textOverflow">{{shop.location}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 产品信息栏 -->
+<view class="padding-lr-sm padding-top-xs">
+  <view class="all_merchants">
+    <view class="all_merchants_left">
+      <image src="{{product.Image}}"></image>
+    </view>
+    <view class="all_merchants_con">
+      <text class="merchants_title">{{product.Name}}</text>
+      <view class="merchants_marking_warp">
+        <view class="merchants_marking">{{product.Desc}}</view>
+        <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
+      </view>
+      <view class="merchants_text_marking_warp">
+        <text class="merchants_text_marking">起送价：¥{{product.price}}</text>
+        <!-- <text class="merchants_text_marking">配送：¥2</text> -->
+      </view>
+    </view>
+    <view class="all_merchants_right">
+      <view class="merchants_Price">￥{{product.price}}</view>
+      <!-- <view class="old_Price">￥{{product.price}}</view> -->
+      <!-- <view class="merchants_type">立即抢购</view> -->
+    </view>
+  </view>
+</view>
+
+
+<!-- 产品详情 -->
+<!-- <view class="all_merchants">
+  <view class="all_merchants_con">
+    <view class="merchants_marking_warp">
+    <text class="merchants_title">产品详情</text>
+      <view class="merchants_markings">产品原料：{{product.Desc}} </view>
+      <view class="merchants_markings">产品口味：麻辣/微辣</view>
+    </view>
+  </view>
+</view> -->
+
+
+<!-- 收获地址 -->
+<view class="padding-lr-sm padding-top-xs">
+  <view class="addressBox">
+    <view class="addressItem">
+      <view class="addressBox">
+        <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
+        <view class="infoBox">
+          <text class="consignee">樊兴东</text><text class="phone">1821541582</text>
+          <view class="address">云南省昆明市五华区</view>
+          <view class="addressDetail">茭菱路云南农业职业技术学院</view>
+        </view>
+        <!-- <text class="cuIcon-edit iconEdit"></text> -->
+      </view>
+      <view class="pubTopLine controlBtnBox">
+        <!-- <view class="radioBox"><radio class="radio" checked></radio>设置为默认地址</view> -->
+        <button class="cu-btn  line-orange shadow" bindtap="AddressNavigateTo"><text class="cuIcon-edit"></text>
+          修改收货地址</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 支付方式单选框 -->
+<!-- <radio-group class="radio-group" bindchange="radioChange">
+    <label class="radio" wx:for="{{items}}" wx:key="index">
+        <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    </label>
+</radio-group> -->
+<view class="grid col-2 bg-white margin-top-xs">
+  <view class="padding-sm">
+    <view class="bg-gray padding-sm radius text-center light">
+      <view class="text-lg">微信支付</view>
+    </view>
+  </view>
+  <view class="padding-sm">
+    <view class="bg-gradual-green padding-sm radius text-center shadow-blur">
+      <view class="text-lg">线下支付</view>
+    </view>
+  </view>
+</view>
+
+
+
+
+<!-- 交易订单 -->
+<!-- <view class="cu-bar bg-white tabbar botton-box  ">
+  <button class="bg-green submit radius" bindtap="OrderNavigateTo" data-id="{{product._id}}">订单确定</button>
+
+</view> -->
+<view class="nextBtnBox">
+  <button class="cu-btn round bg-green shadow text-lg" bindtap="OrderNavigateTo" data-id="{{product._id}}">确认下单</button>
+</view>

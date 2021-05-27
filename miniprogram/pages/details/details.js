@@ -55,7 +55,7 @@ Page({
   goodNavigateTo(e){
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '../good/good?id='+e.currentTarget.dataset.id,
+      url: '../confirmOrder/confirmOrder?id='+e.currentTarget.dataset.id,
     })
   }
 })

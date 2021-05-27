@@ -30,11 +30,11 @@
     "pages/chat/chat",
     "pages/product/product",
     "pages/details/details",
-    "pages/good/good",
+    "pages/confirmOrder/confirmOrder",
     "pages/index/merchants/merchants",
     "pages/index/goods/goods",
     "pages/index/goodstype/goodstype",
-    "pages/success/success",
+    "pages/orderDetail/orderDetail",
     "pages/mine/log/log"
   ],
   "entryPagePath": "pages/index/index",

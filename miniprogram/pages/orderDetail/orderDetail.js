@@ -11,7 +11,7 @@ Page({
   data: {
     basicsList: [{
       icon: 'usefullfill',
-      name: '已接单'
+      name: '已下单'
     }, {
       icon: 'radioboxfill',
       name: '已出货'

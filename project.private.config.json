@@ -106,6 +106,18 @@
           "pathName": "pages/details/details",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/confirmOrder/confirmOrder",
+          "pathName": "pages/confirmOrder/confirmOrder",
+          "query": "id=undefined",
+          "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=undefined",
+          "scene": null
         }
       ]
     }
