@@ -22,5 +22,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    orderDetail(e){
+      wx.navigateTo({
+        url: '../orderDetail/orderDetail?id='+e.currentTarget.dataset.id,
+      })
+    }
   }
 })

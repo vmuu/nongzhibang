@@ -198,6 +198,9 @@ Page({
           }
           //当数据库里还有商品数据时，继续追加到本地数据
           else {
+            for (let i = 0; i < res.data.length; i++) {
+              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+            }
             this.setData({
               allOrder: this.data.allOrder.concat(res.data),
               max0: this.data.max0 + this.data.limit0
@@ -219,6 +222,9 @@ Page({
           }
           //当数据库里还有商品数据时，继续追加到本地数据
           else {
+            for (let i = 0; i < res.data.length; i++) {
+              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+            }
             this.setData({
               ingOrder: this.data.allOrder.concat(res.data),
               max1: this.data.max1 + this.data.limit1
@@ -240,6 +246,9 @@ Page({
           }
           //当数据库里还有商品数据时，继续追加到本地数据
           else {
+            for (let i = 0; i < res.data.length; i++) {
+              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+            }
             this.setData({
               accomplishOrder: this.data.allOrder.concat(res.data),
               max2: this.data.max2 + this.data.limit2
@@ -261,6 +270,9 @@ Page({
           }
           //当数据库里还有商品数据时，继续追加到本地数据
           else {
+            for (let i = 0; i < res.data.length; i++) {
+              res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+            }
             this.setData({
               cancelOrder: this.data.allOrder.concat(res.data),
               max3: this.data.max3 + this.data.limit3

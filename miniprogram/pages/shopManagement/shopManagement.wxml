@@ -35,8 +35,8 @@
   
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
-      {{item.name}}
+    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
+      <text>{{item.name}}</text>
     </view>
   </scroll-view>
   <!--内容list-->
@@ -155,15 +155,15 @@
         <form bindsubmit="formaddSubmit">
           <view class="cu-form-group">
             <view class="title">名称</view>
-            <input name="Name" placeholder="菜品名称"></input>
+            <input name="Name" placeholder="菜品名称" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
             <view class="title">简介</view>
-            <input name="Desc" placeholder="菜品介绍"></input>
+            <input name="Desc" placeholder="菜品介绍" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="price" placeholder="菜品价格"></input>
+            <input name="price" placeholder="菜品价格" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
             <view class="title">分类</view>
