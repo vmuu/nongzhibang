@@ -26,7 +26,7 @@
         <text class="merchants_text_marking">配送：¥2</text>
       </view>
       <view>
-        <text class="cuIcon-location textOverflow">星岛国际13栋3单元32号</text>
+        <text class="cuIcon-location textOverflow">{{item.shopName}}</text>
       </view>
     </view>
     <view class="all_merchants_right">
