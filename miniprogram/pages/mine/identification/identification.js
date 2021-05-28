@@ -14,7 +14,8 @@ Page({
       businessLicense: null,
       isShop: -1
     },
-    shopInfo: null
+    shopInfo: null,
+    id:null
   },
   change(e) {
     app.change(e, this)
@@ -82,6 +83,7 @@ Page({
     app.dbbase.queryOpenId('shop', openid).then(res => {
       app.utils.cl(res)
       if (res.data.length != 0) {
+        that.data.id=res.data[0]._id
         that.setData({
           entity: res.data[0],
           ['entity.isShop']: 0
@@ -184,7 +186,7 @@ Page({
       title: '提交中...',
     })
 
-    let id = that.data.entity._id
+    let id = that.data.id
     let payload = that.data.entity
 
 

@@ -60,10 +60,13 @@ Page({
       url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/123681620189368172'
     }],
   },
-
-  onLoad: function () {
+  onShow() {
     this.state()
     that.initData()
+  },
+  onLoad: function () {
+    this.state()
+
     //判断是否支持云函数
     if (!wx.cloud) {
       wx.redirectTo({
@@ -102,9 +105,30 @@ Page({
   },
   initData() {
     //判断是否以及开通店铺
-
+    that.getShopInfo()
   },
-
+  //查询用户是否开通店铺
+  getShopInfo() {
+    let where = {
+      _openid: app.globalData.openid,
+    }
+    return new Promise(success => {
+      app.dbbase.queryWhere('shop', where).then(res => {
+        app.utils.cl('查询到的shop信息：', res);
+        if (res.data.length > 0) {
+          app.utils.cl('开通的');
+          app.utils.cl(res.data[0].isShop);
+          app.globalData.isShop = res.data[0].isShop
+          app.globalData.shopInfo = res.data[0]
+          success(res.data[0].isShop)
+        } else {
+          app.globalData.isShop = -1
+          app.globalData.shopInfo = null
+          success(-1);
+        }
+      })
+    })
+  },
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
@@ -152,14 +176,21 @@ Page({
 
     } else if (that.data.isShop == 1) {
       wx.navigateTo({
-        url: './shop/shop',
+        url: './shop/shop?id='+that.data.shopInfo._id,
       })
     } else if (that.data.isShop == 3) {
       wx.showModal({
         content: "店铺认证不通过！请重新申请",
         title: '认证不通过',
         confirmText: '知道了',
-        showCancel: false
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: './identification/identification',
+            })
+          }
+        }
       })
     } else if (that.data.isShop == 0) {
       wx.navigateTo({

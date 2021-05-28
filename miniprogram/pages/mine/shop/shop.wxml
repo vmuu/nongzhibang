@@ -100,7 +100,9 @@
 
 	<view class="text-center nextBtnBox">
 		<button bindtap="tapPrevious" class="cu-btn round line-yellow shadow">上一步</button>
-		<button class="cu-btn round bg-green shadow" bindtap="tapShopManage">{{save?'进入店铺':'保存'}}</button>
+		<button class="cu-btn round bg-green shadow" wx:if="{{isShop==1}}" bindtap="tapShopManage">{{save?'进入店铺':'保存'}}</button>
+		<button class="cu-btn round bg-green shadow"  wx:if="{{isShop!=1}}" bindtap="tapShopManage">提交审核</button>
+		<!-- isShop -->
 	</view>
 
 </scroll-view>

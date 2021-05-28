@@ -28,11 +28,12 @@
       <slot name="backText"></slot>
     </view>
 
-    <view class="action border-custom" wx:if="{{true}}"
+    <view class="action border-custom" wx:if="{{isShop==1}}"
       style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+
       <view class="switchOrderState"  bindtap="SetShadow" data-value="{{switchState}}">
-        <text class="user {{switchState?'userActive':''}}"  style="font-size:25rpx;line-height:{{Custom.height}}px;">个人</text>
-        <text class="shop {{!switchState?'shopActive':''}}" 
+        <text class="user {{!switchState?'userActive':''}}"  style="font-size:25rpx;line-height:{{Custom.height}}px;">个人</text>
+        <text class="shop {{switchState?'shopActive':''}}" 
           style="font-size:25rpx;line-height:{{Custom.height}}px;">商家</text>
       </view>
       <!-- <view class="switchOrderState">
@@ -59,7 +60,7 @@
   </scroll-view>
   <swiper class="swiper" bindchange="swiperChange" style="height:{{orderItemHeight}}px" current="{{TabCur}}">
     <swiper-item class="">
-      <scroll-view bindscrolltolower="reachBottom" refresher-enabled="true" scroll-y style="height:100%">
+      <scroll-view bindscrolltolower="reachBottom" bindrefresherrefresh="refresherrefresh" refresher-triggered="{{refresherTriggered}}" refresher-enabled="true" scroll-y style="height:100%">
         <view class="orderBox">
           <!--全部订单-->
           <empty wx:if="{{allOrder.length==0}}" isFull="{{true}}"></empty>

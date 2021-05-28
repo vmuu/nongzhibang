@@ -14,6 +14,7 @@ Page({
     ingOrder: [],
     accomplishOrder: [],
     cancelOrder: [],
+
     //商店_id
     shop_id: "",
     //身份状态
@@ -22,7 +23,9 @@ Page({
     switchState: false,
     //是否显示触底提示
     showLoadMore: false,
-    isShop: 0,
+    isShop: -1,
+    shopInfo: null,
+    refresherTriggered:false,
     //从哪开始查询
     max0: 0,
     max1: 0,
@@ -81,10 +84,17 @@ Page({
 
 
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
-      this.setData({
-        shop_id: res.data[0]._id,
-        isShop: res.data[0].isShop
-      })
+      if (res.data.length > 0) {
+        this.setData({
+          shop_id: res.data[0]._id,
+          isShop: res.data[0].isShop
+        })
+      } else {
+        this.setData({
+          isShop: -1
+        })
+      }
+
       app.utils.cl("shop_id", this.data.shop_id);
       app.utils.cl(that.data.isShop);
 
@@ -683,11 +693,18 @@ Page({
       })
     }
   },
-  show() {
-    app.utils.cl('success');
+  refresherrefresh(){
+    wx.showLoading({
+      title: '下拉刷新',
+    })
+    setTimeout(() => {
+      wx.hideLoading({
+        success: (res) => {},
+      })
+      that.setData({
+        refresherTriggered:false
+      })
+    }, 1000);
+    
   }
 })
-
-export default {
-  that
-}

@@ -43,9 +43,10 @@ Page({
     address: "",
     productTypeList: [],
     addProductType: {},
-    isUpdate:false,
-    isShop:-1,
-    shopInfo:null
+    isUpdate: false,
+    isShop: -1,
+    shopInfo: null,
+    isChange:false
   },
   change(e) {
     app.change(e, this)
@@ -62,7 +63,7 @@ Page({
     if (options.id) {
       that.setData({
         ['entity._id']: options.id,
-        id:options.id
+        id: options.id
       })
       await this.initData()
       app.utils.cl('判断是否已经有地址');
@@ -74,9 +75,14 @@ Page({
     }
 
   },
-  state(){
-    that.data.isShop=app.globalData.isShop;
-    that.data.shopInfo=app.globalData.shopInfo
+  state() {
+    app.utils.cl('isshop',app.globalData.isShop);
+    
+    that.setData({
+      isShop:app.globalData.isShop,
+      shopInfo:app.globalData.shopInfo
+    })
+    
   },
   initData() {
     app.utils.cl('初始化');
@@ -89,11 +95,11 @@ Page({
       app.dbbase.query('shop', id).then(res => {
         app.utils.cl(res, '输出店铺查询结果')
         if (res.data.length != 0) {
-          if(!res.data.startTime){
-            res.data[0].startTime="08:00"
+          if (!res.data.startTime) {
+            res.data[0].startTime = "08:00"
           }
-          if(!res.data.endTime){
-            res.data[0].endTime="22:00"
+          if (!res.data.endTime) {
+            res.data[0].endTime = "22:00"
           }
           that.setData({
             entity: res.data[0],
@@ -181,7 +187,7 @@ Page({
     } else if (app.utils.isEmpty(entity.shopDescribe)) {
       app.utils.hint('店家描述不能为空');
       return false
-    }else if (app.utils.isEmpty(entity.shopAnnouncement)) {
+    } else if (app.utils.isEmpty(entity.shopAnnouncement)) {
       app.utils.hint('店铺公告不能为空');
       return false
     } else if (app.utils.isEmpty(entity.shopBackground)) {
@@ -268,13 +274,16 @@ Page({
     temp.county = region[2]
     //获取修改id
     let id = that.data.entity._id
-    app.utils.cl(id,'输出id');
-    
+    app.utils.cl(id, '输出id');
+
 
     app.utils.cl(temp);
     //判断空
     if (!that.empty()) {
       return false;
+    }
+    if(that.data.isShop!=1){
+      temp.isShop=2
     }
     //提交数据
     wx.showLoading({
@@ -285,22 +294,41 @@ Page({
 
 
     if (this.data.save) {
-      app.utils.cl(that.data.entity._id,'id');
-      
+      app.utils.cl(that.data.entity._id, 'id');
+
       wx.navigateTo({
         url: '../../shopManagement/shopManagement?id=' + that.data.id,
       })
     } else {
-      app.utils.cl(temp,'保存');
-      
+      app.utils.cl(temp, '保存');
+
+
       app.dbbase.update('shop', id, temp).then(res => {
         wx.hideLoading({
           success: (res) => {
+            //判断有没有开通店铺
+            if (that.data.isShop != 1) {
+              wx.showToast({
+                title: '提交成功！',
+                mask:true,
+                success:res=>{
+                  setTimeout(() => {
+                      wx.switchTab({
+                        url: '../mine',
+                        success: (res) => {},
+                        fail: (res) => {},
+                        complete: (res) => {},
+                      })
+                  }, 1500);
+                }
+              })
+              return
+            }
             app.utils.show('保存成功')
           },
         })
       });
-      app.utils.cl(that.data.entity,'保存后的')
+      app.utils.cl(that.data.entity, '保存后的')
       this.setData({
         save: true
       })
@@ -368,7 +396,7 @@ Page({
   conformAdd() {
     let that = this
     var tempProductType = this.data.addProductType;
-    tempProductType.shopId=that.data.id
+    tempProductType.shopId = that.data.id
     //转换为json格式，必须的，不然会报错
     // tempProductType = JSON.parse(JSON.stringify(tempProductType))
     // app.utils.cl(tempProductType);
@@ -384,16 +412,16 @@ Page({
     //添加分类
     let payload = {
       name: that.data.addProductType.name,
-      shopId: that.data.id//店铺id
+      shopId: that.data.id //店铺id
     }
-    let id=that.data.addProductType._id
-    if(that.data.isUpdate){
+    let id = that.data.addProductType._id
+    if (that.data.isUpdate) {
       //修改
-      app.dbbase.update('productType',id,payload).then(res => {
+      app.dbbase.update('productType', id, payload).then(res => {
         that.geProductTypeList()
         that.hideAddShowModal()
         app.utils.hint('修改成功')
-        that.data.isUpdate=false
+        that.data.isUpdate = false
       })
       return false;
     }
@@ -435,10 +463,10 @@ Page({
     this.setData({
       addProductType: item,
       addModel: 'DialogModal2',
-      isUpdate:true
+      isUpdate: true
     })
   },
-  tapBackground(){
+  tapBackground() {
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
