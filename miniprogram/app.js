@@ -21,7 +21,7 @@ App({
    * 程序全局变量
    */
   globalData: {
-    
+
   },
   async onLaunch() {
     that = this;
@@ -74,14 +74,14 @@ App({
       utils.ce('[缓存]获取openid失败', e)
     }
 
-  },
-  async onShow() {
     let re = await this.getShopInfo();
     this.utils.cl(re);
-    if (re) {
+    if (re == 1) {
+      //已经开通店铺
       //启动数据库监听
       // this.monitor();
     }
+
   },
   monitor() {
     const db = wx.cloud.database()
@@ -109,17 +109,23 @@ App({
   getShopInfo() {
     let where = {
       _openid: this.globalData.openid,
-      isShop: 1
     }
     return new Promise(success => {
       this.dbbase.queryWhere('shop', where).then(res => {
         this.utils.cl('查询到的shop信息：', res);
         if (res.data.length > 0) {
-          this.utils.cl('asdf');
-          success(true)
+          this.utils.cl('开通的');
+          this.utils.cl(res.data[0].isShop);
+
+          that.globalData.isShop = res.data[0].isShop
+          that.globalData.shopInfo = res.data[0]
+          success(res.data[0].isShop)
         } else {
-          success(false)
+          that.globalData.isShop = -1
+          that.globalData.shopInfo = null
+          success(-1);
         }
+
       })
     })
   },
@@ -133,38 +139,45 @@ App({
       title: '信息获取中...',
     })
     // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: async res => {
-        //注册
-        await this.register(res.result.openid)
-        utils.cl('[云函数] [login] user openid: ', res.result.openid)
-        this.globalData.openid = res.result.openid
+    return new Promise(success => {
 
-        //异步方式缓存openid
-        try {
-          wx.setStorageSync('openid', res.result.openid)
-        } catch (e) {
-          utils.ce('缓存失败')
+      wx.cloud.callFunction({
+        name: 'login',
+        data: {},
+        success: async res => {
+          //注册
+          await this.register(res.result.openid)
+          utils.cl('[云函数] [login] user openid: ', res.result.openid)
+          this.globalData.openid = res.result.openid
+
+          //异步方式缓存openid
+          try {
+            wx.setStorageSync('openid', res.result.openid)
+          } catch (e) {
+            utils.ce('缓存失败')
+          }
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '登录成功',
+                icon: 'none'
+              })
+            },
+          })
+          success()
+
+        },
+        fail: err => {
+          utils.ce('[云函数] [login] 调用失败', err)
+          wx.navigateTo({
+            url: '../deployFunctions/deployFunctions',
+          })
         }
-        wx.hideLoading({
-          success: (res) => {
-            wx.showToast({
-              title: '登录成功',
-              icon: 'none'
-            })
-          },
-        })
+      })
 
-      },
-      fail: err => {
-        utils.ce('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
+
     })
+
   },
   show() {
     this.utils.cl('调取成功')

@@ -8,15 +8,18 @@
 	<form>
 		<view class="cu-form-group">
 			<view class="title">店铺名称</view>
-			<input placeholder="请填写您的店铺名称" value="{{entity.shopName}}" data-prop="entity.shopName" bindinput="change"></input>
+			<input placeholder="请填写您的店铺名称" value="{{entity.shopName}}" data-prop="entity.shopName"
+				bindinput="change"></input>
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">店铺描述</view>
-			<textarea maxlength="100" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"  placeholder="请输入店铺描述（最多20个字）"></textarea>
+			<textarea maxlength="100" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"
+				placeholder="请输入店铺描述（最多20个字）"></textarea>
 		</view>
-				<view class="cu-form-group align-start">
+		<view class="cu-form-group align-start">
 			<view class="title">店铺公告</view>
-			<textarea maxlength="20" value="{{entity.shopAnnouncement}}" data-prop="entity.shopAnnouncement" bindinput="change" placeholder="请输入店铺公告（最多20个字）"></textarea>
+			<textarea maxlength="20" value="{{entity.shopAnnouncement}}" data-prop="entity.shopAnnouncement"
+				bindinput="change" placeholder="请输入店铺公告（最多20个字）"></textarea>
 		</view>
 		<view class="cu-bar bg-white" style="margin-top:3rpx">
 			<view class="action">
@@ -41,13 +44,13 @@
 		</view>
 		<view class="cu-form-group uploadImageBox">
 			<view class="title idTitle">店铺背景</view>
-		
-				<view class="textAlign-center">
-					<view class="iamgeBox" bindtap="tapBackground">
-						<text wx:if="{{entity.shopBackground==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
-						<image class="imageAttribute" mode='aspectFill' src="{{entity.shopBackground}}"></image>
-					</view>
+
+			<view class="textAlign-center">
+				<view class="iamgeBox" bindtap="tapBackground">
+					<text wx:if="{{entity.shopBackground==null}}" class="cuIcon-cameraadd iconCamerAdd"></text>
+					<image class="imageAttribute" mode='aspectFill' src="{{entity.shopBackground}}"></image>
 				</view>
+			</view>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">店铺地区</view>
@@ -59,7 +62,8 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">详细地址</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}" data-prop="entity.address" bindinput="change" placeholder="请输入详细地址"></textarea>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}"
+				data-prop="entity.address" bindinput="change" placeholder="请输入详细地址"></textarea>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
@@ -80,7 +84,8 @@
 
 		<view class="cu-form-group">
 			<view class="title">产品分类</view>
-			<view><button class="cu-btn round line-green shadow" bindtap="showModal" data-target="viewModal"><text class="cuIcon-pullleft"></text>编辑分类</button></view>
+			<view><button class="cu-btn round line-green shadow" bindtap="showModal" data-target="viewModal"><text
+						class="cuIcon-pullleft"></text>编辑分类</button></view>
 		</view>
 
 		<view class="padding-sm flex flex-wrap">
@@ -99,39 +104,6 @@
 	</view>
 
 </scroll-view>
-
-<!-- 添加 -->
-<view class="cu-modal {{addModel=='DialogModal2'?'show':''}}">
-	<view class="cu-dialog">
-		<view class="cu-bar bg-white justify-end">
-			<view class="content">添加产品</view>
-			<view class="action" bindtap="hideAddShowModal">
-				<text class="cuIcon-close text-red"></text>
-			</view>
-		</view>
-		<view class="padding-xl">
-			<view>
-				<view class="cu-form-group">
-					<view class="title">分类名称</view>
-					<input placeholder="请填写分类名称" bindinput="change" value="{{addProductType.name}}" data-prop="addProductType.name"></input>
-				</view>
-			</view>
-		</view>
-		<view class="cu-bar bg-white">
-			<view class="action margin-0 flex-sub text-green solid-left" bindtap="hideAddShowModal">取消</view>
-			<view class="action margin-0 flex-sub  solid-left" bindtap="conformAdd">确定</view>
-		</view>
-	</view>
-</view>
-
-<view class="DrawerClose {{modalName=='viewModal'?'show':''}}">
-	<view class="iconBtnGroup">
-		<!-- 添加分类 -->
-		<text class="cuIcon-roundadd" bindtap="tapAddShowModel" data-target="DialogModal2"></text>
-		<text class="cuIcon-pullright" bindtap="hideModal"></text>
-	</view>
-</view>
-
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 
@@ -141,13 +113,48 @@
 			<view class="content typeListBox">
 				<view>{{item.name}}</view>
 				<view class="btnGroup">
-					<text class="cu-tag line-green round" bindtap="tapEdite" data-item="{{item}}" >编辑</text>
-					<text class="cu-tag line-red round" bindtap="tapDelete" data-index="{{index}}" data-id="{{item._id}}">删除</text>
+					<text class="cu-tag line-green round" bindtap="tapEdite" data-item="{{item}}">编辑</text>
+					<text class="cu-tag line-red round" bindtap="tapDelete" data-index="{{index}}"
+						data-id="{{item._id}}">删除</text>
 				</view>
 				<!-- <text class="cuIcon-github text-grey"></text> -->
 				<!-- <text class="text-grey">{{index +1}}</text> -->
 			</view>
 		</view>
+	</view>
 
+
+
+	<!-- 添加 -->
+	<view class="cu-modal {{addModel=='DialogModal2'?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">添加产品</view>
+				<view class="action" bindtap="hideAddShowModal">
+					<text class="cuIcon-close text-red"></text>
+				</view>
+			</view>
+			<view class="padding-xl">
+				<view>
+					<view class="cu-form-group">
+						<view class="title">分类名称</view>
+						<input placeholder="请填写分类名称" bindinput="change" value="{{addProductType.name}}"
+							data-prop="addProductType.name"></input>
+					</view>
+				</view>
+			</view>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub text-green solid-left" bindtap="hideAddShowModal">取消</view>
+				<view class="action margin-0 flex-sub  solid-left" bindtap="conformAdd">确定</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="DrawerClose {{modalName=='viewModal'?'show':''}}">
+		<view class="iconBtnGroup">
+			<!-- 添加分类 -->
+			<text class="cuIcon-roundadd" bindtap="tapAddShowModel" data-target="DialogModal2"></text>
+			<text class="cuIcon-pullright" bindtap="hideModal"></text>
+		</view>
 	</view>
 </scroll-view>

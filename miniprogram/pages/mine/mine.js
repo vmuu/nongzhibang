@@ -2,6 +2,8 @@
 import utils from '../../config/utils'
 
 const app = getApp()
+var that;
+var openid;
 
 Page({
   data: {
@@ -14,7 +16,8 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false
     gridCol: 3,
-    isShop:false,
+    isShop: -1,
+    shopInfo: null,
     gridBorder: false,
     iconList: [{
       id: 0,
@@ -59,6 +62,8 @@ Page({
   },
 
   onLoad: function () {
+    this.state()
+    that.initData()
     //判断是否支持云函数
     if (!wx.cloud) {
       wx.redirectTo({
@@ -89,6 +94,16 @@ Page({
       }
     })
   },
+  state() {
+    that = this;
+    openid = app.globalData.openid;
+    that.data.shopInfo = app.globalData.shopInfo;
+    that.data.isShop = app.globalData.isShop;
+  },
+  initData() {
+    //判断是否以及开通店铺
+
+  },
 
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
@@ -100,7 +115,7 @@ Page({
       })
     }
   },
-  
+
   tapSetting() {
     wx.navigateTo({
       url: '/pages/mine/setting/setting',
@@ -125,5 +140,32 @@ Page({
       current: 'https://image.weilanwl.com/color2.0/zanCode.jpg' // 当前显示图片的http链接      
     })
   },
+  tapGoShop() {
+    app.utils.cl(that.data.isShop);
+
+    if (that.data.isShop == 2) {
+      app.utils.hint('店铺审核中...');
+    } else if (that.data.isShop == -1) {
+      wx.navigateTo({
+        url: './identification/identification',
+      })
+
+    } else if (that.data.isShop == 1) {
+      wx.navigateTo({
+        url: './shop/shop',
+      })
+    } else if (that.data.isShop == 3) {
+      wx.showModal({
+        content: "店铺认证不通过！请重新申请",
+        title: '认证不通过',
+        confirmText: '知道了',
+        showCancel: false
+      })
+    } else if (that.data.isShop == 0) {
+      wx.navigateTo({
+        url: './identification/identification',
+      })
+    }
+  }
 
 })

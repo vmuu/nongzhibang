@@ -43,7 +43,9 @@ Page({
     address: "",
     productTypeList: [],
     addProductType: {},
-    isUpdate:false
+    isUpdate:false,
+    isShop:-1,
+    shopInfo:null
   },
   change(e) {
     app.change(e, this)
@@ -54,7 +56,7 @@ Page({
    */
   async onLoad(options) {
     that = this
-
+    that.state()
 
     //接收参数
     if (options.id) {
@@ -71,6 +73,10 @@ Page({
       }
     }
 
+  },
+  state(){
+    that.data.isShop=app.globalData.isShop;
+    that.data.shopInfo=app.globalData.shopInfo
   },
   initData() {
     app.utils.cl('初始化');

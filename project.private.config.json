@@ -178,6 +178,12 @@
                     "pathName": "pages/shopManagement/shopManagement",
                     "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
                     "scene": null
+                },
+                {
+                    "name": "pages/mine/mine",
+                    "pathName": "pages/mine/mine",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }
