@@ -122,7 +122,7 @@ Page({
           size: true
         }, data => {
           list[i].top = tabHeight;
-          tabHeight = tabHeight + data.height;
+          tabHeight = tabHeight +that.data.height;
           list[i].bottom = tabHeight;
         }).exec();
       }
@@ -182,10 +182,10 @@ Page({
         product:res.data[0],
         index_x:0,
       })
-      if(res.data[0].Image!==""){
+      if(res.data[0].image!==""){
         this.setData({
           imgList:[
-            res.data[0].Image
+            res.data[0].image
           ]
         })
       }
@@ -275,11 +275,16 @@ Page({
     })
 
   },
+  //计算原始价格
+  //原始价格的8折就是当前价格
+  getCurrentPrice(value){
+    return (parseInt(value)/0.8).toFixed(2);
+  },
   //修改提交
   formSubmit: function (e) {
     //console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    let { _id, Name, Desc, Image, commodityTypeId, price } = e.detail.value;
-    if(_id!=undefined&&Name!=undefined&&Desc!=undefined&&Image!=undefined&&commodityTypeId!=undefined&&price!=undefined){
+    let { _id, name, desc, image, commodityTypeId, currentPrice } = e.detail.value;
+    if(_id!=undefined&&name!=undefined&&desc!=undefined&&image!=undefined&&commodityTypeId!=undefined&&currentPrice!=undefined){
       this.setData({
         warn: null,
         isSubmit: false
@@ -291,11 +296,11 @@ Page({
         confirmText: '确定',
         success: res => {
           if (res.confirm) {
-            if(Image!==this.data.product.Image){
+            if(image!==this.data.product.image){
               let that = this
             //从全局获取七牛云授权token
             let token = app.globalData.qiniuToken
-            var filePath = Image;//this.data.imgList[0]
+            var filePath = image;//this.data.imgList[0]
                 app.utils.upload(filePath, token).then((res) => {
                   wx.hideLoading({
                     /*success: (res) => {},*/
@@ -322,11 +327,12 @@ Page({
                     })
                     //更新数据
                     db.productupdate(_id,{
-                      Desc:Desc,
-                      Name:Name,
-                      Image:this.data.imgList[0],
+                      desc:desc,
+                      name:name,
+                      image:this.data.imgList[0],
                       commodityTypeId:this.data.commodityTypePorductId,
-                      price:price,
+                      price:this.getCurrentPrice(currentPrice),
+                      currentPrice:currentPrice,
                       success: function (res) {
                         wx.showLoading({
                           title: '数据上传中...',
@@ -362,10 +368,11 @@ Page({
                 })
                 //更新数据
                 db.productupdate(_id,{
-                  Desc:Desc,
-                  Name:Name,
+                  eesc:desc,
+                  name:name,
                   commodityTypeId:this.data.commodityTypePorductId,
-                  price:price,
+                  price:this.getCurrentPrice(currentPrice),
+                  currentPrice:currentPrice,
                   success: function (res) {
                     wx.showLoading({
                       title: '数据上传中...',
@@ -416,8 +423,8 @@ Page({
       success: res => {
         if (res.confirm) {
           db.query("product",e.currentTarget.dataset.product_id).then((res)=>{
-            if(res.data[0].Image!==""){
-              app.utils.qiniuDelete(res.data[0].Image).then(res => {
+            if(!app.utils.isEmpty(res.data[0].image)){
+              app.utils.qiniuDelete(res.data[0].image).then(res => {
                 app.utils.cl(res);
               })
             }
@@ -464,9 +471,9 @@ Page({
   },
   //添加提交
   formaddSubmit: function (e) {
-    //console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    let {Name, Desc, Image, commodityTypeId, price } = e.detail.value;
-    if(Name!=undefined&&Desc!=undefined&&Image!=undefined&&commodityTypeId!=undefined&&price!=undefined){
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    let {name, desc, image, commodityTypeId, currentPrice } = e.detail.value;
+    if(name!=undefined&&desc!=undefined&&image!=undefined&&commodityTypeId!=undefined&&currentPrice!=undefined){
       this.setData({
         warn: null,
         isSubmit: false
@@ -481,7 +488,7 @@ Page({
             let that = this
             //从全局获取七牛云授权token
             let token = app.globalData.qiniuToken
-            var filePath = Image;//this.data.imgList[0]
+            var filePath = image;//this.data.imgList[0]
                 app.utils.upload(filePath, token).then((res) => {
                   wx.hideLoading({
                     /*success: (res) => {},*/
@@ -511,13 +518,14 @@ Page({
                     })
                     //添加数据
                     db.add("product",{
-                      Desc:Desc,
-                      FavorableRating:0,
-                      MonthlySales:0,
-                      Name:Name,
-                      Image:this.data.imgList[0],
+                      desc:desc,
+                      favorableRating:0,
+                      monthlySales:0,
+                      name:name,
+                      image:this.data.imgList[0],
                       commodityTypeId:this.data.commodityTypePorductId,
-                      price:price,
+                      price:this.getCurrentPrice(currentPrice),
+                      currentPrice:currentPrice,
                       shopId:this.data.shop._id,
                       success: function (res) {
                         wx.showLoading({

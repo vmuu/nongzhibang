@@ -142,6 +142,30 @@
           "pathName": "pages/order/order",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/shopManagement/shopManagement",
+          "pathName": "pages/shopManagement/shopManagement",
+          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+          "scene": null
+        },
+        {
+          "name": "pages/confirmOrder/confirmOrder",
+          "pathName": "pages/confirmOrder/confirmOrder",
+          "query": "id=cbddf0af60a52a5d09b131de74f9368f",
+          "scene": null
+        },
+        {
+          "name": "pages/productDetails/productDetails",
+          "pathName": "pages/productDetails/productDetails",
+          "query": "id=cbddf0af60b078a30c4eb2766f59e90e",
+          "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=79550af260b087081b04a8bc3f425c37",
+          "scene": null
         }
       ]
     }

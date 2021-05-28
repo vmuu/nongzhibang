@@ -55,15 +55,15 @@
       <view class="cu-list menu-avatar">
       <empty wx:if="{{item.commodity.length==0?true:false}}" isFull="{{false}}"></empty>
         <view class="cu-item {{modalName=='move-box-'+ (item._id+index)?'move-cur':''}}" wx:key="index" wx:for="{{item.commodity}}"bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{(item._id+index)}}">
-      <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
+      <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
       <view class="content">
-        <view class="text-grey">{{item.Name}}</view>
+        <view class="text-grey">{{item.name}}</view>
         <view class="text-gray text-sm">
-          <text class="cuIcon-medal text-red"></text> {{item.Desc}}</view>
+          <text class="cuIcon-medal text-red"></text> {{item.desc}}</view>
       </view>
       <view class="action">
-        <view class="text-grey text-xs">￥{{item.price}}</view>
-        <view class="cu-tag round bg-grey sm">月售{{item.MonthlySales}}</view>
+        <view class="text-grey text-xs">￥{{item.currentPrice}}</view>
+        <view class="cu-tag round bg-grey sm">月售{{item.monthlySales}}</view>
       </view>
       <view class="move">
         <view class="bg-grey" bindtap="showModal" data-product_id="{{item._id}}" data-target="Modal">编辑</view>
@@ -84,15 +84,15 @@
           <input style="display: none;" name="_id" value="{{product._id}}"></input>
           <view class="cu-form-group">
             <view class="title">名称</view>
-            <input name="Name" value="{{product.Name}}" placeholder="{{product.Name}}"></input>
+            <input name="name" value="{{product.name}}" placeholder="{{product.name}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">简介</view>
-            <input name="Desc" value="{{product.Desc}}" placeholder="{{product.Desc}}"></input>
+            <input name="desc" value="{{product.desc}}" placeholder="{{product.desc}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="price" value="{{product.price}}" placeholder="{{product.price}}"></input>
+            <input name="currentPrice" value="{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">分类</view>
@@ -111,7 +111,7 @@
               <view class="grid col-4 grid-square flex-sub">
                 <view value="{{imgList[index_x]}}" class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
                   <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>http://cdn.xiaoxingbobo.top/nongzhibang/202149/222781620570428217  bindtap="ProductUpdata"-->
-                  <input style="display: none;" name="Image" value="{{imgList[index_x]}}"></input>
+                  <input style="display: none;" name="image" value="{{imgList[index_x]}}"></input>
                   <view class="cu-avatar round lg" style="background-image:url({{imgList[index_x]}});"></view>
                   <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index_x}}">
                     <text class="cuIcon-close"></text>
@@ -155,15 +155,15 @@
         <form bindsubmit="formaddSubmit">
           <view class="cu-form-group">
             <view class="title">名称</view>
-            <input name="Name" placeholder="菜品名称" value='{{form_info}}'></input>
+            <input name="name" placeholder="菜品名称" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
             <view class="title">简介</view>
-            <input name="Desc" placeholder="菜品介绍" value='{{form_info}}'></input>
+            <input name="desc" placeholder="菜品介绍" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="price" placeholder="菜品价格" value='{{form_info}}'></input>
+            <input name="currentPrice" placeholder="菜品价格" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
             <view class="title">分类</view>
@@ -182,7 +182,7 @@
               <view class="grid col-4 grid-square flex-sub">
                 <view value="{{imgList[index_x]}}" class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
                   <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>http://cdn.xiaoxingbobo.top/nongzhibang/202149/222781620570428217  bindtap="ProductUpdata"-->
-                  <input style="display: none;" name="Image" value="{{imgList[index_x]}}"></input>
+                  <input style="display: none;" name="image" value="{{imgList[index_x]}}"></input>
                   <view class="cu-avatar round lg" style="background-image:url({{imgList[index_x]}});"></view>
                   <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index_x}}">
                     <text class="cuIcon-close"></text>

@@ -10,7 +10,7 @@
       <text class="merchants_title">店铺：{{shop.shopName}}</text>
       <text class="product-type">分类：{{productType.name}}</text>
       <view>
-        地址： <text class="cuIcon-location textOverflow">{{order.shopAddress}}</text>
+        地址： <text class="cuIcon-location textOverflow">{{shop.province}}{{shop.city}}{{shop.county}}{{shop.address}}</text>
       </view>
     </view>
   </view>
@@ -22,21 +22,21 @@
 <view class="padding-lr-sm padding-top-xs">
   <view class="all_merchants">
     <view class="all_merchants_left">
-      <image src="{{product.Image}}" mode="aspectFill"></image>
+      <image src="{{product.image}}" mode="aspectFill"></image>
     </view>
     <view class="all_merchants_con">
-      <text class="merchants_title">{{product.Name}}</text>
+      <text class="merchants_title">{{product.name}}</text>
       <view class="merchants_marking_warp">
-        <view class="merchants_marking">{{product.Desc}}</view>
+        <view class="merchants_marking">{{product.desc}}</view>
         <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
       </view>
       <view class="merchants_text_marking_warp">
-        <text class="merchants_text_marking">起送价：¥{{product.price}}</text>
+        <text class="merchants_text_marking">起送价：¥{{product.deliverPrice}}</text>
         <!-- <text class="merchants_text_marking">配送：¥2</text> -->
       </view>
     </view>
     <view class="all_merchants_right">
-      <view class="merchants_Price">￥{{product.price}}</view>
+      <view class="merchants_Price">￥{{product.currentPrice}}</view>
       <!-- <view class="old_Price">￥{{product.price}}</view> -->
       <!-- <view class="merchants_type">立即抢购</view> -->
     </view>

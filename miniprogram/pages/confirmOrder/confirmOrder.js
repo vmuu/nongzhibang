@@ -165,10 +165,12 @@ Page({
     
      let order = {
       img: that.data.product.image,
+      productDesc:that.data.product.desc,
       shopName: that.data.shop.shopName,
       shopId:that.data.shop._id,
       orderState: 0,
       productName: that.data.product.name,
+      productTypeName:that.data.productType.name,
       addOrderDate: new Date(),
       orderNumber:orderNo,
       payType:"offline",

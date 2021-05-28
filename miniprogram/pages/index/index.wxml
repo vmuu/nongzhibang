@@ -107,11 +107,11 @@
         <view class="special_offer_foot">
           <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index<4}}"
             data-id="{{item._id}}" bindtap="hotproduct">
-            <image class="special_offer_foot_img" mode="aspectFill" src="{{item.Image}}"> </image>
+            <image class="special_offer_foot_img" mode="aspectFill" src="{{item.image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
-              {{item.Name}}
+              {{item.name}}
             </view>
-            <text class="special_offer_foot_textt">￥{{item.price}}</text>
+            <text class="special_offer_foot_textt">￥{{item.currentPrice}}</text>
             <text class="special_offer_foot_textf">￥{{item.price}}</text>
           </view>
         </view>
@@ -121,11 +121,11 @@
         <view class="special_offer_foot">
           <view class="special_offer_content" wx:for="{{hotproduct}}" wx:key="index" wx:if="{{index>3&&index<9}}"
             data-id="{{item._id}}" bindtap="hotproduct">
-            <image class="special_offer_foot_img" mode="aspectFill" src="{{item.Image}}"> </image>
+            <image class="special_offer_foot_img" mode="aspectFill" src="{{item.image}}"> </image>
             <view class="special_offer_foot_title textOverflow">
-              {{item.Name}}
+              {{item.name}}
             </view>
-            <text class="special_offer_foot_textt">￥{{item.price}}</text>
+            <text class="special_offer_foot_textt">￥{{item.currentPrice}}</text>
             <text class="special_offer_foot_textf">￥{{item.price}}</text>
           </view>
         </view>
@@ -173,7 +173,7 @@
                 <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index" wx:if="{{index<3}}">
                   <view class="recommend_merchants_foot_v">
                     <image src="{{item.Image}}" mode="aspectFill"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
+                    <view class="recommend_merchants_foot_text textOverflow">{{item.name}}</view>
                   </view>
                   <text>￥{{item.price}}</text>
                 </view>
@@ -185,10 +185,10 @@
                 <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index"
                   wx:if="{{index>2&&index<7}}">
                   <view class="recommend_merchants_foot_v">
-                    <image src="{{item.Image}}" mode="aspectFill"></image>
-                    <view class="recommend_merchants_foot_text textOverflow">{{item.Name}}</view>
+                    <image src="{{item.image}}" mode="aspectFill"></image>
+                    <view class="recommend_merchants_foot_text textOverflow">{{item.name}}</view>
                   </view>
-                  <text>￥{{item.price}}</text>
+                  <text>￥{{item.currentPrice}}</text>
                 </view>
               </view>
             </swiper-item>
@@ -211,14 +211,14 @@
     <view class="goods_con_warp">
 
       <view class="goods_con" wx:for="{{hotProductlist}}" wx:key="index" data-id="{{item._id}}" bindtap="hotproduct">
-        <image src="{{item.Image}}" mode="aspectFill" ></image>
+        <image src="{{item.image}}" mode="aspectFill" ></image>
         <view class="goods_con_text textOverflow">
           <view class="goods_con_text_l textOverflow">
-            <text>{{item.Name}}</text>
+            <text>{{item.name}}</text>
           </view>
         </view>
         <view class="goods_con_text_r">
-          <text class="orginnal_price">¥{{item.price}}</text>
+          <text class="orginnal_price">¥{{item.currentPrice}}</text>
           <text class="price">¥{{item.price}}</text>
         </view>
       </view>
