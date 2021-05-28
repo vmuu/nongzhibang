@@ -105,3 +105,13 @@
   font-size: 26rpx;
   width: 450rpx;
 }
+
+
+.content .text-gray{
+  width: 250rpx;
+  height: 45rpx;
+}
+.content .text-gray:first{
+  width: 250rpx;
+  height: 45rpx;
+}
