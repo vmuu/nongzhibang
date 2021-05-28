@@ -78,11 +78,6 @@
   </view>
 
     <!-- moment -->
-  <view class="uploader">
-    <view>
-      <text>时间格式化：</text>
-    </view>
-  </view>
 
   <!-- 新建云函数 -->
   <view class="uploader">

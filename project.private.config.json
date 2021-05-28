@@ -166,6 +166,12 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "id=79550af260b087081b04a8bc3f425c37",
           "scene": null
+        },
+        {
+          "name": "pages/im/room/room",
+          "pathName": "pages/im/room/room",
+          "query": "",
+          "scene": null
         }
       ]
     }

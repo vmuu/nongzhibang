@@ -12,7 +12,7 @@
   </view>
   <view class="pubBotLine segmentationLine"></view>
   <view class="productBox">
-    <image class="productPhoto" src="{{order.Img}}"></image>
+    <image class="productPhoto" src="{{order.img}}" mode="aspectFill"></image>
     <view class="productDescBox">
       <view class="productTitle textOverflow">
         {{order.productName}}

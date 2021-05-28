@@ -2,6 +2,9 @@
 import http from './config/http'
 import utils from './config/utils'
 import dbbase from './config/dbbase'
+import webstock from './plugins/webstock'
+var that;
+
 
 App({
   /**
@@ -12,17 +15,21 @@ App({
   http: http,
   change: utils.change,
   isEmpty: utils.isEmpty,
-  dateformat:utils.dateformat,
+  dateformat: utils.dateformat,
+  webstock: webstock,
   /**
    * 程序全局变量
    */
   globalData: {
-
+    
   },
-  onLaunch: function () {
+  async onLaunch() {
+    that = this;
+
     //判断是否支持云开发
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
+      return
     } else {
       wx.cloud.init({
         // env 参数说明：
@@ -61,13 +68,62 @@ App({
       } else {
         utils.ce('[缓存]获取openid为空，跳转到登录页面')
         //登录
-        this.onGetOpenid()
+        await this.onGetOpenid()
       }
     } catch (e) {
       utils.ce('[缓存]获取openid失败', e)
     }
+
   },
-  
+  async onShow() {
+    let re = await this.getShopInfo();
+    this.utils.cl(re);
+    if (re) {
+      //启动数据库监听
+      // this.monitor();
+    }
+  },
+  monitor() {
+    const db = wx.cloud.database()
+    const watcher = db.collection('order')
+      // 按 progress 降序
+      .orderBy('addOrderDate', 'desc')
+      // 取按 orderBy 排序之后的前 1 个
+      .limit(1)
+      // .where({
+      //   _openid:app.globalData.openid
+      // })
+      .watch({
+        onChange: function (snapshot) {
+          utils.cl(snapshot.docs)
+          utils.cl('改变的事件：', snapshot.docChanges)
+          utils.cl('查询到的数据：', snapshot.docs)
+          utils.cl('是否是初始化数据：', snapshot.type === 'init')
+        },
+        onError: function (err) {
+          console.error('数据库监听发生错误：', err)
+        }
+      })
+  },
+  //查询用户是否开通店铺
+  getShopInfo() {
+    let where = {
+      _openid: this.globalData.openid,
+      isShop: 1
+    }
+    return new Promise(success => {
+      this.dbbase.queryWhere('shop', where).then(res => {
+        this.utils.cl('查询到的shop信息：', res);
+        if (res.data.length > 0) {
+          this.utils.cl('asdf');
+          success(true)
+        } else {
+          success(false)
+        }
+      })
+    })
+  },
+
   /**
    * 获取openid
    */
@@ -80,12 +136,12 @@ App({
     wx.cloud.callFunction({
       name: 'login',
       data: {},
-      success:async res => {
+      success: async res => {
         //注册
         await this.register(res.result.openid)
         utils.cl('[云函数] [login] user openid: ', res.result.openid)
         this.globalData.openid = res.result.openid
-       
+
         //异步方式缓存openid
         try {
           wx.setStorageSync('openid', res.result.openid)
@@ -100,7 +156,7 @@ App({
             })
           },
         })
-         
+
       },
       fail: err => {
         utils.ce('[云函数] [login] 调用失败', err)
@@ -110,6 +166,9 @@ App({
       }
     })
   },
+  show() {
+    this.utils.cl('调取成功')
+  },
   /**
    * 注册用户
    */
@@ -118,9 +177,9 @@ App({
     that.utils.cl('注册');
 
     this.dbbase.queryOpenId('user', value).then(res => {
-      that.utils.cl(res,'查询用户');
-      
-      if (res.data.length!=0) {
+      that.utils.cl(res, '查询用户');
+
+      if (res.data.length != 0) {
         //已经注册
       } else {
         let payload = {

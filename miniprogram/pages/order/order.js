@@ -1,7 +1,6 @@
 //order.js
 const app = getApp()
 var that;
-
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -16,13 +15,14 @@ Page({
     accomplishOrder: [],
     cancelOrder: [],
     //商店_id
-    shop_id:"",
+    shop_id: "",
     //身份状态
-    status:false,
+    status: false,
     //样式状态
-    switchState:false,
+    switchState: false,
     //是否显示触底提示
     showLoadMore: false,
+    isShop: 0,
     //从哪开始查询
     max0: 0,
     max1: 0,
@@ -58,34 +58,46 @@ Page({
     MerchantaccomplishOrder: [],
     MerchantcancelOrder: [],
   },
-  onShow(){
-        //设置订单盒子的高度
-        let query = wx.createSelectorQuery();
-        query.select('#scrollView').boundingClientRect(rect => {
-          let scrolView = rect.height;
-          let height = parseInt(app.globalData.sysInfo.windowHeight) -parseInt(this.data.CustomBar) -parseInt(scrolView)
-          app.utils.cl(app.globalData.sysInfo.windowHeight,'可视窗口高');
-          app.utils.cl(this.data.CustomBar,'custom高');
-          app.utils.cl(scrolView,'滚动高');
-          that.setData({
-            orderItemHeight: height
-          })
-        }).exec();
-        //  .exec() 不加不执行
+
+  onShow() {
+    //设置订单盒子的高度
+    let query = wx.createSelectorQuery();
+    query.select('#scrollView').boundingClientRect(rect => {
+      let scrolView = rect.height;
+      let height = parseInt(app.globalData.sysInfo.windowHeight) - parseInt(this.data.CustomBar) - parseInt(scrolView)
+      app.utils.cl(app.globalData.sysInfo.windowHeight, '可视窗口高');
+      app.utils.cl(this.data.CustomBar, 'custom高');
+      app.utils.cl(scrolView, '滚动高');
+      that.setData({
+        orderItemHeight: height
+      })
+    }).exec();
+    //  .exec() 不加不执行
   },
+
   onLoad: function () {
 
     that = this
 
+
+
+
+
+
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
       this.setData({
-        shop_id:res.data[0]._id
+        shop_id: res.data[0]._id,
+        isShop: res.data[0].isShop
       })
-      app.utils.cl("shop_id",this.data.shop_id);
+      app.utils.cl("shop_id", this.data.shop_id);
+      if (that.data.isShop == 1) {
+        //启动数据库监听
+        that.monitor();
+      }
     })
-    
+
     //商家的订单
-    if(this.data.status){
+    if (this.data.status) {
       //全部订单
       app.dbbase.orderMerchantOpenId(shop_id, this.data.Merchantmax0, this.data.Merchantlimit0).then((res) => {
         app.utils.cl("all", res.data);
@@ -113,9 +125,9 @@ Page({
       //已完成订单
       app.dbbase.orderMerchantOpenIdDownState(app.globalData.openid, this.data.Merchantmax2, this.data.Merchantlimit2, 3).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           MerchantaccomplishOrder: res.data,
           //初始化后从第几个开始加载
@@ -125,9 +137,9 @@ Page({
       //已取消订单
       app.dbbase.orderMerchantOpenIdDownState(app.globalData.openid, this.data.Merchantmax3, this.data.Merchantlimit3, -1).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           MerchantcancelOrder: res.data,
           //初始化后从第几个开始加载
@@ -136,7 +148,7 @@ Page({
       })
     }
     //个人的订单
-    else{
+    else {
       //全部订单
       app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
         app.utils.cl("all", res.data);
@@ -164,9 +176,9 @@ Page({
       //已完成订单
       app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2, 3).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           accomplishOrder: res.data,
           //初始化后从第几个开始加载
@@ -176,9 +188,9 @@ Page({
       //已取消订单
       app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3, -1).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           cancelOrder: res.data,
           //初始化后从第几个开始加载
@@ -188,6 +200,36 @@ Page({
     }
   },
 
+  monitor() {
+    const db = wx.cloud.database()
+    const watcher = db.collection('order')
+      // 按 progress 降序
+      .orderBy('addOrderDate', 'desc')
+      // 取按 orderBy 排序之后的前 1 个
+      .limit(1)
+      // .where({
+      //   _openid:app.globalData.openid
+      // })
+      .watch({
+        onChange: function (snapshot) {
+          app.utils.cl(snapshot.docs)
+          app.utils.cl('改变的事件：', snapshot.docChanges)
+          app.utils.cl('查询到的数据：', snapshot.docs)
+          app.utils.cl('是否是初始化数据：', snapshot.type === 'init')
+          if (snapshot.type != 'init') {
+            app.utils.hint('您有新订单啦~');
+            //https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3
+            const backgroundAudioManager = wx.getBackgroundAudioManager()
+            // 设置了 src 之后会自动播放
+            backgroundAudioManager.src = 'https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3'
+          }
+
+        },
+        onError: function (err) {
+          console.error('数据库监听发生错误：', err)
+        }
+      })
+  },
   tabSelect(e) {
     this.setData({
       TabCur: e.currentTarget.dataset.id,
@@ -279,7 +321,7 @@ Page({
    * 请求商品数据
    */
   setListData(e) {
-    if(this.data.status){
+    if (this.data.status) {
       switch (this.data.TabCur) {
         case 0: {
           app.utils.cl(this.data.max0);
@@ -334,7 +376,7 @@ Page({
           break;
         }
         case 2: {
-          app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max2, this.data.limit2,3).then((res) => {
+          app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max2, this.data.limit2, 3).then((res) => {
             //当数据库里商品加载完毕之后停止请求数据库
             if (res.data.length == 0) {
               app.utils.cl(this.data.accomplishOrder.length);
@@ -359,7 +401,7 @@ Page({
           break;
         }
         case 3: {
-          app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max3, this.data.limit3,-1).then((res) => {
+          app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max3, this.data.limit3, -1).then((res) => {
             //当数据库里商品加载完毕之后停止请求数据库
             if (res.data.length == 0) {
               app.utils.cl(this.data.cancelOrder.length);
@@ -384,8 +426,7 @@ Page({
           break;
         }
       }
-    }
-    else{
+    } else {
       switch (this.data.TabCur) {
         case 0: {
           app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
@@ -436,7 +477,7 @@ Page({
           break;
         }
         case 2: {
-          app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2,3).then((res) => {
+          app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2, 3).then((res) => {
             //当数据库里商品加载完毕之后停止请求数据库
             if (res.data.length == 0) {
               this.setData({
@@ -460,7 +501,7 @@ Page({
           break;
         }
         case 3: {
-          app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3,-1).then((res) => {
+          app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3, -1).then((res) => {
             //当数据库里商品加载完毕之后停止请求数据库
             if (res.data.length == 0) {
               this.setData({
@@ -487,7 +528,7 @@ Page({
     }
 
   },
-  
+
   SetShadow(e) {
     app.utils.cl(e);
     this.setData({
@@ -513,11 +554,11 @@ Page({
       theOnReachBottom2: true,
       theOnReachBottom3: true,
     })
-    if(e.currentTarget.dataset.value){
+    if (e.currentTarget.dataset.value) {
       this.setData({
         //商家deliver_fill
-        status:true,
-        switchState:false
+        status: true,
+        switchState: false
       })
       //全部订单
       app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.max0, this.data.limit0).then((res) => {
@@ -546,9 +587,9 @@ Page({
       //已完成订单
       app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max2, this.data.limit2, 3).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           accomplishOrder: res.data,
           //初始化后从第几个开始加载
@@ -558,23 +599,22 @@ Page({
       //已取消订单
       app.dbbase.orderMerchantOpenIdDownState(this.data.shop_id, this.data.max3, this.data.limit3, -1).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           cancelOrder: res.data,
           //初始化后从第几个开始加载
           max3: this.data.limit3
         })
       })
-    }
-    else{
+    } else {
       this.setData({
         //个人people
-        status:false,
-        switchState:true
+        status: false,
+        switchState: true
       })
-      
+
       //全部订单
       app.dbbase.orderOpenId(app.globalData.openid, this.data.max0, this.data.limit0).then((res) => {
         app.utils.cl("all", res.data);
@@ -602,9 +642,9 @@ Page({
       //已完成订单
       app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max2, this.data.limit2, 3).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           accomplishOrder: res.data,
           //初始化后从第几个开始加载
@@ -614,9 +654,9 @@ Page({
       //已取消订单
       app.dbbase.orderOpenIdDownState(app.globalData.openid, this.data.max3, this.data.limit3, -1).then((res) => {
         app.utils.cl(res.data);
-        for(let i=0;i<res.data.length;i++){
-          res.data[i].addOrderDate=app.dateformat(res.data[i].addOrderDate)
-      }
+        for (let i = 0; i < res.data.length; i++) {
+          res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
+        }
         this.setData({
           cancelOrder: res.data,
           //初始化后从第几个开始加载
@@ -625,4 +665,11 @@ Page({
       })
     }
   },
+  show() {
+    app.utils.cl('success');
+  }
 })
+
+export default {
+  that
+}
