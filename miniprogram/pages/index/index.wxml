@@ -172,7 +172,7 @@
               <view class="recommend_merchants_foot">
                 <view class="recommend_merchants_foot_1" wx:for="{{item.shop}}" wx:key="index" wx:if="{{index<3}}">
                   <view class="recommend_merchants_foot_v">
-                    <image src="{{item.Image}}" mode="aspectFill"></image>
+                    <image src="{{item.image}}" mode="aspectFill"></image>
                     <view class="recommend_merchants_foot_text textOverflow">{{item.name}}</view>
                   </view>
                   <text>￥{{item.price}}</text>
@@ -188,7 +188,7 @@
                     <image src="{{item.image}}" mode="aspectFill"></image>
                     <view class="recommend_merchants_foot_text textOverflow">{{item.name}}</view>
                   </view>
-                  <text>￥{{item.currentPrice}}</text>
+                  <text>￥{{item.price}}</text>
                 </view>
               </view>
             </swiper-item>
