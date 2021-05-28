@@ -1,6 +1,6 @@
 <!--order.wxml-->
 <!-- 头部 -->
-<view class="cu-custom" style="height:{{CustomBar}}px">
+<!-- <view class="cu-custom" style="height:{{CustomBar}}px">
   <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} bg-main"
     style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
     <view class="action" bindtap="selectSchool" wx:if="{{true}}">
@@ -16,14 +16,43 @@
       订单管理
     </view>
   </view>
-</view>
+</view> -->
 
+
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} bg-main"
+    style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+
+    <view class="action" bindtap="selectSchool" wx:if="{{false}}">
+      <text class="cuIcon-back"></text>
+      <slot name="backText"></slot>
+    </view>
+
+    <view class="action border-custom" wx:if="{{true}}"
+      style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
+      <view class="switchOrderState"  bindtap="SetShadow" data-value="{{switchState}}">
+        <text class="user {{switchState?'userActive':''}}"  style="font-size:25rpx;line-height:{{Custom.height}}px;">个人</text>
+        <text class="shop {{!switchState?'shopActive':''}}" 
+          style="font-size:25rpx;line-height:{{Custom.height}}px;">商家</text>
+      </view>
+      <!-- <view class="switchOrderState">
+        <view class="backText" >{{status?"商家":"个人"}}</view>
+        <switch class="switch-sexx" bindchange="SetShadow"></switch>
+      </view> -->
+    </view>
+
+    <view class="content" style="top:{{StatusBar}}px">
+      我的订单
+    </view>
+
+  </view>
+</view>
 
 <view class="content ">
   <scroll-view id="scrollView" scroll-x class="bg-white nav shadow-warp">
     <view class="flex text-center">
-      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{4}}" wx:key="index" bindtap="tabSelect"
-        data-id="{{index}}">
+      <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{4}}" wx:key="index"
+        bindtap="tabSelect" data-id="{{index}}">
         {{orderState[index]}}
       </view>
     </view>
@@ -35,7 +64,7 @@
           <!--全部订单-->
           <empty wx:if="{{allOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{allOrder}}" order="{{item}}" wx:key="index"></orderItem>
-    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+          <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -45,7 +74,7 @@
           <!--交易中-->
           <empty wx:if="{{ingOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{ingOrder}}" order="{{item}}" wx:key="index"></orderItem>
-    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+          <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -55,7 +84,7 @@
           <!--已完成-->
           <empty wx:if="{{accomplishOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{accomplishOrder}}" order="{{item}}" wx:key="index"></orderItem>
-    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+          <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
@@ -65,11 +94,11 @@
           <!--已取消-->
           <empty wx:if="{{cancelOrder.length==0}}" isFull="{{true}}"></empty>
           <orderItem wx:for="{{cancelOrder}}" order="{{item}}" wx:key="index"></orderItem>
-    <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+          <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
         </view>
       </scroll-view>
     </swiper-item>
   </swiper>
-  
+
 
 </view>

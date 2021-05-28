@@ -1,10 +1,12 @@
 //order.js
 const app = getApp()
+var that;
 
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
     orderItemHeight: 0,
     TabCur: 0,
     scrollLeft: 0,
@@ -17,6 +19,8 @@ Page({
     shop_id:"",
     //身份状态
     status:false,
+    //样式状态
+    switchState:false,
     //是否显示触底提示
     showLoadMore: false,
     //从哪开始查询
@@ -54,24 +58,32 @@ Page({
     MerchantaccomplishOrder: [],
     MerchantcancelOrder: [],
   },
+  onShow(){
+        //设置订单盒子的高度
+        let query = wx.createSelectorQuery();
+        query.select('#scrollView').boundingClientRect(rect => {
+          let scrolView = rect.height;
+          let height = parseInt(app.globalData.sysInfo.windowHeight) -parseInt(this.data.CustomBar) -parseInt(scrolView)
+          app.utils.cl(app.globalData.sysInfo.windowHeight,'可视窗口高');
+          app.utils.cl(this.data.CustomBar,'custom高');
+          app.utils.cl(scrolView,'滚动高');
+          that.setData({
+            orderItemHeight: height
+          })
+        }).exec();
+        //  .exec() 不加不执行
+  },
   onLoad: function () {
+
+    that = this
+
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
       this.setData({
         shop_id:res.data[0]._id
       })
       app.utils.cl("shop_id",this.data.shop_id);
     })
-    let that = this
-    //设置订单盒子的高度
-    let query = wx.createSelectorQuery();
-    query.select('.content').boundingClientRect(rect => {
-      let scrolView = rect.height;
-      let height = app.globalData.sysInfo.windowHeight - this.data.CustomBar - scrolView - this.data.StatusBar
-      that.setData({
-        orderItemHeight: height
-      })
-    }).exec();
-    //  .exec() 不加不执行
+    
     //商家的订单
     if(this.data.status){
       //全部订单
@@ -477,6 +489,7 @@ Page({
   },
   
   SetShadow(e) {
+    app.utils.cl(e);
     this.setData({
       allOrder: [],
       ingOrder: [],
@@ -500,10 +513,11 @@ Page({
       theOnReachBottom2: true,
       theOnReachBottom3: true,
     })
-    if(e.detail.value){
+    if(e.currentTarget.dataset.value){
       this.setData({
         //商家deliver_fill
         status:true,
+        switchState:false
       })
       //全部订单
       app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.max0, this.data.limit0).then((res) => {
@@ -557,7 +571,8 @@ Page({
     else{
       this.setData({
         //个人people
-        status:false
+        status:false,
+        switchState:true
       })
       
       //全部订单

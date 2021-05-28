@@ -24,9 +24,45 @@ page {
 }
 
 .switch-sexx::after {
-	content: "\e697";
+  /* content: "\e697"; */
+  content: "个人";
 }
 
 .switch-sexx::before {
-	content: "\e736";
+  /* content: "\e736"; */
+  content: "商家";
+}
+.switchOrderState{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  font-size: 20rpx !important;
+  /* padding-left: 15rpx;
+  padding-right: 3rpx;
+  padding-top:2rpx ;
+  padding-bottom: 2rpx; */
+  align-items: center;
+}
+.user{
+  height: 100%;
+  display: flex;
+}
+.userActive{
+  background-color: rgb(240, 240, 240);
+  color: #07c160;
+  box-shadow:inset 2px 2px 5px rgba(112, 112, 112, 0.8);
+  border-top-left-radius: 1000rpx;
+  border-bottom-left-radius: 1000rpx;
+}
+.shop{
+  height: 100%;
+  display: flex;
+}
+.shopActive{
+  background-color: rgb(240, 240, 240);
+  color: #07c160;
+  box-shadow:inset -2px 2px 5px rgba(112, 112, 112, 0.8);
+  border-top-right-radius: 1000rpx;
+  border-bottom-right-radius: 1000rpx;
 }
