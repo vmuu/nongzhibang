@@ -104,6 +104,8 @@ Page({
   },
   //侧边menu点击事件
   tabSelect(e) {
+    app.utils.cl(e);
+    
     this.setData({
       TabCur: e.currentTarget.dataset.id,
       MainCur: e.currentTarget.dataset.id,

@@ -80,17 +80,15 @@ Page({
     that = this
 
 
-
-
-
-
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
       this.setData({
         shop_id: res.data[0]._id,
         isShop: res.data[0].isShop
       })
       app.utils.cl("shop_id", this.data.shop_id);
-      if (that.data.isShop == 1) {
+      app.utils.cl(that.data.isShop);
+
+      if (that.data.isShop === 1) {
         //启动数据库监听
         that.monitor();
       }
@@ -201,6 +199,9 @@ Page({
   },
 
   monitor() {
+    //https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3
+    //创建背景音乐播放器
+
     const db = wx.cloud.database()
     const watcher = db.collection('order')
       // 按 progress 降序
@@ -216,12 +217,29 @@ Page({
           app.utils.cl('改变的事件：', snapshot.docChanges)
           app.utils.cl('查询到的数据：', snapshot.docs)
           app.utils.cl('是否是初始化数据：', snapshot.type === 'init')
-          if (snapshot.type != 'init') {
-            app.utils.hint('您有新订单啦~');
-            //https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3
-            const backgroundAudioManager = wx.getBackgroundAudioManager()
-            // 设置了 src 之后会自动播放
-            backgroundAudioManager.src = 'https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3'
+          app.utils.cl(snapshot.type);
+
+          if (!snapshot.type) {
+            if (snapshot.docs.length > 0) {
+              const backgroundAudioManager = wx.getBackgroundAudioManager()
+              backgroundAudioManager.title = '此时此刻'
+              backgroundAudioManager.epname = '此时此刻'
+              backgroundAudioManager.singer = '许巍'
+              backgroundAudioManager.coverImgUrl = 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000'
+              // 设置了 src 之后会自动播放
+              backgroundAudioManager.src = 'https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3'
+              wx.showModal({
+                content: '您有新订单啦~',
+                showCancel: false,
+                confirmText: '好的',
+                success() {
+
+                },
+                fail() {
+
+                }
+              })
+            }
           }
 
         },

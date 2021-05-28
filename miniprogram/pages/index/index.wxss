@@ -267,7 +267,8 @@ page {
   position: relative;
   top: 50rpx;
   left: 50rpx;
-  box-shadow: 10rpx 10rpx 10rpx white;
+  border-radius: 2rpx;
+  box-shadow: 5rpx 5rpx 10rpx rgb(182, 182, 182,0.8);
 }
 
 .recommend_merchants_top_right {

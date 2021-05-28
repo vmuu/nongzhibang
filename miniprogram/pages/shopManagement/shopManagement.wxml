@@ -35,7 +35,7 @@
   
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
       <text>{{item.name}}</text>
     </view>
   </scroll-view>
@@ -45,7 +45,7 @@
    
 
 
-    <view class="padding-top padding-lr" wx:for="{{commodityType}}" wx:key="index" id="main-{{item.Id}}">
+    <view class="padding-top padding-lr" wx:for="{{commodityType}}" wx:key="index" id="main-{{index}}">
       <!--Tab-->
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action'>
