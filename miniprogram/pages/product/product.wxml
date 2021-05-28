@@ -43,15 +43,15 @@
       <view class="cu-list menu-avatar">
       <empty wx:if="{{item.commodity.length==0}}" isFull="{{true}}"></empty>
         <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}" wx:key="index" data-target="move-box-{{item.Id}}" data-id="{{item._id}}" bindtap="productdesc">
-      <view class="cu-avatar round lg" style="background-image:url({{item.Image}});"></view>
+      <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
       <view class="content">
-        <view class="text-grey">{{item.Name}}</view>
+        <view class="text-grey">{{item.name}}</view>
         <view class="text-gray text-sm">
-          <text class="cuIcon-medal text-red"></text> {{item.Desc}}</view>
+          <text class="cuIcon-medal text-red"></text> {{item.desc}}</view>
       </view>
       <view class="action">
         <view class="text-grey text-xs">￥{{item.price}}</view>
-        <view class="cu-tag round bg-grey sm">月售{{item.MonthlySales}}</view>
+        <view class="cu-tag round bg-grey sm">月售{{item.monthlySales}}</view>
       </view>
     </view>
       </view>
