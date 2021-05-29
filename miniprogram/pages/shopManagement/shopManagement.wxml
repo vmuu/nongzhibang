@@ -57,8 +57,8 @@
         <view class="cu-item {{modalName=='move-box-'+ (item._id+index)?'move-cur':''}}" wx:key="index" wx:for="{{item.commodity}}"bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{(item._id+index)}}">
       <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
       <view class="content">
-        <view class="text-grey">{{item.name}}</view>
-        <view class="text-gray text-sm">
+        <view class="text-grey textOverflow">{{item.name}}</view>
+        <view class="text-gray text-sm textOverflow">
           <text class="cuIcon-medal text-red"></text> {{item.desc}}</view>
       </view>
       <view class="action">

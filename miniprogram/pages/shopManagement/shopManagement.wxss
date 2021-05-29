@@ -105,3 +105,5 @@
   font-size: 26rpx;
   width: 450rpx;
 }
+
+/* 解决溢出问题 */
