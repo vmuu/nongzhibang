@@ -15,6 +15,8 @@ Page({
     accomplishOrder: [],
     cancelOrder: [],
     showload:app.globalData.showload,
+    //是否显示弹窗
+    showload:false,
     //是商家还是个人
     isShopOrUserOrder:"我的订单",
     //是否加载
@@ -70,12 +72,35 @@ Page({
 
   },
   refreshOrder() {
-    app.utils.ce('刷新了订单');
+    that.setData({
+      allOrder: [],
+      ingOrder: [],
+      accomplishOrder: [],
+      cancelOrder: [],
+      //是否显示触底提示
+      showLoadMore: false,
+      //从哪开始查询
+      max0: 0,
+      max1: 0,
+      max2: 0,
+      max3: 0,
+      //一次性查几条数据
+      limit0: 4,
+      limit1: 4,
+      limit2: 4,
+      limit3: 4,
+      //触底时是否继续请求数据库
+      theOnReachBottom0: true,
+      theOnReachBottom1: true,
+      theOnReachBottom2: true,
+      theOnReachBottom3: true,
+    })//714114
+    app.utils.cl('刷新了订单');
+    that.reachBottom();
   },
   async onLoad() {
-  
     app.utils.cl("你直接",app.globalData.isShop);
-    that = this
+    that = this;
     app.globalData.orderPage = this;
     that.setData({
       showload:true
@@ -95,16 +120,15 @@ Page({
     }).exec(); //  .exec() 不加不执行
 
     that.setData({
-      
       isShop:app.globalData.isShop,
       shopInfo:app.globalData.shopInfo
     })
     await that.initData()
-  },
-  onReady(){
     that.setData({
       showload:false
     })
+  },
+  onReady(){
   },
   getShopInfo() {
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
@@ -128,15 +152,15 @@ Page({
     })
   },
   async initData() {
+    await that.getShopInfo()
     await that.getOrderList()
-    that.getShopInfo()
   },
   getOrderList() {
     return new Promise(success => {
       //商家的订单
       if (this.data.status) {
         //全部订单
-        app.dbbase.orderMerchantOpenId(shop_id, this.data.Merchantmax0, this.data.Merchantlimit0).then((res) => {
+        app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.Merchantmax0, this.data.Merchantlimit0).then((res) => {
           app.utils.cl("all", res.data);
           for (let i = 0; i < res.data.length; i++) {
             res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
@@ -575,6 +599,7 @@ Page({
   SetShadow(e) {
     app.utils.cl(e);
     this.setData({
+      showLoad:true,
       allOrder: [],
       ingOrder: [],
       accomplishOrder: [],
@@ -653,6 +678,9 @@ Page({
           max3: this.data.limit3
         })
       })
+      this.setData({
+        showLoad:false
+      })
     } else {
       this.setData({
         //个人people
@@ -708,15 +736,42 @@ Page({
           max3: this.data.limit3
         })
       })
+      this.setData({
+        showLoad:false
+      })
     }
   },
   refresherrefresh() {
-    wx.showLoading({
-      title: '下拉刷新',
+    that.setData({
+      allOrder: [],
+      ingOrder: [],
+      accomplishOrder: [],
+      cancelOrder: [],
+      //是否显示触底提示
+      showLoadMore: false,
+      //从哪开始查询
+      max0: 0,
+      max1: 0,
+      max2: 0,
+      max3: 0,
+      //一次性查几条数据
+      limit0: 4,
+      limit1: 4,
+      limit2: 4,
+      limit3: 4,
+      //触底时是否继续请求数据库
+      theOnReachBottom0: true,
+      theOnReachBottom1: true,
+      theOnReachBottom2: true,
+      theOnReachBottom3: true,
+    })//714114
+    that.setData({
+      showLoad: true
     })
     setTimeout(() => {
-      wx.hideLoading({
-        success: (res) => {},
+      that.reachBottom();
+      that.setData({
+        showLoad: false
       })
       that.setData({
         refresherTriggered: false

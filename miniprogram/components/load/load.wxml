@@ -1,5 +1,15 @@
 <!--components/load/load.wxml-->
-<view class="cu-load load-modal" wx:if="{{showLoad}}" >
-  <image class="loadImage" src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573"></image>
-  <view class='gray-text'>加载中...</view>
+<view>
+  <view class="cu-load load-modal" wx:if="{{showLoad&&modeType==0}}">
+    <image class="loadImage" src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573"></image>
+    <view class='gray-text'>加载中...</view>
+  </view>
+
+  <view class="loadModal" wx:if="{{showLoad&&modeType==1}}">
+    <view class="imageBox">
+      <image class="loadingImage" src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1122571622258577490"
+        mode="aspectFill"></image>
+      <text class="lodingText">加载中</text>
+    </view>
+  </view>
 </view>

@@ -7,6 +7,10 @@ Component({
     showLoad:{
       type:Boolean,
       value:false
+    },
+    modeType:{
+      type:Number,
+      value:0
     }
   },
 
