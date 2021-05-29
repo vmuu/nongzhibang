@@ -15,6 +15,10 @@ Page({
     accomplishOrder: [],
     cancelOrder: [],
     showload:app.globalData.showload,
+    //是商家还是个人
+    isShopOrUserOrder:"我的订单",
+    //是否加载
+    ifselect:true,
     //商店_id
     shop_id: "",
     //身份状态
@@ -70,6 +74,7 @@ Page({
   },
   async onLoad() {
   
+    app.utils.cl("你直接",app.globalData.isShop);
     that = this
     app.globalData.orderPage = this;
     that.setData({
@@ -90,6 +95,7 @@ Page({
     }).exec(); //  .exec() 不加不执行
 
     that.setData({
+      
       isShop:app.globalData.isShop,
       shopInfo:app.globalData.shopInfo
     })
@@ -123,6 +129,7 @@ Page({
   },
   async initData() {
     await that.getOrderList()
+    that.getShopInfo()
   },
   getOrderList() {
     return new Promise(success => {
@@ -259,13 +266,20 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   reachBottom() {
+    if(this.data.ifselect)
     switch (this.data.TabCur) {
       case 0: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom0) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -279,9 +293,15 @@ Page({
       case 1: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom1) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -295,9 +315,15 @@ Page({
       case 2: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom2) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -311,9 +337,15 @@ Page({
       case 3: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom3) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -355,6 +387,8 @@ Page({
                 allOrder: this.data.allOrder.concat(res.data),
                 max0: this.data.max0 + this.data.limit0
               })
+              app.utils.cl(this.data.allOrder);
+              
             }
           })
           break;
@@ -570,6 +604,8 @@ Page({
         switchState: false
       })
       //全部订单
+      app.utils.cl("cnm",this.data.shop_id);
+      
       app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.max0, this.data.limit0).then((res) => {
         app.utils.cl("all", res.data);
         for (let i = 0; i < res.data.length; i++) {
