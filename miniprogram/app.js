@@ -95,7 +95,7 @@ App({
       // 取按 orderBy 排序之后的前 1 个
       .limit(1)
       .where({
-        _openid: that.globalData.openid
+        shopId: that.globalData.shopInfo._id
       })
       .watch({
         onChange: function (snapshot) {
@@ -114,7 +114,8 @@ App({
               // backgroundAudioManager.singer = '许巍'
               backgroundAudioManager.coverImgUrl = 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573'
               // 设置了 src 之后会自动播放
-              backgroundAudioManager.src = that.globalData.newOrderBeep
+              backgroundAudioManager.src =that.globalData.newOrderBeep
+              // 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/2113351622294015379'
               wx.showModal({
                 content: '您有新订单啦~',
                 showCancel: false,

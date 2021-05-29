@@ -13,10 +13,10 @@ Page({
       name: '已下单'
     }, {
       icon: 'radioboxfill',
-      name: '已出货'
+      name: '已接单'
     }, {
       icon: 'roundclosefill',
-      name: '配送中'
+      name: '派送中'
     }, {
       icon: 'roundcheckfill',
       name: '已完成'
@@ -69,6 +69,7 @@ Page({
       openid = app.globalData.openid
   },
   initData() {
+    that.geShopInfo()
     app.dbbase.query('order', that.data.id).then(res => {
       app.utils.cl(res);
       let data=res.data[0];
@@ -79,7 +80,6 @@ Page({
       app.utils.cl(that.data.order, '订单');
       let addressId = that.data.order.shoppingAddressId
       app.utils.cl(addressId);
-      
 
       app.dbbase.query('shoppingAddress', addressId).then(res => {
         app.utils.cl(res, '收货地址');
@@ -90,5 +90,13 @@ Page({
       })
     })
 
+  },
+  geShopInfo(){
+    let where ={
+      _openid:app.globalData.openid
+    }
+    app.dbbase.queryWhere('order',where).then(res=>{
+      app.utils.cl('商家信息',res);
+    })
   }
 })

@@ -47,9 +47,9 @@
     <view class="action">
       <text class="cuIcon-title text-orange"></text>订单状态
     </view>
-    <view class="action">
+    <!-- <view class="action">
       <button class="cu-btn bg-green shadow" bindtap="basicsSteps">下一步</button>
-    </view>
+    </view> -->
   </view>
 
   <view class="">
@@ -95,4 +95,8 @@
       <view class="text-left">支付方式：{{order.payType=='offline'?'线下支付':'微信支付'}}</view>
     </view>
   </view>
+</view>
+<view class="nextBtnBox">
+  <button class="cu-btn round bg-green shadow text-lg" wx:if="{{order.orderState==0}}" bindtap="basicsSteps" >立即接单</button>
+  <button class="cu-btn round bg-green shadow text-lg" wx:elif="{{order.orderState==1}}" bindtap="basicsSteps" >立即派送</button>
 </view>

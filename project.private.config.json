@@ -196,6 +196,12 @@
           "pathName": "pages/shopManagement/shopManagement",
           "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
           "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=cbddf0af60b23b6c0cc0fbf76f9adeef",
+          "scene": null
         }
       ]
     }
