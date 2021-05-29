@@ -115,3 +115,9 @@
   width: 250rpx;
   height: 45rpx;
 }
+.businessHours{
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+  padding-top: 2px;
+}
