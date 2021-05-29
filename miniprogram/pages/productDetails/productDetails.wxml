@@ -43,12 +43,12 @@
       <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
     </view>
     <view class="merchants_text_marking_warp">
-      <text class="merchants_text_marking">起送价：¥{{product.startPrice}}</text>
+      <text class="merchants_text_marking">起送价：¥{{shop.startPrice}}</text>
       <!-- <text class="merchants_text_marking">配送：¥2</text> -->
     </view>
   </view>
   <view class="all_merchants_right">
-    <view class="merchants_Price">￥{{product.price}}</view>
+    <view class="merchants_Price">￥{{product.currentPrice}}</view>
     <!-- <view class="old_Price">￥{{product.price}}</view> -->
     <!-- <view class="merchants_type">立即抢购</view> -->
   </view>

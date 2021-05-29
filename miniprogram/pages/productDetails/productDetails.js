@@ -39,6 +39,7 @@ Page({
         this.setData({
           shop:res.data[0]
         })
+        app.utils.cl('店铺',res.data[0]);
       })
     })
     wx.hideLoading({

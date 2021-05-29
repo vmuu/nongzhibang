@@ -310,6 +310,8 @@ Page({
   //计算原始价格
   //原始价格的8折就是当前价格
   getCurrentPrice(value) {
+    value=parseInt(value);
+    app.utils.cl(value);
     return (parseInt(value) / 0.8).toFixed(2);
   },
   //修改提交
