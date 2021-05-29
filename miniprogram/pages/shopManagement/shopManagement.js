@@ -109,8 +109,8 @@ Page({
   onReady() {
     wx.hideLoading()
   },
-  changePruductType(e) {
-    app.utils.cl(e);
+  changeShopType(e) {
+    app.utils.cl('asdf',e);
     let index = e.detail.value;
     that.setData({
       indexShopType: index
@@ -206,12 +206,12 @@ Page({
           ]
         })
       }
-      let productTypeId = res.data[0].productTypeId;
+      let shopTypeId = res.data[0].shopTypeId;
       if (that.data.shopType) {
-        app.utils.cl('id',productTypeId);
+        app.utils.cl('id',shopTypeId);
         //shopType
         for (var i = 0; i < that.data.shopType.length; i++) {
-          if (that.data.shopType[i]._id == productTypeId) {
+          if (that.data.shopType[i]._id == shopTypeId) {
             break
           }
         }
@@ -219,6 +219,8 @@ Page({
         that.setData({
           indexShopType:i
         })
+        app.utils.cl('输出当前的项目',that.data.indexShopType);
+        
       }
 
 
@@ -316,15 +318,20 @@ Page({
   },
   //修改提交
   formSubmit: function (e) {
-    //console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    app.utils.ce('sss');
+    
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);
     let {
       _id,
       name,
       desc,
       image,
       commodityTypeId,
-      currentPrice
+      currentPrice,
+      shopType
     } = e.detail.value;
+    app.utils.cl('shopType',shopType);
+    
     if (_id != undefined && name != undefined && desc != undefined && image != undefined && commodityTypeId != undefined && currentPrice != undefined) {
       this.setData({
         warn: null,
@@ -361,18 +368,24 @@ Page({
                     res.imageURL,
                   ]
                 })
+                app.utils.ce('ss');
+                
                 //绑定菜品类别id
                 db.queryName("productType", this.data.picker[commodityTypeId]).then((res) => {
+                  app.utils.cl('输出菜品类型',res);
+                  
                   this.setData({
                     commodityTypePorductId: res.data[0]._id
                   })
+                  app.utils.ce('校园零食',that.data.shopType[shopType]._id);
+                  
                   //更新数据
                   db.productupdate(_id, {
                     desc: desc,
                     name: name,
                     image: this.data.imgList[0],
                     commodityTypeId: this.data.commodityTypePorductId,
-                    productTypeId: that.data.shopType[pruductTypeId]._id,
+                    shopTypeId: that.data.shopType[shopType]._id,
                     price: this.getCurrentPrice(currentPrice),
                     currentPrice: currentPrice,
                     success: function (res) {
@@ -403,17 +416,24 @@ Page({
                 })
               })
             } else {
+              app.utils.ce('修改');
+              app.utils.cl('that.data.shopType[shopType]._id',that.data.shopType[shopType]._id);
+              
               db.queryName("productType", this.data.picker[commodityTypeId]).then((res) => {
                 this.setData({
                   commodityTypePorductId: res.data[0]._id
                 })
                 //更新数据
                 db.productupdate(_id, {
-                  eesc: desc,
+                  desc: desc,
+                  favorableRating: 0,
+                  monthlySales: 0,
                   name: name,
                   commodityTypeId: this.data.commodityTypePorductId,
+                  shopTypeId: that.data.shopType[shopType]._id,
                   price: this.getCurrentPrice(currentPrice),
                   currentPrice: currentPrice,
+                  shopId: this.data.shop._id,
                   success: function (res) {
                     wx.showLoading({
                       title: '数据上传中...',
@@ -489,7 +509,7 @@ Page({
       this.setData({
         shopType: res.data
       })
-      app.utils.cl(this.data.shopType);
+      app.utils.cl('shopType',this.data.shopType);
 
     })
   },
@@ -528,7 +548,7 @@ Page({
       image,
       commodityTypeId,
       currentPrice,
-      pruductTypeId
+      shopType,
     } = e.detail.value;
     if (name != undefined && desc != undefined && image != undefined && commodityTypeId != undefined && currentPrice != undefined) {
       this.setData({
@@ -573,6 +593,8 @@ Page({
                 this.setData({
                   commodityTypePorductId: res.data[0]._id
                 })
+                app.utils.cl('阿萨德法师',that.data.shopType);
+                
                 //添加数据
                 db.add("product", {
                   desc: desc,
@@ -581,7 +603,7 @@ Page({
                   name: name,
                   image: this.data.imgList[0],
                   commodityTypeId: this.data.commodityTypePorductId,
-                  productTypeId: that.data.shopType[pruductTypeId]._id,
+                  shopTypeId: that.data.shopType[shopType]._id,
                   price: this.getCurrentPrice(currentPrice),
                   currentPrice: currentPrice,
                   shopId: this.data.shop._id,

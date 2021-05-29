@@ -70,7 +70,7 @@
         <view class="bg-red" bindtap="delectproduct" data-product_id="{{item._id}}" wx:key="index" >删除</view>
       </view>
     </view>
-    <!--弹窗-->
+    <!--修改弹窗-->
     <view class="cu-modal {{modalName=='Modal'?'show':''}}">
     <view class="cu-dialog">
       <view class="cu-bar bg-white justify-end">
@@ -104,7 +104,7 @@
           </view>
           <view class="cu-form-group">
             <view class="title">分类</view>
-            <picker name="pruductTypeId" bindchange="changePruductType" mode="selector" range-key="name"  value="{{indexShopType}}" range="{{shopType}}">
+            <picker name="shopType" bindchange="changeShopType" mode="selector" range-key="name"  value="{{indexShopType}}" range="{{shopType}}">
               <view class="picker">
                 {{shopType[indexShopType].name}}
               </view>
@@ -183,7 +183,7 @@
           </view>
           <view class="cu-form-group">
             <view class="title">分类</view>
-            <picker name="pruductTypeId" bindchange="changePruductType" mode="selector" range-key="name"  value="indexShopType" range="{{shopType}}">
+            <picker name="shopType" bindchange="changeShopType" mode="selector" range-key="name"  value="{{indexShopType}}" range="{{shopType}}">
               <view class="picker">
                 {{shopType[indexShopType].name}}
               </view>
