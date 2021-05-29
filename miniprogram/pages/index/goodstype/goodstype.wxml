@@ -9,10 +9,10 @@
 <view class="all_goods">
     <view class="goods_con_warp">
       <view class="goods_con" wx:for="{{Produck}}" wx:key="index" data-id="{{item._id}}" bindtap="tapProduct">
-        <image src="{{item.Image}}"></image>
+        <image src="{{item.image}}"></image>
         <view class="goods_con_text textOverflow">
           <view class="goods_con_text_l textOverflow">
-            <text>{{item.Name}}</text>
+            <text>{{item.name}}</text>
           </view>
         </view>
         <view class="goods_con_text_r">
