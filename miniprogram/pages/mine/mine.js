@@ -39,15 +39,17 @@ Page({
       badge: 20,
       name: '消息'
     }],
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202144/235421620143642072'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
-    }, {
+     swiperList: [
+       //{
+    //   id: 0,
+    //   type: 'image',
+    //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202144/235421620143642072'
+    // }, {
+    //   id: 1,
+    //   type: 'image',
+    //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
+    // },
+     {
       id: 2,
       type: 'image',
       url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126421620185202773'
