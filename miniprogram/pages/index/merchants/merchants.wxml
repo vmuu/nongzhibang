@@ -22,16 +22,16 @@
         <view class="merchants_marking">清油简餐</view>
       </view>
       <view class="merchants_text_marking_warp">
-        <text class="merchants_text_marking">起送价：¥15</text>
-        <text class="merchants_text_marking">配送：¥2</text>
+        <text class="merchants_text_marking">起送价：¥{{item.startPrice}}</text>
+        <text class="merchants_text_marking">配送：¥{{item.deliverPrice}}</text>
       </view>
       <view>
-        <text class="cuIcon-location textOverflow">{{item.shopName}}</text>
+        <text class="cuIcon-location textOverflow">{{item.address}}</text>
       </view>
     </view>
     <view class="all_merchants_right">
       <view class="merchants_statu">暂停中</view>
-      <view class="merchants_type">校园专送</view>
+      <view class="merchants_type" wx:if="{{item.distributionType.length!=null}}">{{item.distributionType}}</view>
     </view>
   </view>
   <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
