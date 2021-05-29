@@ -190,6 +190,12 @@
           "pathName": "pages/mine/shop/shop",
           "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
           "scene": null
+        },
+        {
+          "name": "pages/shopManagement/shopManagement",
+          "pathName": "pages/shopManagement/shopManagement",
+          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+          "scene": null
         }
       ]
     }

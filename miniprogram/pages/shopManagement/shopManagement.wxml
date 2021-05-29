@@ -63,7 +63,7 @@
       </view>
       <view class="action">
         <view class="text-grey text-xs">￥{{item.currentPrice}}</view>
-        <view class="cu-tag round bg-grey sm">月售{{item.monthlySales}}</view>
+        <view class="cu-tag round bg-grey sm">月售{{item.monthlySales?item.monthlySales:'0'}}</view>
       </view>
       <view class="move">
         <view class="bg-grey" bindtap="showModal" data-product_id="{{item._id}}" data-target="Modal">编辑</view>
@@ -92,13 +92,21 @@
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="currentPrice" value="{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
+            <input name="currentPrice"  value="￥{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
           </view>
           <view class="cu-form-group">
-            <view class="title">分类</view>
+            <view class="title">栏目</view>
             <picker name="commodityTypeId" bindchange="PickerChange" value="{{indexPicker}}" range="{{picker}}">
               <view class="picker">
                 {{picker[indexPicker]}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group">
+            <view class="title">分类</view>
+            <picker name="pruductTypeId" bindchange="changePruductType" mode="selector" range-key="name"  value="{{indexShopType}}" range="{{shopType}}">
+              <view class="picker">
+                {{shopType[indexShopType].name}}
               </view>
             </picker>
           </view>
@@ -166,10 +174,18 @@
             <input name="currentPrice" placeholder="菜品价格" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
-            <view class="title">分类</view>
+            <view class="title">栏目</view>
             <picker name="commodityTypeId" bindchange="PickeraddChange" value="{{indexPicker}}" range="{{picker}}">
               <view class="picker">
                 {{picker[indexPicker]}}
+              </view>
+            </picker>
+          </view>
+          <view class="cu-form-group">
+            <view class="title">分类</view>
+            <picker name="pruductTypeId" bindchange="changePruductType" mode="selector" range-key="name"  value="indexShopType" range="{{shopType}}">
+              <view class="picker">
+                {{shopType[indexShopType].name}}
               </view>
             </picker>
           </view>
