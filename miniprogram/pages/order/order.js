@@ -15,6 +15,12 @@ Page({
     accomplishOrder: [],
     cancelOrder: [],
     showload:app.globalData.showload,
+    //是否显示弹窗
+    showload:false,
+    //是商家还是个人
+    isShopOrUserOrder:"我的订单",
+    //是否加载
+    ifselect:true,
     //商店_id
     shop_id: "",
     //身份状态
@@ -66,11 +72,35 @@ Page({
 
   },
   refreshOrder() {
-    app.utils.ce('刷新了订单');
+    that.setData({
+      allOrder: [],
+      ingOrder: [],
+      accomplishOrder: [],
+      cancelOrder: [],
+      //是否显示触底提示
+      showLoadMore: false,
+      //从哪开始查询
+      max0: 0,
+      max1: 0,
+      max2: 0,
+      max3: 0,
+      //一次性查几条数据
+      limit0: 4,
+      limit1: 4,
+      limit2: 4,
+      limit3: 4,
+      //触底时是否继续请求数据库
+      theOnReachBottom0: true,
+      theOnReachBottom1: true,
+      theOnReachBottom2: true,
+      theOnReachBottom3: true,
+    })//714114
+    app.utils.cl('刷新了订单');
+    that.reachBottom();
   },
   async onLoad() {
-  
-    that = this
+    app.utils.cl("你直接",app.globalData.isShop);
+    that = this;
     app.globalData.orderPage = this;
     that.setData({
       showload:true
@@ -94,11 +124,11 @@ Page({
       shopInfo:app.globalData.shopInfo
     })
     await that.initData()
-  },
-  onReady(){
     that.setData({
       showload:false
     })
+  },
+  onReady(){
   },
   getShopInfo() {
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
@@ -122,6 +152,7 @@ Page({
     })
   },
   async initData() {
+    await that.getShopInfo()
     await that.getOrderList()
   },
   getOrderList() {
@@ -129,7 +160,7 @@ Page({
       //商家的订单
       if (this.data.status) {
         //全部订单
-        app.dbbase.orderMerchantOpenId(shop_id, this.data.Merchantmax0, this.data.Merchantlimit0).then((res) => {
+        app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.Merchantmax0, this.data.Merchantlimit0).then((res) => {
           app.utils.cl("all", res.data);
           for (let i = 0; i < res.data.length; i++) {
             res.data[i].addOrderDate = app.dateformat(res.data[i].addOrderDate)
@@ -259,13 +290,20 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   reachBottom() {
+    if(this.data.ifselect)
     switch (this.data.TabCur) {
       case 0: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom0) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -279,9 +317,15 @@ Page({
       case 1: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom1) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -295,9 +339,15 @@ Page({
       case 2: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom2) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -311,9 +361,15 @@ Page({
       case 3: {
         //是否继续加载数据？
         if (this.data.theOnReachBottom3) {
+          this.setData({
+            ifselect:false
+          })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
+            this.setData({
+              ifselect:true
+            })
           }, 300);
         } else {
           //当数据库里没有商品时，停止请求数据库，并弹出提示
@@ -355,6 +411,8 @@ Page({
                 allOrder: this.data.allOrder.concat(res.data),
                 max0: this.data.max0 + this.data.limit0
               })
+              app.utils.cl(this.data.allOrder);
+              
             }
           })
           break;
@@ -541,6 +599,7 @@ Page({
   SetShadow(e) {
     app.utils.cl(e);
     this.setData({
+      showLoad:true,
       allOrder: [],
       ingOrder: [],
       accomplishOrder: [],
@@ -570,6 +629,8 @@ Page({
         switchState: false
       })
       //全部订单
+      app.utils.cl("cnm",this.data.shop_id);
+      
       app.dbbase.orderMerchantOpenId(this.data.shop_id, this.data.max0, this.data.limit0).then((res) => {
         app.utils.cl("all", res.data);
         for (let i = 0; i < res.data.length; i++) {
@@ -616,6 +677,9 @@ Page({
           //初始化后从第几个开始加载
           max3: this.data.limit3
         })
+      })
+      this.setData({
+        showLoad:false
       })
     } else {
       this.setData({
@@ -672,15 +736,42 @@ Page({
           max3: this.data.limit3
         })
       })
+      this.setData({
+        showLoad:false
+      })
     }
   },
   refresherrefresh() {
-    wx.showLoading({
-      title: '下拉刷新',
+    that.setData({
+      allOrder: [],
+      ingOrder: [],
+      accomplishOrder: [],
+      cancelOrder: [],
+      //是否显示触底提示
+      showLoadMore: false,
+      //从哪开始查询
+      max0: 0,
+      max1: 0,
+      max2: 0,
+      max3: 0,
+      //一次性查几条数据
+      limit0: 4,
+      limit1: 4,
+      limit2: 4,
+      limit3: 4,
+      //触底时是否继续请求数据库
+      theOnReachBottom0: true,
+      theOnReachBottom1: true,
+      theOnReachBottom2: true,
+      theOnReachBottom3: true,
+    })//714114
+    that.setData({
+      showLoad: true
     })
     setTimeout(() => {
-      wx.hideLoading({
-        success: (res) => {},
+      that.reachBottom();
+      that.setData({
+        showLoad: false
       })
       that.setData({
         refresherTriggered: false
