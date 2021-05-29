@@ -12,5 +12,8 @@
      qiniuShouldUseQiniuFileName: false//是否使用七牛云自动设置名称
    }
    logDebug = true
+   //加载动画
+   //https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1122571622258577490
+   //https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1124001622258640673
  }
  export default new Config

@@ -3,6 +3,7 @@ import http from './config/http'
 import utils from './config/utils'
 import dbbase from './config/dbbase'
 import webstock from './plugins/webstock'
+
 var that;
 
 
@@ -21,11 +22,12 @@ App({
    * 程序全局变量
    */
   globalData: {
-
+    orderPage: undefined,
+    newOrderBeep: null,
+    showLoad:true
   },
   async onLaunch() {
     that = this;
-
     //判断是否支持云开发
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -40,6 +42,8 @@ App({
         traceUser: true,
       })
     };
+    this.globalData.showLoad=true
+    that.initData()
 
     //获取七牛云授权
     http.get('/api/File/Token').then((res) => {
@@ -79,7 +83,7 @@ App({
     if (re == 1) {
       //已经开通店铺
       //启动数据库监听
-      // this.monitor();
+      this.monitor();
     }
 
   },
@@ -90,15 +94,40 @@ App({
       .orderBy('addOrderDate', 'desc')
       // 取按 orderBy 排序之后的前 1 个
       .limit(1)
-      // .where({
-      //   _openid:app.globalData.openid
-      // })
+      .where({
+        _openid: that.globalData.openid
+      })
       .watch({
         onChange: function (snapshot) {
           utils.cl(snapshot.docs)
           utils.cl('改变的事件：', snapshot.docChanges)
           utils.cl('查询到的数据：', snapshot.docs)
           utils.cl('是否是初始化数据：', snapshot.type === 'init')
+          if (!snapshot.type) {
+            if (snapshot.docs.length > 0) {
+              if (!that.utils.isEmpty(that.globalData.orderPage)) {
+                that.globalData.orderPage.refreshOrder();
+              }
+              const backgroundAudioManager = wx.getBackgroundAudioManager()
+              backgroundAudioManager.title = '新订单提醒~'
+              // backgroundAudioManager.epname = '此时此刻'
+              // backgroundAudioManager.singer = '许巍'
+              backgroundAudioManager.coverImgUrl = 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573'
+              // 设置了 src 之后会自动播放
+              backgroundAudioManager.src = that.globalData.newOrderBeep
+              wx.showModal({
+                content: '您有新订单啦~',
+                showCancel: false,
+                confirmText: '好的',
+                success() {
+
+                },
+                fail() {
+
+                }
+              })
+            }
+          }
         },
         onError: function (err) {
           console.error('数据库监听发生错误：', err)
@@ -216,4 +245,26 @@ App({
       }
     })
   },
+  getAppConfig() {
+    //查询小程序提示音
+    const db = wx.cloud.database()
+    return new Promise((success,error) => {
+      db.collection('app').get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+          error(err)
+        }
+      })
+    })
+  },
+  async initData() {
+    that.getAppConfig().then(res=>{
+      that.globalData.newOrderBeep=res.data[0].newOrderBeep
+      that.utils.cl('小程序配置',res);
+      that.utils.cl(res.data[0].newOrderBeep);
+    })
+  }
 })

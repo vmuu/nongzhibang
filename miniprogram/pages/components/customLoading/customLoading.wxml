@@ -1,0 +1,6 @@
+<!--components/loading/loading.wxml-->
+<view class='cu-load load-modal' wx:if="{{true}}">
+  <!-- <view class='cuIcon-emojifill text-orange'></view> -->
+  <image src='https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573' class='png' mode='aspectFit'></image>
+  <view class='gray-text'>加载中...</view>
+</view>

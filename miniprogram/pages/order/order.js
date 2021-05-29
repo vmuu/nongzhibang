@@ -20,12 +20,12 @@ Page({
     //身份状态
     status: false,
     //样式状态
-    switchState: false,
+    switchState: true,
     //是否显示触底提示
     showLoadMore: false,
     isShop: -1,
     shopInfo: null,
-    refresherTriggered:false,
+    refresherTriggered: false,
     //从哪开始查询
     max0: 0,
     max1: 0,
@@ -77,10 +77,14 @@ Page({
     }).exec();
     //  .exec() 不加不执行
   },
-
+  refreshOrder() {
+      app.utils.ce('刷新了订单');
+  },
   onLoad: function () {
 
     that = this
+    app.globalData.orderPage = this;
+
 
 
     app.dbbase.queryOpenId("shop", app.globalData.openid).then((res) => {
@@ -99,8 +103,7 @@ Page({
       app.utils.cl(that.data.isShop);
 
       if (that.data.isShop === 1) {
-        //启动数据库监听
-        that.monitor();
+        //开通了店铺
       }
     })
 
@@ -206,57 +209,6 @@ Page({
         })
       })
     }
-  },
-
-  monitor() {
-    //https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3
-    //创建背景音乐播放器
-
-    const db = wx.cloud.database()
-    const watcher = db.collection('order')
-      // 按 progress 降序
-      .orderBy('addOrderDate', 'desc')
-      // 取按 orderBy 排序之后的前 1 个
-      .limit(1)
-      // .where({
-      //   _openid:app.globalData.openid
-      // })
-      .watch({
-        onChange: function (snapshot) {
-          app.utils.cl(snapshot.docs)
-          app.utils.cl('改变的事件：', snapshot.docChanges)
-          app.utils.cl('查询到的数据：', snapshot.docs)
-          app.utils.cl('是否是初始化数据：', snapshot.type === 'init')
-          app.utils.cl(snapshot.type);
-
-          if (!snapshot.type) {
-            if (snapshot.docs.length > 0) {
-              const backgroundAudioManager = wx.getBackgroundAudioManager()
-              backgroundAudioManager.title = '此时此刻'
-              backgroundAudioManager.epname = '此时此刻'
-              backgroundAudioManager.singer = '许巍'
-              backgroundAudioManager.coverImgUrl = 'http://y.gtimg.cn/music/photo_new/T002R300x300M000003rsKF44GyaSk.jpg?max_age=2592000'
-              // 设置了 src 之后会自动播放
-              backgroundAudioManager.src = 'https://cdn.xiaoxingbobo.top/nongzhibang/newOrder.mp3'
-              wx.showModal({
-                content: '您有新订单啦~',
-                showCancel: false,
-                confirmText: '好的',
-                success() {
-
-                },
-                fail() {
-
-                }
-              })
-            }
-          }
-
-        },
-        onError: function (err) {
-          console.error('数据库监听发生错误：', err)
-        }
-      })
   },
   tabSelect(e) {
     this.setData({
@@ -693,7 +645,7 @@ Page({
       })
     }
   },
-  refresherrefresh(){
+  refresherrefresh() {
     wx.showLoading({
       title: '下拉刷新',
     })
@@ -702,9 +654,9 @@ Page({
         success: (res) => {},
       })
       that.setData({
-        refresherTriggered:false
+        refresherTriggered: false
       })
     }, 1000);
-    
+
   }
 })

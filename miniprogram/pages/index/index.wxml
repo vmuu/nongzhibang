@@ -68,7 +68,8 @@
   <view class="main_icon_warp">
     <view class="main-icon">
       <view class="icon-wrapper">
-        <view class="big-icon" wx:for="{{shopType}}" wx:key="index" bindtap="enterDeliciousFood" data-id="{{item._id}}" data-name="{{item.name}}">
+        <view class="big-icon" wx:for="{{shopType}}" wx:key="index" bindtap="enterDeliciousFood" data-id="{{item._id}}"
+          data-name="{{item.name}}">
           <image mode="aspectFill" src="{{item.img}}"></image>
           <text>{{item.name}}</text>
         </view>
@@ -211,7 +212,7 @@
     <view class="goods_con_warp">
 
       <view class="goods_con" wx:for="{{hotProductlist}}" wx:key="index" data-id="{{item._id}}" bindtap="hotproduct">
-        <image src="{{item.image}}" mode="aspectFill" ></image>
+        <image src="{{item.image}}" mode="aspectFill"></image>
         <view class="goods_con_text textOverflow">
           <view class="goods_con_text_l textOverflow">
             <text>{{item.name}}</text>
@@ -225,10 +226,20 @@
 
     </view>
   </view>
-  <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+  <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
   <!-- 商家内容 -->
   <view class="container">
 
   </view>
+
+  <load showLoad="{{showLoad}}"></load>
+  <!-- <view class="loadModal">
+    <view class="imageBox">
+      <image class="loadingImage"  src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1122571622258577490" mode="aspectFill"></image>
+      <text class="lodingText">加载中</text>
+    </view>
+  </view> -->
+
+
 
 </view>

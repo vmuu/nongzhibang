@@ -1,0 +1,5 @@
+<!--components/load/load.wxml-->
+<view class="cu-load load-modal" wx:if="{{showLoad}}" >
+  <image class="loadImage" src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573"></image>
+  <view class='gray-text'>加载中...</view>
+</view>

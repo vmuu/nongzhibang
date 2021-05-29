@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
-    "empty":"/components/empty/empty"
+    "empty": "/components/empty/empty"
   },
   "pages": [
     "pages/index/index",
@@ -52,7 +52,10 @@
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
   },
-  "requiredBackgroundModes": ["audio", "location"],
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
   "tabBar": {
     "color": "#666666",
     "selectedColor": "#07c160",
@@ -61,25 +64,19 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/tabBar/home.png",
-        "selectedIconPath": "images/tabBar/home-main.png"
+        "selectedIconPath": "images/tabBar/active.png"
       },
       {
         "pagePath": "pages/order/order",
         "text": "订单",
         "iconPath": "images/tabBar/order.png",
-        "selectedIconPath": "images/tabBar/order-main.png"
+        "selectedIconPath": "images/tabBar/active.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "images/tabBar/mine.png",
-        "selectedIconPath": "images/tabBar/mine-main.png"
-      },
-      {
-        "pagePath": "pages/test/test",
-        "text": "开发者",
-        "iconPath": "images/tabBar/code.png",
-        "selectedIconPath": "images/tabBar/code-main.png"
+        "selectedIconPath": "images/tabBar/active.png"
       }
     ]
   },

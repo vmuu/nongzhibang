@@ -32,8 +32,8 @@
       style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
 
       <view class="switchOrderState"  bindtap="SetShadow" data-value="{{switchState}}">
-        <text class="user {{!switchState?'userActive':''}}"  style="font-size:25rpx;line-height:{{Custom.height}}px;">个人</text>
-        <text class="shop {{switchState?'shopActive':''}}" 
+        <text class="user {{switchState?'userActive':''}}"  style="font-size:25rpx;line-height:{{Custom.height}}px;">个人</text>
+        <text class="shop {{!switchState?'shopActive':''}}" 
           style="font-size:25rpx;line-height:{{Custom.height}}px;">商家</text>
       </view>
       <!-- <view class="switchOrderState">

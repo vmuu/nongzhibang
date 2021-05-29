@@ -1,5 +1,6 @@
 import db from '../../config/dbbase.js';
 import utils from '../../config/utils.js';
+var that;
 
 const app = getApp();
 Page({
@@ -52,13 +53,47 @@ Page({
     loadMoreText: "加载中.....",
     //是否显示触底提示
     showLoadMore: false,
+    showLoad: app.globalData.showLoad,
     //从哪开始查询
     max: 0,
     //一次性查几条数据
     limit: 8,
     //触底时是否继续请求数据库
     theOnReachBottom: true,
-    noticeHeight:0
+    noticeHeight: 0
+
+  },
+  initData() {
+    return new Promise(success => {
+      //首页按钮和图片
+      app.dbbase.queryselect('shopType').then(res => {
+          app.utils.cl(res);
+          this.setData({
+            shopType: res.data
+          })
+          app.utils.cl(this.data.shopType);
+
+        }),
+        //推荐店铺
+        db.indexProductOrShop().then((res) => {
+          app.utils.cl(res.result.list);
+          this.setData({
+            shop: res.result.list
+          })
+        })
+      //热门商品与全部商品首次加载
+      db.productlist(this.data.max, this.data.limit).then((res) => {
+        success()
+        this.setData({
+          hotproduct: res.data,
+          hotProductlist: res.data,
+          index: res.data.length,
+          //初始化后从第几个开始加载
+          max: this.data.limit
+        })
+      })
+
+    })
 
   },
 
@@ -69,41 +104,21 @@ Page({
       url: '../search/search',
     })
   },
-  onLoad: function () {
+  state() {
+    that = this
+  },
+  async onLoad() {
+    this.state()
+    await this.initData()
+
     //获取公告栏的高度
     let query = wx.createSelectorQuery();
     query.select('.notice').boundingClientRect(rect => {
       let height = rect.height;
       this.setData({
-        noticeHeight:rect.height
+        noticeHeight: rect.height
       })
     }).exec();
-    //首页按钮和图片
-    app.dbbase.queryselect('shopType').then(res => {
-        app.utils.cl(res);
-        this.setData({
-          shopType: res.data
-        })
-        app.utils.cl(this.data.shopType);
-
-      }),
-      //推荐店铺
-      db.indexProductOrShop().then((res) => {
-        app.utils.cl(res.result.list);
-        this.setData({
-          shop: res.result.list
-        })
-      })
-    //热门商品与全部商品首次加载
-    db.productlist(this.data.max, this.data.limit).then((res) => {
-      this.setData({
-        hotproduct: res.data,
-        hotProductlist: res.data,
-        index: res.data.length,
-        //初始化后从第几个开始加载
-        max: this.data.limit
-      })
-    })
     this.setData({
       capsuleHeight: wx.getMenuButtonBoundingClientRect().height // 胶囊高度
     })
@@ -141,6 +156,13 @@ Page({
       imageURL: "https://img01.yzcdn.cn/vant/ipad.jpeg",
     })
 
+
+  },
+  onReady() {
+    app.globalData.showLoad = false;
+    that.setData({
+      showLoad: false
+    })
   },
   //轮播图切换放大
   cardSwiper(e) {
@@ -253,7 +275,7 @@ Page({
       }
     })
   },
-  tapNotice(){
+  tapNotice() {
     app.utils.cl('查看公告');
   }
 });
