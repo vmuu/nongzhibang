@@ -16,6 +16,7 @@ Page({
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl'), // 如需尝试获取用户信息可改为false
     gridCol: 3,
+    showLoad: false,
     isShop: -1,
     shopInfo: null,
     gridBorder: false,
@@ -65,7 +66,12 @@ Page({
     that.initData()
   },
   onLoad: function () {
+
+
     this.state()
+    that.setData({
+      showLoad: true
+    })
 
     //判断是否支持云函数
     if (!wx.cloud) {
@@ -100,8 +106,15 @@ Page({
   state() {
     that = this;
     openid = app.globalData.openid;
-    that.data.shopInfo = app.globalData.shopInfo;
-    that.data.isShop = app.globalData.isShop;
+    that.setData({
+      isShop: app.globalData.isShop,
+      shopInfo: app.globalData.shopInfo,
+    })
+  },
+  onReady() {
+    that.setData({
+      showLoad: false
+    })
   },
   initData() {
     //判断是否以及开通店铺
@@ -176,7 +189,7 @@ Page({
 
     } else if (that.data.isShop == 1) {
       wx.navigateTo({
-        url: './shop/shop?id='+that.data.shopInfo._id,
+        url: './shop/shop?id=' + that.data.shopInfo._id,
       })
     } else if (that.data.isShop == 3) {
       wx.showModal({

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-  "orderItem":"../../components/orderItem/orderItem"
+  "orderItem":"../../components/orderItem/orderItem",
+  "load":"../../components/load/load"
   }
 }

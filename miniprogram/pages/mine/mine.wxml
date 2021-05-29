@@ -92,4 +92,5 @@
 			</view>
 		</view>
 	</view>
+	<load showLoad="{{showLoad}}"></load>
 </view>

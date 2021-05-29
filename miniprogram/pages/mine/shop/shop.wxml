@@ -1,5 +1,6 @@
 <!--miniprogram/pages/mine/shop/shop.wxml-->
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+
 	<cu-custom bgColor="bg-main" isBack="{{true}}">
 		<view slot="backText">返回</view>
 		<view slot="content">店铺管理</view>
@@ -8,12 +9,15 @@
 	<form>
 		<view class="cu-form-group">
 			<view class="title">店铺名称</view>
-			<input placeholder="请填写您的店铺名称" value="{{entity.shopName}}" data-prop="entity.shopName"
-				bindinput="change"></input>
+			<input placeholder="请填写您的店铺名称" value="{{entity.shopName}}" data-prop="entity.shopName" bindinput="change"></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">起送价</view>
+			<input placeholder="请填写店铺起送价"  value="{{entity.startPrice}}" data-prop="entity.startPrice" bindinput="change"></input>
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">店铺描述</view>
-			<textarea maxlength="100" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"
+			<textarea maxlength="20" value="{{entity.shopDescribe}}" data-prop="entity.shopDescribe" bindinput="change"
 				placeholder="请输入店铺描述（最多20个字）"></textarea>
 		</view>
 		<view class="cu-form-group align-start">
@@ -62,8 +66,8 @@
 		</view>
 		<view class="cu-form-group align-start">
 			<view class="title">详细地址</view>
-			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}"
-				data-prop="entity.address" bindinput="change" placeholder="请输入详细地址"></textarea>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" value="{{entity.address}}" data-prop="entity.address"
+				bindinput="change" placeholder="请输入详细地址"></textarea>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">营业时间</view>
@@ -100,13 +104,17 @@
 
 	<view class="text-center nextBtnBox">
 		<button bindtap="tapPrevious" class="cu-btn round line-yellow shadow">上一步</button>
-		<button class="cu-btn round bg-green shadow" wx:if="{{isShop==1}}" bindtap="tapShopManage">{{save?'进入店铺':'保存'}}</button>
-		<button class="cu-btn round bg-green shadow"  wx:if="{{isShop!=1}}" bindtap="tapShopManage">提交审核</button>
+		<button class="cu-btn round bg-green shadow" wx:if="{{isShop==1}}"
+			bindtap="tapShopManage">{{save?'进入店铺':'保存'}}</button>
+		<button class="cu-btn round bg-green shadow" wx:if="{{isShop!=1}}" bindtap="tapShopManage">提交审核</button>
 		<!-- isShop -->
 	</view>
 
+
 </scroll-view>
+
 <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+
 	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 
 		<empty wx:if="{{productTypeList.length==0?true:false}}" isFull="{{true}}"></empty>
@@ -125,8 +133,9 @@
 		</view>
 	</view>
 
+</scroll-view>
 
-
+<block wx:if="{{modalName=='viewModal'}}">
 	<!-- 添加 -->
 	<view class="cu-modal {{addModel=='DialogModal2'?'show':''}}">
 		<view class="cu-dialog">
@@ -151,7 +160,6 @@
 			</view>
 		</view>
 	</view>
-
 	<view class="DrawerClose {{modalName=='viewModal'?'show':''}}">
 		<view class="iconBtnGroup">
 			<!-- 添加分类 -->
@@ -159,4 +167,4 @@
 			<text class="cuIcon-pullright" bindtap="hideModal"></text>
 		</view>
 	</view>
-</scroll-view>
+</block>

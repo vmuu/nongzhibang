@@ -100,6 +100,7 @@
       </scroll-view>
     </swiper-item>
   </swiper>
+  <load showLoad="{{showload}}"></load>
 
 
 </view>
