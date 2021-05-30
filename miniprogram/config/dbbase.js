@@ -424,12 +424,16 @@ class DBBase {
    * 云函数修改，product表
    */
 
-  productupdate = function (data) {
+  productupdate = function (table,data) {
     return new Promise((success, error) => {
       wx.cloud.callFunction({
         //要访问的云函数
         name: "ProductUpdata",
-        data: data,
+
+        data: {
+          table:table,
+          data:data
+        },
         success: res => {
           return success(res)
         }

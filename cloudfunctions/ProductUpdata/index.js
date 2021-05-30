@@ -8,9 +8,9 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   console.log(event);
   try {
-    return await db.collection("product").doc(event.id).update({
+    return await db.collection(event.table).doc(event.data.id).update({
       // data 传入需要局部更新的数据
-      data: event
+      data: event.data
     })
   } catch (e) {
     console.error(e)

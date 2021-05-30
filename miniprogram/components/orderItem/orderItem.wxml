@@ -24,6 +24,6 @@
   </view>
   <view class="btnGroup">
       <view class="look" bindtap="orderDetail" data-id="{{order._id}}" >查看订单</view>
-      <view class="cancel" wx:if="{{order.orderState==0}}">取消订单</view>
+      <view class="cancel" wx:if="{{order.orderState==0}}" bindtap="tapCancel" data-id="{{order._id}}">取消订单</view>
     </view>
 </view>

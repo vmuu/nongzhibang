@@ -4,7 +4,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 
-// 云函数入口函数
+// 云函数入口函数.orderBy('isRecommend', 'desc')
 exports.main = async (event, context) => {
   try {
     return await db.collection("shop").aggregate().lookup({
@@ -17,7 +17,7 @@ exports.main = async (event, context) => {
       salesVolume: -1
     })
     .skip(0)
-    .limit(3)
+    .limit(6)
     .end()
   } catch (e) {
     console.error(e)
