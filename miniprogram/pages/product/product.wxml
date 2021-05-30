@@ -6,7 +6,6 @@
     <view class='content' style='top:{{StatusBar}}px;'>商家店铺</view>
   </view>
 </view>
-
 <view class="padding screen-swiper round-dot" style="z-index:999;background-image:url('{{shop.shopBackground}}');background-repeat:no-repeat;background-size:100% 50%;">
     <view class="radius shadow bg-white fcx-head" style="top:{{heighttop}}px;">
       <view style="weight:60%;height:80%;">
@@ -24,17 +23,17 @@
     </view>
     </view>
 </view>
-<empty wx:if="{{commodityType.length==0}}" isFull="{{true}}"></empty>
+<empty wx:if="{{commodityType.length==0?true:false}}" isFull="{{false}}"></empty>
 <view class="VerticalBox">
   <!--侧边menu-->
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{item.Id}}">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
       <text>{{item.name}}</text>
     </view>
   </scroll-view>
   <!--内容list-->
   <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
-    <view class="padding-top padding-lr" wx:for="{{commodityType}}" wx:key="index" id="main-{{item.Id}}">
+    <view class="padding-top padding-lr" wx:for="{{commodityType}}" wx:key="index" id="main-{{index}}">
       <!--Tab-->
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action'>
@@ -42,7 +41,7 @@
       </view>
       <!--内容-->
       <view class="cu-list menu-avatar">
-      <empty wx:if="{{item.commodity.length==0}}" isFull="{{true}}"></empty>
+      <empty wx:if="{{item.commodity.length==0?true:false}}" isFull="{{false}}"></empty>
         <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}" wx:key="index" data-target="move-box-{{item.Id}}" data-id="{{item._id}}" bindtap="productdesc">
       <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
       <view class="content">

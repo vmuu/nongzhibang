@@ -62,7 +62,16 @@ Page({
       title: '加载中...',
       mask: true
     })
-
+    let list = [{}];
+    for (let i = 0; i < 3; i++) {
+      list[i] = {};
+      list[i].name = String.fromCharCode(65 + i);
+      list[i].id = i;
+    }
+    this.setData({
+      list: list,
+      listCur: list[0]
+    })
     //调用封装的多表（2表）联查函数
     db.looKupTwo("looKupProductOrProductType",shop.id,"productType","product","_id","commodityTypeId","commodity").then((res)=>{
       app.utils.cl(res.result.list);
@@ -96,7 +105,7 @@ Page({
     let tabHeight = 0;
     if (this.data.load) {
       for (let i = 0; i < list.length; i++) {
-        let view = wx.createSelectorQuery().select("#main-" + list[i].Id);
+        let view = wx.createSelectorQuery().select("#main-" + i);
         view.fields({
           size: true
         }, data => {
@@ -114,8 +123,8 @@ Page({
     for (let i = 0; i < list.length; i++) {
       if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
         that.setData({
-          VerticalNavTop: (list[i].Id - 1) * 50,
-          TabCur: list[i].Id
+          VerticalNavTop: (i - 1) * 50,
+          TabCur: i
         })
         return false
       }

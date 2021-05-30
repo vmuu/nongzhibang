@@ -79,6 +79,16 @@ Page({
       title: '加载中...',
       mask: true
     })
+    let list = [{}];
+    for (let i = 0; i < 3; i++) {
+      list[i] = {};
+      list[i].name = String.fromCharCode(65 + i);
+      list[i].id = i;
+    }
+    this.setData({
+      list: list,
+      listCur: list[0]
+    })
     //调用封装的多表（2表）联查函数
     db.looKupTwo("looKupProductOrProductType", shop.id, "productType", "product", "_id", "commodityTypeId", "commodity").then((res) => {
       app.utils.cl(res);
@@ -134,12 +144,12 @@ Page({
     let tabHeight = 0;
     if (this.data.load) {
       for (let i = 0; i < list.length; i++) {
-        let view = wx.createSelectorQuery().select("#main-" + list[i].Id);
+        let view = wx.createSelectorQuery().select("#main-" + i);
         view.fields({
           size: true
         }, data => {
           list[i].top = tabHeight;
-          tabHeight = tabHeight + that.data.height;
+          tabHeight = tabHeight + data.height;
           list[i].bottom = tabHeight;
         }).exec();
       }
@@ -152,8 +162,8 @@ Page({
     for (let i = 0; i < list.length; i++) {
       if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
         that.setData({
-          VerticalNavTop: (list[i].Id - 1) * 50,
-          TabCur: list[i].Id
+          VerticalNavTop: (i - 1) * 50,
+          TabCur: i.Id
         })
         return false
       }
@@ -206,6 +216,8 @@ Page({
           ]
         })
       }
+      app.utils.cl("shopType",that.data.shopType,"shopTypeId",res.data[0].shopTypeId);
+      
       let shopTypeId = res.data[0].shopTypeId;
       if (that.data.shopType) {
         app.utils.cl('id',shopTypeId);
@@ -318,7 +330,6 @@ Page({
   },
   //修改提交
   formSubmit: function (e) {
-    app.utils.ce('sss');
     
     console.log('form发生了submit事件，携带数据为：', e.detail.value);
     let {
@@ -416,21 +427,25 @@ Page({
                 })
               })
             } else {
-              app.utils.ce('修改');
-              app.utils.cl('that.data.shopType[shopType]._id',that.data.shopType[shopType]._id);
+              //app.utils.cl('that.data.shopType[shopType]._id',that.data.shopType[shopType]._id);
               
               db.queryName("productType", this.data.picker[commodityTypeId]).then((res) => {
                 this.setData({
                   commodityTypePorductId: res.data[0]._id
                 })
+                app.utils.ce('校园零食',that.data.shopType[shopType]._id);
+                let shopTypeId = that.data.shopType[shopType]._id
+                app.utils.ce(shopTypeId,_id);
+                
                 //更新数据
-                db.productupdate(_id, {
+                db.productupdate({
+                  id:_id,
                   desc: desc,
                   favorableRating: 0,
                   monthlySales: 0,
                   name: name,
                   commodityTypeId: this.data.commodityTypePorductId,
-                  shopTypeId: that.data.shopType[shopType]._id,
+                  shopTypeId: shopTypeId,
                   price: this.getCurrentPrice(currentPrice),
                   currentPrice: currentPrice,
                   shopId: this.data.shop._id,
