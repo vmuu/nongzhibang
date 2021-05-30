@@ -97,10 +97,17 @@
   </view>
 </view>
 <view class="nextBtnBoxPlaceholder"></view>
-<view class="nextBtnBox"  wx:if="{{(order.orderState==1||order.orderState==0)&&shopInfo._id==order.shopId}}">
-  <button class="cu-btn round line-orange   shadow text-lg" wx:if="{{order.orderState==0}}" 
-   bindtap="basicsSteps" >取消订单</button>
-  <button class="cu-btn round bg-green shadow text-lg" wx:if="{{order.orderState==0&&shopInfo._id==order.shopId}}" 
-   bindtap="basicsSteps" >立即接单</button>
-  <button class="cu-btn round bg-green shadow text-lg" wx:elif="{{order.orderState==1&&shopInfo._id==order.shopId}}" bindtap="basicsSteps" >立即派送</button>
+
+<view class="nextBtnBox" wx:if="{{order.orderState==0||order.orderState==1||order.orderState==2}}">
+  <button class="cu-btn round line-orange   shadow text-lg" wx:if="{{order.orderState==0}}" bindtap="basicsSteps"
+    data-type="0">取消订单</button>
+  <button class="cu-btn round bg-green shadow text-lg" wx:if="{{order.orderState==0&&shopInfo._id==order.shopId}}" bindtap="basicsSteps">立即接单</button>
+  <button class="cu-btn round bg-green shadow text-lg" wx:if="{{order.orderState==1&&shopInfo._id==order.shopId}}"
+    bindtap="basicsSteps">立即派送</button>
+</view>
+
+
+<view class="nextBtnBox" wx:else>
+  <button class="cu-btn round bg-green shadow text-lg" wx:if="{{order.orderState==2&&shopInfo._id!=order.shopId}}"
+    bindtap="basicsSteps">交易完成</button>
 </view>

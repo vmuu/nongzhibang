@@ -232,6 +232,18 @@
           "pathName": "pages/confirmOrder/confirmOrder",
           "query": "id=cbddf0af60a3ba7a096f633b7e1f8575",
           "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=b00064a760b251f31c34c7e600a4d7dc",
+          "scene": null
+        },
+        {
+          "name": "pages/im/im",
+          "pathName": "pages/im/im",
+          "query": "",
+          "scene": null
         }
       ]
     }

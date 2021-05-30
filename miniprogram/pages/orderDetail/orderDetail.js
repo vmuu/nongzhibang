@@ -37,9 +37,24 @@ Page({
     order: null,
     shoppingAddress: {},
     shopInfo: {},
-    isUserOrder:true,//是否是普通用户的订单，而不是商家订单
+    isUserOrder: true, //是否是普通用户的订单，而不是商家订单
   },
-  basicsSteps() {
+  cancelOrder() {
+    return new Promise(success => {
+      wx.showModal({
+        title: '取消提示',
+        content: '您确定要取消？',
+        success(e) {
+          if (e.confirm) {
+            success(true)
+          }
+          success(false)
+        }
+      })
+    })
+
+  },
+  basicsSteps(e) {
     let id = that.data.id;
     let where = {
       _id: that.data.id
@@ -48,26 +63,63 @@ Page({
       orderState: 1
     }
     app.utils.cl(id, data);
-    //判断当前订单状态
-    if (that.data.order.orderState == 0) {
-      data.orderState = 1
-    } else if (that.data.order.orderState == 1) {
-      data.orderState = 2
+    app.utils.cl("e", e.currentTarget.dataset.type);
+    if (e.currentTarget.dataset.type == 0) {
+      //取消订单
+      wx.showModal({
+        title: '取消提示',
+        content: '您确定要取消？',
+        success(res) {
+          if (res.confirm) {
+            data.orderState = -1
+            app.dbbase.update('order', id, data).then(res => {
+              app.utils.cl(res);
+              if (res.stats.updated > 0) {
+                app.utils.hint('操作成功');
+                this.setData({
+                  basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
+                })
+                that.initData()
+              } else {
+                app.utils.hint('修改失败');
+              }
+            })
+          } else {
+            return false;
+          }
+
+        }
+      })
+
+
+    } else {
+      //判断当前订单状态
+      if (that.data.order.orderState == 0) {
+        data.orderState = 1
+      } else if (that.data.order.orderState == 1) {
+        data.orderState = 2
+      } else if (that.data.order.orderState == 2) {
+        data.orderState = 3
+      }
+
+      app.dbbase.update('order', id, data).then(res => {
+        app.utils.cl(res);
+        if (res.stats.updated > 0) {
+          app.utils.hint('操作成功');
+          this.setData({
+            basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
+          })
+          that.initData()
+        } else {
+          app.utils.hint('修改失败');
+
+        }
+      })
+
     }
 
-    app.dbbase.update('order', id, data).then(res => {
-      app.utils.cl(res);
-      if (res.stats.updated > 0) {
-        app.utils.hint('操作成功');
-        this.setData({
-          basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
-        })
-        that.initData()
-      } else {
-        app.utils.hint('修改失败');
 
-      }
-    })
+
   },
   numSteps() {
     this.setData({
@@ -89,7 +141,6 @@ Page({
     that.initData()
     app.utils.cl(options);
 
-
   },
   state() {
     that = this,
@@ -110,7 +161,6 @@ Page({
       app.utils.cl(that.data.order, '订单');
       let addressId = that.data.order.shoppingAddressId
       app.utils.cl(addressId);
-
       app.dbbase.query('shoppingAddress', addressId).then(res => {
         app.utils.cl(res, '收货地址');
         that.setData({
@@ -122,12 +172,12 @@ Page({
 
   },
   geShopInfo() {
-     let _openid=app.globalData.openid
-     app.utils.cl('openid',_openid);
-     
-    app.dbbase.queryOpenId('shop',_openid ).then(res => {
+    let _openid = app.globalData.openid
+    app.utils.cl('openid', _openid);
+
+    app.dbbase.queryOpenId('shop', _openid).then(res => {
       app.utils.cl('商家信息', res);
-      if (res.data.length ==1) {
+      if (res.data.length == 1) {
         that.setData({
           shopInfo: res.data[0]
         })

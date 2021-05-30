@@ -82,6 +82,7 @@ App({
     this.utils.cl(re);
     if (re == 1) {
       //已经开通店铺
+      that.onGetOpenid();
       //启动数据库监听
       this.monitor();
     }

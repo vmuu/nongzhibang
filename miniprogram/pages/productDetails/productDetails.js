@@ -77,11 +77,10 @@ Page({
 
   },
   goodNavigateTo(e) {
-    if(that.data.myShop){
+    if(!app.utils.isEmpty(that.data.myShop)){
       if(that.data.myShop._id==that.data.shop._id){
         app.utils.hint('您不可以订购自己的商品');
         return
-        
       }
     }
     wx.navigateTo({
