@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
-    "empty": "/components/empty/empty"
+    "empty": "/components/empty/empty",
+    "load": "/components/load/load"
   },
   "pages": [
     "pages/index/index",
