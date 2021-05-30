@@ -107,7 +107,7 @@
 </view>
 
 
-<view class="nextBtnBox" wx:else>
+<view class="nextBtnBox" wx:elif="{{order.orderState==2&&shopInfo._id!=order.shopId}}">
   <button class="cu-btn round bg-green shadow text-lg" wx:if="{{order.orderState==2&&shopInfo._id!=order.shopId}}"
     bindtap="basicsSteps">交易完成</button>
 </view>

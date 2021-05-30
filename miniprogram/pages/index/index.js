@@ -124,13 +124,13 @@ Page({
     })
     this.setData({
       msgList: [{
-          title: '你有一笔奖励待发放'
+          title: '欢迎使用农职帮服务平台'
         },
         {
-          title: '1.8元津贴到账，快点去打车吧'
+          title: '全场配送免费'
         },
         {
-          title: '单单八折赢iPhone，一路迎春“发”'
+          title: '业务合作请到我的联系我们'
         }
       ],
       // 下拉列表

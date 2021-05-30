@@ -106,9 +106,6 @@ Page({
         app.utils.cl(res);
         if (res.stats.updated > 0) {
           app.utils.hint('操作成功');
-          this.setData({
-            basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
-          })
           that.initData()
         } else {
           app.utils.hint('修改失败');

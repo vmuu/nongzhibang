@@ -38,7 +38,7 @@
   },
   "appid": "wx3a8c64be8ef1cac3",
   "projectname": "nongzhibang",
-  "libVersion": "2.8.3",
+  "libVersion": "2.17.0",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

@@ -24,7 +24,7 @@ App({
   globalData: {
     orderPage: undefined,
     newOrderBeep: null,
-    showLoad:true
+    showLoad: true
   },
   async onLaunch() {
     that = this;
@@ -38,11 +38,11 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        // env: 'my-env-id',
+        env: 'cloud1-3gtxx3hfcd0cc5a0',
         traceUser: true,
       })
     };
-    this.globalData.showLoad=true
+    this.globalData.showLoad = true
     that.initData()
 
     //获取七牛云授权
@@ -88,7 +88,24 @@ App({
     }
 
   },
-  monitor() {
+ async  monitor() {
+
+    // 获取用户信息
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+             
+            }
+          })
+        }
+      }
+    })
+    await this.onGetOpenid()
+
+
     const db = wx.cloud.database()
     const watcher = db.collection('order')
       // 按 progress 降序
@@ -100,39 +117,75 @@ App({
       })
       .watch({
         onChange: function (snapshot) {
+          utils.cl(snapshot);
+
           utils.cl(snapshot.docs)
           utils.cl('改变的事件：', snapshot.docChanges)
           utils.cl('查询到的数据：', snapshot.docs)
           utils.cl('是否是初始化数据：', snapshot.type === 'init')
           if (!snapshot.type) {
             if (snapshot.docs.length > 0) {
-              if (!that.utils.isEmpty(that.globalData.orderPage)) {
-                that.globalData.orderPage.refreshOrder();
-              }
-              const backgroundAudioManager = wx.getBackgroundAudioManager()
-              backgroundAudioManager.title = '新订单提醒~'
-              // backgroundAudioManager.epname = '此时此刻'
-              // backgroundAudioManager.singer = '许巍'
-              backgroundAudioManager.coverImgUrl = 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573'
-              // 设置了 src 之后会自动播放
-              backgroundAudioManager.src =that.globalData.newOrderBeep
-              // 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/2113351622294015379'
-              wx.showModal({
-                content: '您有新订单啦~',
-                showCancel: false,
-                confirmText: '好的',
-                success() {
-
-                },
-                fail() {
-
+              if (snapshot.docChanges[0].dataType === "add") {
+                if (!that.utils.isEmpty(that.globalData.orderPage)) {
+                  that.globalData.orderPage.refreshOrder();
                 }
-              })
+                const backgroundAudioManager = wx.getBackgroundAudioManager()
+                backgroundAudioManager.title = '新订单提醒~'
+                // backgroundAudioManager.epname = '此时此刻'
+                // backgroundAudioManager.singer = '许巍'
+                backgroundAudioManager.coverImgUrl = 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573'
+                // 设置了 src 之后会自动播放
+                backgroundAudioManager.src = that.globalData.newOrderBeep
+                // 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/2113351622294015379'
+                wx.hideLoading({
+                  success: (res) => {},
+                })
+                wx.showModal({
+                  content: '您有新订单啦~',
+                  showCancel: false,
+                  confirmText: '好的',
+                  success() {
+
+                  },
+                  fail() {
+
+                  }
+                })
+              } else if (snapshot.docChanges[0].dataType === "update") {
+                if (snapshot.docs[0].orderState == -1) {
+                  const backgroundAudioManager = wx.getBackgroundAudioManager()
+                  backgroundAudioManager.title = '您的订单已取消~'
+                  // backgroundAudioManager.epname = '此时此刻'
+                  // backgroundAudioManager.singer = '许巍'
+                  backgroundAudioManager.coverImgUrl = 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1107491622257669573'
+                  // 设置了 src 之后会自动播放
+                  backgroundAudioManager.src = that.globalData.appConfig.cancelOrderBeep
+                  // 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/2113351622294015379'
+                  wx.hideLoading({
+                    success: (res) => {},
+                  })
+                  wx.showModal({
+                    content: '您的订单已取消~',
+                    showCancel: false,
+                    confirmText: '知道了',
+                    success() {
+
+                    },
+                    fail() {
+
+                    }
+                  })
+                }
+              }
+
             }
           }
         },
         onError: function (err) {
           console.error('数据库监听发生错误：', err)
+          utils.ce('重试启动监听');
+          watcher.close()
+         //that.monitor()
         }
       })
   },
@@ -205,8 +258,6 @@ App({
           })
         }
       })
-
-
     })
 
   },
@@ -250,7 +301,7 @@ App({
   getAppConfig() {
     //查询小程序提示音
     const db = wx.cloud.database()
-    return new Promise((success,error) => {
+    return new Promise((success, error) => {
       db.collection('app').get({
         success: res => {
           return success(res)
@@ -263,9 +314,10 @@ App({
     })
   },
   async initData() {
-    that.getAppConfig().then(res=>{
-      that.globalData.newOrderBeep=res.data[0].newOrderBeep
-      that.utils.cl('小程序配置',res);
+    that.getAppConfig().then(res => {
+      that.globalData.newOrderBeep = res.data[0].newOrderBeep
+      that.globalData.appConfig=res.data[0]
+      that.utils.cl('小程序配置', res);
       that.utils.cl(res.data[0].newOrderBeep);
     })
   }
