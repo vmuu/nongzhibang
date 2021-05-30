@@ -77,11 +77,6 @@
         "text": "我的",
         "iconPath": "images/tabBar/mine.png",
         "selectedIconPath": "images/tabBar/active.png"
-      },{
-        "pagePath": "pages/test/test",
-        "text": "开发",
-        "iconPath": "images/tabBar/mine.png",
-        "selectedIconPath": "images/tabBar/active.png"
       }
     ]
   },
