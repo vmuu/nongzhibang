@@ -10,13 +10,7 @@ exports.main = async (event, context) => {
   try {
     return await db.collection("product").doc(event.id).update({
       // data 传入需要局部更新的数据
-      data: {
-        Desc:event.Desc,
-        Name:event.Name,
-        Image:event.Image,
-        commodityTypeId:event.commodityTypeId,
-        price:event.price,
-      }
+      data: event
     })
   } catch (e) {
     console.error(e)

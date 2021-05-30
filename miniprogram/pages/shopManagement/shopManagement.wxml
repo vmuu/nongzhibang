@@ -92,7 +92,8 @@
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="currentPrice"  value="￥{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
+            ￥
+            <input name="currentPrice"  value="{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">栏目</view>
@@ -171,6 +172,7 @@
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
+            ￥
             <input name="currentPrice" placeholder="菜品价格" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">
