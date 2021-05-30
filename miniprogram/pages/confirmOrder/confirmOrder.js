@@ -30,7 +30,9 @@ Page({
     id: null,
     addressId: null,
     order: {},
-    orderBtnDisable:false
+    orderBtnDisable:false,
+    shopInfo:{},
+    shopId:null
   },
 
   /**
@@ -79,7 +81,8 @@ Page({
     app.dbbase.queryWhere('shoppingAddress', addressWhere).then(res => {
       app.utils.cl(res);
       that.setData({
-        shoppingAddress: res.data[0]
+        shoppingAddress: res.data[0],
+        shopId:res.data[0].shopId
       })
     })
   },
@@ -103,6 +106,16 @@ Page({
           shop: res.data[0]
         })
       })
+    })
+  },
+  getShopInfo(){
+    let id=that.data.shopId;
+    app.dbbase.query('shop',id).then(res=>{
+      app.utils.cl(res);
+      that.setData({
+        shopInfo:res.data[0]
+      })
+      
     })
   },
   AddressNavigateTo(e) {
