@@ -15,7 +15,7 @@ Page({
     ingOrder: [],
     accomplishOrder: [],
     cancelOrder: [],
-    showload:app.globalData.showload,
+    //showload:app.globalData.showload,
     //是否显示弹窗
     showload:false,
     //是商家还是个人
@@ -275,12 +275,14 @@ Page({
         //是否继续加载数据？
         if (this.data.theOnReachBottom0) {
           this.setData({
+            showLoad:true,
             ifselect:false
           })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
             this.setData({
+              showLoad:false,
               ifselect:true
             })
           }, 300);
@@ -297,12 +299,14 @@ Page({
         //是否继续加载数据？
         if (this.data.theOnReachBottom1) {
           this.setData({
+            showLoad:true,
             ifselect:false
           })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
             this.setData({
+              showLoad:false,
               ifselect:true
             })
           }, 300);
@@ -319,12 +323,14 @@ Page({
         //是否继续加载数据？
         if (this.data.theOnReachBottom2) {
           this.setData({
+            showLoad:true,
             ifselect:false
           })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
             this.setData({
+              showLoad:false,
               ifselect:true
             })
           }, 300);
@@ -341,12 +347,14 @@ Page({
         //是否继续加载数据？
         if (this.data.theOnReachBottom3) {
           this.setData({
+            showLoad:true,
             ifselect:false
           })
           //当数据库里还有商品时，继续请求数据库
           setTimeout(() => {
             this.setListData();
             this.setData({
+              showLoad:false,
               ifselect:true
             })
           }, 300);
@@ -576,6 +584,9 @@ Page({
   },
 
   SetShadow(e) {
+    this.setData({
+      showLoad:true
+    })
     app.utils.cl(e);
     this.initstate();
     if (e.currentTarget.dataset.value) {
@@ -634,9 +645,6 @@ Page({
           max3: this.data.limit3
         })
       })
-      this.setData({
-        showLoad:false
-      })
     } else {
       this.setData({
         //个人people
@@ -692,10 +700,10 @@ Page({
           max3: this.data.limit3
         })
       })
-      this.setData({
-        showLoad:false
-      })
     }
+    this.setData({
+      showLoad:false
+    })
   },
   refresherrefresh() {
     this.initstate();
