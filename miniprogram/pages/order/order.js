@@ -19,7 +19,7 @@ Page({
     //是否显示弹窗
     showload:false,
     //是商家还是个人
-    isShopOrUserOrder:"我的订单",
+    isShopOrUserOrder:"我的个人订单",
     //是否加载
     ifselect:true,
     //商店_id
@@ -593,7 +593,8 @@ Page({
       this.setData({
         //商家deliver_fill
         status: true,
-        switchState: false
+        switchState: false,
+        isShopOrUserOrder:"我的商家订单"
       })
       //全部订单
       app.utils.cl("cnm",this.data.shop_id);
@@ -649,7 +650,8 @@ Page({
       this.setData({
         //个人people
         status: false,
-        switchState: true
+        switchState: true,
+        isShopOrUserOrder:"我的个人订单"
       })
 
       //全部订单
