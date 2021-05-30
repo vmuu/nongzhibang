@@ -226,6 +226,12 @@
           "pathName": "pages/productDetails/productDetails",
           "query": "id=b00064a760b251c61c34bded56afae9e",
           "scene": null
+        },
+        {
+          "name": "pages/confirmOrder/confirmOrder",
+          "pathName": "pages/confirmOrder/confirmOrder",
+          "query": "id=cbddf0af60a3ba7a096f633b7e1f8575",
+          "scene": null
         }
       ]
     }

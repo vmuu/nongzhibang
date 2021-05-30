@@ -10,7 +10,8 @@
       <text class="merchants_title">店铺：{{shop.shopName}}</text>
       <text class="product-type">分类：{{productType.name}}</text>
       <view>
-        地址： <text class="cuIcon-location textOverflow">{{shop.province}}{{shop.city}}{{shop.county}}{{shop.address}}</text>
+        地址： <text
+          class="cuIcon-location textOverflow">{{shop.province}}{{shop.city}}{{shop.county}}{{shop.address}}</text>
       </view>
     </view>
   </view>
@@ -57,10 +58,10 @@
 
 
 <!-- 收获地址 -->
-<view class="padding-lr-sm padding-top-xs">
+<view class="padding-lr-sm padding-top-xs" wx:if="shoppingAddress">
   <view class="addressBox">
     <view class="addressItem">
-      <view class="addressBox">
+      <view class="addressBox" >
         <view class="iconBox"><text class="cuIcon-locationfill"></text></view>
         <view class="infoBox">
           <text class="consignee">{{shoppingAddress.name}}</text><text class="phone">{{shoppingAddress.tel}}</text>
@@ -88,13 +89,13 @@
   <view class="padding-sm payTypeBox" bindtap="tapSelectPay" data-type="weixin">
     <view class="{{payType=='weixin'?'bg-gradual-green':'bg-gray'}} padding-sm radius text-center shadow-green">
       <view class="text-lg"><text class="cuIcon-weixin"></text> 微信支付</view>
-      <text class="cuIcon-check checkIcon" wx:if="{{payType=='weixin'?true:false}}" ></text>
+      <text class="cuIcon-check checkIcon" wx:if="{{payType=='weixin'?true:false}}"></text>
     </view>
   </view>
-  <view class="padding-sm payTypeBox" bindtap="tapSelectPay"  data-type="offline">
+  <view class="padding-sm payTypeBox" bindtap="tapSelectPay" data-type="offline">
     <view class="{{payType=='offline'?'bg-gradual-green':'bg-gray'}} padding-sm radius text-center shadow-green">
       <view class="text-lg"><text class="cuIcon-footprint"></text>线下支付</view>
-      <text class="cuIcon-check checkIcon" wx:if="{{payType=='offline'?true:false}}" ></text>
+      <text class="cuIcon-check checkIcon" wx:if="{{payType=='offline'?true:false}}"></text>
     </view>
   </view>
 </view>

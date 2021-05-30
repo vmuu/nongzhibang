@@ -26,13 +26,13 @@ Page({
     productType: {},
     shop: {},
     payType: 'offline',
-    shoppingAddress: {},
+    shoppingAddress: null,
     id: null,
     addressId: null,
     order: {},
-    orderBtnDisable:false,
-    shopInfo:{},
-    shopId:null
+    orderBtnDisable: false,
+    shopInfo: {},
+    shopId: null
   },
 
   /**
@@ -79,11 +79,28 @@ Page({
       }
     }
     app.dbbase.queryWhere('shoppingAddress', addressWhere).then(res => {
-      app.utils.cl(res);
-      that.setData({
-        shoppingAddress: res.data[0],
-        shopId:res.data[0].shopId
-      })
+      app.utils.cl('123', res);
+      if (res.data.length == 1) {
+        that.setData({
+          shoppingAddress: res.data[0],
+          shopId: res.data[0].shopId
+        })
+      } else {
+        wx.showModal({
+          title: '添加收货地址',
+          content: '您还未添加收货地址',
+          confirmText: '立即添加',
+          showCancel: false,
+          success(e) {
+            if (e.confirm) {
+              wx.navigateTo({
+                url: '../mine/address/address?id=' + that.data.id
+              })
+            }
+          }
+        })
+      }
+
     })
   },
   initData() {
@@ -108,14 +125,14 @@ Page({
       })
     })
   },
-  getShopInfo(){
-    let id=that.data.shopId;
-    app.dbbase.query('shop',id).then(res=>{
+  getShopInfo() {
+    let id = that.data.shopId;
+    app.dbbase.query('shop', id).then(res => {
       app.utils.cl(res);
       that.setData({
-        shopInfo:res.data[0]
+        shopInfo: res.data[0]
       })
-      
+
     })
   },
   AddressNavigateTo(e) {
@@ -129,76 +146,82 @@ Page({
       return
     }
     //确认下单
-    let orderInfo=await that.confirmOrder();
-    app.utils.cl(orderInfo,'阿斯蒂芬');
-    
+    let orderInfo = await that.confirmOrder();
+    app.utils.cl(orderInfo, '阿斯蒂芬');
+
     wx.showLoading({
       title: '正在处理中',
-      mask:true
+      mask: true
     })
 
 
-    app.dbbase.add('order',orderInfo).then(res=>{
+    app.dbbase.add('order', orderInfo).then(res => {
       app.utils.cl(res);
-      app.utils.cl(res._id,'id');
-      
+      app.utils.cl(res._id, 'id');
+
       wx.hideLoading({
         success: (res) => {},
       })
       wx.redirectTo({
         url: '../orderDetail/orderDetail?id=' + res._id,
       })
-    })    
+    })
   },
-  getOrderNumber(){
-     //获取当前时间，转换成文件名
-     let year="",month="",day="",timestamp="",hours="",minutes="",seconds="";
-     let date = new Date();
-     year = date.getFullYear().toString();
-     month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
-     day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-     //获取时间戳
-     timestamp = (new Date()).valueOf();
-     hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
-     minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-     seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-     //生成订单
-     let orderNumber=year+month+day+hours+minutes+seconds+timestamp;
-     return orderNumber;
+  getOrderNumber() {
+    //获取当前时间，转换成文件名
+    let year = "",
+      month = "",
+      day = "",
+      timestamp = "",
+      hours = "",
+      minutes = "",
+      seconds = "";
+    let date = new Date();
+    year = date.getFullYear().toString();
+    month = date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth();
+    day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    //获取时间戳
+    timestamp = (new Date()).valueOf();
+    hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+    //生成订单
+    let orderNumber = year + month + day + hours + minutes + seconds + timestamp;
+    return orderNumber;
   },
   async confirmOrder() {
     //生成订单号
-    let orderNo=await this.getOrderNumber();
-    let shoppingAddress=that.data.shoppingAddress;
+    let orderNo = await this.getOrderNumber();
+    let shoppingAddress = that.data.shoppingAddress;
     //店铺地址
-    let shopAddress=shoppingAddress.province+shoppingAddress.city+shoppingAddress.county+shoppingAddress.address;
+    let shopAddress = shoppingAddress.province + shoppingAddress.city + shoppingAddress.county + shoppingAddress.address;
     //
     app.utils.cl(that.data.product);
     app.utils.cl(that.data.shop);
-    
-     let order = {
+
+    let order = {
       img: that.data.product.image,
-      productDesc:that.data.product.desc,
+      productDesc: that.data.product.desc,
       shopName: that.data.shop.shopName,
-      shopId:that.data.shop._id,
+      shopId: that.data.shop._id,
       orderState: 0,
       productName: that.data.product.name,
-      productTypeName:that.data.productType.name,
+      productTypeName: that.data.productType.name,
       addOrderDate: new Date(),
-      orderNumber:orderNo,
-      payType:"offline",
-      startPrice:that.data.shop.startPrice,
+      orderNumber: orderNo,
+      payType: "offline",
+      startPrice: that.data.shop.startPrice,
       howMoney: that.data.product.currentPrice,
-      shopAddress:shopAddress,//店铺地址
-      shoppingAddressId:shoppingAddress._id,//收货地址id
+      shopAddress: shopAddress, //店铺地址
+      shoppingAddressId: shoppingAddress._id, //收货地址id
       // orderUserId: null,
       // orderUserName: null,
-      shopImage:that.data.shop.shopImage,
+      shopImage: that.data.shop.shopImage,
       productId: that.data.product._id
     }
     app.utils.cl(that.data.order);
     return order;
-    
+
   },
   tapSelectPay(e) {
     app.utils.cl(e);
