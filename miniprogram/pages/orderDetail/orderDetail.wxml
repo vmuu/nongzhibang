@@ -31,7 +31,7 @@
         <!-- <view class="merchants_marking merchants_marking_cfgf">炒饭盖饭</view> -->
       </view>
       <view class="merchants_text_marking_warp">
-        <text class="merchants_text_marking">起送价：¥{{order.startPrice}}</text>
+        <text class="merchants_text_marking">起送价：¥{{order.deliverPrice}}</text>
 
       </view>
     </view>

@@ -188,5 +188,11 @@ Page({
       }
 
     })
+  },
+  tapBack(){
+    app.utils.cl("吃牛逼");
+    wx.navigateTo({
+      url: '../order/order.wxml',
+    })
   }
 })
