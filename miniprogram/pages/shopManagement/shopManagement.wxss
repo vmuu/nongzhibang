@@ -112,5 +112,7 @@
   color: black;
   padding-top: 2px;
 }
-
+.screen-swiper {
+	min-height: 400rpx;
+}
 /* 解决溢出问题 */
