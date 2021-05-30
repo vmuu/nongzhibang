@@ -191,6 +191,8 @@ Page({
 
 
     if (this.data.entity.isShop != -1&&this.data.entity.isShop!=null) {
+     
+      
       app.utils.cl(that.data.entity);
      
       app.utils.cl(payload);
@@ -213,10 +215,15 @@ Page({
     app.utils.cl(payload);
     payload.isShop=0
     app.dbbase.add('shop', this.data.entity).then(res => {
+      app.utils.cl('添加成功',res);
+      app.utils.cl("res._id",res._id);
+      let id=res._id
+      
+      
       wx.hideLoading({
         success: (res) => {
           wx.navigateTo({
-            url: '../shop/shop',
+            url: '../shop/shop?id=' + id,
           })
         },
       })
