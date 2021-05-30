@@ -16,7 +16,7 @@ Page({
       province: '云南省',
       city: '昆明市',
       county: '五华区',
-      default: false
+      default: true
     },
     addressList: [],
     isUpdate: false,
@@ -81,12 +81,16 @@ Page({
   //弹出添加地址
   tapAddAddress() {
     if (!that.data.isUpdate) {
+      let isDefault=false;
+      if(that.data.addressList.length==0){
+        isDefault=true
+      }
       that.setData({
         address: {
           province: '云南省',
           city: '昆明市',
           county: '五华区',
-          default: false
+          default: isDefault
         },
         addModel: true
       })
@@ -135,6 +139,15 @@ Page({
   },
   switchChange(e) {
     app.utils.cl(e.detail.value);
+    app.utils.cl('asdf');
+    
+    if(that.data.addressList.length<=1){
+      app.utils.hint('至少一个默认地址');
+      that.setData({
+        ['address.default']:true
+      })
+      return false
+    }
     that.setData({
       ['address.default']: e.detail.value
     })
