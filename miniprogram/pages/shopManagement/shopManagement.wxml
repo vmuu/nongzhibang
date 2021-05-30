@@ -200,6 +200,7 @@
           <view class="cu-form-group">
               <view class="grid col-4 grid-square flex-sub">
                 <view value="{{imgList[index_x]}}" class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index_x]}}">
+                  <view class="businessHours">营业时间：{{shop.startTime}} - {{shop.endTime}}</view>
                   <!--<image src='{{imgList[index_x]}}' mode='aspectFill' ></image>http://cdn.xiaoxingbobo.top/nongzhibang/202149/222781620570428217  bindtap="ProductUpdata"-->
                   <input style="display: none;" name="image" value="{{imgList[index_x]}}"></input>
                   <view class="cu-avatar round lg" style="background-image:url({{imgList[index_x]}});"></view>

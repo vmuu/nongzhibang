@@ -23,7 +23,6 @@
       </view>
       <view class="merchants_text_marking_warp">
         <text class="merchants_text_marking">起送价：¥{{item.startPrice}}</text>
-        <text class="merchants_text_marking">配送：¥{{item.deliverPrice}}</text>
       </view>
       <view>
         <text class="cuIcon-location textOverflow">{{item.address}}</text>

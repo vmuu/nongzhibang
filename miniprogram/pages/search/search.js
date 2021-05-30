@@ -1,42 +1,78 @@
-
+const { default: dbbase } = require("../../config/dbbase");
+var that
 //引入插件：微信同声传译
 const plugin = requirePlugin('WechatSI');
 //获取全局唯一的语音识别管理器recordRecoManager
 const manager = plugin.getRecordRecognitionManager();
- const app=getApp()
+const app = getApp()
 Page({
- 
+
   /**
    * 页面的初始数据
    */
   data: {
     //胶囊按钮高度
-    capsuleHeight:0,
+    capsuleHeight: 0,
     //语音
     recordState: false, //录音状态
-    content:'',//内容
-    cache:'',//缓存语音文字
+    content: '', //内容
+    cache: '', //缓存语音文字
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    keyboardHeight:-100
-    
-    
+    keyboardHeight: -100,
+    //商品信息
+    product: [],
+    //从哪开始查询
+    max: 3,
+    //一次性查几条数据
+    limit: 5,
+    // 需要条追的商品
+    hotproduct: [],
+    //搜索后显示的文字
+    isSearch:true
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    that = this
     //识别语音
     this.initRecord();
     this.setData({
-      capsuleHeight:wx.getMenuButtonBoundingClientRect().height  // 胶囊高度
+        capsuleHeight: wx.getMenuButtonBoundingClientRect().height // 胶囊高度
+      }),
+      //查询商品
+      app.dbbase.queryProduct(this.data.max, this.data.limit).then((res) => {
+        this.setData({
+          product: res.data,
+          max: this.data.limit,
+        })
+      })
+  },
+  //搜索后
+  searchName(e){
+    app.utils.cl(e);
+    let value = e.detail.value
+    app.dbbase.queryFuzzy('product',value).then(res=>{
+      that.setData({
+        product: res.data,
+        max: this.data.limit,
+        isSearch: false
+      })
+    })
+  },
+  //菜品连接
+  hotproduct(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: '../productDetails/productDetails?id=' + e.currentTarget.dataset.id,
     })
   },
   // 手动输入内容
   conInput: function (e) {
     this.setData({
-      content:e.detail.value,
+      content: e.detail.value,
     })
   },
   //识别语音 -- 初始化
@@ -57,8 +93,8 @@ Page({
     //识别结束事件
     manager.onStop = function (res) {
       console.log('..............结束录音')
-      console.log('录音临时文件地址 -->' + res.tempFilePath); 
-      console.log('录音总时长 -->' + res.duration + 'ms'); 
+      console.log('录音临时文件地址 -->' + res.tempFilePath);
+      console.log('录音总时长 -->' + res.duration + 'ms');
       console.log('文件大小 --> ' + res.fileSize + 'B');
       console.log('语音内容 --> ' + res.result);
       if (res.result == '') {
@@ -70,10 +106,10 @@ Page({
         })
         return;
       }
-      let text=res.result
-     that.setData({
-       content:res.result
-     })
+      let text = res.result
+      that.setData({
+        content: res.result
+      })
     }
   },
   //语音  --按住说话
@@ -86,37 +122,37 @@ Page({
       title: '录音中',
     })
     manager.start({
-      lang: 'zh_CN',// 识别的语言，目前支持zh_CN en_US zh_HK sichuanhua
+      lang: 'zh_CN', // 识别的语言，目前支持zh_CN en_US zh_HK sichuanhua
     })
   },
   //语音  --松开结束
   touchEnd: function (e) {
-wx.hideLoading({
-  success: (res) => {},
-})
+    wx.hideLoading({
+      success: (res) => {},
+    })
     // this.setData({
     //   recordState: false
     // })
     // 语音结束识别
     manager.stop();
   },
-  BackPage(){
-   wx.navigateBack({
-     delta: 1,
-   }) 
-  },
-  focusInput(e){
-    app.utils.cl(e)
-    this.setData({
-      keyboardHeight:e.detail.height
+  BackPage() {
+    wx.navigateBack({
+      delta: 1,
     })
   },
-  blurInput(){
+  focusInput(e) {
+    app.utils.cl(e)
     this.setData({
-      keyboardHeight:-200
+      keyboardHeight: e.detail.height
+    })
+  },
+  blurInput() {
+    this.setData({
+      keyboardHeight: -200
     })
   }
 
 
-  
+
 })
