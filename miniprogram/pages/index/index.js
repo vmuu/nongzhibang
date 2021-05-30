@@ -240,6 +240,9 @@ Page({
   onReachBottom: function () {
     //是否继续加载数据？
     if (this.data.theOnReachBottom) {
+      this.setData({
+        showLoad:true
+      })
       //当数据库里还有商品时，继续请求数据库
       setTimeout(() => {
         this.setListData();
@@ -273,6 +276,9 @@ Page({
           max: this.data.max + this.data.limit
         })
       }
+    })
+    this.setData({
+      showLoad:false
     })
   },
   tapNotice() {

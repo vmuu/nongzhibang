@@ -24,3 +24,4 @@
     </view>
   </view>
   <view class="loadmore" wx:if="{{showLoadMore}}" >{{loadMoreText}}</view>
+  <load showLoad="{{showLoad}}" modeType="1"></load>

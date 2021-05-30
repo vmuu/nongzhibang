@@ -21,7 +21,9 @@ Page({
     //触底时是否继续请求数据库
     theOnReachBottom:true,
     //页面名称
-    tablename:""
+    tablename:"",
+    //是否显示加载
+    showLoad:false
   },
 
   /**
@@ -30,7 +32,7 @@ Page({
   onLoad: function (options) {
     this.setData({
         tablename:options.name,
-        tableid:options.id
+        tableid:options.id,
     })
     //第一次数据加载
     db.productwherelist(this.data.tableid,this.data.max,this.data.limit).then((res)=>{
@@ -82,6 +84,9 @@ Page({
   onReachBottom: function () {
     //是否继续加载数据？
     if(this.data.theOnReachBottom){
+      this.setData({
+        showLoad:true
+      })
       //当数据库里还有商家时，继续请求数据库
       setTimeout(() => {
         this.setListData();
@@ -123,6 +128,9 @@ Page({
           max:this.data.max+this.data.limit
         })
       }
+    })
+    this.setData({
+      showLoad:false
     })
   },
   /**
