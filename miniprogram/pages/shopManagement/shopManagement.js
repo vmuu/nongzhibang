@@ -139,6 +139,7 @@ Page({
   },
   //下拉逻辑
   VerticalMain(e) {
+
     let that = this;
     let list = this.data.commodityType;
     let tabHeight = 0;
@@ -163,7 +164,7 @@ Page({
       if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
         that.setData({
           VerticalNavTop: (i - 1) * 50,
-          TabCur: i.Id
+          TabCur: i
         })
         return false
       }

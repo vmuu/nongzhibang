@@ -17,7 +17,6 @@
         <view class="businessHours">营业时间：{{shop.startTime}} - {{shop.endTime}}</view>
         <!--<button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green" bindtap="showaddModal" data-target="Modal">添加商品</button>-->
       </view>
-      
     <view class="cu-tag badge">
       <view class="cu-avatar xl round margin-left boxShade" style="background-image:url({{shop.shopImage}});"></view>
     </view>
@@ -42,7 +41,7 @@
       <!--内容-->
       <view class="cu-list menu-avatar">
       <empty wx:if="{{item.commodity.length==0?true:false}}" isFull="{{false}}"></empty>
-        <view class="cu-item {{modalName=='move-box-'+ item.Id?'move-cur':''}}" wx:for="{{item.commodity}}" wx:key="index" data-target="move-box-{{item.Id}}" data-id="{{item._id}}" bindtap="productdesc">
+        <view class="cu-item {{modalName=='move-box-'+ (item._id+index)?'move-cur':''}}" wx:for="{{item.commodity}}" wx:key="index" data-target="move-box-{{item.Id+index}}" data-id="{{item._id}}" bindtap="productdesc">
       <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
       <view class="content">
         <view class="text-grey textOverflow">{{item.name}}</view>
