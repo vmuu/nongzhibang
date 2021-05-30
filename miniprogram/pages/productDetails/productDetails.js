@@ -13,16 +13,13 @@ Page({
     productType: {},
     shop: {},
     id: null,
-    myShop:null
+    myShop:null,
+    showLoad:true
   },
   //页面加载
   async onLoad(product) {
     that = this;
     that.state()
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
     that.data.id = product.id
     //要跳转的商品
     db.query("product", that.data.id).then((res) => {
@@ -45,8 +42,8 @@ Page({
       })
     })
     await that.getMyShop()
-    wx.hideLoading({
-      success: (res) => {},
+    that.setData({
+      showLoad:false
     })
   },
   state() {
@@ -65,18 +62,16 @@ Page({
     })
   },
   getMyShop() {
-    return new Promise(success => {
+    return new Promise((success,error) => {
       app.dbbase.queryOpenId('shop', openid).then(res => {
         app.utils.cl('我的店铺', res);
         if (res.data.length == 1) {
           that.setData({
             myShop: res.data[0]
           })
-          success()
+          return success()
         }
-
-       
-
+       return success()
       })
     })
 

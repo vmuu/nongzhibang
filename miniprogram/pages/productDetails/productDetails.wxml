@@ -67,6 +67,7 @@
 <!-- <view class="cu-bar bg-white tabbar botton-box  ">
   <button class="bg-green submit radius" bindtap="goodNavigateTo" data-id="{{product._id}}">立即订购</button>
 </view> -->
+<load showLoad="{{showLoad}}" modeType="1"></load>
 
 <view class="nextBtnBox">
   <button class="cu-btn round bg-green shadow text-lg" bindtap="goodNavigateTo" data-id="{{product._id}}">立即订购</button>
