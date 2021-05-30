@@ -187,6 +187,7 @@ Page({
       addOrderDate: new Date(),
       orderNumber:orderNo,
       payType:"offline",
+      startPrice:that.data.shop.startPrice,
       howMoney: that.data.product.currentPrice,
       shopAddress:shopAddress,//店铺地址
       shoppingAddressId:shoppingAddress._id,//收货地址id
