@@ -113,8 +113,10 @@ Page({
   },
   geProductTypeList() {
     let that = this
-    let openid = app.globalData.openid
-    app.dbbase.queryOpenId('productType', openid).then(res => {
+    let shopInfo = this.data.shopInfo
+    app.dbbase.queryWhere('productType', {
+      shopId:shopInfo._id
+    }).then(res => {
       app.utils.cl(res, '输出')
 
       that.setData({
