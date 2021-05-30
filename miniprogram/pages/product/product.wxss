@@ -121,3 +121,7 @@
   color: black;
   padding-top: 2px;
 }
+
+.screen-swiper {
+	min-height: 425rpx;
+}

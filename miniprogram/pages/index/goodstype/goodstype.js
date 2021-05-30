@@ -17,7 +17,7 @@ Page({
     //从哪开始查询
     max:0,
     //一次性查几条数据
-    limit:10,
+    limit:12,
     //触底时是否继续请求数据库
     theOnReachBottom:true,
     //页面名称
