@@ -35,11 +35,38 @@ Page({
     scroll: 0,
     id: null,
     order: null,
-    shoppingAddress:{}
+    shoppingAddress: {},
+    shopInfo: {},
+    isUserOrder:true,//是否是普通用户的订单，而不是商家订单
   },
   basicsSteps() {
-    this.setData({
-      basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
+    let id = that.data.id;
+    let where = {
+      _id: that.data.id
+    }
+    let data = {
+      orderState: 1
+    }
+    app.utils.cl(id, data);
+    //判断当前订单状态
+    if (that.data.order.orderState == 0) {
+      data.orderState = 1
+    } else if (that.data.order.orderState == 1) {
+      data.orderState = 2
+    }
+
+    app.dbbase.update('order', id, data).then(res => {
+      app.utils.cl(res);
+      if (res.stats.updated > 0) {
+        app.utils.hint('操作成功');
+        this.setData({
+          basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
+        })
+        that.initData()
+      } else {
+        app.utils.hint('修改失败');
+
+      }
     })
   },
   numSteps() {
@@ -72,10 +99,13 @@ Page({
     that.geShopInfo()
     app.dbbase.query('order', that.data.id).then(res => {
       app.utils.cl(res);
-      let data=res.data[0];
-      data.addOrderDate=app.dateformat(data.addOrderDate)
+      let data = res.data[0];
+      data.addOrderDate = app.dateformat(data.addOrderDate)
       that.setData({
         order: data
+      })
+      this.setData({
+        basics: that.data.basics = data.orderState
       })
       app.utils.cl(that.data.order, '订单');
       let addressId = that.data.order.shoppingAddressId
@@ -84,19 +114,29 @@ Page({
       app.dbbase.query('shoppingAddress', addressId).then(res => {
         app.utils.cl(res, '收货地址');
         that.setData({
-          shoppingAddress:res.data[0]
+          shoppingAddress: res.data[0]
         })
 
       })
     })
 
   },
-  geShopInfo(){
-    let where ={
-      _openid:app.globalData.openid
-    }
-    app.dbbase.queryWhere('order',where).then(res=>{
-      app.utils.cl('商家信息',res);
+  geShopInfo() {
+     let _openid=app.globalData.openid
+     app.utils.cl('openid',_openid);
+     
+    app.dbbase.queryOpenId('shop',_openid ).then(res => {
+      app.utils.cl('商家信息', res);
+      if (res.data.length ==1) {
+        that.setData({
+          shopInfo: res.data[0]
+        })
+      } else {
+        that.setData({
+          shopInfo: undefined
+        })
+      }
+
     })
   }
 })
