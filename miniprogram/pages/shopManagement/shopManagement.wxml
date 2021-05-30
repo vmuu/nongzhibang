@@ -43,8 +43,7 @@
   <!--内容list-->
   <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
 
-   
-
+  
 
     <view class="padding-top padding-lr" wx:for="{{commodityType}}" wx:key="index" id="main-{{index}}">
       <!--Tab-->

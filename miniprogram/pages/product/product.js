@@ -100,6 +100,7 @@ Page({
   },
   //下拉逻辑
   VerticalMain(e) {
+    
     let that = this;
     let list = this.data.commodityType;
     let tabHeight = 0;
