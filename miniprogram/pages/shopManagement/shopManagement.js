@@ -391,7 +391,8 @@ Page({
                   app.utils.ce('校园零食',that.data.shopType[shopType]._id);
                   
                   //更新数据
-                  db.productupdate(_id, {
+                  db.productupdate({
+                    id:_id,
                     desc: desc,
                     name: name,
                     image: this.data.imgList[0],
