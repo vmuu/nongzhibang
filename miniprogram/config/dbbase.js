@@ -51,7 +51,7 @@ class DBBase {
     })
 
   }
-    /**
+  /**
    * 查询，自定义条件
    */
   queryWhere = function (table, where) {
@@ -61,6 +61,33 @@ class DBBase {
       if (table && where) {
         db.collection(table).where(
           where).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table,id）不可空')
+      }
+    })
+
+  }
+  /**
+   * 商品查询，模糊查询
+   */
+  queryFuzzy = function (table, value) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table && value) {
+        db.collection(table).where(
+          {
+            name: db.RegExp({
+              regexp:value,options:"i"
+            })
+          }).get({
           success: res => {
             return success(res)
           },
@@ -135,7 +162,7 @@ class DBBase {
     })
 
   }
-  
+
   /**
    * order上拉加载通过openid与交易中状态
    */
@@ -202,7 +229,7 @@ class DBBase {
     })
 
   }
-  
+
   /**
    * order上拉加载通过openid与交易中状态
    */
@@ -226,7 +253,7 @@ class DBBase {
     })
 
   }
-  
+
   /**
    * 查询一个，通过openid
    */
@@ -465,10 +492,10 @@ class DBBase {
         }
         db.collection(table).where(where).update({
           data: data,
-          success(res){
+          success(res) {
             return success(res)
           },
-          fail(err){
+          fail(err) {
             console.error(err);
           }
         })
@@ -605,6 +632,24 @@ class DBBase {
     return new Promise((success, error) => {
 
       db.collection("shop").orderBy('salesVolume', 'desc').skip(skip).limit(limit).get({
+        success: res => {
+          return success(res)
+        },
+        fail: err => {
+          console.error('[数据库] [查询记录] 失败：', err)
+        }
+      })
+    })
+  };
+  /**
+   * 查询单表product,分页查询,总销量排序
+   */
+  queryProduct = function (skip, limit) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+
+      db.collection("product").orderBy('monthlySales', 'desc').skip(skip).limit(limit).get({
         success: res => {
           return success(res)
         },
