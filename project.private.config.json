@@ -220,6 +220,12 @@
           "pathName": "pages/orderDetail/orderDetail",
           "query": "id=79550af260b253261b8675ca1eb26ebe",
           "scene": null
+        },
+        {
+          "name": "pages/productDetails/productDetails",
+          "pathName": "pages/productDetails/productDetails",
+          "query": "id=b00064a760b251c61c34bded56afae9e",
+          "scene": null
         }
       ]
     }
