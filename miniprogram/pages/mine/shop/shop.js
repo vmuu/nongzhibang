@@ -15,7 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    region: ['云南省', '昆明市', '五华区'],
+    region: ['北京市', '北京市', '东城区'],
     modalName: null,
     textareaBValue: null,
     imgList: [],
@@ -46,7 +46,7 @@ Page({
     isUpdate: false,
     isShop: -1,
     shopInfo: null,
-    isChange:false
+    isChange: false
   },
   change(e) {
     app.change(e, this)
@@ -58,6 +58,7 @@ Page({
   async onLoad(options) {
     that = this
     that.state()
+    app.utils.cl("options.id", options.id);
 
     //接收参数
     if (options.id) {
@@ -67,7 +68,7 @@ Page({
       })
       await this.initData()
       app.utils.cl('判断是否已经有地址');
-      if (this.data.entity.province == null) {
+      if (!this.data.entity.province) {
         //获取位置
         app.utils.cl('获取位置');
         this.getLocation()
@@ -76,20 +77,34 @@ Page({
 
   },
   state() {
-    app.utils.cl('isshop',app.globalData.isShop);
-    
+    app.utils.cl('isshop', app.globalData.isShop);
+
     that.setData({
-      isShop:app.globalData.isShop,
-      shopInfo:app.globalData.shopInfo
+      isShop: app.globalData.isShop,
+      shopInfo: app.globalData.shopInfo
     })
-    
+
   },
-  initData() {
+  getShopInfo() {
+    let id = that.data.id
+    return new Promise(success => {
+      app.dbbase.query('shop', id).then(res => {
+        that.setData({
+          shopInfo:res.data[0]
+        })
+        success()
+      })
+    })
+
+  },
+  async initData() {
     app.utils.cl('初始化');
+    
 
     let that = this
     let id = this.data.entity._id
-    return new Promise((success) => {
+    return new Promise(async (success) => {
+      await that.getShopInfo()
       //查询产品类型
       this.geProductTypeList()
       app.dbbase.query('shop', id).then(res => {
@@ -115,7 +130,7 @@ Page({
     let that = this
     let shopInfo = this.data.shopInfo
     app.dbbase.queryWhere('productType', {
-      shopId:shopInfo._id
+      shopId: shopInfo._id
     }).then(res => {
       app.utils.cl(res, '输出')
 
@@ -284,8 +299,8 @@ Page({
     if (!that.empty()) {
       return false;
     }
-    if(that.data.isShop!=1){
-      temp.isShop=2
+    if (that.data.isShop != 1) {
+      temp.isShop = 2
     }
     //提交数据
     wx.showLoading({
@@ -312,15 +327,15 @@ Page({
             if (that.data.isShop != 1) {
               wx.showToast({
                 title: '提交成功！',
-                mask:true,
-                success:res=>{
+                mask: true,
+                success: res => {
                   setTimeout(() => {
-                      wx.switchTab({
-                        url: '../mine',
-                        success: (res) => {},
-                        fail: (res) => {},
-                        complete: (res) => {},
-                      })
+                    wx.switchTab({
+                      url: '../mine',
+                      success: (res) => {},
+                      fail: (res) => {},
+                      complete: (res) => {},
+                    })
                   }, 1500);
                 }
               })

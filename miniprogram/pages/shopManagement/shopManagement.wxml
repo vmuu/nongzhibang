@@ -13,7 +13,8 @@
         <view style="font-size:25rpx;font-weight: bold;color: black;padding-top: 5rpx;" class="cuIcon-location special_offer_foot_title textOverflow" bindtap="showAddress" data-showAddress="{{shop.province+''+shop.city+''+shop.county+''+shop.address}}">
           {{shop.province+''+shop.city+''+shop.county+''+shop.address}}</view>
         <view style="font-size:25rpx;font-weight: bold;color: black;padding-top: 5rpx;" class="special_offer_foot_title textOverflow">{{shop.shopDescribe}}</view>
-        <view style="font-size:20rpx;padding-top: 5rpx;" class="special_offer_foot_title textOverflow" bindtap="showShopAnnouncement" data-showShopAnnouncement="{{shop.shopAnnouncement}}">公告：{{shop.shopAnnouncement}}</view>
+        <view style="font-size:26rpx;padding-top: 5rpx;" class="special_offer_foot_title textOverflow" bindtap="showShopAnnouncement" data-showShopAnnouncement="{{shop.shopAnnouncement}}">公告：{{shop.shopAnnouncement}}</view>
+        <view class="businessHours">营业时间：{{shop.startTime}} - {{shop.endTime}}</view>
         <!--<button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green" bindtap="showaddModal" data-target="Modal">添加商品</button>-->
       </view>
       
@@ -92,7 +93,8 @@
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
-            <input name="currentPrice"  value="￥{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
+            ￥
+            <input name="currentPrice"  value="{{product.currentPrice}}" placeholder="{{product.currentPrice}}"></input>
           </view>
           <view class="cu-form-group">
             <view class="title">栏目</view>
@@ -171,6 +173,7 @@
           </view>
           <view class="cu-form-group">
             <view class="title">价格</view>
+            ￥
             <input name="currentPrice" placeholder="菜品价格" value='{{form_info}}'></input>
           </view>
           <view class="cu-form-group">

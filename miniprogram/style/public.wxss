@@ -111,6 +111,9 @@
   flex-direction: column;
   align-items: center;
 }
+.nextBtnBoxPlaceholder{
+  height: 100rpx;
+}
 .nextBtnBox {
   z-index: 9999;
   position: fixed;
