@@ -1,4 +1,5 @@
 //order.js
+import db from '../../config/dbbase.js';
 const app = getApp()
 var that;
 Page({
@@ -72,29 +73,7 @@ Page({
 
   },
   refreshOrder() {
-    that.setData({
-      allOrder: [],
-      ingOrder: [],
-      accomplishOrder: [],
-      cancelOrder: [],
-      //是否显示触底提示
-      showLoadMore: false,
-      //从哪开始查询
-      max0: 0,
-      max1: 0,
-      max2: 0,
-      max3: 0,
-      //一次性查几条数据
-      limit0: 4,
-      limit1: 4,
-      limit2: 4,
-      limit3: 4,
-      //触底时是否继续请求数据库
-      theOnReachBottom0: true,
-      theOnReachBottom1: true,
-      theOnReachBottom2: true,
-      theOnReachBottom3: true,
-    })//714114
+    this.initstate();
     app.utils.cl('刷新了订单');
     that.reachBottom();
   },
@@ -598,30 +577,7 @@ Page({
 
   SetShadow(e) {
     app.utils.cl(e);
-    this.setData({
-      showLoad:true,
-      allOrder: [],
-      ingOrder: [],
-      accomplishOrder: [],
-      cancelOrder: [],
-      //是否显示触底提示
-      showLoadMore: false,
-      //从哪开始查询
-      max0: 0,
-      max1: 0,
-      max2: 0,
-      max3: 0,
-      //一次性查几条数据
-      limit0: 4,
-      limit1: 4,
-      limit2: 4,
-      limit3: 4,
-      //触底时是否继续请求数据库
-      theOnReachBottom0: true,
-      theOnReachBottom1: true,
-      theOnReachBottom2: true,
-      theOnReachBottom3: true,
-    })
+    this.initstate();
     if (e.currentTarget.dataset.value) {
       this.setData({
         //商家deliver_fill
@@ -742,6 +698,21 @@ Page({
     }
   },
   refresherrefresh() {
+    this.initstate();
+    that.setData({
+      showLoad: true
+    })
+    setTimeout(() => {
+      that.reachBottom();
+      that.setData({
+        showLoad: false
+      })
+      that.setData({
+        refresherTriggered: false
+      })
+    }, 1000);
+  },
+  initstate(){
     that.setData({
       allOrder: [],
       ingOrder: [],
@@ -765,18 +736,36 @@ Page({
       theOnReachBottom2: true,
       theOnReachBottom3: true,
     })//714114
-    that.setData({
-      showLoad: true
-    })
-    setTimeout(() => {
-      that.reachBottom();
-      that.setData({
-        showLoad: false
-      })
-      that.setData({
-        refresherTriggered: false
-      })
-    }, 1000);
-
+  },
+  cancel(e){
+    app.utils.cl("已取消",e.detail.currentTarget.dataset.id);
+    wx.showModal({
+      title: '注意',
+      content: '确定要取消这个订单吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.initstate();
+          //更新数据
+          db.productupdate("order",{
+            id:e.detail.currentTarget.dataset.id,
+            orderState:-1,
+            success: function (res) {
+              wx.showLoading({
+                title: '取消中...',
+              })
+            }
+          }).then((res) => {
+            wx.showToast({
+              title: '取消成功',
+              icon: 'none'
+            })
+            //that.reachBottom();
+            that.onLoad()
+          })
+        }
+      }
+    })  
   }
 })

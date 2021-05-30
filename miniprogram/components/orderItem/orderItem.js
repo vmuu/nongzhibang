@@ -26,6 +26,11 @@ Component({
       wx.navigateTo({
         url: '../orderDetail/orderDetail?id='+e.currentTarget.dataset.id,
       })
+    },
+    tapCancel(e){
+      console.log(e)
+      
+      this.triggerEvent("cancel",e)
     }
   }
 })

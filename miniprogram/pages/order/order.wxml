@@ -64,7 +64,7 @@
         <view class="orderBox">
           <!--全部订单-->
           <empty wx:if="{{allOrder.length==0}}" isFull="{{true}}"></empty>
-          <orderItem wx:for="{{allOrder}}" order="{{item}}" wx:key="index"></orderItem>
+          <orderItem wx:for="{{allOrder}}" order="{{item}}" wx:key="index" bind:cancel="cancel"></orderItem>
           <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
         </view>
       </scroll-view>

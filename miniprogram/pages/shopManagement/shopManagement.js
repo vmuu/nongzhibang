@@ -392,7 +392,7 @@ Page({
                   app.utils.ce('校园零食',that.data.shopType[shopType]._id);
                   
                   //更新数据
-                  db.productupdate({
+                  db.productupdate("product",{
                     id:_id,
                     desc: desc,
                     name: name,
@@ -440,7 +440,7 @@ Page({
                 app.utils.ce(shopTypeId,_id);
                 
                 //更新数据
-                db.productupdate({
+                db.productupdate("product",{
                   id:_id,
                   desc: desc,
                   favorableRating: 0,
