@@ -57,6 +57,9 @@ Page({
       cardCur: e.detail.current
     })
   },
+  getShopInfo(){
+    app.dbbase.query
+  },
   goodNavigateTo(e){
     wx.navigateTo({
       url: '../confirmOrder/confirmOrder?id='+that.data.id,
