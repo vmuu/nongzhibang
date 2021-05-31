@@ -113,7 +113,7 @@
     </view>
     <view class="cu-bar bg-white">
       <view class="action margin-0 flex-sub text-green" bindtap="hideModal">取消</view>
-      <view class="action margin-0 flex-sub  solid-left" bindtap="hideModal">确定</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideConFrimModal">确定</view>
     </view>
   </view>
 </view>

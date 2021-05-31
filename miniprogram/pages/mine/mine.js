@@ -36,7 +36,7 @@ Page({
       id: 2,
       icon: 'noticefill',
       color: 'olive',
-      badge: 20,
+      badge: 0,
       name: '消息'
     }],
     swiperList: [
@@ -74,8 +74,7 @@ Page({
 
     this.state()
     that.setData({
-      showLoad: true,
-      tapAdmin:0
+      showLoad: true
     })
 
     //判断是否支持云函数
@@ -127,6 +126,7 @@ Page({
     that.setData({
       isShop: app.globalData.isShop,
       shopInfo: app.globalData.shopInfo,
+      tapAdmin:0
     })
   },
   onReady() {
@@ -191,8 +191,8 @@ Page({
   },
   showQrcode() {
     wx.previewImage({
-      urls: ['https://image.weilanwl.com/color2.0/zanCode.jpg'],
-      current: 'https://image.weilanwl.com/color2.0/zanCode.jpg' // 当前显示图片的http链接      
+      urls: ['https://cloud.xiaoxingbobo.top/nongzhibang/20210431/1932361622460756573'],
+      current: 'https://cloud.xiaoxingbobo.top/nongzhibang/20210431/1932361622460756573' // 当前显示图片的http链接      
     })
   },
   tapGoShop() {

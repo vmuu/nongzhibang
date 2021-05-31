@@ -90,7 +90,12 @@ Page({
   tapDelete() {
     app.utils.hint('该功能暂不支持！');
   },
-  hideModal(e) {
+  hideModal(e){
+    this.setData({
+      modalName: false
+    })
+  },
+  hideConFrimModal(e) {
     that.setData({
       showLoad:true
     })
