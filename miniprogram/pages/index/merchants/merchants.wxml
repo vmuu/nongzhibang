@@ -31,8 +31,7 @@
     <view class="all_merchants_right">
       <view class="merchants_statu" wx:if="{{item.shopStatus}}">营业中</view>
       <view class="merchants_statu" wx:else >暂停中</view>
-
-      <view class="merchants_type" wx:if="{{item.distributionType.length!=null}}">{{item.distributionType}}</view>
+      <view class="merchants_type">校园专送</view>
     </view>
   </view>
   <view class="loadmore" wx:if="{{showLoadMore}}">{{loadMoreText}}</view>
