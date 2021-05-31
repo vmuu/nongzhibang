@@ -65,6 +65,7 @@ Page({
   },
   initData() {
     return new Promise(success => {
+      that.getAnnouncement()
       //首页按钮和图片
       app.dbbase.queryselect('shopType').then(res => {
           app.utils.cl(res);
@@ -97,6 +98,15 @@ Page({
 
   },
 
+  //请求公告
+  getAnnouncement(){
+    app.dbbase.queryAll('announcement').then(res=>{
+      app.utils.cl('queryWhere',res);
+      that.setData({
+        msgList:res.data
+      })
+    })
+  },
   // input输入事件
   doInput(e) {
 

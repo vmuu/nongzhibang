@@ -39,29 +39,31 @@ Page({
       badge: 20,
       name: '消息'
     }],
-     swiperList: [
-       //{
-    //   id: 0,
-    //   type: 'image',
-    //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202144/235421620143642072'
-    // }, {
-    //   id: 1,
-    //   type: 'image',
-    //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
-    // },
-     {
-      id: 2,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126421620185202773'
-    }, {
-      id: 3,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/127171620187637650'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/123681620189368172'
-    }],
+    swiperList: [
+      //{
+      //   id: 0,
+      //   type: 'image',
+      //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202144/235421620143642072'
+      // }, {
+      //   id: 1,
+      //   type: 'image',
+      //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
+      // },
+      {
+        id: 2,
+        type: 'image',
+        url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126421620185202773'
+      }, {
+        id: 3,
+        type: 'image',
+        url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/127171620187637650'
+      }, {
+        id: 4,
+        type: 'image',
+        url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/123681620189368172'
+      }
+    ],
+    tapNumber: 0
   },
   onShow() {
     this.state()
@@ -72,7 +74,8 @@ Page({
 
     this.state()
     that.setData({
-      showLoad: true
+      showLoad: true,
+      tapAdmin:0
     })
 
     //判断是否支持云函数
@@ -104,6 +107,19 @@ Page({
         })
       }
     })
+  },
+  tapAdmin() {
+    if (that.data.tapNumber == 3) {
+      app.utils.hint('进入管理者模式');
+      wx.navigateTo({
+        url: './admin/admin',
+      })
+    } else {
+      let number= that.data.tapNumber + 1;
+      that.setData({
+        tapNumber:number
+      })
+    }
   },
   state() {
     that = this;

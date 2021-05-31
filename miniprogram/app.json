@@ -36,7 +36,8 @@
     "pages/index/goods/goods",
     "pages/index/goodstype/goodstype",
     "pages/orderDetail/orderDetail",
-    "pages/mine/log/log"
+    "pages/mine/log/log",
+    "pages/mine/admin/admin"
   ],
   "entryPagePath": "pages/index/index",
   "plugins": {
@@ -55,7 +56,7 @@
   },
   "requiredBackgroundModes": [
     "audio",
-    "location"
+    "backgroundAudioManager"
   ],
   "tabBar": {
     "color": "#666666",

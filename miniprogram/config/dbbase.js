@@ -52,6 +52,28 @@ class DBBase {
 
   }
   /**
+   * 查询所有
+   */
+  queryAll = function (table) {
+    const db = wx.cloud.database()
+
+    return new Promise((success, error) => {
+      if (table) {
+        db.collection(table).get({
+          success: res => {
+            return success(res)
+          },
+          fail: err => {
+            console.error('[数据库] [查询记录] 失败：', err)
+          }
+        })
+      } else {
+        console.error('（table）不可空')
+      }
+    })
+
+  }
+  /**
    * 查询，自定义条件
    */
   queryWhere = function (table, where) {

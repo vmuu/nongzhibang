@@ -76,12 +76,28 @@ Page({
     })
 
   },
+  //判断是否在营业时间内
+  setStatus(startTime,endTime){
+    let nowDate=new Date();
+    nowDate= app.utils.dateformat(nowDate,'HH:mm')
+    if(startTime<nowDate&&endTime>nowDate){
+      app.utils.ce(true);
+      return true;
+    }
+    app.utils.ce(nowDate);
+    return false;
+    
+  },
   goodNavigateTo(e) {
     if(!app.utils.isEmpty(that.data.myShop)){
       if(that.data.myShop._id==that.data.shop._id){
         app.utils.hint('您不可以订购自己的商品');
         return
       }
+    }
+    if(!that.setStatus(that.data.shop.startTime,that.data.shop.endTime)){
+      app.utils.hint('暂停营业中...');
+        return
     }
     wx.navigateTo({
       url: '../confirmOrder/confirmOrder?id=' + that.data.id,

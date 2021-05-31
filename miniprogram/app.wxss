@@ -169,3 +169,8 @@ page {
   background: #07c160;
   color: white;
 }
+.loadmore{
+  text-align: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}

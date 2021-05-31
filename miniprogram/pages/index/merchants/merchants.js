@@ -1,6 +1,7 @@
 
 import db from '../../../config/dbbase.js';
 import utils from '../../../config/utils.js';
+var that;
 const app = getApp();
 // miniprogram/pages/index/merchants.js
 Page({
@@ -26,11 +27,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  async onLoad(options) {
+    that=this
     //第一次数据加载
     db.queryShop(this.data.max,this.data.limit).then((res)=>{
+      let  dataList=res.data
+      for(let i=0;i<dataList.length;i++){
+        dataList[i].shopStatus=  that.setStatus(dataList[i].startTime,dataList[i].endTime)
+        app.utils.cl(dataList[i].shopStatus);
+      }
       this.setData({
-        Shop:res.data,
+        Shop:dataList,
         max:this.data.limit
       })
     })
@@ -70,6 +77,7 @@ Page({
   onPullDownRefresh: function () {
     
   },
+
 
   /**
    * 页面上拉触底事件的处理函数
@@ -113,12 +121,24 @@ Page({
       }
       //当数据库里还有商家数据时，继续追加到本地数据
       else{
+        
         this.setData({
           Shop:this.data.Shop.concat(res.data),
           max:this.data.max+this.data.limit
         })
       }
     })
+  },
+  setStatus(startTime,endTime){
+    let nowDate=new Date();
+    nowDate= app.utils.dateformat(nowDate,'HH:mm')
+    if(startTime<nowDate&&endTime>nowDate){
+      app.utils.ce(true);
+      return true;
+    }
+    app.utils.ce(nowDate);
+    return false;
+    
   },
   /**
    * 商店页面跳转

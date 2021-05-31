@@ -9,7 +9,7 @@
     <view class="imageBox">
       <image class="loadingImage" src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1122571622258577490"
         mode="aspectFill"></image>
-      <text class="lodingText">加载中</text>
+      <text class="lodingText">加载中...</text>
     </view>
   </view>
 </view>

@@ -250,6 +250,48 @@
           "pathName": "pages/test/test",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/im/room/room",
+          "pathName": "pages/im/room/room",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=b00064a760b35c971c729cbe6c83d3ed",
+          "scene": null
+        },
+        {
+          "name": "pages/index/merchants/merchants",
+          "pathName": "pages/index/merchants/merchants",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/orderDetail/orderDetail",
+          "pathName": "pages/orderDetail/orderDetail",
+          "query": "id=28ee4e3e60b35fae1e4750da0386b96e",
+          "scene": null
+        },
+        {
+          "name": "pages/index/merchants/merchants",
+          "pathName": "pages/index/merchants/merchants",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/productDetails/productDetails",
+          "pathName": "pages/productDetails/productDetails",
+          "query": "id=b00064a760b24a941c32eaaa369354c0",
+          "scene": null
+        },
+        {
+          "name": "pages/mine/admin/admin",
+          "pathName": "pages/mine/admin/admin",
+          "query": "",
+          "scene": null
         }
       ]
     }

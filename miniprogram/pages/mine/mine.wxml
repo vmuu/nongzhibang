@@ -13,7 +13,7 @@
 		<view class="avatarBox pubBotLine">
 			<!-- <image class="avatar" src="{{avatarUrl}}" mode="cover"></image> -->
 			<open-data class="avatar" type="userAvatarUrl"></open-data>
-			<view class="userInfo">
+			<view class="userInfo" bindtap="tapAdmin">
 				<open-data class="weixingName textOverflow" type="userNickName"></open-data>
 			</view>
 			<!-- <view wx:if="{{isLogin}}" class="weixingName textOverflow">这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称</view> -->
@@ -92,5 +92,5 @@
 			</view>
 		</view>
 	</view>
-	<load showLoad="{{showLoad}}"></load>
+	<load showLoad="{{showLoad}}" modeType="1"></load>
 </view>

@@ -91,6 +91,3 @@
   background-color: #ccbcf5;
   color: #7445df;
 }
-.loadmore{
-  text-align: center;
-}

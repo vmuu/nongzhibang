@@ -284,6 +284,8 @@ Page({
     let that = this
 
     let temp = this.data.entity
+    //怎么店铺状态字段true营业中,false暂停中
+    temp.shopStatus=true
     let region = this.data.region
     //把省市区分开赋值
     temp.province = region[0]

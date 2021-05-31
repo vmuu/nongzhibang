@@ -15,7 +15,7 @@ Page({
       icon: 'radioboxfill',
       name: '已接单'
     }, {
-      icon: 'roundclosefill',
+      icon: 'timefill',
       name: '派送中'
     }, {
       icon: 'roundcheckfill',
@@ -72,26 +72,13 @@ Page({
         success(res) {
           if (res.confirm) {
             data.orderState = -1
-            app.dbbase.update('order', id, data).then(res => {
-              app.utils.cl(res);
-              if (res.stats.updated > 0) {
-                app.utils.hint('操作成功');
-                this.setData({
-                  basics: this.data.basics == this.data.basicsList.length - 1 ? 0 : this.data.basics + 1
-                })
-                that.initData()
-              } else {
-                app.utils.hint('修改失败');
-              }
-            })
+            that.upOrderState(id, data);
           } else {
             return false;
           }
 
         }
       })
-
-
     } else {
       //判断当前订单状态
       if (that.data.order.orderState == 0) {
@@ -100,23 +87,40 @@ Page({
         data.orderState = 2
       } else if (that.data.order.orderState == 2) {
         data.orderState = 3
+        wx.showModal({
+          title: '收货确认',
+          content: '请确保您已经收到货~',
+          success(res) {
+            if (res.confirm) {
+              that.upOrderState(id, data);
+            } else {
+              return false;
+            }
+
+          }
+        })
+
+      }else{
+        that.upOrderState(id, data);
       }
-
-      app.dbbase.update('order', id, data).then(res => {
-        app.utils.cl(res);
-        if (res.stats.updated > 0) {
-          app.utils.hint('操作成功');
-          that.initData()
-        } else {
-          app.utils.hint('修改失败');
-
-        }
-      })
 
     }
 
 
 
+
+  },
+  upOrderState(id, data) {
+    app.dbbase.update('order', id, data).then(res => {
+      app.utils.cl(res);
+      if (res.stats.updated > 0) {
+        app.utils.hint('操作成功');
+        that.initData()
+      } else {
+        app.utils.hint('修改失败');
+
+      }
+    })
   },
   numSteps() {
     this.setData({
@@ -186,7 +190,7 @@ Page({
 
     })
   },
-  tapBack(){
+  tapBack() {
     app.utils.cl("吃牛逼");
     wx.navigateTo({
       url: '../order/order.wxml',
