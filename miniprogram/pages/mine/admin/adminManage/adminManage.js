@@ -7,12 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopList: [],
+    //管理员列表
+    adminList: [],
     modalName: false,
     formData: {},
-    picker: ['提交资料', '开店中', '提交审核', '审核未通过'],
     index: 0,
-    showLoad:false
+    showLoad:false,
+    //下拉列表权限列表
+    accountList:[],
+    //下拉列表索引
+    indexPicker:0
   },
 
   /**
@@ -21,6 +25,7 @@ Page({
   onLoad: function (options) {
     this.state()
     that.initData()
+    
   },
   change(e) {
     app.change(e, this);
@@ -31,13 +36,28 @@ Page({
   initData() {
     that.getShopList()
   },
-  //查询所有店铺
+  //查询所有有权限的用户
   getShopList() {
-    app.dbbase.queryAll('shop').then(res => {
-      app.utils.cl('店铺列表', res);
+    const db = wx.cloud.database()
+    app.dbbase.queryWhere('user',{
+      authority:db.command.gt(1)
+    }).then(res => {
+      app.utils.cl('管理员列表', res.data);
       that.setData({
-        shopList: res.data
+        adminList: res.data
       })
+    })
+    //绑定下拉列表管理员列表accountList
+    app.dbbase.queryAll('admin').then(res=>{
+      for (let i = 0; i < res.data.length; i++) {
+        this.setData({
+          //将管理员的系统名称和中文名称绑定到下拉列表
+          accountList:this.data.accountList.concat(
+            (res.data[i].accountNumber+" "+
+            (res.data[i].authority==3?'超级管理员':(res.data[i].authority==2?'高级管理员':'普通管理员')))
+            )
+        })
+      }
     })
   },
   // ListTouch触摸开始
@@ -73,18 +93,18 @@ Page({
     //获取点击的下标
     app.utils.cl(e);
     let index = e.currentTarget.dataset.index;
-    app.utils.cl(that.data.shopList[index]);
-    let shop = that.data.shopList[index]
+    app.utils.cl(that.data.adminList[index]);
+    let admin = that.data.adminList[index]
     that.setData({
       modalName: true,
-      formData: shop,
-      index: shop.isShop
+      formData: admin,
+      index: admin.isShop,
     })
   },
   PickerChange(e) {
     console.log(e);
     this.setData({
-      index: e.detail.value
+      indexPicker: e.detail.value
     })
   },
   tapDelete() {
