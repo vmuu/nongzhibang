@@ -1,0 +1,26 @@
+/* miniprogram/pages/mine/admin/login/login.wxss */
+.bgImage {
+    width: 100%;
+}
+
+.formBox {
+    width: 100%;
+    margin-top: -100rpx;
+    z-index: 99999;
+    position: absolute;
+}
+
+.formContent {
+    background-color: #fff;
+    width: 600rpx;
+    padding: 20rpx;
+    margin: auto;
+
+}
+.bottom{
+    width: 100%;
+    position: absolute;
+    bottom: 20rpx;
+    text-align: center;
+    color: rgb(197, 197, 197);
+}

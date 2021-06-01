@@ -298,6 +298,12 @@
                     "pathName": "pages/mine/admin/admin",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/login/login",
+                    "pathName": "pages/mine/admin/login/login",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

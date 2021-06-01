@@ -1,92 +1,93 @@
 {
-  "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom",
-    "empty": "/components/empty/empty",
-    "load": "/components/load/load"
-  },
-  "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room",
-    "pages/test/test",
-    "pages/mine/mine",
-    "pages/search/search",
-    "pages/order/order",
-    "pages/shopManagement/shopManagement",
-    "pages/mine/setting/setting",
-    "pages/mine/address/address",
-    "pages/mine/aboutUs/aboutUs",
-    "pages/mine/shop/shop",
-    "pages/mine/identification/identification",
-    "pages/chat/chat",
-    "pages/product/product",
-    "pages/productDetails/productDetails",
-    "pages/confirmOrder/confirmOrder",
-    "pages/index/merchants/merchants",
-    "pages/index/goods/goods",
-    "pages/index/goodstype/goodstype",
-    "pages/orderDetail/orderDetail",
-    "pages/mine/log/log",
-    "pages/mine/admin/admin"
-  ],
-  "entryPagePath": "pages/index/index",
-  "plugins": {
-    "WechatSI": {
-      "version": "0.3.4",
-      "provider": "wx069ba97219f66d99"
-    }
-  },
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#39b54a",
-    "navigationBarTitleText": "农职邦",
-    "navigationStyle": "custom",
-    "navigationBarTextStyle": "white"
-  },
-  "requiredBackgroundModes": [
-    "audio",
-    "backgroundAudioManager"
-  ],
-  "tabBar": {
-    "color": "#666666",
-    "selectedColor": "#07c160",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/tabBar/home.png",
-        "selectedIconPath": "images/tabBar/active.png"
-      },
-      {
-        "pagePath": "pages/order/order",
-        "text": "订单",
-        "iconPath": "images/tabBar/order.png",
-        "selectedIconPath": "images/tabBar/active.png"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "我的",
-        "iconPath": "images/tabBar/mine.png",
-        "selectedIconPath": "images/tabBar/active.png"
-      }
-    ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
-  },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+    "usingComponents": {
+        "cu-custom": "/colorui/components/cu-custom",
+        "empty": "/components/empty/empty",
+        "load": "/components/load/load"
+    },
+    "pages": [
+        "pages/index/index",
+        "pages/userConsole/userConsole",
+        "pages/storageConsole/storageConsole",
+        "pages/databaseGuide/databaseGuide",
+        "pages/addFunction/addFunction",
+        "pages/deployFunctions/deployFunctions",
+        "pages/chooseLib/chooseLib",
+        "pages/openapi/openapi",
+        "pages/openapi/serverapi/serverapi",
+        "pages/openapi/callback/callback",
+        "pages/openapi/cloudid/cloudid",
+        "pages/im/im",
+        "pages/im/room/room",
+        "pages/test/test",
+        "pages/mine/mine",
+        "pages/search/search",
+        "pages/order/order",
+        "pages/shopManagement/shopManagement",
+        "pages/mine/setting/setting",
+        "pages/mine/address/address",
+        "pages/mine/aboutUs/aboutUs",
+        "pages/mine/shop/shop",
+        "pages/mine/identification/identification",
+        "pages/chat/chat",
+        "pages/product/product",
+        "pages/productDetails/productDetails",
+        "pages/confirmOrder/confirmOrder",
+        "pages/index/merchants/merchants",
+        "pages/index/goods/goods",
+        "pages/index/goodstype/goodstype",
+        "pages/orderDetail/orderDetail",
+        "pages/mine/log/log",
+        "pages/mine/admin/admin",
+        "pages/mine/admin/login/login"
+    ],
+    "entryPagePath": "pages/index/index",
+    "plugins": {
+        "WechatSI": {
+            "version": "0.3.4",
+            "provider": "wx069ba97219f66d99"
+        }
+    },
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#39b54a",
+        "navigationBarTitleText": "农职邦",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+    },
+    "requiredBackgroundModes": [
+        "audio",
+        "backgroundAudioManager"
+    ],
+    "tabBar": {
+        "color": "#666666",
+        "selectedColor": "#07c160",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "images/tabBar/home.png",
+                "selectedIconPath": "images/tabBar/active.png"
+            },
+            {
+                "pagePath": "pages/order/order",
+                "text": "订单",
+                "iconPath": "images/tabBar/order.png",
+                "selectedIconPath": "images/tabBar/active.png"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "我的",
+                "iconPath": "images/tabBar/mine.png",
+                "selectedIconPath": "images/tabBar/active.png"
+            }
+        ]
+    },
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "sitemapLocation": "sitemap.json",
+    "style": "v2"
 }

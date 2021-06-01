@@ -110,13 +110,20 @@ Page({
   tapAdmin() {
     if (that.data.tapNumber == 3) {
       app.utils.hint('进入管理者模式');
-      wx.navigateTo({
-        url: './admin/admin',
-      })
+      if (app.globalData.admin == 1) {
+        wx.navigateTo({
+          url: './admin/admin',
+        })
+      } else {
+        wx.navigateTo({
+          url: './admin/login/login',
+        })
+      }
+
     } else {
-      let number= that.data.tapNumber + 1;
+      let number = that.data.tapNumber + 1;
       that.setData({
-        tapNumber:number
+        tapNumber: number
       })
     }
   },
@@ -126,7 +133,7 @@ Page({
     that.setData({
       isShop: app.globalData.isShop,
       shopInfo: app.globalData.shopInfo,
-      tapAdmin:0
+      tapAdmin: 0
     })
   },
   onReady() {

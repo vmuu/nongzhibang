@@ -52,7 +52,6 @@ Page({
         }
       })
     })
-
   },
   basicsSteps(e) {
     let id = that.data.id;
