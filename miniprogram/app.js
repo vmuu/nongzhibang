@@ -246,7 +246,7 @@ App({
           wx.hideLoading({
             success: (res) => {
               wx.showToast({
-                title: '登录成功',
+                title: '获取成功',
                 icon: 'none'
               })
             },
@@ -273,50 +273,63 @@ App({
   async register(value) {
     let that = this
     that.utils.cl('注册');
+    return new Promise(returnSuccess => {
+      this.dbbase.queryOpenId('user', value).then(async res => {
+        that.utils.cl(res, '查询用户');
 
-    this.dbbase.queryOpenId('user', value).then(async res => {
-      that.utils.cl(res, '查询用户');
-
-      if (res.data.length != 0) {
-        //已经注册
-      } else {
-        //获取用户信息
-        that.getUserInfo().then(res => {
-          wx.showLoading({
-            title: '注册中...',
+        if (res.data.length != 0) {
+          //已经注册
+          returnSuccess()
+        } else {
+          wx.hideLoading({
+            success: (res) => {
+              
+            },
           })
-          that.utils.ce(res)
-          that.utils.cl('头像：',res.avatarUrl);
-          //注册
-          let payload = {
-            isShop: false,
-            nickName: res.nickName?res.nickName:null,
-            authority: 0,
-            authorityId: null,
-            headPortrait: res.avatarUrl?res.avatarUrl:null
-          }
-          that.dbbase.add('user', payload).then(res => {
-            that.utils.cl(res)
-            wx.hideLoading({
-              success: (res) => {
-                wx.showToast({
-                  title: '注册成功',
-                  icon: 'none'
-                })
-              },
+          //获取用户信息
+          that.getUserInfo().then(res => {
+
+            wx.showLoading({
+              title: '注册中...',
+            })
+            that.utils.ce(res)
+            that.utils.cl('头像：', res.avatarUrl);
+            //注册
+            let payload = {
+              isShop: false,
+              nickName: res.nickName ? res.nickName : null,
+              authority: 0,
+              authorityId: null,
+              headPortrait: res.avatarUrl ? res.avatarUrl : null
+            }
+            that.dbbase.add('user', payload).then(res => {
+              that.utils.cl(res)
+              wx.hideLoading({
+                success: (res) => {
+                  wx.showToast({
+                    title: '注册成功',
+                    icon: 'none',
+                    success(){
+                      returnSuccess()
+                    }
+                  })
+                },
+              })
             })
           })
-        })
-      }
+        }
+      })
     })
+
+
   },
   getUserInfo() {
     return new Promise(success => {
       wx.showModal({
         title: '登录授权',
-        content: '请求获取您的头像和昵称等信息，请允许',
+        content: '获取您的头像和昵称等信息，请允许',
         showCancel: false,
-        confirmText: '好的',
+        confirmText: '好的~',
         success(res) {
           if (res.confirm) {
             wx.getUserProfile({
