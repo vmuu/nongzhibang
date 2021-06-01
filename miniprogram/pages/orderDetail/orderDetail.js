@@ -83,8 +83,10 @@ Page({
       //判断当前订单状态
       if (that.data.order.orderState == 0) {
         data.orderState = 1
+        that.upOrderState(id, data);
       } else if (that.data.order.orderState == 1) {
         data.orderState = 2
+        that.upOrderState(id, data);
       } else if (that.data.order.orderState == 2) {
         data.orderState = 3
         wx.showModal({
@@ -100,9 +102,8 @@ Page({
           }
         })
 
-      }else{
-        that.upOrderState(id, data);
       }
+       
 
     }
 
