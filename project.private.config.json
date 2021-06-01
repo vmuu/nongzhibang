@@ -304,6 +304,12 @@
                     "pathName": "pages/mine/admin/login/login",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/adminManage/adminManage",
+                    "pathName": "pages/mine/admin/adminManage/adminManage",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }
