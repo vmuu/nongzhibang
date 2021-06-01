@@ -38,7 +38,8 @@
         "pages/orderDetail/orderDetail",
         "pages/mine/log/log",
         "pages/mine/admin/admin",
-        "pages/mine/admin/login/login"
+        "pages/mine/admin/login/login",
+        "pages/mine/admin/adminManage/adminManage"
     ],
     "entryPagePath": "pages/index/index",
     "plugins": {
