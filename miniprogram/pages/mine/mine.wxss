@@ -107,4 +107,10 @@ page {
 .bannerImage {
   border-radius: 15rpx;
 }
+.IDContent{
+  width: 200rpx;
+}
+.display-flex{
+  display: flex;
+}
 

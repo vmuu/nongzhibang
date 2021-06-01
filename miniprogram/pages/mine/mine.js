@@ -63,19 +63,20 @@ Page({
         url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/123681620189368172'
       }
     ],
-    tapNumber: 0
+    tapNumber: 0,
+    user:null
   },
   onShow() {
     this.state()
     that.initData()
   },
   onLoad: function () {
-
-
     this.state()
     that.setData({
       showLoad: true
     })
+    that.getUserProfile()
+
 
     //判断是否支持云函数
     if (!wx.cloud) {
@@ -89,7 +90,10 @@ Page({
       this.setData({
         canIUseGetUserProfile: true,
       })
+    }else{
+      return false
     }
+    
   },
   /**
    * 获取用户信息
@@ -104,6 +108,8 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true,
         })
+        app.utils.ce(res);
+        
       }
     })
   },
@@ -119,7 +125,6 @@ Page({
           url: './admin/login/login',
         })
       }
-
     } else {
       let number = that.data.tapNumber + 1;
       that.setData({
@@ -136,6 +141,19 @@ Page({
       tapAdmin: 0
     })
   },
+  getUserId(){
+    let where={
+      _openid:openid
+    }
+    app.utils.cl(openid);
+    
+    app.dbbase.queryWhere('user',where).then(res=>{
+      app.utils.cl("ID",res);
+      that.setData({
+        user:res.data[0]
+      })
+    })
+  },
   onReady() {
     that.setData({
       showLoad: false
@@ -143,7 +161,9 @@ Page({
   },
   initData() {
     //判断是否以及开通店铺
-    that.getShopInfo()
+    that.getShopInfo();
+    that.getUserId();
+
   },
   //查询用户是否开通店铺
   getShopInfo() {
@@ -174,7 +194,7 @@ Page({
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo,
         hasUserInfo: true,
-      })
+      }) 
     }
   },
 
@@ -235,6 +255,15 @@ Page({
         url: './identification/identification',
       })
     }
+  },
+  tapCopyId(){
+    wx.setClipboardData({
+      data: that.data.user._id,
+      success: function (res) {}
+    });
+  },
+  tapShowId(){
+    app.utils.hint(that.data.user._id);
   }
 
 })

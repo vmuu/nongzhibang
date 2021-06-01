@@ -9,17 +9,17 @@
             mode='aspectFill'></image>
     </view>
     <view class="formBox">
-        <view class="formContent  bg-white radius shadow-warp  margin-top">
+        <view class="formContent  bg-white radius shadow-warp  margin-top padding">
             <view class="margin-top">
                 <view class="text-black text-center text-xxl text-bold">欢迎登录</view>
             </view>
-            <view class=" padding-sm radius shadow shadow-lg bg-white margin-top">
+            <view class=" padding-sm radius solid-bottom bg-white margin-top">
                 <input placeholder="管理员账号" type="text" value="{{form.accountNumber}}"  bindinput="change" data-prop="form.accountNumber" />
             </view>
-            <view class="padding-sm radius shadow shadow-lg bg-white margin-top">
+            <view class="padding-sm radius solid-bottom bg-white margin-top">
                 <input placeholder="管理员秘密" type="password"  value="{{form.password}}"  bindinput="change" data-prop="form.password" />
             </view>
-            <view class="margin-top" bindtap="tapLogin">
+            <view class="margin-top margin-bottom" bindtap="tapLogin">
                 <view class="bg-gradual-green padding radius text-center shadow-blur"  >登录</view>
             </view>
         </view>

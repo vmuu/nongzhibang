@@ -13,9 +13,13 @@
 		<view class="avatarBox pubBotLine">
 			<!-- <image class="avatar" src="{{avatarUrl}}" mode="cover"></image> -->
 			<open-data class="avatar" type="userAvatarUrl"></open-data>
-			<view class="userInfo" bindtap="tapAdmin">
-				<open-data class="weixingName textOverflow" type="userNickName"></open-data>
+			<view class="userInfo">
+				<open-data class="weixingName textOverflow" bindtap="tapAdmin" type="userNickName"></open-data>
+				<view class="display-flex margin-top">
+					<view bindtap="tapShowId" class="text-cut">ID:{{user._id}}</view><text bindtap="tapCopyId" class="cuIcon-copy"></text>
+				</view>
 			</view>
+
 			<!-- <view wx:if="{{isLogin}}" class="weixingName textOverflow">这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称这里放微信昵称</view> -->
 			<!-- <view class="weixingName"><button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="bg-main"><text class="iconfont iconweixin iconSet"></text>微信登录</button></view> -->
 			<!-- <view class="settingBox" bindtap="tapSetting"> <text class="cuIcon-settingsfill color-main"></text>设置</view> -->
@@ -28,7 +32,8 @@
 				</view>
 			</view> -->
 			<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
-				<view class="cu-item" wx:for="{{iconList}}" bindtap="tapBtnMenu" data-item="{{item}}" wx:key="index" wx:if="{{index<gridCol*2}}">
+				<view class="cu-item" wx:for="{{iconList}}" bindtap="tapBtnMenu" data-item="{{item}}" wx:key="index"
+					wx:if="{{index<gridCol*2}}">
 					<view class="cuIcon-{{item.icon}} text-{{item.color}}">
 						<view class="cu-tag badge" wx:if="{{item.badge!=0}}">
 							<block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>

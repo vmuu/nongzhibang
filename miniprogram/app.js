@@ -24,7 +24,8 @@ App({
   globalData: {
     orderPage: undefined,
     newOrderBeep: null,
-    showLoad: true
+    showLoad: true,
+    wxUserInfo: null
   },
   async onLaunch() {
 
@@ -269,36 +270,77 @@ App({
   /**
    * 注册用户
    */
-  register(value) {
+  async register(value) {
     let that = this
     that.utils.cl('注册');
 
-    this.dbbase.queryOpenId('user', value).then(res => {
+    this.dbbase.queryOpenId('user', value).then(async res => {
       that.utils.cl(res, '查询用户');
 
       if (res.data.length != 0) {
         //已经注册
       } else {
-        let payload = {
-          isShop: false
-        }
-        wx.showLoading({
-          title: '注册中...',
-        })
-        //注册
-        that.dbbase.add('user', payload).then(res => {
-          that.utils.cl(res)
-          wx.hideLoading({
-            success: (res) => {
-              wx.showToast({
-                title: '注册成功',
-                icon: 'none'
-              })
-            },
+        //获取用户信息
+        that.getUserInfo().then(res => {
+          wx.showLoading({
+            title: '注册中...',
+          })
+          that.utils.ce(res)
+          that.utils.cl('头像：',res.avatarUrl);
+          //注册
+          let payload = {
+            isShop: false,
+            nickName: res.nickName?res.nickName:null,
+            authority: 0,
+            authorityId: null,
+            headPortrait: res.avatarUrl?res.avatarUrl:null
+          }
+          that.dbbase.add('user', payload).then(res => {
+            that.utils.cl(res)
+            wx.hideLoading({
+              success: (res) => {
+                wx.showToast({
+                  title: '注册成功',
+                  icon: 'none'
+                })
+              },
+            })
           })
         })
       }
     })
+  },
+  getUserInfo() {
+    return new Promise(success => {
+      wx.showModal({
+        title: '登录授权',
+        content: '请求获取您的头像和昵称等信息，请允许',
+        showCancel: false,
+        confirmText: '好的',
+        success(res) {
+          if (res.confirm) {
+            wx.getUserProfile({
+              desc: "获取您的昵称和头像",
+              success: res => {
+                console.log(res)
+                let wxUserInfo = res.userInfo;
+                that.globalData.wxUserInfo = wxUserInfo;
+                success(wxUserInfo)
+              },
+              fail: res => {
+                app.utils.cl('获取用户信息失败');
+                success(null)
+              }
+            })
+          } else if (res.cancel) {
+            //拒绝授权 showErrorModal是自定义的提示
+            app.utils.cl('您拒绝了授权，将影响部分功能的使用');
+            success(null)
+          }
+        }
+      })
+    })
+
   },
   getAppConfig() {
     //查询小程序提示音
