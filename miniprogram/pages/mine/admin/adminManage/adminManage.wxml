@@ -5,7 +5,7 @@
 </cu-custom>
 <view class="addressBox">
   <view class="addressItem">
-    <view class="btnAdd" bindtap="tapAddAddress">
+    <view class="btnAdd" bindtap="tapAddAdmin">
       <text class="cuIcon-add"></text>
       添加新管理员
     </view>
@@ -36,14 +36,14 @@
       </view>
       <view class="move">
         <view bindtap="tapUpdate" data-id="{{item._id}}" data-index="{{index}}" class="bg-grey">编辑</view>
-        <view bindtap="tapDelete" data-id="{{item._id}}" class="bg-red">删除权限</view>
+        <view bindtap="tapDelete" data-id="{{item._id}}" data-index="{{index}}" class="bg-red">删除管理员</view>
       </view>
     </view>
 
   </view>
 </view>
 
-<view class="cu-modal {{modalName==true?'show':''}}">
+<view class="cu-modal {{modalName=='modalUpdate'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content">编辑管理员</view>
@@ -60,9 +60,9 @@
         </view>
         <view class="cu-form-group">
           <view class="title">身份</view>
-            <picker name="accountNumber" bindchange="PickerChange" value="{{indexPicker}}" range="{{accountList}}">
+            <picker mode="selector"  bindchange="PickerChange" range-key="name" value="{{indexPicker}}" range="{{roleList}}">
               <view class="picker">
-                {{accountList[indexPicker]}}
+                {{roleList[indexPicker].name}}
               </view>
             </picker>
         </view>
@@ -75,3 +75,35 @@
   </view>
 </view>
 <load showLoad="{{showLoad}}" modeType="1"></load>
+
+<view class="cu-modal {{modalName=='modalAdd'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">添加管理员</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs">
+      <form class="text-left">
+        <input type="hidden" style="display: none;" value="{{formData._id}}"/>
+        <view class="cu-form-group">
+          <view class="title">搜索ID：</view>
+          <input placeholder="请输入管理员的ID" value="{{formData._id}}" data-prop="formData._id" bindinput="change" />
+        </view>
+        <view class="cu-form-group">
+          <view class="title">身份</view>
+            <picker mode="selector"  bindchange="PickerChange" range-key="name" value="{{indexPicker}}" range="{{roleList}}">
+              <view class="picker">
+                {{roleList[indexPicker].name}}
+              </view>
+            </picker>
+        </view>
+      </form>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideConfirmAdd">确定</view>
+    </view>
+  </view>
+</view>
