@@ -188,9 +188,6 @@ App({
     } catch (e) {
 
     }
-
-
-
   },
   //查询用户是否开通店铺
   getShopInfo() {
@@ -216,7 +213,6 @@ App({
       })
     })
   },
-
   /**
    * 获取openid
    */
@@ -227,7 +223,6 @@ App({
     })
     // 调用云函数
     return new Promise(success => {
-
       wx.cloud.callFunction({
         name: 'login',
         data: {},
@@ -253,7 +248,6 @@ App({
         }
       })
     })
-
   },
   show() {
     this.utils.cl('调取成功')
@@ -287,10 +281,10 @@ App({
     return new Promise(returnSuccess => {
       //修改
       let payload = {
-        isShop: false,
+        // isShop: false,
         nickName: res.nickName ? res.nickName : null,
-        authority: 0,
-        authorityId: null,
+        // authority: 0,
+        // authorityId: null,
         headPortrait: res.avatarUrl ? res.avatarUrl : null
       }
       let where = {

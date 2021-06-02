@@ -36,7 +36,7 @@
       </view>
       <view class="move">
         <view bindtap="tapUpdate" data-id="{{item._id}}" data-index="{{index}}" class="bg-grey">编辑</view>
-        <view bindtap="tapDelete" data-id="{{item._id}}" data-index="{{index}}" class="bg-red">删除管理员</view>
+        <view bindtap="tapDelete" data-id="{{item._id}}" data-index="{{index}}" class="bg-red">删除</view>
       </view>
     </view>
 
