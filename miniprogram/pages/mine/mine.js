@@ -64,7 +64,7 @@ Page({
       }
     ],
     tapNumber: 0,
-    user:null
+    user: null
   },
   onShow() {
     this.state()
@@ -90,10 +90,10 @@ Page({
       this.setData({
         canIUseGetUserProfile: true,
       })
-    }else{
+    } else {
       return false
     }
-    
+
   },
   /**
    * 获取用户信息
@@ -109,22 +109,20 @@ Page({
           hasUserInfo: true,
         })
         app.utils.ce(res);
-        
+
       }
     })
   },
   tapAdmin() {
     if (that.data.tapNumber == 3) {
-      app.utils.hint('进入管理者模式');
-      if (app.globalData.admin == 1) {
+      
+      if (that.data.user.authority > 0) {
+        app.utils.hint('进入管理者模式');
         wx.navigateTo({
           url: './admin/admin',
         })
-      } else {
-        wx.navigateTo({
-          url: './admin/login/login',
-        })
       }
+
     } else {
       let number = that.data.tapNumber + 1;
       that.setData({
@@ -141,16 +139,16 @@ Page({
       tapAdmin: 0
     })
   },
-  getUserId(){
-    let where={
-      _openid:openid
+  getUserId() {
+    let where = {
+      _openid: openid
     }
     app.utils.cl(openid);
-    
-    app.dbbase.queryWhere('user',where).then(res=>{
-      app.utils.cl("ID",res);
+
+    app.dbbase.queryWhere('user', where).then(res => {
+      app.utils.cl("ID", res);
       that.setData({
-        user:res.data[0]
+        user: res.data[0]
       })
     })
   },
@@ -194,7 +192,7 @@ Page({
         avatarUrl: e.detail.userInfo.avatarUrl,
         userInfo: e.detail.userInfo,
         hasUserInfo: true,
-      }) 
+      })
     }
   },
 
@@ -256,13 +254,13 @@ Page({
       })
     }
   },
-  tapCopyId(){
+  tapCopyId() {
     wx.setClipboardData({
       data: that.data.user._id,
       success: function (res) {}
     });
   },
-  tapShowId(){
+  tapShowId() {
     app.utils.hint(that.data.user._id);
   }
 

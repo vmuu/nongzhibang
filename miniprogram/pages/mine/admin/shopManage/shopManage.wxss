@@ -1,0 +1,8 @@
+/* miniprogram/pages/mine/admin/shopManage/shopManage.wxss */
+.cu-form-group .title {
+    min-width: calc(4em + 30rpx);
+  }
+  .imageAttribute{
+    height: 200rpx;
+    width: 500rpx;
+  }

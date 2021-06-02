@@ -32,19 +32,20 @@ page {
   padding-bottom: 30rpx;
   position: relative;
 }
-.userInfo{
+
+.userInfo {
   width: 400rpx;
   margin-left: 20rpx;
   display: flex;
   flex-direction: column;
 }
-.weixingName {
 
-}
+.weixingName {}
+
 .userPhone {
   color: #666666;
   font-size: 20rpx;
-  
+
 }
 
 .avatar {
@@ -107,10 +108,24 @@ page {
 .bannerImage {
   border-radius: 15rpx;
 }
-.IDContent{
+
+.IDContent {
   width: 200rpx;
 }
-.display-flex{
+
+.display-flex {
   display: flex;
 }
 
+.accountId {
+  color: #aaaaaa;
+  font-size: 20rpx;
+}
+
+.bottom {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: rgb(209, 209, 209);
+}
