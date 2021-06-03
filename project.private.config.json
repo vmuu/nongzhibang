@@ -358,6 +358,12 @@
                     "pathName": "pages/mine/admin/shopManage/shopManage",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/shopManage/shopManage",
+                    "pathName": "pages/mine/admin/shopManage/shopManage",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

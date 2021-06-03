@@ -14,7 +14,10 @@ Page({
     picker: ['提交资料', '开店中', '提交审核', '审核未通过'],
     index: 0,
     showLoad:false,
-    user:null
+    user:null,
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom
   },
 
   /**
