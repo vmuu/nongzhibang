@@ -145,7 +145,6 @@ class Utils {
       return moment(date).format(rule);
     }
     return moment().format(rule);
-    
   }
 }
 export default new Utils

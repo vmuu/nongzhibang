@@ -1,4 +1,6 @@
-const { default: dbbase } = require("../../config/dbbase");
+const {
+  default: dbbase
+} = require("../../config/dbbase");
 var that
 //引入插件：微信同声传译
 const plugin = requirePlugin('WechatSI');
@@ -30,7 +32,7 @@ Page({
     // 需要条追的商品
     hotproduct: [],
     //搜索后显示的文字
-    isSearch:true
+    isSearch: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -51,10 +53,14 @@ Page({
       })
   },
   //搜索后
-  searchName(e){
+  searchName(e) {
     app.utils.cl(e);
     let value = e.detail.value
-    app.dbbase.queryFuzzy('product',value).then(res=>{
+    that.searchValue(value);
+
+  },
+  searchValue(value) {
+    app.dbbase.queryFuzzy('product', value).then(res => {
       that.setData({
         product: res.data,
         max: this.data.limit,
@@ -92,6 +98,8 @@ Page({
     }
     //识别结束事件
     manager.onStop = function (res) {
+      app.utils.cl('录音', res);
+
       console.log('..............结束录音')
       console.log('录音临时文件地址 -->' + res.tempFilePath);
       console.log('录音总时长 -->' + res.duration + 'ms');
@@ -106,10 +114,16 @@ Page({
         })
         return;
       }
-      let text = res.result
+      let text = res.result;
+      //处理内容,把所有标点符号替换为""空
+      let reg=/[，| 。]/g
+      let re = text.replace(reg, "")
+      app.utils.cl('输出结果', re);
+
       that.setData({
-        content: res.result
+        content: re
       })
+      that.searchValue(re);
     }
   },
   //语音  --按住说话
