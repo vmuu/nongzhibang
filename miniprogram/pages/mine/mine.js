@@ -115,7 +115,7 @@ Page({
   },
   tapAdmin() {
     if (that.data.tapNumber == 3) {
-      
+
       if (that.data.user.authority > 0) {
         app.utils.hint('进入管理者模式');
         wx.navigateTo({
@@ -205,13 +205,17 @@ Page({
     utils.cl(value)
     let type = value.currentTarget.dataset.item.id;
     if (type == 0) {
+      //收货地址
       wx.navigateTo({
         url: './address/address',
       })
     } else if (type == 1) {
+      //我的收藏
+      app.utils.hint('功能开发中，敬请期待~');
+
 
     } else {
-
+      app.utils.hint('功能开发中，敬请期待~');
     }
   },
   showQrcode() {

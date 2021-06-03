@@ -334,6 +334,30 @@
                     "pathName": "pages/mine/admin/adminManage/adminManage",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/shopManage/shopManage",
+                    "pathName": "pages/mine/admin/shopManage/shopManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/adminManage/adminManage",
+                    "pathName": "pages/mine/admin/adminManage/adminManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/shopManage/shopManage",
+                    "pathName": "pages/mine/admin/shopManage/shopManage",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

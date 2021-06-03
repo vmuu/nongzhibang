@@ -37,7 +37,7 @@
       <text class="cuIcon-notification" style="font-size:40rpx"></text>
       <swiper vertical="true" autoplay="true" circular="true" interval="3000" duration='800'
         style="margin-left: 20rpx;">
-        <block wx:for='{{msgList}}' wx:key='index'>
+        <block wx:for='{{msgList}}' wx:key='{{index}}'>
           <swiper-item>
             <view class="swiper-item">{{item.title}}</view>
           </swiper-item>
@@ -232,7 +232,8 @@
 
   </view>
 
-  <load showLoad="{{showLoad}}" modeType="1"></load>
+  <load showLoad="{{initShowLoad}}" modeType="1"></load>
+  <load showLoad="{{showLoad}}" modeType="2"></load>
   <!-- <view class="loadModal">
     <view class="imageBox">
       <image class="loadingImage"  src="https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1122571622258577490" mode="aspectFill"></image>

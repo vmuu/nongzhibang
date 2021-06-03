@@ -1,6 +1,7 @@
 // miniprogram/pages/mine/admin/admin.js
 const app = getApp()
 var that;
+var openid;
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
     formData: {},
     picker: ['提交资料', '开店中', '提交审核', '审核未通过'],
     index: 0,
-    showLoad:false
+    showLoad:false,
+    user:null
   },
 
   /**
@@ -26,10 +28,12 @@ Page({
     app.change(e, this);
   },
   state() {
-    that = this
-  },
+    that = this;
+    openid=app.globalData.openid;
+    },
   initData() {
-    that.getShopList()
+    that.getShopList();
+    that.getUser();
   },
   //查询所有店铺
   getShopList() {
@@ -69,6 +73,14 @@ Page({
       ListTouchDirection: null
     })
   },
+  getUser(){
+    app.dbbase.queryOpenId('user',openid).then(res=>{
+      app.utils.cl(res);
+      that.setData({
+        user:res.data[0]
+      })
+    })
+  },
   tapUpdate(e) {
     //获取点击的下标
     app.utils.cl(e);
@@ -87,8 +99,21 @@ Page({
       index: e.detail.value
     })
   },
-  tapDelete() {
-    app.utils.hint('该功能暂不支持！');
+  tapDelete(e) {
+    app.utils.cl(e);
+    
+    
+    let id=e.currentTarget.dataset.id;
+    //app.utils.hint('该功能暂不支持！');
+    wx.showModal({
+      title:'删除提醒',
+      content:'你确定要删除该店铺？',
+      success(re){
+        if(re.confirm){
+          that.deleteShop(id)
+        }
+      }
+    })
   },
   hideModal(e){
     this.setData({
@@ -115,6 +140,24 @@ Page({
         showLoad:false
       })
     })
-
+  },
+  deleteShop(id=null){
+    if(app.utils.isEmpty(id)){
+      app.utils.cl('id不能空');
+      return;
+    }
+    //判断是否有删除权限
+    if(that.data.user.authority!=1){
+      app.utils.hint('您无权操作');
+      
+      return;
+    }
+    let data={
+      isShop:-1
+    }
+    app.dbbase.update('shop',id,data).then(res=>{
+        app.utils.hint('操作成功');   
+        that.initData()     
+    })
   },
 })

@@ -14,11 +14,13 @@ Page({
       id: 0,
       type: 'image',
       url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1125271620185127484'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
-    }, {
+      },
+    //  {
+    //   id: 1,
+    //   type: 'image',
+    //   url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
+    // },
+     {
       id: 2,
       type: 'image',
       url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126421620185202773'
@@ -60,7 +62,8 @@ Page({
     limit: 8,
     //触底时是否继续请求数据库
     theOnReachBottom: true,
-    noticeHeight: 0
+    noticeHeight: 0,
+    initShowLoad:true
 
   },
   initData() {
@@ -171,7 +174,8 @@ Page({
   onReady() {
     app.globalData.showLoad = false;
     that.setData({
-      showLoad: false
+      initShowLoad: false,
+      showLoad:false
     })
   },
   //轮播图切换放大
@@ -293,6 +297,13 @@ Page({
   },
   tapNotice() {
     app.utils.cl('查看公告');
+    let list= that.data.msgList;
+    let  msgStr='';
+    for(let i=0;i<list.length;i++){
+      msgStr=msgStr+(i+1)+'.'+list[i].title
+    }
+    app.utils.hint(msgStr,3000);
+    
   }
 });
 

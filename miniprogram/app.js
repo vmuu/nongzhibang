@@ -3,6 +3,7 @@ import http from './config/http'
 import utils from './config/utils'
 import dbbase from './config/dbbase'
 import webstock from './plugins/webstock'
+import config from './config/config';
 
 var that;
 
@@ -14,6 +15,7 @@ App({
   utils: utils,
   dbbase: dbbase,
   http: http,
+  config:config,
   change: utils.change,
   isEmpty: utils.isEmpty,
   dateformat: utils.dateformat,

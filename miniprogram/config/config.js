@@ -3,6 +3,7 @@
    net = {
      api: "https://xiaoxingbobo.top"
    }
+   locationKey="YBCBZ-TD4KF-PVYJ3-J7EXP-ZGOA6-TWBVH"
    //七牛云配置
    qiniu = {
      key: 'nongzhibang/',//上传目录

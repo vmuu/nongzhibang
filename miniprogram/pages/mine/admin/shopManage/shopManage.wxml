@@ -6,7 +6,7 @@
 <view>
   <view class="cu-list menu-avatar">
 
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{shopList}}" wx:key
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{shopList}}" wx:key wx:if="{{item.isShop!=-1}}"
       bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
       data-target="move-box-{{index}}">
       <view class="cu-avatar round lg" style="background-image:url({{item.shopImage}});">
@@ -21,13 +21,13 @@
           <text wx:if="{{item.isShop==3}}">审核未通过</text>
         </view>
       </view>
-      <view class="action">
+      <view class="action" style="width:unset">
         <view class="text-grey text-xs">{{item.startTime}}-{{item.endTime}}</view>
         <!-- <view class="cu-tag round bg-grey sm">5</view> -->
       </view>
       <view class="move">
         <view bindtap="tapUpdate" data-index="{{index}}" class="bg-grey">编辑</view>
-        <view bindtap="tapDelete" class="bg-red">删除</view>
+        <view bindtap="tapDelete" data-id="{{item._id}}" class="bg-red">删除</view>
       </view>
     </view>
 
@@ -35,7 +35,7 @@
 </view>
 
 <view class="cu-modal {{modalName==true?'show':''}}">
-  <view class="cu-dialog">
+  <view class="cu-dialog" style="width:100%">
     <view class="cu-bar bg-white justify-end">
       <view class="content">编辑店铺</view>
       <view class="action" bindtap="hideModal">
@@ -44,7 +44,7 @@
     </view>
     <view class="padding-xs">
       <form class="text-left">
-        <input type="display:none" value="{{formData._id}}"/>
+        <input style="display:none" value="{{formData._id}}"/>
         <view class="cu-form-group">
           <view class="title">店铺名称</view>
           <input placeholder="店铺名称" value="{{formData.shopName}}" data-prop="formData.shopName"

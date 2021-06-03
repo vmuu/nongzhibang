@@ -17,7 +17,7 @@ Page({
     //下拉列表权限列表
     accountList: [],
     //下拉列表索引
-    indexPicker: 0,
+    indexPicker: 1,
     //角色列表
     roleList: [],
     addAdminId: null
@@ -102,9 +102,9 @@ Page({
     let admin = that.data.adminList[index]
     let indexPicker = that.data.adminList[index].authority
     //比对自己是否有权修改其他人的权限
-    if(!that.compare(admin)){
+    if (!that.compare(admin)) {
       return false;
-  }
+    }
     that.setData({
       modalName: 'modalUpdate',
       formData: admin,
@@ -113,8 +113,16 @@ Page({
     })
   },
   PickerChange(e) {
-    console.log(e);
-    this.setData({
+    app.utils.cl(e);
+    if (e.detail.value == 0) {
+      app.utils.hint('只允许存在一个超级管理员');
+      that.setData({
+        indexPicker: 1
+      })
+      return
+    }
+
+    that.setData({
       indexPicker: e.detail.value
     })
   },
@@ -124,10 +132,10 @@ Page({
     let indexPicker = that.data.indexPicker
     let authority = that.data.adminList[e.currentTarget.dataset.index]
     //比对自己是否有权修改其他人的权限
-    if(!that.compare(authority)){
-        return false;
+    if (!that.compare(authority)) {
+      return false;
     }
-    
+
 
     that.setData({
       showLoad: true
@@ -151,7 +159,17 @@ Page({
       modalName: null
     })
   },
+  isAdministrator() {
+    if (that.data.indexPicker == 0) {
+      return true;
+    }
+    return false;
+  },
   hideConFrimModal(e) {
+    if (that.isAdministrator()) {
+      app.utils.hint('只允许添加一个超级管理员');
+      return
+    }
     that.setData({
       modalName: null,
       showLoad: true
@@ -161,7 +179,7 @@ Page({
     app.utils.cl("that.data.index" + that.data.indexPicker);
     app.utils.cl(that.data.adminList[that.data.indexPicker]);
     app.utils.cl(that.data.adminList);
-    
+
     let data = {
       authorityId: that.data.roleList[that.data.indexPicker]._id,
       authority: parseInt(that.data.indexPicker) + 1
