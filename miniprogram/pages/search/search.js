@@ -116,7 +116,7 @@ Page({
       }
       let text = res.result;
       //处理内容,把所有标点符号替换为""空
-      let reg=/[，| 。|？|！|\.|\?|\!|,]/g
+      let reg=/[，| 。|\？|\！|\.|\?|\!|,]/g
       let re = text.replace(reg, "")
       app.utils.cl('输出结果', re);
 
