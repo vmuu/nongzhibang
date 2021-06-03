@@ -44,7 +44,7 @@
     </view>
     <view class="padding-xs">
       <form class="text-left">
-        <input type="display:none" value="{{formData._id}}"/>
+        <input type="display:none" style="display:none" value="{{formData._id}}"/>
         <view class="cu-form-group">
           <view class="title">店铺名称</view>
           <input placeholder="店铺名称" value="{{formData.shopName}}" data-prop="formData.shopName"
