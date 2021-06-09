@@ -49,7 +49,7 @@
           <text class="cuIcon-medal text text-red "></text> {{item.desc}}</view>
       </view>
       <view class="action">
-        <view class="text-grey text-xs">￥{{item.price}}</view>
+        <view class="text-grey text-xs">￥{{item.currentPrice}}</view>
         <view class="cu-tag round bg-grey sm">月售{{item.monthlySales}}</view>
       </view>
     </view>
