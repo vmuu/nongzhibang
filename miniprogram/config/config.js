@@ -12,7 +12,7 @@
      qiniuRegion: 'SCN',//七牛云地区 所在区域。ECN, SCN, NCN, NA, ASG，分别对应七牛云的：华东，华南，华北，北美，新加坡 5 个区域
      qiniuShouldUseQiniuFileName: false//是否使用七牛云自动设置名称
    }
-   logDebug = true
+   logDebug = false
    //加载动画
    //https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1122571622258577490
    //https://cloud.xiaoxingbobo.top/nongzhibang/20210429/1124001622258640673

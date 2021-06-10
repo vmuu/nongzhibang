@@ -39,10 +39,11 @@ class DBBase {
           _id: id
         }).get({
           success: res => {
-            return success(res)
+            success(res)
           },
           fail: err => {
             console.error('[数据库] [查询记录] 失败：', err)
+            error(err)
           }
         })
       } else {

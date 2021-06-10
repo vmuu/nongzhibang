@@ -11,7 +11,7 @@ Page({
     Custom: app.globalData.Custom,
     TabCur: 0,
     MainCur: 0,
-    heighttop:(app.globalData.StatusBar)+40,
+    heighttop: (app.globalData.StatusBar) + 40,
     VerticalNavTop: 0,
     //商品对象图片索引
     imgList: [],
@@ -50,17 +50,17 @@ Page({
     list: [],
     load: true,
     //商品分类
-    commodityType:[],
+    commodityType: [],
     //商店
-    shop:[],
+    shop: [],
     //商品对象
-    product:[],
+    product: [],
+    initShowLoad: true
   },
-  
-  onLoad(shop) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
+
+  async onLoad(shop) {
+    this.setData({
+      initShowLoad: true
     })
     let list = [{}];
     for (let i = 0; i < 3; i++) {
@@ -73,23 +73,24 @@ Page({
       listCur: list[0]
     })
     //调用封装的多表（2表）联查函数
-    db.looKupTwo("looKupProductOrProductType",shop.id,"productType","product","_id","commodityTypeId","commodity").then((res)=>{
+    await db.looKupTwo("looKupProductOrProductType", shop.id, "productType", "product", "_id", "commodityTypeId", "commodity").then((res) => {
       app.utils.cl(res.result.list);
       this.setData({
-        commodityType:res.result.list
+        commodityType: res.result.list
       })
     })
-    
-    
     //要跳转的商家
-    dbbase.query("shop",shop.id).then((res)=>{
+    await dbbase.query("shop", shop.id).then((res) => {
       this.setData({
-        shop:res.data[0]
+        shop: res.data[0]
       })
+    },err=>{
+     app.utils.cl(err);
     })
-  },
-  onReady() {
-    wx.hideLoading()
+    
+    this.setData({
+      initShowLoad: false
+    })
   },
   tabSelect(e) {
     this.setData({
@@ -100,7 +101,7 @@ Page({
   },
   //下拉逻辑
   VerticalMain(e) {
-    
+
     let that = this;
     let list = this.data.commodityType;
     let tabHeight = 0;
@@ -133,17 +134,17 @@ Page({
   },
   productdesc(e) {
     wx.navigateTo({
-      url: '../productDetails/productDetails?id='+e.currentTarget.dataset.id,
+      url: '../productDetails/productDetails?id=' + e.currentTarget.dataset.id,
     })
   },
   showShopAnnouncement(e) {
-    app.utils.hint(e.currentTarget.dataset.showshopannouncement,3000);
+    app.utils.hint(e.currentTarget.dataset.showshopannouncement, 3000);
   },
-  shopDescribe(e){
-    app.utils.hint(e.currentTarget.dataset.shopdescribe,3000);
+  shopDescribe(e) {
+    app.utils.hint(e.currentTarget.dataset.shopdescribe, 3000);
   },
   showAddress(e) {
     app.utils.cl(e);
-    app.utils.hint(e.currentTarget.dataset.showaddress,3000);
+    app.utils.hint(e.currentTarget.dataset.showaddress, 3000);
   },
 })
