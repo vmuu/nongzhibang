@@ -1,0 +1,122 @@
+<!--miniprogram/pages/mine/admin/admin.wxml-->
+<cu-custom bgColor="bg-main" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">店铺管理</view>
+</cu-custom>
+<view>
+  <view class="cu-list menu-avatar">
+
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{shopList}}" wx:key
+      wx:if="{{item.isShop!=-1}}" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove"
+      bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url({{item.shopImage}});">
+      </view>
+      <view class="content">
+        <view class="text-grey">{{item.shopName}}</view>
+        <view class="text-gray text-sm">
+          <text class="cuIcon-infofill text-gray"></text>
+          <text wx:if="{{item.isShop==0}}">提交资料</text>
+          <text wx:if="{{item.isShop==1}}">开店中</text>
+          <text wx:if="{{item.isShop==2}}">提交审核</text>
+          <text wx:if="{{item.isShop==3}}">审核未通过</text>
+        </view>
+      </view>
+      <view class="action" style="width:unset">
+        <view class="text-grey text-xs">{{item.startTime}}-{{item.endTime}}</view>
+        <!-- <view class="cu-tag round bg-grey sm">5</view> -->
+      </view>
+      <view class="move">
+        <view bindtap="tapUpdate" data-index="{{index}}" class="bg-grey">编辑</view>
+        <view bindtap="tapDelete" data-id="{{item._id}}" class="bg-red">删除</view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<view class="cu-modal {{modalName==true?'show':''}}">
+  
+  <view class="cu-dialog" style="width:100%">
+    <view class="cu-custom" style="height:{{CustomBar}}px"></view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">编辑店铺</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs">
+      <form class="text-left">
+        <input style="display:none" value="{{formData._id}}" />
+        <view class="cu-form-group">
+          <view class="title">店铺名称</view>
+          <input placeholder="店铺名称" value="{{formData.shopName}}" data-prop="formData.shopName"
+            bindinput="change"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">店铺描述</view>
+          <input placeholder="店铺描述" value="{{formData.shopDescribe}}" data-prop="formData.shopDescribe"
+            bindinput="change"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">身份证号</view>
+          <input placeholder="身份证号" value="{{formData.identity}}" data-prop="formData.identity"
+            bindinput="change"></input>
+        </view>
+        <view class="cu-form-group">
+          <view class="title idTitle">身份证正面</view>
+
+
+        </view>
+        <view class="cu-form-group">
+          <view class="textAlign-center">
+            <view class="iamgeBox" bindtap="tapBackground">
+              <image class="imageAttribute" mode='aspectFill' src="{{formData.idPhotoBack}}"></image>
+            </view>
+          </view>
+        </view>
+
+        <view class="cu-form-group">
+          <view class="title">身份证反面</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="textAlign-center">
+            <view class="iamgeBox" bindtap="tapBackground">
+              <image class="imageAttribute" mode='aspectFill' src="{{formData.idPhotoBack}}"></image>
+            </view>
+          </view>
+        </view>
+
+        <view class="cu-form-group">
+          <view class="title">营业执照</view>
+        </view>
+        <view class="cu-form-group">
+          <view class="textAlign-center">
+            <view class="iamgeBox" bindtap="tapBackground">
+              <image class="imageAttribute" mode='aspectFill' src="{{formData.businessLicense}}"></image>
+            </view>
+          </view>
+
+        </view>
+
+        <view class="cu-form-group">
+          <view class="title">店铺地址</view>
+          <view>{{formData.province}}{{formData.city}}{{formData.county}}{{formData.address}}</view>
+          <text class="cuIcon-locationfill text-orange"></text>
+        </view>
+        <view class="cu-form-group">
+          <view class="title">审核状态</view>
+          <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+            <view class="picker">
+              {{index?picker[index]:'提交资料'}}
+            </view>
+          </picker>
+        </view>
+      </form>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub text-green" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left" bindtap="hideConFrimModal">确定</view>
+    </view>
+  </view>
+</view>
+<load showLoad="{{showLoad}}" modeType="1"></load>

@@ -110,10 +110,10 @@ Page({
       app.dbbase.query('shop', id).then(res => {
         app.utils.cl(res, '输出店铺查询结果')
         if (res.data.length != 0) {
-          if (!res.data.startTime) {
+          if (app.utils.isEmpty(res.data[0].startTime)) {
             res.data[0].startTime = "08:00"
           }
-          if (!res.data.endTime) {
+          if (app.utils.isEmpty(res.data[0].endTime)) {
             res.data[0].endTime = "22:00"
           }
           that.setData({
@@ -145,7 +145,7 @@ Page({
     let that = this
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
-      key: 'YBCBZ-TD4KF-PVYJ3-J7EXP-ZGOA6-TWBVH'
+      key: app.config.locationKey
     }); //获取当前的地理位置、速度
     wx.getLocation({
       type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标

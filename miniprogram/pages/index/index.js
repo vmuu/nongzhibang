@@ -56,7 +56,8 @@ Page({
     limit: 8,
     //触底时是否继续请求数据库
     theOnReachBottom: true,
-    noticeHeight: 0
+    noticeHeight: 0,
+    initShowLoad:true
 
   },
   initData() {
@@ -167,7 +168,8 @@ Page({
   onReady() {
     app.globalData.showLoad = false;
     that.setData({
-      showLoad: false
+      initShowLoad: false,
+      showLoad:false
     })
   },
   //轮播图切换放大
@@ -289,6 +291,13 @@ Page({
   },
   tapNotice() {
     app.utils.cl('查看公告');
+    let list= that.data.msgList;
+    let  msgStr='';
+    for(let i=0;i<list.length;i++){
+      msgStr=msgStr+(i+1)+'.'+list[i].title
+    }
+    app.utils.hint(msgStr,3000);
+    
   }
 });
 

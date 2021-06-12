@@ -1,323 +1,377 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide",
-          "query": ""
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/mine/identification/identification",
-          "pathName": "pages/mine/identification/identification",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "id": -1,
-          "name": "pages/search/search",
-          "pathName": "pages/search/search",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/identification/identification",
-          "pathName": "pages/mine/identification/identification",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/log/log",
-          "pathName": "pages/mine/log/log",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=cbddf0af60924b600676347b2e4cb19c",
-          "scene": null
-        },
-        {
-          "name": "pages/order/order",
-          "pathName": "pages/order/order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/success/success",
-          "pathName": "pages/success/success",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/goods/goods",
-          "pathName": "pages/index/goods/goods",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/good/good",
-          "pathName": "pages/good/good",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/address/address",
-          "pathName": "pages/mine/address/address",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/details/details",
-          "pathName": "pages/details/details",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/confirmOrder/confirmOrder",
-          "pathName": "pages/confirmOrder/confirmOrder",
-          "query": "id=undefined",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=undefined",
-          "scene": null
-        },
-        {
-          "name": "pages/productDetails/productDetails",
-          "pathName": "pages/productDetails/productDetails",
-          "query": "id=b00064a7608fc04213fb569323b4faab",
-          "scene": null
-        },
-        {
-          "name": "pages/confirmOrder/confirmOrder",
-          "pathName": "pages/confirmOrder/confirmOrder",
-          "query": "id=b00064a7608fc04213fb569323b4faab",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=cbddf0af60afac020c2e99a374d41e3d",
-          "scene": null
-        },
-        {
-          "name": "pages/order/order",
-          "pathName": "pages/order/order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
-          "scene": null
-        },
-        {
-          "name": "pages/confirmOrder/confirmOrder",
-          "pathName": "pages/confirmOrder/confirmOrder",
-          "query": "id=cbddf0af60a52a5d09b131de74f9368f",
-          "scene": null
-        },
-        {
-          "name": "pages/productDetails/productDetails",
-          "pathName": "pages/productDetails/productDetails",
-          "query": "id=cbddf0af60b078a30c4eb2766f59e90e",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=79550af260b087081b04a8bc3f425c37",
-          "scene": null
-        },
-        {
-          "name": "pages/im/room/room",
-          "pathName": "pages/im/room/room",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/mine",
-          "pathName": "pages/mine/mine",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/shop/shop",
-          "pathName": "pages/mine/shop/shop",
-          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=cbddf0af60b23b6c0cc0fbf76f9adeef",
-          "scene": null
-        },
-        {
-          "name": "pages/shopManagement/shopManagement",
-          "pathName": "pages/shopManagement/shopManagement",
-          "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=79550af260b246a81b830c2e59b7421a",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=79550af260b253261b8675ca1eb26ebe",
-          "scene": null
-        },
-        {
-          "name": "pages/productDetails/productDetails",
-          "pathName": "pages/productDetails/productDetails",
-          "query": "id=b00064a760b251c61c34bded56afae9e",
-          "scene": null
-        },
-        {
-          "name": "pages/confirmOrder/confirmOrder",
-          "pathName": "pages/confirmOrder/confirmOrder",
-          "query": "id=cbddf0af60a3ba7a096f633b7e1f8575",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=b00064a760b251f31c34c7e600a4d7dc",
-          "scene": null
-        },
-        {
-          "name": "pages/im/im",
-          "pathName": "pages/im/im",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/test/test",
-          "pathName": "pages/test/test",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/im/room/room",
-          "pathName": "pages/im/room/room",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=b00064a760b35c971c729cbe6c83d3ed",
-          "scene": null
-        },
-        {
-          "name": "pages/index/merchants/merchants",
-          "pathName": "pages/index/merchants/merchants",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/orderDetail/orderDetail",
-          "pathName": "pages/orderDetail/orderDetail",
-          "query": "id=28ee4e3e60b35fae1e4750da0386b96e",
-          "scene": null
-        },
-        {
-          "name": "pages/index/merchants/merchants",
-          "pathName": "pages/index/merchants/merchants",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/productDetails/productDetails",
-          "pathName": "pages/productDetails/productDetails",
-          "query": "id=b00064a760b24a941c32eaaa369354c0",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/admin/admin",
-          "pathName": "pages/mine/admin/admin",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/admin/admin",
-          "pathName": "pages/mine/admin/admin",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/admin/login/login",
-          "pathName": "pages/mine/admin/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/admin/login/login",
-          "pathName": "pages/mine/admin/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/mine/mine",
-          "pathName": "pages/mine/mine",
-          "query": "",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "id": -1,
+                    "name": "db guide",
+                    "pathName": "pages/databaseGuide/databaseGuide",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/identification/identification",
+                    "pathName": "pages/mine/identification/identification",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/search/search",
+                    "pathName": "pages/search/search",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/identification/identification",
+                    "pathName": "pages/mine/identification/identification",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/log/log",
+                    "pathName": "pages/mine/log/log",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=cbddf0af60924b600676347b2e4cb19c",
+                    "scene": null
+                },
+                {
+                    "name": "pages/order/order",
+                    "pathName": "pages/order/order",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/success/success",
+                    "pathName": "pages/success/success",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/goods/goods",
+                    "pathName": "pages/index/goods/goods",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/good/good",
+                    "pathName": "pages/good/good",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/address/address",
+                    "pathName": "pages/mine/address/address",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/details/details",
+                    "pathName": "pages/details/details",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/confirmOrder/confirmOrder",
+                    "pathName": "pages/confirmOrder/confirmOrder",
+                    "query": "id=undefined",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=undefined",
+                    "scene": null
+                },
+                {
+                    "name": "pages/productDetails/productDetails",
+                    "pathName": "pages/productDetails/productDetails",
+                    "query": "id=b00064a7608fc04213fb569323b4faab",
+                    "scene": null
+                },
+                {
+                    "name": "pages/confirmOrder/confirmOrder",
+                    "pathName": "pages/confirmOrder/confirmOrder",
+                    "query": "id=b00064a7608fc04213fb569323b4faab",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=cbddf0af60afac020c2e99a374d41e3d",
+                    "scene": null
+                },
+                {
+                    "name": "pages/order/order",
+                    "pathName": "pages/order/order",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/confirmOrder/confirmOrder",
+                    "pathName": "pages/confirmOrder/confirmOrder",
+                    "query": "id=cbddf0af60a52a5d09b131de74f9368f",
+                    "scene": null
+                },
+                {
+                    "name": "pages/productDetails/productDetails",
+                    "pathName": "pages/productDetails/productDetails",
+                    "query": "id=cbddf0af60b078a30c4eb2766f59e90e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=79550af260b087081b04a8bc3f425c37",
+                    "scene": null
+                },
+                {
+                    "name": "pages/im/room/room",
+                    "pathName": "pages/im/room/room",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/mine",
+                    "pathName": "pages/mine/mine",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=cbddf0af60b23b6c0cc0fbf76f9adeef",
+                    "scene": null
+                },
+                {
+                    "name": "pages/shopManagement/shopManagement",
+                    "pathName": "pages/shopManagement/shopManagement",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=79550af260b246a81b830c2e59b7421a",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=79550af260b253261b8675ca1eb26ebe",
+                    "scene": null
+                },
+                {
+                    "name": "pages/productDetails/productDetails",
+                    "pathName": "pages/productDetails/productDetails",
+                    "query": "id=b00064a760b251c61c34bded56afae9e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/confirmOrder/confirmOrder",
+                    "pathName": "pages/confirmOrder/confirmOrder",
+                    "query": "id=cbddf0af60a3ba7a096f633b7e1f8575",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=b00064a760b251f31c34c7e600a4d7dc",
+                    "scene": null
+                },
+                {
+                    "name": "pages/im/im",
+                    "pathName": "pages/im/im",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/test/test",
+                    "pathName": "pages/test/test",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/im/room/room",
+                    "pathName": "pages/im/room/room",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=b00064a760b35c971c729cbe6c83d3ed",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/merchants/merchants",
+                    "pathName": "pages/index/merchants/merchants",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderDetail/orderDetail",
+                    "pathName": "pages/orderDetail/orderDetail",
+                    "query": "id=28ee4e3e60b35fae1e4750da0386b96e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/merchants/merchants",
+                    "pathName": "pages/index/merchants/merchants",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/productDetails/productDetails",
+                    "pathName": "pages/productDetails/productDetails",
+                    "query": "id=b00064a760b24a941c32eaaa369354c0",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/admin",
+                    "pathName": "pages/mine/admin/admin",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/admin",
+                    "pathName": "pages/mine/admin/admin",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/login/login",
+                    "pathName": "pages/mine/admin/login/login",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/login/login",
+                    "pathName": "pages/mine/admin/login/login",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/mine",
+                    "pathName": "pages/mine/mine",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/mine",
+                    "pathName": "pages/mine/mine",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/admin",
+                    "pathName": "pages/mine/admin/admin",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/adminManage/adminManage",
+                    "pathName": "pages/mine/admin/adminManage/adminManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/shopManage/shopManage",
+                    "pathName": "pages/mine/admin/shopManage/shopManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/shop/shop",
+                    "pathName": "pages/mine/shop/shop",
+                    "query": "id=28ee4e3e60ab7fab1c022d053bad3e2e",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/adminManage/adminManage",
+                    "pathName": "pages/mine/admin/adminManage/adminManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/shopManage/shopManage",
+                    "pathName": "pages/mine/admin/shopManage/shopManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/mine/admin/shopManage/shopManage",
+                    "pathName": "pages/mine/admin/shopManage/shopManage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/search/search",
+                    "pathName": "pages/search/search",
+                    "query": "",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

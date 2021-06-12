@@ -1,8 +1,34 @@
 /* miniprogram/pages/mine/admin/admin.wxss */
 .cu-form-group .title {
-    min-width: calc(4em + 30rpx);
-  }
-  .imageAttribute{
-    height: 200rpx;
-    width: 500rpx;
-  }
+  min-width: calc(4em + 30rpx);
+}
+
+.imageAttribute {
+  height: 200rpx;
+  width: 500rpx;
+}
+
+.addressItem {
+  width: 100%;
+  position: relative;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.addressBox {
+  display: flex;
+  align-items: center;
+}
+
+.address {
+  font-size: 28rpx;
+
+}
+.btnAdd{
+  text-align: center;
+  border: dashed 1rpx green;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: green;
+}

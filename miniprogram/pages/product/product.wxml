@@ -6,55 +6,71 @@
     <view class='content' style='top:{{StatusBar}}px;'>商家店铺</view>
   </view>
 </view>
-<view class="padding screen-swiper round-dot" style="z-index:999;background-image:url('{{shop.shopBackground}}');background-repeat:no-repeat;background-size:100% 50%;">
-    <view class="radius shadow bg-white fcx-head" style="top:{{heighttop}}px;">
-      <view style="weight:60%;height:80%;">
-        <view style="font-weight: bold;font-size: 35rpx;color: black;" class="special_offer_foot_title textOverflow">{{shop.shopName}}</view>
-        <view style="font-size:25rpx;font-weight: bold;color: black;padding-top: 5rpx;" class="cuIcon-location special_offer_foot_title textOverflow" bindtap="showAddress" data-showAddress="{{shop.province+''+shop.city+''+shop.county+''+shop.address}}">
-          {{shop.province+''+shop.city+''+shop.county+''+shop.address}}</view>
-        <view style="font-size:25rpx;font-weight: bold;color: black;padding-top: 5rpx;" bindtap="shopDescribe" data-shopDescribe="{{shop.shopDescribe}}" class="special_offer_foot_title textOverflow">{{shop.shopDescribe}}</view>
-        <view style="font-size:26rpx;padding-top: 5rpx;" class="special_offer_foot_title textOverflow" bindtap="showShopAnnouncement" data-showShopAnnouncement="{{shop.shopAnnouncement}}">公告：{{shop.shopAnnouncement}}</view>
-        <view class="businessHours">营业时间：{{shop.startTime}} - {{shop.endTime}}</view>
-        <!--<button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green" bindtap="showaddModal" data-target="Modal">添加商品</button>-->
+<view class="padding screen-swiper round-dot"
+  style="z-index:999;background-image:url('{{shop.shopBackground}}');background-repeat:no-repeat;background-size:100% 50%;">
+  <view class="radius shadow bg-white fcx-head" style="top:{{heighttop}}px;">
+    <view style="weight:60%;height:80%;">
+      <view style="font-weight: bold;font-size: 35rpx;color: black;" class="special_offer_foot_title textOverflow">
+        {{shop.shopName}}</view>
+      <view style="font-size:25rpx;font-weight: bold;color: black;padding-top: 5rpx;"
+        class="cuIcon-location special_offer_foot_title textOverflow" bindtap="showAddress"
+        data-showAddress="{{shop.province+''+shop.city+''+shop.county+''+shop.address}}">
+        {{shop.province+''+shop.city+''+shop.county+''+shop.address}}</view>
+      <view style="font-size:25rpx;font-weight: bold;color: black;padding-top: 5rpx;" bindtap="shopDescribe"
+        data-shopDescribe="{{shop.shopDescribe}}" class="special_offer_foot_title textOverflow">{{shop.shopDescribe}}
       </view>
+      <view style="font-size:26rpx;padding-top: 5rpx;" class="special_offer_foot_title textOverflow"
+        bindtap="showShopAnnouncement" data-showShopAnnouncement="{{shop.shopAnnouncement}}">
+        公告：{{shop.shopAnnouncement}}</view>
+      <view class="businessHours">营业时间：{{shop.startTime}} - {{shop.endTime}}</view>
+      <!--<button class="cu-btn round bg-green" plain="true" style="border-color:green;color:green" bindtap="showaddModal" data-target="Modal">添加商品</button>-->
+    </view>
     <view class="cu-tag badge">
       <view class="cu-avatar xl round margin-left boxShade" style="background-image:url({{shop.shopImage}});"></view>
     </view>
-    </view>
+  </view>
 </view>
 <empty wx:if="{{commodityType.length==0?true:false}}" isFull="{{false}}"></empty>
 <view class="VerticalBox">
   <!--侧边menu-->
-  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index" bindtap='tabSelect' data-id="{{index}}">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}"
+    style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}} textOverflow" wx:for="{{commodityType}}" wx:key="index"
+      bindtap='tabSelect' data-id="{{index}}">
       <text>{{item.name}}</text>
     </view>
   </scroll-view>
   <!--内容list-->
-  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)"
+    scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
     <view class="padding-top padding-lr" wx:for="{{commodityType}}" wx:key="index" id="main-{{index}}">
       <!--Tab-->
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action'>
-          <text class='cuIcon-title text-green'></text> {{item.name}} </view>
+          <text class='cuIcon-title text-green'></text> {{item.name}}
+        </view>
       </view>
       <!--内容-->
       <view class="cu-list menu-avatar">
-      <empty wx:if="{{item.commodity.length==0?true:false}}" isFull="{{false}}"></empty>
-        <view class="cu-item {{modalName=='move-box-'+ (item._id+index)?'move-cur':''}}" wx:for="{{item.commodity}}" wx:key="index" data-target="move-box-{{item.Id+index}}" data-id="{{item._id}}" bindtap="productdesc">
-      <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
-      <view class="content">
-        <view class="text-grey textOverflow">{{item.name}}</view>
-        <view class="text-gray text-sm textOverflow">
-          <text class="cuIcon-medal text text-red "></text> {{item.desc}}</view>
-      </view>
-      <view class="action">
-        <view class="text-grey text-xs">￥{{item.price}}</view>
-        <view class="cu-tag round bg-grey sm">月售{{item.monthlySales}}</view>
-      </view>
-    </view>
+        <empty wx:if="{{item.commodity.length==0?true:false}}" isFull="{{false}}"></empty>
+        <view class="cu-item {{modalName=='move-box-'+ (item._id+index)?'move-cur':''}}" wx:for="{{item.commodity}}"
+          wx:key="index" data-target="move-box-{{item.Id+index}}" data-id="{{item._id}}" bindtap="productdesc">
+          <view class="cu-avatar round lg" style="background-image:url({{item.image}});"></view>
+          <view class="content">
+            <view class="text-grey textOverflow">{{item.name}}</view>
+            <view class="text-gray text-sm textOverflow">
+              <text class="cuIcon-medal text text-red "></text> {{item.desc}}
+            </view>
+          </view>
+          <view class="action">
+            <view class="text-grey text-xs">￥{{item.currentPrice}}</view>
+            <view class="cu-tag round bg-grey sm">月售{{item.monthlySales}}</view>
+          </view>
+        </view>
       </view>
 
     </view>
   </scroll-view>
+
 </view>
+<load showLoad="{{initShowLoad}}" modeType="1"></load>

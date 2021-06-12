@@ -2,5 +2,6 @@
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
     "load":"/components/load/load"
-  }
+  },
+  "onReachBottomDistance":300
 }

@@ -16,7 +16,7 @@
           </view>
         </view>
         <view class="goods_con_text_r">
-          <text class="orginnal_price">¥{{item.price}}</text>
+          <text class="orginnal_price">¥{{item.currentPrice}}</text>
           <text class="price">¥{{item.price}}</text>
         </view>
       </view>

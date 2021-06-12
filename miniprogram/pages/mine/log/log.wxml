@@ -4,6 +4,34 @@
   <view slot="content">更新日志</view>
 </cu-custom>
 <view class="cu-timeline">
+  <view class="cu-time">1.0.5</view>
+  <view class="cu-item cur cuIcon-noticefill">
+    <view class="content bg-green shadow-blur">
+      <text>2021-06-09</text>
+      <view>1.优化店铺用户体验</view>
+      <view>2.修复价格BUG</view>
+    </view>
+  </view>
+</view>
+<view class="cu-timeline">
+  <view class="cu-time">1.0.4</view>
+  <view class="cu-item cur cuIcon-noticefill">
+    <view class="content bg-green shadow-blur">
+      <text>2021-06-03</text>
+      <view>修改已知bug以及优化部分界面</view>
+    </view>
+  </view>
+</view>
+<view class="cu-timeline">
+  <view class="cu-time">1.0.3</view>
+  <view class="cu-item cur cuIcon-noticefill">
+    <view class="content bg-green shadow-blur">
+      <text>2021-06-02</text>
+      <view>修改管理员界面部分bug和优化功能</view>
+    </view>
+  </view>
+</view>
+<view class="cu-timeline">
   <view class="cu-time">1.0.2</view>
   <view class="cu-item cur cuIcon-noticefill">
     <view class="content bg-green shadow-blur">

@@ -15,8 +15,9 @@
 			<open-data class="avatar" type="userAvatarUrl"></open-data>
 			<view class="userInfo">
 				<open-data class="weixingName textOverflow" bindtap="tapAdmin" type="userNickName"></open-data>
-				<view class="display-flex margin-top">
-					<view bindtap="tapShowId" class="text-cut">ID:{{user._id}}</view><text bindtap="tapCopyId" class="cuIcon-copy"></text>
+				<view class="display-flex margin-top-xs">
+					<view bindtap="tapShowId" class="text-cut accountId">账户ID:{{user._id}}</view><text
+						bindtap="tapCopyId" class="cuIcon-copy"></text>
 				</view>
 			</view>
 
@@ -50,8 +51,8 @@
 			autoplay="true" interval="5000" duration="500">
 			<swiper-item wx:for="{{swiperList}}" wx:key="item">
 				<image class="bannerImage" src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-				<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover"
-					wx:if="{{item.type=='video'}}"></video>
+				<video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+					objectFit="cover" wx:if="{{item.type=='video'}}"></video>
 			</swiper-item>
 		</swiper>
 	</view>
@@ -96,6 +97,11 @@
 				</navigator>
 			</view>
 		</view>
+
 	</view>
 	<load showLoad="{{showLoad}}" modeType="1"></load>
+
+</view>
+<view class="bottom">
+	<view class="text-center text-xs">软件版本：正式版1.0</view>
 </view>

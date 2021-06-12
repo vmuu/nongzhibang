@@ -39,7 +39,8 @@
         "pages/mine/log/log",
         "pages/mine/admin/admin",
         "pages/mine/admin/login/login",
-        "pages/mine/admin/adminManage/adminManage"
+        "pages/mine/admin/adminManage/adminManage",
+        "pages/mine/admin/shopManage/shopManage"
     ],
     "entryPagePath": "pages/index/index",
     "plugins": {

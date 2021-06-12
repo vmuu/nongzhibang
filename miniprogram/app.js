@@ -3,6 +3,7 @@ import http from './config/http'
 import utils from './config/utils'
 import dbbase from './config/dbbase'
 import webstock from './plugins/webstock'
+import config from './config/config';
 
 var that;
 
@@ -14,6 +15,7 @@ App({
   utils: utils,
   dbbase: dbbase,
   http: http,
+  config:config,
   change: utils.change,
   isEmpty: utils.isEmpty,
   dateformat: utils.dateformat,
@@ -67,13 +69,13 @@ App({
     })
     //从缓存中获取openid
     try {
-      var value = wx.getStorageSync('openid')
+      var value =wx.getStorageSync('openid')
       if (value) {
         this.globalData.openid = value;
         utils.cl('[缓存]获取openid成功：', value)
       } else {
         utils.ce('[缓存]获取openid为空，跳转到登录页面')
-        //登录
+        //获取openid
         await this.onGetOpenid()
       }
     } catch (e) {
@@ -172,8 +174,8 @@ App({
           onError: function (err) {
             console.error('数据库监听发生错误：', err)
             wx.showModal({
-              title: '发生了错误，请重启小程序',
-              content: '错误原因：' + err,
+              title: '断线提醒',
+              content: '小程序已断开连接，请重启小程序',
               success: res => {
                 if (res.confirm) {
 
@@ -188,9 +190,6 @@ App({
     } catch (e) {
 
     }
-
-
-
   },
   //查询用户是否开通店铺
   getShopInfo() {
@@ -216,7 +215,6 @@ App({
       })
     })
   },
-
   /**
    * 获取openid
    */
@@ -227,32 +225,22 @@ App({
     })
     // 调用云函数
     return new Promise(success => {
-
       wx.cloud.callFunction({
         name: 'login',
         data: {},
         success: async res => {
-          //注册
-          await this.register(res.result.openid)
+         
           utils.cl('[云函数] [login] user openid: ', res.result.openid)
           this.globalData.openid = res.result.openid
-
           //异步方式缓存openid
           try {
             wx.setStorageSync('openid', res.result.openid)
           } catch (e) {
             utils.ce('缓存失败')
           }
-          wx.hideLoading({
-            success: (res) => {
-              wx.showToast({
-                title: '获取成功',
-                icon: 'none'
-              })
-            },
-          })
-          success()
-
+           //注册
+           await this.register(res.result.openid)
+           success()
         },
         fail: err => {
           utils.ce('[云函数] [login] 调用失败', err)
@@ -262,10 +250,54 @@ App({
         }
       })
     })
-
   },
   show() {
     this.utils.cl('调取成功')
+  },
+  /***
+   * 添加用户信息
+   * 
+   */
+  userInfoAdd(res) {
+    return new Promise(returnSuccess => {
+      //注册
+      let payload = {
+        isShop: false,
+        nickName: res.nickName ? res.nickName : null,
+        authority: 0,
+        authorityId: null,
+        headPortrait: res.avatarUrl ? res.avatarUrl : null
+      }
+      that.dbbase.add('user', payload).then(res => {
+        that.utils.cl(res)
+        returnSuccess()
+      })
+    })
+  },
+
+  /***
+   * 更新用户信息
+   * 
+   */
+  userInfoUpdate(res) {
+    return new Promise(returnSuccess => {
+      //修改
+      let payload = {
+        // isShop: false,
+        nickName: res.nickName ? res.nickName : null,
+        // authority: 0,
+        // authorityId: null,
+        headPortrait: res.avatarUrl ? res.avatarUrl : null
+      }
+      let where = {
+        _openid: that.globalData.openid
+      }
+      that.dbbase.updateWhere('user', where, payload).then(res => {
+        that.utils.cl(res)
+        returnSuccess()
+      })
+    })
+
   },
   /**
    * 注册用户
@@ -278,12 +310,36 @@ App({
         that.utils.cl(res, '查询用户');
 
         if (res.data.length != 0) {
-          //已经注册
-          returnSuccess()
+          wx.hideLoading({
+            success: (res) => {
+            },
+          })
+          //已经注册，更新用户信息
+
+          //获取用户信息
+          that.getUserInfo().then(res => {
+
+            wx.showLoading({
+              title: '登录中...',
+            })
+            that.utils.ce(res)
+            that.utils.cl('头像：', res.avatarUrl);
+            that.userInfoUpdate(res).then(re => {
+              that.utils.cl(re);
+
+              wx.hideLoading({
+                success: (res) => {
+                  that.utils.hint('登录成功');
+                },
+              })
+              returnSuccess()
+            })
+          })
+
+          
         } else {
           wx.hideLoading({
             success: (res) => {
-              
             },
           })
           //获取用户信息
@@ -295,24 +351,10 @@ App({
             that.utils.ce(res)
             that.utils.cl('头像：', res.avatarUrl);
             //注册
-            let payload = {
-              isShop: false,
-              nickName: res.nickName ? res.nickName : null,
-              authority: 0,
-              authorityId: null,
-              headPortrait: res.avatarUrl ? res.avatarUrl : null
-            }
-            that.dbbase.add('user', payload).then(res => {
-              that.utils.cl(res)
+            that.userInfoAdd(res).then(re => {
               wx.hideLoading({
                 success: (res) => {
-                  wx.showToast({
-                    title: '注册成功',
-                    icon: 'none',
-                    success(){
-                      returnSuccess()
-                    }
-                  })
+                  that.utils.hint('注册成功');
                 },
               })
             })

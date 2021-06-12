@@ -49,6 +49,7 @@
   </view>
   <view class="all_merchants_right">
     <view class="merchants_Price">￥{{product.currentPrice}}</view>
+    
     <!-- <view class="old_Price">￥{{product.price}}</view> -->
     <!-- <view class="merchants_type">立即抢购</view> -->
   </view>

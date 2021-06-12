@@ -12,4 +12,8 @@
       <text class="lodingText">加载中...</text>
     </view>
   </view>
+
+  <view class='load-progress'  style="top:{{CustomBar}}px;" wx:if="{{showLoad&&modeType==2}}">
+    <view class='load-progress-spinner text-green'></view>
+  </view>
 </view>
