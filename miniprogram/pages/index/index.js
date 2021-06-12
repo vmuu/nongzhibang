@@ -1,5 +1,4 @@
 import db from '../../config/dbbase.js';
-import utils from '../../config/utils.js';
 var that;
 
 const app = getApp();
@@ -13,23 +12,20 @@ Page({
     swiperList: [{
       id: 0,
       type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1125271620185127484'
-    }, {
+      url: 'https://cloud.xiaoxingbobo.top/nongzhibang/202145/1125271620185127484'
+    },
+     {
       id: 1,
       type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126161620185176238',
+      url: 'https://cloud.xiaoxingbobo.top/nongzhibang/202145/1126421620185202773'
     }, {
       id: 2,
       type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/1126421620185202773'
+      url: 'https://cloud.xiaoxingbobo.top/nongzhibang/202145/127171620187637650'
     }, {
       id: 3,
       type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/127171620187637650'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'http://cdn.xiaoxingbobo.top/nongzhibang/202145/123681620189368172'
+      url: 'https://cloud.xiaoxingbobo.top/nongzhibang/202145/123681620189368172'
     }],
     //搜索框style
     CustomBar: app.globalData.CustomBar,
