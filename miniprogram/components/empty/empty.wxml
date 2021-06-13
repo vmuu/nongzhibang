@@ -1,4 +1,4 @@
 <!--components/order/order.wxml-->
 <view class="{{isFull?'full':'empty'}}" >
-    <image class="image"  src="https://cdn.xiaoxingbobo.top/nongzhibang/20210425/1540441621928444643"></image>
+    <image class="image"  src="https://cloud.xiaoxingbobo.top/nongzhibang/20210425/1540441621928444643"></image>
 </view>
