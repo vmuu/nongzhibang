@@ -15,7 +15,7 @@ App({
   utils: utils,
   dbbase: dbbase,
   http: http,
-  config:config,
+  config: config,
   change: utils.change,
   isEmpty: utils.isEmpty,
   dateformat: utils.dateformat,
@@ -29,7 +29,7 @@ App({
     showLoad: true,
     wxUserInfo: null
   },
-  async onLaunch() {
+  async onLaunch () {
 
     that = this;
     //判断是否支持云开发
@@ -42,7 +42,7 @@ App({
         //   env 参数决定接下来小程序发起的云开发调用（wx.cloud.xxx）会默认请求到哪个云环境的资源
         //   此处请填入环境 ID, 环境 ID 可打开云控制台查看
         //   如不填则使用默认环境（第一个创建的环境）
-        env: 'cloud1-3gtxx3hfcd0cc5a0',
+        env: cloud.DYNAMIC_CURRENT_ENV,
         traceUser: true,
       })
     };
@@ -69,7 +69,7 @@ App({
     })
     //从缓存中获取openid
     try {
-      var value =wx.getStorageSync('openid')
+      var value = wx.getStorageSync('openid')
       if (value) {
         this.globalData.openid = value;
         utils.cl('[缓存]获取openid成功：', value)
@@ -92,7 +92,7 @@ App({
     }
 
   },
-  async monitor() {
+  async monitor () {
 
 
     try {
@@ -128,16 +128,16 @@ App({
                   backgroundAudioManager.src = that.globalData.newOrderBeep
                   // 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/2113351622294015379'
                   wx.hideLoading({
-                    success: (res) => {},
+                    success: (res) => { },
                   })
                   wx.showModal({
                     content: '您有新订单啦~',
                     showCancel: false,
                     confirmText: '好的',
-                    success() {
+                    success () {
 
                     },
-                    fail() {
+                    fail () {
 
                     }
                   })
@@ -152,16 +152,16 @@ App({
                     backgroundAudioManager.src = that.globalData.appConfig.cancelOrderBeep
                     // 'https://cloud.xiaoxingbobo.top/nongzhibang/20210429/2113351622294015379'
                     wx.hideLoading({
-                      success: (res) => {},
+                      success: (res) => { },
                     })
                     wx.showModal({
                       content: '您的订单已取消~',
                       showCancel: false,
                       confirmText: '知道了',
-                      success() {
+                      success () {
 
                       },
-                      fail() {
+                      fail () {
 
                       }
                     })
@@ -192,7 +192,7 @@ App({
     }
   },
   //查询用户是否开通店铺
-  getShopInfo() {
+  getShopInfo () {
     let where = {
       _openid: this.globalData.openid,
     }
@@ -218,7 +218,7 @@ App({
   /**
    * 获取openid
    */
-  async onGetOpenid() {
+  async onGetOpenid () {
     let that = this
     wx.showLoading({
       title: '信息获取中...',
@@ -229,7 +229,7 @@ App({
         name: 'login',
         data: {},
         success: async res => {
-         
+
           utils.cl('[云函数] [login] user openid: ', res.result.openid)
           this.globalData.openid = res.result.openid
           //异步方式缓存openid
@@ -238,9 +238,9 @@ App({
           } catch (e) {
             utils.ce('缓存失败')
           }
-           //注册
-           await this.register(res.result.openid)
-           success()
+          //注册
+          await this.register(res.result.openid)
+          success()
         },
         fail: err => {
           utils.ce('[云函数] [login] 调用失败', err)
@@ -251,14 +251,14 @@ App({
       })
     })
   },
-  show() {
+  show () {
     this.utils.cl('调取成功')
   },
   /***
    * 添加用户信息
    * 
    */
-  userInfoAdd(res) {
+  userInfoAdd (res) {
     return new Promise(returnSuccess => {
       //注册
       let payload = {
@@ -279,7 +279,7 @@ App({
    * 更新用户信息
    * 
    */
-  userInfoUpdate(res) {
+  userInfoUpdate (res) {
     return new Promise(returnSuccess => {
       //修改
       let payload = {
@@ -302,7 +302,7 @@ App({
   /**
    * 注册用户
    */
-  async register(value) {
+  async register (value) {
     let that = this
     that.utils.cl('注册');
     return new Promise(returnSuccess => {
@@ -336,7 +336,7 @@ App({
             })
           })
 
-          
+
         } else {
           wx.hideLoading({
             success: (res) => {
@@ -365,14 +365,14 @@ App({
 
 
   },
-  getUserInfo() {
+  getUserInfo () {
     return new Promise(success => {
       wx.showModal({
         title: '登录授权',
         content: '获取您的头像和昵称等信息，请允许',
         showCancel: false,
         confirmText: '好的~',
-        success(res) {
+        success (res) {
           if (res.confirm) {
             wx.getUserProfile({
               desc: "获取您的昵称和头像",
@@ -397,7 +397,7 @@ App({
     })
 
   },
-  getAppConfig() {
+  getAppConfig () {
     //查询小程序提示音
     const db = wx.cloud.database()
     return new Promise((success, error) => {
@@ -412,7 +412,7 @@ App({
       })
     })
   },
-  async initData() {
+  async initData () {
     that.getAppConfig().then(res => {
       that.globalData.newOrderBeep = res.data[0].newOrderBeep
       that.globalData.appConfig = res.data[0]
