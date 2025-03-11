@@ -1,6 +1,6 @@
-## 项目介绍效果展示地址：https://www.bilibili.com/video/BV1nr4y1p7Wd
+## 项目介绍
 
-<iframe height="400" width="600" src="//player.bilibili.com/player.html?aid=595800465&cid=580698394&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+效果展示地址：https://www.bilibili.com/video/BV1nr4y1p7Wd
 
 ![农职邦微信小程序_00](https://raw.githubusercontent.com/vmuu/img/main/img/HotelSSM/202204201738111.jpg)
 
